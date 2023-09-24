@@ -18,6 +18,7 @@ body {
 
 main {
     display: flex;
+    flex-direction: column;
 
 
 }
@@ -104,3 +105,61 @@ input-continer {
     font-weight: 400;
     font-family: Netflix;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+content-main-2{
+  
+    width: 100%;
+    
+    
+}
+
+banner-container{
+    display: flex;
+    min-height: 144px;
+    position: relative;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0 74px;
+    background: radial-gradient( 51.39% 511.66% at 47.68% -217.91%, #ff9900 0%, #e50914 17.27%, #0e1b4f 79.44%, #000413 100% );
+    box-shadow: 0px -8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.btn-link{
+    cursor: pointer;
+    color: #448ef4;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-family: Netflix;
+    font-size: 16px;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    padding: 0;
+}
+
+banner-element-2{
+    margin-left: 32px;
+}
+
