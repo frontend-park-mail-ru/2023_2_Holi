@@ -1,97 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
         <link rel="stylesheet" href="/assets/style.css">
+        <title>Netflix</title>
     </head>
     <body>
-        <!-- Вся страничка -->
-        <div class="main">
-            <!-- Верхний блок -->
-            <div class="block-content-1">
-                <div class="block-content-2">
-                    <div class="block-content-3-1">
-                        <img class="img-main" src="/img/main.jpg"
-                            alt="netflix main">
-                        <div class="background_gradient"></div>
-                        <div class="header">
-                           
-                        </header>
-                    </div>
-                </div>
-                <div class="block-content-3-2">
-                    <div class="block-content-3-2-content format-3-2">
-                        <h1 class="block-content-3-2-content-h1">Смех. Слезы.
-                            Острые ощущения. Найдите все это на Netflix.</h1>
-                        <p class="block-content-3-2-content-p">Стоимость
-                            бесконечных развлечений начинается всего с 5,99
-                            евро. Отмените в любое время.</p>
-                        <div class="mt-3">
-                            <div class="px-4">
-                                <form data-uia="email-form"
-                                    class="form-main"
-                                    aria-label="Sign up or restart your membership with Netflix."
-                                    method="post">
-                                    <h3
-                                        class="h3-email-form">Готовы смотреть?
-                                        Введите свой адрес электронной почты,
-                                        чтобы создать или перезапустить свою
-                                        подписку.</h3>
-                                    <div
-                                        class="div1emailform">
-                                        <div
-                                            class="div-email-input-container">
-                                            <div
-                                                class="div-email-input">
-                                                <input
-                                                    autocomplete="email"
-                                                    minlength="5" maxlength="50"
-                                                    type="email"
-                                                    class="email-input"
-                                                    placeholder="Введите email"
-                                                    name="email"
-                                                    value>
-                                                <div
-                                                    class="div-area-input"></div>
-                                            </div>
-                                        </div>
-                                        <button
-                                            role="button"
-                                            class="btn-email-input"
-                                            type="submit">Начать
-                                            <div
-                                                aria-hidden="true"
-                                                class="arrow">
-                                                <svg
-                                                    width="24" height="24"
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    data-mirrorinrtl="true"
-                                                    class="default-ltr-cache-4z3qvp e1svuwfo1"
-                                                    data-name="ChevronRight"
-                                                    aria-hidden="true"><path
-                                                        fill-rule="evenodd"
-                                                        clip-rule="evenodd"
-                                                        d="M15.5859 12L8.29303 19.2928L9.70725 20.7071L17.7072 12.7071C17.8948 12.5195 18.0001 12.2652 18.0001 12C18.0001 11.7347 17.8948 11.4804 17.7072 11.2928L9.70724 3.29285L8.29303 4.70706L15.5859 12Z"
-                                                        fill="currentColor"></path>
-                                                </svg>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div>
 
-                            </div>
+        <main>
+            <header>
+                <div class="header-content">
+                    <div class="row">
+                        <div class="col justify-content-start">
+                            <img src="/img/logo.svg" alt="logo">
+                        </div>
+
+                        <div class="col d-flex justify-content-end">
+                            <a href="#" class="btn btn-signIn">Войти</a>
                         </div>
                     </div>
-
                 </div>
-            </div>
 
-        </div>
+            </header>
+            <content-main-1>
+                <content-main-1-background> </content-main-1-background>
+            </content-main-1>
+            <content-main-1-form>
+                <content-fragment>
+                    <h1>Laughter. Tears. Thrills. Find it all on Netflix.</h1>
+                </content-fragment>
+                <content-fragment>
+                    <p>Endless entertainment starts at just EUR5.99. Cancel
+                        anytime.</p>
+                </content-fragment>
+                <email-form>
+                    <email-form-container>
+                        <form action="">
+                            <h3 style="font-weight: 100;">Ready to watch? Enter your email to create or restart your membership.</h3>
+                            <input-continer>
+                                <input class="form-input me-3" placeholder="Email" type="email" name="" id="">
+                                <button class="btn-signIn" type="submit">Get Started</button>
+                            </input-continer>
+                        </form>
+                    </email-form-container>
+                </email-form>
+
+            </content-main-1-form>
+        </main>
+        <footer></footer>
     </body>
 </html>

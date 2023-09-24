@@ -1,431 +1,106 @@
-body {
-    margin: 0px;
-    padding: 0px;
-    background: #000;
-    font-family: 'NetflixSans';
-    color: #fff;
-}
-
-.img-main {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    -webkit-transform: scale(1.25) translateY(-10%);
-}
-
-.background_gradient {
-    position: absolute;
-    top: 0px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.00) 60%, rgba(0, 0, 0, 0.80) 100%), rgba(0, 0, 0, 0.40);
-}
-
-.main {
-    display: inline-flex;
-    padding-bottom: 0px;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.block-content-1 {
-    display: flex;
-    min-height: 700px;
-    box-sizing: border-box;
-    height: 100%;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-
-.block-content-2 {
-    display: flex;
-    height: 100%;
-
-    flex-direction: column;
-    align-items: flex-start;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-}
-
-.block-content-3-1 {
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-}
-
-.block-content-3-2 {
-    margin: auto;
-    position: absolute;
-    padding: 9.875rem 0 4rem;
-    width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    text-align: center;
-}
-
-.block-content-3-2-content {
-    -webkit-flex-basis: 50%;
-    -ms-flex-preferred-size: 50%;
-    flex-basis: 50%;
-    padding: 0;
-    z-index: 1;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
+@import url(utils.css);
+@import url(header.css);
 
 @font-face {
-    font-family: 'NetflixSans';
+    font-family: Netflix;
     src: url(/fonts/NetflixSansMedium.ttf);
 }
 
-.block-content-3-2-content-h1 {
-    font-size: 3rem;
-    font-weight: 900;
+body {
+    background: #000;
     margin: 0;
-    color: #fff;
+    padding: 0;
+    font-family: Netflix;
+    color: white;
+    overflow-x: hidden;
+
 }
 
-.block-content-3-2-content-p {
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin: 1rem 0 0;
-    color: #fff;
-}
-
-.header {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.header-content-1 {
+main {
     display: flex;
-    padding-bottom: 0px;
-    flex-direction: column;
-    align-items: start;
-}
 
-.header-content-2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
 
 }
 
-.header-content-2-col-1 {
-    display: flex;
-    padding: 8px 0px 0px 16px;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
-}
-
-.header-content-2-col-1-content {
-    display: flex;
-    padding-right: 0px;
-    align-items: flex-start;
-    align-content: flex-start;
-    flex-wrap: wrap;
-}
-
-.header-content-2-col-1-content-span {
+header {
+    width: 100%;
     position: absolute;
-    top: 24px;
-    left: 376px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 }
 
-.header-content-2-col-2 {
+content-main-1 {
+    height: 700px;
     display: flex;
-    padding-top: 8px;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
+    width: 100vw;
+    -webkit-transform: scale(1.25) translateY(-10%);
+    -moz-transform: scale(1.25) translateY(-10%);
+    -ms-transform: scale(1.25) translateY(-10%);
+    transform: scale(1.25) translateY(-10%);
+
+    background-image: url(/img/main.jpg);
+    background-size: cover;
+    /* Растягиваем картинку, чтобы она полностью покрывала блок */
+    background-repeat: no-repeat;
+    /* Запрещаем повторение картинки */
+    background-position: center center;
+    /* Выравниваем картинку по центру блока */
+    background-attachment: fixed;
+    /* Зафиксировать фоновое изображение */
 }
 
-.mt-1 {
-    margin-top: 0.5rem;
+content-main-1-background {
+    background: rgb(0 0 0 / 40%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%);
 }
 
-.mt-2 {
-    margin-top: 1rem;
+content-main-1-form {
+    max-height: 700px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.mt-3 {
+email-form {
     margin-top: 1.5rem;
 }
 
-.px-4 {
+email-form-container {
     padding-left: 2rem;
     padding-right: 2rem;
 }
 
-@media screen and (min-width: 960px) {
-    .format-3-2 {
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-    }
-}
-
-@media screen and (min-width: 1920px) {
-    .format-3-2 {
-        max-width: calc(66.66666666666666% - 6rem);
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    .format-3-2 {
-        max-width: calc(83.33333333333334% - 6rem);
-    }
-}
-
-@media screen and (min-width: 960px) {
-    .format-3-2 {
-        max-width: calc(100% - 4rem);
-    }
-}
-
-@media screen and (min-width: 600px) {
-    .format-3-2 {
-        max-width: calc(100% - 4rem);
-    }
-}
-
-.form-main {
-    -webkit-text-size-adjust: 100%;
-    font-family: NetflixSans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    letter-spacing: 0 !important;
-    display: flex;
-    flex-direction: column;
-}
-
-.h3-email-form {
-    -webkit-text-size-adjust: 100%;
-    font-family: NetflixSans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    letter-spacing: 0 !important;
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-.div1emailform {
-    -webkit-text-size-adjust: 100%;
-    font-family: NetflixSans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
-    color: rgb(255, 255, 255);
-    letter-spacing: 0 !important;
-    text-align: left;
-    position: relative;
-    margin: 1rem auto 0;
-    width: 100%;
-    max-width: 36.625rem;
-    display: flex;
-    -webkit-box-align: center;
+input-continer {
+    margin-bottom: -1.625rem;
     flex-direction: row;
-    align-items: flex-start;
-}
-
-.div-email-input-container {
-    -webkit-text-size-adjust: 100%;
-    font-family: NetflixSans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
-    color: rgb(255, 255, 255);
-    text-align: left;
-    letter-spacing: 0 !important;
-    position: relative;
-    display: inline-flex;
-    flex-wrap: wrap;
-    vertical-align: text-top;
-    width: auto;
-    flex: 1 1 auto;
-}
-
-.label-imail-input {
-    -webkit-text-size-adjust: 100%;
-    font-family: NetflixSans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
-    text-align: left;
-    letter-spacing: 0 !important;
-    display: block;
-    user-select: none;
-    position: absolute;
-    z-index: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition-property: top, font-size, line-height;
-    transition-duration: 250ms;
-    pointer-events: none;
-    transition-timing-function: cubic-bezier(0.9, 0, 0.51, 1);
-    left: 1rem;
-    right: 1rem;
-    top: 1rem;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
-}
-
-.div-email-input {
-    -webkit-text-size-adjust: 100%;
-    font-family: NetflixSans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
-    letter-spacing: 0 !important;
-    -webkit-box-align: center;
-    align-items: center;
-    display: inline-flex;
-    gap: 2px;
-    line-height: 100%;
-    position: relative;
-    text-align: left;
-    z-index: 0;
-    fill: currentcolor;
-    min-width: 12.5rem;
-    padding: 0px;
-    width: 100%;
-    font-size: 1rem;
-    font-weight: 400;
-    color: rgb(255, 255, 255);
-}
-
-.email-input {
-    -webkit-text-size-adjust: 100%;
-    fill: currentcolor;
-    letter-spacing: 0 !important;
-    animation: animation-14hycbg;
-    appearance: none;
-    background: transparent;
-    background-clip: padding-box;
-    border: 0 solid transparent;
-    font: inherit;
-    margin: 0;
-    text-align: inherit;
-    text-decoration: inherit;
-    text-transform: inherit;
-    min-height: 16px;
-    min-width: 16px;
-    width: 100%;
-    color: inherit;
-    /*filter: opacity(0%);*/
-    padding: 1.5rem 1rem 0.5rem;
-    line-height: 1.5;
-}
-
-.div-area-input {
-    -webkit-text-size-adjust: 100%;
-    font-family: NetflixSans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
-    line-height: 100%;
-    text-align: left;
-    fill: currentcolor;
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 0 !important;
-    color: transparent;
-    position: absolute;
+    margin: 1rem auto 0;
     display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
     justify-content: center;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    border: 1px solid black;
-    user-select: none;
+}
+
+.form-input {
+    background: rgba(22, 22, 22, 0.7);
     border-width: 1px;
     border-style: solid;
     border-radius: 0.25rem;
-    background: rgba(22, 22, 22, 0.7);
-    border-color: rgba(128, 128, 128, 0.7);
-}
-
-.btn-email-input {
-    -webkit-text-size-adjust: 100%;
-    letter-spacing: 0 !important;
-    overflow: visible;
-    text-transform: none;
-    appearance: none;
-    font-style: inherit;
-    font-variant: inherit;
-    font-stretch: inherit;
-    font-family: inherit;
-    font-optical-sizing: inherit;
-    font-kerning: inherit;
-    font-feature-settings: inherit;
-    font-variation-settings: inherit;
-    margin: 0px;
-    text-decoration: none;
-    -webkit-box-align: center;
-    align-items: center;
-    box-sizing: border-box;
-    display: inline-flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    line-height: 1;
-    user-select: none;
-    border: 0px;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    fill: currentcolor;
-    position: relative;
-    transition-duration: 250ms;
-    transition-property: background-color, border-color;
-    transition-timing-function: cubic-bezier(0.9, 0, 0.51, 1);
-    vertical-align: text-top;
-    width: auto;
-    font-size: 1.5rem;
-    font-weight: 500;
-    min-height: 3.5rem;
-    padding: 0.75rem 1.5rem;
-    background: rgb(229, 9, 20);
-    color: rgb(255, 255, 255);
-    flex: 0 0 auto;
-    margin-top: 0;
-    margin-left: 0.5rem;
-}
-
-.arrow {
-    -webkit-text-size-adjust: 100%;
-    text-transform: none;
-    font-style: inherit;
-    font-variant: inherit;
-    font-stretch: inherit;
-    font-family: inherit;
-    font-optical-sizing: inherit;
-    font-kerning: inherit;
-    font-feature-settings: inherit;
-    font-variation-settings: inherit;
-    line-height: 1;
-    user-select: none;
-    cursor: pointer;
-    fill: currentcolor;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: rgb(255, 255, 255);
-    letter-spacing: 0 !important;
-    display: inline-block;
-    height: 1.5rem;
+    line-height: 1.5;
+    padding: 0.5rem 0.5rem 0.5rem;
+    color: #fff;
+    min-width: 12.5rem;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Netflix;
 }
