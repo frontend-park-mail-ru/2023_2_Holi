@@ -201,3 +201,146 @@ content-main-3 {
     display: flex;
     justify-content: center;
 }
+
+
+
+
+
+content-main-4 {
+    display: flex;
+    justify-content: center;
+    border-top: 10px solid #454545;
+    min-height: auto;
+    padding: 4.5rem 0;
+}
+
+content-main-5 {
+    display: flex;
+    justify-content: center;
+    border-top: 10px solid #454545;
+    min-height: auto;
+    padding: 4.5rem 0;
+}
+
+content-main-6 {
+    display: flex;
+    justify-content: center;
+    border-top: 10px solid #454545;
+    min-height: auto;
+    padding: 4.5rem 0;
+}
+
+.mobile-container-1 {
+    -webkit-text-size-adjust: 100%;
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    letter-spacing: 0 !important;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    bottom: 8%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    background: rgb(0, 0, 0);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    min-width: 15rem;
+    border: 2px solid rgba(128, 128, 128, 0.7);
+    box-shadow: 0 0 2em 0 rgb(0, 0, 0);
+    border-radius: 0.75rem;
+    z-index: 1;
+    padding: 0.5rem 0.75rem;
+    width: 50%;
+}
+
+.mobile-col-1 {
+    -webkit-text-size-adjust: 100%;
+    font-family: Netfli;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    letter-spacing: 0 !important;
+    margin: 0 1rem 0 0;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.mobile-col-2 {
+    -webkit-text-size-adjust: 100%;
+    font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    color: rgb(255, 255, 255);
+    letter-spacing: 0 !important;
+    text-align: left;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0.3rem 0;
+}
+
+.mobile-col-2-row-1 {
+    -webkit-text-size-adjust: 100%;
+    font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    text-align: left;
+    letter-spacing: 0 !important;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.mobile-col-2-row-2 {
+    -webkit-text-size-adjust: 100%;
+    font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    text-align: left;
+    letter-spacing: 0 !important;
+    font-weight: 400;
+    color: #0071eb;
+    font-size: 0.875rem;
+}
+
+.mobile-col-3{
+    -webkit-text-size-adjust: 100%;
+    font-family: Netflix,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+    color: rgb(255,255,255);
+    text-align: center;
+    letter-spacing: 0!important;
+    width: 3rem;
+    outline: 2px solid rgb(0,0,0);
+    outline-offset: -2px;
+    display: block;
+    background: url('/img/download-icon.gif') center center no-repeat;
+    background-size: 100%;
+    content: '';
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 3.75rem;
+}
+.mobile-image {
+    -webkit-text-size-adjust: 100%;
+    font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    letter-spacing: 0 !important;
+    border: 0;
+    height: 5rem;
+}
+
+.video-container-imac {
+    -webkit-text-size-adjust: 100%;
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    letter-spacing: 0 !important;
+    z-index: -1;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    max-width: 63%;
+    max-height: 47%;
+    position: absolute;
+    top: 34%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
