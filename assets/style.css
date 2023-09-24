@@ -406,3 +406,8 @@ footer {
     font-size: 14px;
     font-weight: 100;
 }
+
+.footer-2{
+    background: rgba(0,0,0,.75);
+    margin-top: 0;
+}
