@@ -411,3 +411,121 @@ footer {
     background: rgba(0,0,0,.75);
     margin-top: 0;
 }
+
+content-login-form{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    margin: 0 auto -236px;
+    max-width: 450px;
+    min-height: 100vh;
+    padding: 0 5%;
+}
+
+login{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+    font-size: 16px;
+    letter-spacing: 0!important;
+    height: 100%;
+    background-color: transparent;
+    color: #fff;
+}
+
+login-wraper{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+    font-size: 16px;
+    letter-spacing: 0!important;
+    margin: 0;
+    min-height: 100%;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    background-color: #000;
+    color: #fff;
+    
+}
+
+login-background{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 0!important;
+    opacity: .5;
+    background-size: cover;
+    display: block;
+    height: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.login-image{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 0!important;
+    border: 0;
+    min-height: 100%;
+    min-width: 100%;
+}
+login-header{
+    background: linear-gradient(180deg,rgba(0,0,0,.5) 0,transparent);
+    border-bottom: transparent;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+
+
+.body-margin{
+    display: block;
+    height: 91px;
+}
+
+.login-content{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+    font-size: 16px;
+    letter-spacing: 0!important;
+    color: #333;
+    padding: 0 5%;
+    background-color: transparent;
+    margin: 0 auto -236px;
+    max-width: 450px;
+    min-height: 100vh;
+}
+
+login-footer{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+    letter-spacing: 0!important;
+    color: #757575;
+    font-size: 1em;
+    min-width: 190px;
+    padding-bottom: 20px;
+    position: relative;
+    width: 100%;
+    background: rgba(0,0,0,.75);
+    margin-top: 0;
+}
