@@ -8,7 +8,9 @@
     font-family: Netflix Sans;
     src: url(/fonts/NetflixSansRegular.ttf);
 }
-
+header-reg{
+    width: 100%;
+}
 .header-content {
     margin: 0;
     padding-top: 1.5rem;
