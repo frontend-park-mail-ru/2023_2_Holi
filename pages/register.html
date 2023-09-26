@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/assets/register.css">
+        <title>Netflix</title>
+    </head>
+        
+    <body>
+        <main>
+            <header>
+                <div class="header-content">
+                    <div class="row">
+                        <div class="col justify-content-start">
+                            <img class="w-25 ps-2" src="/img/logo.svg" alt="logo">
+                        </div>
+
+                        <div class="signIn-element">
+                            <a href="#" class="signIn-link">Войти</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <content-main-1-form>
+                <form method="POST">
+                    <content-fragment>
+                        <span class="step-indicator">
+                            ШАГ
+                            <b>1</b>
+                            ИЗ
+                            <b>3</b>
+                        </span>
+                        <h1>
+                            С возвращением!
+                            Присоединиться к Netflix очень просто.
+                        </h1>
+                    </content-fragment>
+                    <content-fragment>
+                        <span>
+                            Введите свой пароль, и вы сразу же начнете просмотр.
+                        </span>
+                    </content-fragment>
+                    <content-fragment>
+                        <ul class="form-list">
+                            <li>
+                                <span>Email</span>
+                                <span>ax.chinaev@yandex.ru</span>
+                            </li>
+                            <li>
+                                <input-continer>
+                                    <input class="form-input me-3"
+                                        placeholder="Введите пароль" type="password" name id>
+                                </input-continer>
+                            </li>
+                        </ul>
+                    </content-fragment>
+                    <content-fragment>
+                        <a class="link-forgot-password" href="#">Забыли пароль?</a>
+                    </content-fragment>
+                </form>
+                <content-fragment class="submit-register-container">
+                        <button class="submit-register-button">
+                            Далее
+                        </button>  
+                </content-fragment>
+            </content-main-1-form>
+        </main>
+    </body>
+</html>

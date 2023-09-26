@@ -32,8 +32,6 @@ body {
 main {
     display: flex;
     flex-direction: column;
-
-
 }
 
 header {
@@ -86,6 +84,11 @@ content-main-1-form {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.form-list {
+    margin: 16px 0 20px;
+    
 }
 
 email-form {
