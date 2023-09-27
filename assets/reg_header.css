@@ -10,6 +10,7 @@
 }
 header-reg{
     width: 100%;
+    position: static;
 }
 .header-content {
     margin: 0;
