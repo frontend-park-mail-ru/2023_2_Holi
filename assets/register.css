@@ -82,7 +82,6 @@ content-fragment>h1 {
 }
 
 input-continer {
-    flex-direction: row;
     display: flex;
     justify-content: center;
     width: 100%;
