@@ -8,13 +8,10 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../public/assets')));
-app.use(express.static(path.join(__dirname, '../public/img')));
-app.use(express.static(path.join(__dirname, '../public/video')));
-app.use(express.static(path.join(__dirname, '../public/fonts')));
+app.use(express.static(path.join(__dirname, '../')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/pages','main.html'))
+    res.sendFile(path.join(__dirname, '../pages','main.html'))
 })
 
 const port = process.env.PORT || 3000;
