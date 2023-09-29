@@ -30,5 +30,7 @@ app.get('/register/was_created', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/pages','register_if_account_alredy_created.html'))
 })
 
-module.exports = app;
-module.exports.handler = serverless(app);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Сервер запущен на порту ${port}`);
+})
