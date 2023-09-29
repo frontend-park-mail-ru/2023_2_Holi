@@ -1,4 +1,3 @@
 [build]
   command = "npm install && (cd server && node --experimental-modules server.mjs)"
   publish = "public" # Путь к папке, которая будет опубликована
-  base = "server" # Путь к серверной части приложения
