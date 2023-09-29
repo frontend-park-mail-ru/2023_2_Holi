@@ -11,23 +11,23 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages','main.html'))
+    res.sendFile(path.join(__dirname, '../public/pages','main.html'))
 })
 
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages','login.html'))
+    res.sendFile(path.join(__dirname, '../public/pages','login.html'))
 })
 
 app.get('/register/create', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages','register_create_password.html'))
+    res.sendFile(path.join(__dirname, '../public/pages','register_create_password.html'))
 })
 
 app.get('/register/finish', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages','register_finish_acc.html'))
+    res.sendFile(path.join(__dirname, '../public/pages','register_finish_acc.html'))
 })
 
 app.get('/register/was_created', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages','register_if_account_alredy_created.html'))
+    res.sendFile(path.join(__dirname, '../public/pages','register_if_account_alredy_created.html'))
 })
 
 const port = process.env.PORT || 3000;
