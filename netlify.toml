@@ -1,3 +1,2 @@
 [build]
-  command = "npm install"
   publish = "public" # Путь к папке, которая будет опубликована
