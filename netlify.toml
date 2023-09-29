@@ -1,0 +1,3 @@
+[build]
+  command = "node --experimental-modules server.mjs" # Здесь указывается команда для сборки вашего проекта, если она отличается от npm start или node server.js
+  publish = "public" # Путь к папке, которая будет опубликована
