@@ -1,9 +1,14 @@
 {
   "scripts": {
-    "start": "node server/server.mjs"
+    "prestart": "npm run compile:templates",
+    "start": "node server/server.mjs",
+    "compile:templates": "handlebars components/RegFooter/RegFooter.hbs -f components/RegFooter/RegFooter.precompiled.js "
   },
   "dependencies": {
     "daemon": "^1.1.0",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "gulp-handlebars": "^5.0.2",
+    "handlebars": "^4.7.8",
+    "nodemon": "^3.0.1"
   }
 }
