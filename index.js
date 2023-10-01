@@ -14,6 +14,18 @@ const config = {
         headerContent: {
             classes: ['header-content-reg']
         }
+    },
+    registerStepHeader: {
+        span: {
+            classes: ['step-indicator-finish-acc']
+        },
+        header: {
+            classes: ['step-header-finish-acc'],
+            text: 'Завершите настройку своего аккаунта'
+        }
+    },
+    registerContextBody: {
+        text: 'Netflix создан специально для вас. Создайте пароль, чтобы начать просмотр Netflix.'
     }
 };
 
