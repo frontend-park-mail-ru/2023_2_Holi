@@ -1,4 +1,4 @@
-export class NetflixLogo {
+export class SignInLink {
     #parent 
 
     constructor(parent) {
@@ -7,8 +7,9 @@ export class NetflixLogo {
     }
     
     render() {
-        const template = Handlebars.templates['NetflixLogo.hbs'];
+        const template = Handlebars.templates['SignInLink.hbs'];
 
         this.#parent.insertAdjacentHTML('beforeend', template({template}));
+
     }
 }

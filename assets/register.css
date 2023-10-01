@@ -13,12 +13,14 @@
 main {
     height: 100vh;
     justify-content: space-between;
-}
-
-body {
     background: #fff;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
 }
+
+/* body {
+    background: #fff;
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+} */
 
 content-main-1-form-reg {
     color: #333333;

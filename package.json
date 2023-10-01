@@ -2,7 +2,7 @@
   "scripts": {
     "prestart": "npm run compile:templates",
     "start": "node server/server.mjs",
-    "compile:templates": "handlebars components/RegFooter/RegFooter.hbs -f components/RegFooter/RegFooter.precompiled.js "
+    "compile:templates": "handlebars components/RegFooter/RegFooter.hbs -f components/RegFooter/RegFooter.precompiled.js && handlebars components/Header/Header.hbs -f components/Header/Header.precompiled.js && handlebars components/SignInLink/SignInLink.hbs -f components/SignInLink/SignInLink.precompiled.js && handlebars components/NetflixLogo/NetflixLogo.hbs -f components/NetflixLogo/NetflixLogo.precompiled.js"
   },
   "dependencies": {
     "daemon": "^1.1.0",
