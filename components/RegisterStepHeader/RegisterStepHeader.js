@@ -10,9 +10,9 @@ export class RegisterStepHeader {
     render() {
         const template = Handlebars.templates['RegisterStepHeader.hbs'];
 
-        const spanClasses = this.#config.registerStepHeader.span.classes;
-        const headerClasses = this.#config.registerStepHeader.header.classes;
-        const headerText = this.#config.registerStepHeader.header.text;
+        const spanClasses = this.#config.stepHeader.span.classes;
+        const headerClasses = this.#config.stepHeader.header.classes;
+        const headerText = this.#config.stepHeader.header.text;
 
         this.#parent.insertAdjacentHTML('beforeend', template({ spanClasses, headerClasses, headerText }));
 

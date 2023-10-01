@@ -10,9 +10,10 @@ export class RegisterContextBody {
     render() {
         const template = Handlebars.templates['RegisterContextBody.hbs'];
 
-        const text = this.#config.registerContextBody.text;
+        const text = this.#config.text;
+        const classes = this.#config.classes;
 
-        this.#parent.insertAdjacentHTML('beforeend', template({ text }));
+        this.#parent.insertAdjacentHTML('beforeend', template({ text, classes }));
 
     }
 }

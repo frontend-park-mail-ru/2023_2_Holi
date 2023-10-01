@@ -18,8 +18,8 @@ export class FinishAccContent {
 
         const upperSibling = this.#parent.querySelector(".reg-form")
 
-        const stepHeader = new RegisterStepHeader(upperSibling, this.#config)
-        const contextBody = new RegisterContextBody(upperSibling, this.#config)
+        const stepHeader = new RegisterStepHeader(upperSibling, this.#config.finishAcc)
+        const contextBody = new RegisterContextBody(upperSibling, this.#config.finishAcc.registerContextBody)
         const submitButton = new SubmitRegisterButton(upperSibling)
 
         stepHeader.render()

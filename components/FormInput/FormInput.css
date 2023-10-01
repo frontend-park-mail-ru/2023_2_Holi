@@ -1,0 +1,19 @@
+.input-container-already-created {
+    height: 60px;
+}
+
+.form-input-already-created {
+    border: 1px solid #8c8c8c;
+    border-radius: 0;
+}
+
+
+.input-container-create-password {
+    height: 50px;
+    margin-top: 0;
+ }
+ 
+ .form-input-create-password {
+     border: 1px solid rgb(128, 128, 128)sparent;
+     border-radius: 4px;
+ }

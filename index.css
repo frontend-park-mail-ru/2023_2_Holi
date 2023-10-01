@@ -1,5 +1,17 @@
-@import url(utils.css);
+@import url(assets/utils.css);
+@import url(css/main.css);
+@import url(css/step-header.css);
 
 @import url(css/header.css);
 @import url(components/Header/Header.css);
 @import url(components/SignInLink/SignInLink.css);
+
+@import url(components/SubmitRegisterButton/SubmitRegisterButton.css);
+@import url(components/RegisterStepHeader/RegisterStepHeader.css);
+@import url(components/RegisterContextBody/RegisterContextBody.css);
+@import url(components/FinishAccContent/FinishAccContent.css);
+
+@import url(components/RegFooter/RegFooter.css);
+
+@import url(css/form-input.css);
+@import url(components/FormInput/FormInput.css);
