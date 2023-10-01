@@ -1,22 +1,24 @@
+@font-face {
+    font-family: Netflix Sans;
+    src: url(/fonts/NetflixSansRegular.ttf);
+}
+
+@font-face {
+    font-family: NetflixLight;
+    src: url(/fonts/NetflixSansLight.ttf);
+}
+
 body {
-    /* background: #000; */
     margin: 0;
     padding: 0;
-    /* font-family: Netflix; */
-    /* color: white; */
     overflow-x: hidden;
 }
 
-/* main {
+main {
     display: flex;
     flex-direction: column;
-} */
-
-main {
     height: 100vh;
     justify-content: space-between;
     background: #fff;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
 }
-
-

@@ -48,6 +48,7 @@ const config = {
             text: 'Мы тоже ненавидим бумажную волокиту.'
         },
         formList: {
+            classes: ['form-list-create-password'],
             withHeader: false,
             inputs: [{
                 inputClasses: ['form-input-create-password'],
@@ -56,7 +57,7 @@ const config = {
                 type: 'email'
             },
             {
-                inputСlasses: ['form-input-create-password'],
+                inputClasses: ['form-input-create-password'],
                 containerClasses: ['input-container-create-password'],
                 placeholder: 'Введите пароль',
                 type: 'password'
@@ -78,6 +79,7 @@ const config = {
             text: 'Введите свой пароль, и вы сразу же начнете просмотр.'
         },
         formList: {
+            classes: ['form-list-already-created'],
             withHeader: true,
             headerStub: {
                 text: 'Email',
@@ -88,8 +90,8 @@ const config = {
                 classes: []
             },
             inputs: [{
-                inputClasses: ['form-input-create-password'],
-                containerClasses: ['input-container-create-password'],
+                inputClasses: ['form-input-already-created'],
+                containerClasses: ['input-container-already-created'],
                 placeholder: 'Введите пароль',
                 type: 'password'
             }]
@@ -98,9 +100,10 @@ const config = {
 };
 
 const routes = [
-    new Route('/register/intro', new FinishAсс(mainElement, config)),
+    // /register/intro
+    new Route('/', new FinishAсс(mainElement, config)),
     new Route('/register/create', new CreatePassword(mainElement, config)),
-    new Route('/', new PasswordAlreadyCreated(mainElement, config)),
+    new Route('/register/created', new PasswordAlreadyCreated(mainElement, config)),
     // new Route('/', new HomeComponent()),
     // new Route('/about', new AboutComponent()),
     new Route('*', new FinishAсс(mainElement, config))

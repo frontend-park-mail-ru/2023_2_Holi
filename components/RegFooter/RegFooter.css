@@ -1,11 +1,54 @@
+.footer-wrapper {
+    color: #737373;
+    font-size: 1em;
+    width: 100%;
+    margin-top: 50px;
+    padding-bottom: 20px;
+    min-width: 190px;
+    background-color: #f3f3f3;
+    height: 194px;
 
-footer {
+}
 
-    border-top: 8px solid #454545;
+.footer-divider {
+    border-top: 1px solid #e6e6e6;
+    height: 0;
+    width: 100%;
+}
+
+.footer {
+    margin: 0;
+    height: 100%;
+    font-family: NetflixLight;
+    background-color: #f3f3f3;
+    border-top: none;
+    color: #737373;
+    text-decoration: none;
     padding-left: 2rem;
     padding-right: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+}
+
+.container {
+    padding-top: 30px;
+    font-size: 1em;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.footer-top {
+    margin: 0 0 30px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    font-size: 1em;
+    letter-spacing: 0 !important;
+    padding: 0;
+    color: #737373;
+}
+
+.footer-top :hover {
+    text-decoration: underline;
 }
 
 .footer-list {
@@ -29,12 +72,14 @@ footer {
     padding: 0px;
 }
 
+
 .footer-list>li {
+    font-family: NetflixLight;
+    font-size: 14px;
+    font-weight: 100;
+    color: #737373;
+    text-decoration: none;
     -webkit-text-size-adjust: 100%;
-    font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.875rem;
-    font-weight: 400;
     letter-spacing: 0 !important;
     box-sizing: border-box;
     margin-top: 1rem;
@@ -47,69 +92,8 @@ footer {
 }
 
 .footer-list>li>a {
-    color: rgba(255, 255, 255, 0.7);
+    color: #737373;
+    text-decoration: none;
     border-radius: 0.125rem;
 }
 
-
-
-
-
-.footer-wrapper {
-    color: #737373;
-    font-size: 1em;
-    width: 100%;
-    margin-top: 50px;
-    padding-bottom: 20px;
-    min-width: 190px;
-    background-color: #f3f3f3;
-    height: 194px;
-}
-
-.footer-divider {
-    border-top: 1px solid #e6e6e6;
-    height: 0;
-    width: 100%;
-}
-
-.footer-top {
-    margin: 0 0 30px;
-}
-
-.footer-top :hover {
-    text-decoration: underline;
-}
-
-footer {
-    margin: 0;
-    height: 100%;
-    font-family: NetflixLight;
-    background-color: #f3f3f3;
-    border-top: none;
-    color: #737373;
-    text-decoration: none;
-}
-
-.footer-list>li {
-    font-family: NetflixLight;
-    font-size: 14px;
-    font-weight: 100;
-    color: #737373;
-    text-decoration: none;
-}
-
-.footer-list>li>a {
-    color: #737373;
-    text-decoration: none;
-}
-
-.footer-list>li>a :hover {
-    text-decoration: underline;
-}
-
-.container {
-    padding-top: 30px;
-    font-size: 1em;
-    padding-bottom: 20px;
-    width: 100%;
-}

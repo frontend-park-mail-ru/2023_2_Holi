@@ -1,0 +1,7 @@
+.form-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: inherit;
+    flex-direction: column;
+    padding: 0px;
+}
