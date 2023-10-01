@@ -5,9 +5,7 @@ import { Router } from './modules/Router.js';
 import { Route } from './modules/Route.js';
 
 const rootElement = document.querySelector('#root');
-// const headerElement = document.createElement('header');
 const mainElement = document.createElement('main');
-// rootElement.appendChild(headerElement);
 rootElement.appendChild(mainElement);
 
 const config = {
@@ -87,7 +85,7 @@ const config = {
             },
             header: {
                 text: 'ax.chinaev@yandex.ru',
-                classes: []
+                classes: ['bold']
             },
             inputs: [{
                 inputClasses: ['form-input-already-created'],
@@ -110,7 +108,3 @@ const routes = [
 ]
 
 new Router(routes);
-
-// routes[0].page.render()
-// const header = new WhiteHeader(headerElement);
-// header.render();
