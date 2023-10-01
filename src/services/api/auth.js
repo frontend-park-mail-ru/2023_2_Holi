@@ -1,4 +1,6 @@
 export const NETFLIX_API = 'http://84.23.54.38/api/v1'
+
+
 export const loginRequest = (email, password) => {
     return fetch(`${NETFLIX_API}/auth/login`, {
         method: 'POST',
