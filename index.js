@@ -1,18 +1,15 @@
-import { WhiteHeader } from './components/WhiteHeader/WhiteHeader.js';
-import { FinishAсс } from './pages/FinishAcc.js';
-import { Router } from './modules/Router.js';
-import { Route } from './modules/Route.js';
+import { Router } from './src/services/router/Router.js';
+import { Route } from './src/services/router/Route.js';
+import { LoginPage } from './src/pages/login/login.js';
+import { FeedPage } from './src/pages/feed/feed.js';
 
-const rootElement = document.querySelector('#root');
-// const headerElement = document.createElement('header');
-const mainElement = document.createElement('main');
-// rootElement.appendChild(headerElement);
-rootElement.appendChild(mainElement);
+const rootElement = document.getElementById('root');
+
 
 
 const routes = [
-    new Route('/', new FinishAсс(mainElement))
-    // new Route('/', new HomeComponent()),
+    new Route('/', new LoginPage(rootElement)),
+    new Route('/feed', new FeedPage(rootElement)),
     // new Route('/about', new AboutComponent()),
     // new Route('*', new HomeComponent())
 ];

@@ -1,0 +1,64 @@
+login-body {
+    background: transparent;
+}
+
+.body-margin-login-page {
+    display: block;
+    top: 0;
+    width: 450px;
+    height: 91px;
+}
+
+.login-content {
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0 !important;
+    color: #333;
+    background: rgba(0, 0, 0, .75);
+    margin: 0 auto 90px;
+    max-width: 450px;
+    min-height: 550px;
+    border-radius: 4px;
+}
+
+
+.login-form-main {
+    color: #fff;
+    padding: 60px 68px 40px;
+
+}
+
+.login-form-main-title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 28px;
+}
+
+.login-control-container {
+    padding-bottom: 16px;
+    max-width: 100%;
+}
+
+.login-control {
+    background: #333;
+    border: 0;
+    border-radius: 4px;
+    font-family: Netflix;
+    font-size: 16px;
+    color: #8c8c8c;
+    width: -webkit-fill-available;
+    height: 34px;
+    line-height: 34px;
+    padding: 4px 16px;
+}
+
+.login-footer-other{
+    color: #737373;
+    margin-top: 1.5rem;
+}
+.login-footer-other > span > a{
+    color: #fff;
+}

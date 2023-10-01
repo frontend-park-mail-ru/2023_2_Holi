@@ -1,0 +1,6 @@
+(function() {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['header-feed.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    return " <div class=\"header-content\">\r\n    <div class=\"row\">\r\n        <div class=\"col justify-content-start\">\r\n            <img src=\"src/static/img/logo.svg\" alt=\"logo\">\r\n\r\n        </div>\r\n        <div class=\"col ml-2 feed-header-menu\">\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n        </div>\r\n        <div class=\"col ml-2\">\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n            <a href=\"#begin\">Начало</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+},"useData":true});
+})();
