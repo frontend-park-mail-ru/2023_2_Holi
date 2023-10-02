@@ -26,7 +26,7 @@ export class Router {
 
          if (route instanceof ProtectedRoute) {
             //TODO Как проверить что мы авторизованы
-             const auth = false;
+             const auth = true;
  
              if (!auth) {
                  this.navigateTo('/login');

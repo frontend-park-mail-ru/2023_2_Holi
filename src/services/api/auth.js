@@ -20,3 +20,9 @@ export const registerRequest = (email, password) => {
         body: JSON.stringify({ email: email, password: password })
     })
 }
+
+export const logoutRequest = () => {
+    return fetch(`${NETFLIX_API}/auth/logout`, {
+        method: 'POST',
+    })
+}

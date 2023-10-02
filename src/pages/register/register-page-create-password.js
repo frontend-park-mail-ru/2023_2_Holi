@@ -40,7 +40,6 @@ const registerController = () => {
     
     registerForm.addEventListener('submit', async function (event) {
         event.preventDefault();
-        console.log(1314314)
         const email = emailInput.value;
         const password = passwordInput.value;
 
@@ -48,15 +47,12 @@ const registerController = () => {
             if (email && password) {
                 const response = await registerRequest(email, password);
                 if (response.ok) {
-                    console.log(45435345553)
-                    goToLink('login')
+                    goToLink('feed')
                 } else {
-                    console.log("xnj nj yt nfr")
                     new Notify('Ошибка регистрации: ' + response.statusText).panic()
                     console.error('Ошибка регистрации:', response.statusText)
                 }
             } else {
-                console.log("xnj nj yt nfr")
                 new Notify('Не ввели логин и/или пароль').panic()
             }
 

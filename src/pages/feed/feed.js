@@ -3,6 +3,7 @@ import { GenreRow } from "./components/content/genre/genre.js";
 import { FeedHeader } from "./components/header/header.js";
 import { uuid } from "../../services/uuid-time.js";
 import { FeedFooter } from "./components/footer/footer.js";
+import { logoutRequest } from "../../services/api/auth.js";
 
 
 const witcherImage = 'The-Witcher-3-season-2022.jpg';
@@ -74,7 +75,7 @@ export class FeedPage {
 
     render() {
         this.#parent.innerHTML = '';
-
+        this.#parent.style.background = '';
         const header = document.createElement('div')
         header.innerHTML = new FeedHeader().render();
         this.#parent.appendChild(header)
@@ -95,6 +96,10 @@ export class FeedPage {
         this.#parent.appendChild(footer);
 
         goToFilms();
+
+        document.getElementById('logout').addEventListener('click', async function(){
+            await logoutRequest();
+        })
     }
 
 
