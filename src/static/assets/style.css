@@ -3,6 +3,8 @@
 @import url(../../pages/login/login.css);
 @import url(../../pages/feed/feed.css);
 @import url(../../components/notify/notify.css);
+@import url(../../pages/register/register.css);
+
 @font-face {
     font-family: Netflix;
     src: url(../fonts/NetflixSansMedium.ttf);
@@ -94,7 +96,7 @@ content-main-1-form {
 
 .form-list {
     margin: 16px 0 20px;
-    
+
 }
 
 email-form {
@@ -355,14 +357,7 @@ content-main-6 {
     transform: translate(-50%, -50%);
 }
 
-footer {
-
-    border-top: 8px solid #454545;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
+main-footer {}
 
 .footer-list {
     padding: 4.5rem 0;
@@ -517,7 +512,7 @@ login-wraper {
 login-background {
     opacity: .5;
     display: block;
-   
+
     position: absolute;
     z-index: -1;
     letter-spacing: 0 !important;

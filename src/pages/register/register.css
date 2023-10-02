@@ -1,0 +1,13 @@
+@import url(components/AlreadyCreatedPasswordContent/AlreadyCreatedPasswordContent.css);
+@import url(components/CreatePasswordContent/CreatePasswordContent.css);
+@import url(components/EmailPreferenceContainer/EmailPreferenceContainer.css);
+@import url(components/FinishAccContent/FinishAccContent.css);
+@import url(components/FormInput/FormInput.css);
+@import url(components/FormList/FormList.css);
+@import url(components/Header/Header.css);
+@import url(components/LinkForgotPassword/LinkForgotPassword.css);
+@import url(components/RegFooter/RegFooter.css);
+@import url(components/RegisterContextBody/RegisterContextBody.css);
+@import url(components/RegisterStepHeader/RegisterStepHeader.css);
+@import url(components/SignInLink/SignInLink.css);
+@import url(components/SubmitRegisterButton/SubmitRegisterButton.css);

@@ -1,0 +1,25 @@
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    color: #333333;
+    font-size: 16px;
+    max-width: 340px;
+    margin-left: calc((-400px + 100%)/2);
+    margin-bottom: 30px;
+    padding: 20px 32px 60px;
+}
+
+.step-logo-container {
+    display: inline-block;
+}
+
+.step-logo {
+    margin: 100px 0 20px;
+    width: 260px;
+    display: block;
+    background: url(/img/devices.png) no-repeat 50% 50%;
+    background-size: 260px;
+    height: 90px;
+}

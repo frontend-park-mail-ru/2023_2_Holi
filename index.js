@@ -2,21 +2,26 @@ import { Router } from './src/services/router/Router.js';
 import { Route } from './src/services/router/Route.js';
 import { LoginPage } from './src/pages/login/login.js';
 import { FeedPage } from './src/pages/feed/feed.js';
-
+import { FinishAсс } from './src/pages/register/register-finish.js';
+import { CreatePassword } from './src/pages/register/register-page-create-password.js';
+import { PasswordAlreadyCreated } from './src/pages/register/register-pssword-alredy-created.js';
+import { config } from './src/services/config.js';
+import { MainPage } from './src/pages/main/main-page.js';
 const rootElement = document.getElementById('root');
 
 
 
 const routes = [
-    new Route('/', new LoginPage(rootElement)),
+    new Route('/', new MainPage(rootElement)),
+    new Route('/login', new LoginPage(rootElement)),
     new Route('/feed', new FeedPage(rootElement)),
-    // new Route('/about', new AboutComponent()),
-    // new Route('*', new HomeComponent())
+    new Route('/register1', new FinishAсс(rootElement, config)),
+    new Route('/register2', new CreatePassword(rootElement, config)),
+    new Route('/register3', new PasswordAlreadyCreated(rootElement, config))
+
 ];
 
 new Router(routes);
 
 
-// const header = new WhiteHeader(headerElement);
-// header.render();
 

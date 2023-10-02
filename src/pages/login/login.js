@@ -1,5 +1,6 @@
 import { Notify } from "../../components/notify/notify.js";
 import { loginRequest } from "../../services/api/auth.js";
+import { goToLink } from "../../services/goToLink.js";
 import { LoginBody } from "./components/body/body.js";
 import { LoginFooter } from "./components/footer/footer.js";
 import { LoginHeader } from "./components/header/header.js";
@@ -12,6 +13,7 @@ export class LoginPage {
     }
 
     render() {
+        this.#parent.style.background = ''
         this.#parent.innerHTML = '';
         const login = document.createElement('login');
         const login_wrapper = document.createElement('login-wraper');
@@ -53,13 +55,21 @@ const loginContoller = () => {
         const password = passwordInput.value;
 
         try {
-            const response = await loginRequest(email, password);
-
-            if (response.ok) {
-                //navigate to feed
-            } else {
-                console.error('Ошибка аутентификации:', response.statusText)
+            if(email && password){
+                const response = await loginRequest(email, password);
+                if (response.ok) {
+                    goToLink('feed')
+                } else {
+                    goToLink('feed')
+                    new Notify('Ошибка аутентификации: ' + response.statusText).panic()
+                    console.error('Ошибка аутентификации:', response.statusText)
+                }
+            }else{
+                new Notify('Не ввели логин и/или пароль').panic()
             }
+            
+
+            
         } catch (error) {
             new Notify("Ошибка сети").panic()
             console.error('Ошибка аутентификации:')

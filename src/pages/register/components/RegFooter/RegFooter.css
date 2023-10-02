@@ -1,0 +1,99 @@
+.footer-wrapper {
+    color: #737373;
+    font-size: 1em;
+    width: 100%;
+    margin-top: 50px;
+    padding-bottom: 20px;
+    min-width: 190px;
+    background-color: #f3f3f3;
+    height: 194px;
+
+}
+
+.footer-divider {
+    border-top: 1px solid #e6e6e6;
+    height: 0;
+    width: 100%;
+}
+
+.footer {
+    margin: 0;
+    height: 100%;
+    font-family: NetflixLight;
+    background-color: #f3f3f3;
+    border-top: none;
+    color: #737373;
+    text-decoration: none;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.container {
+    padding-top: 30px;
+    font-size: 1em;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.footer-top {
+    margin: 0 0 30px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    font-size: 1em;
+    letter-spacing: 0 !important;
+    padding: 0;
+    color: #737373;
+}
+
+.footer-top :hover {
+    text-decoration: underline;
+}
+
+.footer-list {
+    padding: 4.5rem 0;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: inherit;
+    height: inherit;
+    margin-top: -1rem;
+    margin-left: -0.75rem;
+    width: calc(100% + 0.75rem);
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 0px;
+}
+
+
+.footer-list>li {
+    font-family: NetflixLight;
+    font-size: 14px;
+    font-weight: 100;
+    color: #737373;
+    text-decoration: none;
+    -webkit-text-size-adjust: 100%;
+    letter-spacing: 0 !important;
+    box-sizing: border-box;
+    margin-top: 1rem;
+    margin-left: 0.75rem;
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: inherit;
+    padding: 0px;
+    flex: 0 0 calc(25% - 0.75rem);
+}
+
+.footer-list>li>a {
+    color: #737373;
+    text-decoration: none;
+    border-radius: 0.125rem;
+}
+
