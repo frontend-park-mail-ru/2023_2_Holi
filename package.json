@@ -3,7 +3,7 @@
     "prestart": "npm run compile:templates",
     "build": "node build.js",
     "start": "node server/server.mjs",
-    "compile:templates": "handlebars src/pages/login/components/footer/footer.hbs -f src/pages/login/components/footer/footer.precompiled.js && handlebars src/pages/login/components/header/header.hbs -f src/pages/login/components/header/header.precompiled.js && handlebars src/pages/login/components/body/body.hbs -f src/pages/login/components/body/body.precompiled.js && handlebars src/pages/feed/components/header/header-feed.hbs -f src/pages/feed/components/header/header-feed.precompiled.js compile-templates.sh"
+    "compile:templates": "bash compile-templates.sh"
   },
   "dependencies": {
     "cors": "^2.8.5",
