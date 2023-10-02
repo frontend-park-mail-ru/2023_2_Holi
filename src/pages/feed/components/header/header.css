@@ -1,5 +1,14 @@
-.feed-header-menu{
+.feed-header-menu > a{
     font-family:  Netflix Sans;
     color: #fff;
     text-decoration: none;
+}
+
+.feed-header-menu > a:hover{
+    color: gainsboro;
+    text-decoration: underline;
+}
+
+.margin-a > a{
+    margin-left: 1.5rem;
 }

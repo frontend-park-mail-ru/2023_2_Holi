@@ -6,10 +6,3 @@ export class LoginBody {
         return template();
     }
 }
-
-window.link = function(event){
-    console.log(event)
-    event.preventDefault();
-    history.pushState(null, null, '/feed');
-
-}

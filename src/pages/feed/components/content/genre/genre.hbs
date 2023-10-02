@@ -1,0 +1,16 @@
+<div class="ms-4">
+    <h1 >{{genreTitle}}</h1>
+</div>
+<div class="genre-carousel" id="{{id_carousel}}">
+    <div class="genre-card-container" id="{{id_container}}">
+        {{#each genreContent}}
+        <a href="/feed/{{this.id}}" data-id="{{this.id}}" class="ms-2 genre-card-link"
+            data-link>
+            <div class="genre-card">
+
+                <img src="{{this.img}}" alt>
+            </div>
+        </a>
+        {{/each}}
+    </div>
+</div>

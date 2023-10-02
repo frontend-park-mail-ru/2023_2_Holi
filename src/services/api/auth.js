@@ -1,12 +1,12 @@
-export const NETFLIX_API = 'http://84.23.54.38/api/v1'
+export const NETFLIX_API = 'http://84.23.54.38:8080/api/v1'
 
 
-export const loginRequest = (email, password) => {
+export const loginRequest = (name, password) => {
     return fetch(`${NETFLIX_API}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify({email: email, password: password})
+        body: JSON.stringify({name: name, password: password})
     })
 }

@@ -459,7 +459,7 @@ footer {
 
 @font-face {
     font-family: NetflixLight;
-    src: url(/src/fonts/NetflixSansLight.ttf);
+    src: url(/src/static/fonts/NetflixSansLight.ttf);
 }
 
 .netflix-light {

@@ -5,8 +5,9 @@ export class Router {
     }
 
     init() {
-        window.addEventListener('popstate', () => this.loadRoute());
         window.addEventListener('load', () => this.loadRoute());
+        window.addEventListener('popstate', () => this.loadRoute());
+        console.log(3345435345345)
         document.body.addEventListener('click', e => {
             if (e.target.matches('[data-link]')) {
                 e.preventDefault();
