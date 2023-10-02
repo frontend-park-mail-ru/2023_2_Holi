@@ -140,7 +140,7 @@ const dragging = (carousel_id, container) => {
         if (!isDragging) return;
         e.preventDefault();
         const x = e.pageX - wrapper.offsetLeft;
-        const walk = (x - startX) * 2; // Увеличьте число, чтобы увеличить скорость перемещения
+        const walk = (x - startX) * 1; // Увеличьте число, чтобы увеличить скорость перемещения
         wrapper.scrollLeft = scrollLeft - walk;
     });
 }
