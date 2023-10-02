@@ -55,21 +55,17 @@ const loginContoller = () => {
         const password = passwordInput.value;
 
         try {
-            if(email && password){
+            if (email && password) {
                 const response = await loginRequest(email, password);
                 if (response.ok) {
                     goToLink('feed')
                 } else {
-                    goToLink('feed')
                     new Notify('Ошибка аутентификации: ' + response.statusText).panic()
                     console.error('Ошибка аутентификации:', response.statusText)
                 }
-            }else{
+            } else {
                 new Notify('Не ввели логин и/или пароль').panic()
             }
-            
-
-            
         } catch (error) {
             new Notify("Ошибка сети").panic()
             console.error('Ошибка аутентификации:')

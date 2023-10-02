@@ -1,5 +1,4 @@
-import { Router } from './src/services/router/Router.js';
-import { Route } from './src/services/router/Route.js';
+import { Router, Route, ProtectedRoute } from './src/services/router/Router.js';
 import { LoginPage } from './src/pages/login/login.js';
 import { FeedPage } from './src/pages/feed/feed.js';
 import { FinishAсс } from './src/pages/register/register-finish.js';
@@ -14,7 +13,7 @@ const rootElement = document.getElementById('root');
 const routes = [
     new Route('/', new MainPage(rootElement)),
     new Route('/login', new LoginPage(rootElement)),
-    new Route('/feed', new FeedPage(rootElement)),
+    new ProtectedRoute('/feed', new FeedPage(rootElement)),
     new Route('/register1', new FinishAсс(rootElement, config)),
     new Route('/register2', new CreatePassword(rootElement, config)),
     new Route('/register3', new PasswordAlreadyCreated(rootElement, config))

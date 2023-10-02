@@ -23,6 +23,30 @@ export class Router {
 
     async loadRoute() {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
+
+         if (route instanceof ProtectedRoute) {
+            //TODO Как проверить что мы авторизованы
+             const auth = false;
+ 
+             if (!auth) {
+                 this.navigateTo('/login');
+                 return;
+             }
+         }
         await route.page.render();
+    }
+}
+
+export class Route {
+    constructor(path, page) {
+        this.path = path;
+        this.page = page;
+    }
+}
+
+export class ProtectedRoute extends Route {
+    constructor(path, page, isProtected = true) {
+        super(path, page);
+        this.isProtected = isProtected;
     }
 }
