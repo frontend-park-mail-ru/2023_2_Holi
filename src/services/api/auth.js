@@ -9,6 +9,7 @@ export const loginRequest = (email, password) => {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
+        credentials: 'include',
         body: JSON.stringify({ email: email, password: password })
     })
 }
@@ -19,6 +20,7 @@ export const registerRequest = (email, password) => {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
+        credentials: 'include',
         body: JSON.stringify({ email: email, password: password })
     })
 }
@@ -26,5 +28,6 @@ export const registerRequest = (email, password) => {
 export const logoutRequest = () => {
     return fetch(`${NETFLIX_API}/auth/logout`, {
         method: 'POST',
+        credentials: 'include'
     })
 }
