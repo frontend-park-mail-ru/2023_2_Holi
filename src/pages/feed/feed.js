@@ -4,6 +4,7 @@ import { FeedHeader } from "./components/header/header.js";
 import { uuid } from "../../services/uuid-time.js";
 import { FeedFooter } from "./components/footer/footer.js";
 import { logoutRequest } from "../../services/api/auth.js";
+import { goToLink } from "../../services/goToLink.js";
 
 
 const witcherImage = 'The-Witcher-3-season-2022.jpg';
@@ -99,6 +100,7 @@ export class FeedPage {
 
         document.getElementById('logout').addEventListener('click', async function(){
             await logoutRequest();
+            goToLink('login');
         })
     }
 
