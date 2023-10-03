@@ -28,14 +28,14 @@ export class Router {
         if (route instanceof ProtectedRoute) {
             //TODO Как проверить что мы авторизованы
 
-           /* const auth = await checkAccess();
+            const auth = await checkAccess();
 
             if (!auth.ok) {
                 this.navigateTo('/login');
                 return;
             } else {
                 return;
-            }*/
+            }
         }
         await route.page.render();
     }
