@@ -24,7 +24,6 @@ export class FinishAccContent {
 
         stepHeader.render();
         document.querySelector('.step-indicator').style.textAlign = 'center';
-        console.log(document.querySelector('.step-indicator'))
         contextBody.render();
         submitButton.render();
     }
