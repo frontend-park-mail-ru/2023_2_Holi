@@ -23,7 +23,8 @@
     max-height: 350px;
 }
 
-
-.genre-card:hover {
+.genre-card:hover > img {
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    margin-top: -5px;
     box-shadow: 0 0 60px red;
 }
