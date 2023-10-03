@@ -34,6 +34,7 @@ export class Router {
                 this.navigateTo('/login');
                 return;
             } else {
+                this.navigateTo('/feed');
                 return;
             }
         }
