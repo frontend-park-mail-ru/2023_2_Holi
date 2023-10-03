@@ -90,7 +90,6 @@ export class FeedPage {
 
         document.getElementById('logout').addEventListener('click', async function () {
             const response = await logoutRequest();
-            console.log(response)
             if (response.ok) {
                 goToLink('login');
             }
@@ -111,7 +110,6 @@ const goToFilms = () => {
     });
 }
 const dragging = (carousel_id, container) => {
-    console.log(carousel_id)
     const carousel = document.getElementById(carousel_id);
     const wrapper = document.getElementById(container);
     let isDragging = false;
