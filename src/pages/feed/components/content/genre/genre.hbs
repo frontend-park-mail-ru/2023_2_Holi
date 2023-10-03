@@ -6,9 +6,8 @@
         {{#each genreContent}}
         <a href="/feed/{{this.id}}" data-id="{{this.id}}" class="ms-2 genre-card-link"
             data-link>
-            <div class="genre-card">
-
-                <img src="{{this.img}}" alt>
+            <div class="genre-card" title="{{this.name}}">
+                <img src="{{this.previewPath}}" alt="{{this.previewPath}}">
             </div>
         </a>
         {{/each}}

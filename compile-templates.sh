@@ -1,3 +1,4 @@
+mkdir dist &&
 handlebars src/pages/login/components/footer/footer.hbs -f dist/footer.precompiled.js && 
 handlebars src/pages/login/components/header/header-login.hbs -f dist/header-login.precompiled.js && 
 handlebars src/pages/login/components/body/body.hbs -f dist/body.precompiled.js &&
