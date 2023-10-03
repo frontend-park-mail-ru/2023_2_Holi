@@ -38,7 +38,7 @@ export class FeedPage {
         mainContent.innerHTML = new FeedContentMain(witcherImage).render();
         this.#parent.appendChild(mainContent)
 
-        const Dramas = await getGenreFilms('Dramas');
+        const Drama = await getGenreFilms('Drama');
         const Fantasy = await getGenreFilms('Fantasy');
         const Horror = await getGenreFilms('Horror')
         const Action = await getGenreFilms('Action');
@@ -47,9 +47,11 @@ export class FeedPage {
         const Romance = await getGenreFilms('Romance');
         const Crime = await getGenreFilms('Crime');
           
+        const genres = ['Drama', 'Horror', 'Thriller', 'Action', 'Comedy', 'Romance', 'Crime', 'Fantasy'];
+
            
-        if (Dramas.status === 200) {
-            this.addRow('Драмы', Dramas.body.films);
+        if (Drama.status === 200) {
+            this.addRow('Драмы', Drama.body.films);
         }
 
         if (Fantasy.status === 200) {
