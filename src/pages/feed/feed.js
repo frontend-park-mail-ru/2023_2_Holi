@@ -10,62 +10,13 @@ import { getGenreFilms } from "../../services/api/genre.js";
 
 const witcherImage = 'The-Witcher-3-season-2022.jpg';
 
-const popFilms = [
-    {
-        img: 'static/genre/pop/witcher.jpg',
-        id: '35t35trgvrv'
-    },
-    {
-        img: 'static/genre/pop/dune.jpg',
-        id: 'es6hts5gwwrrv'
-    },
-    {
-        img: 'static/genre/pop/foundation.jpeg',
-        id: 'rbsfvrv5g'
-    },
-    {
-        img: 'static/genre/pop/gameofthrones.jpg',
-        id: '84ghrunvjsi48fn'
-    },
-    {
-        img: 'static/genre/pop/witcher.jpg',
-        id: '35t35trgvrv'
-    },
-    {
-        img: 'static/genre/pop/dune.jpg',
-        id: 'es6hts5gwwrrv'
-    },
-    {
-        img: 'static/genre/pop/foundation.jpeg',
-        id: 'rbsfvrv5g'
-    },
-    {
-        img: 'static/genre/pop/gameofthrones.jpg',
-        id: '84ghrunvjsi48fn'
-    },
-    {
-        img: 'static/genre/pop/witcher.jpg',
-        id: '35t35trgvrv'
-    },
-    {
-        img: 'static/genre/pop/dune.jpg',
-        id: 'es6hts5gwwrrv'
-    },
-    {
-        img: 'static/genre/pop/foundation.jpeg',
-        id: 'rbsfvrv5g'
-    },
-    {
-        img: 'static/genre/pop/gameofthrones.jpg',
-        id: '84ghrunvjsi48fn'
-    }
-]
 export class FeedPage {
     #parent;
 
     constructor(parent) {
         this.#parent = parent;
     }
+
     addRow(title, content) {
         const genre = document.createElement('div');
         const id_carousel = uuid();
@@ -76,7 +27,7 @@ export class FeedPage {
     }
 
     async render() {
-        await getGenreFilms('Dramas')
+
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const header = document.createElement('div')
@@ -87,12 +38,47 @@ export class FeedPage {
         mainContent.innerHTML = new FeedContentMain(witcherImage).render();
         this.#parent.appendChild(mainContent)
 
+        const Dramas = await getGenreFilms('Dramas');
+        const Fantasy = await getGenreFilms('Fantasy');
+        const Horror = await getGenreFilms('Horror')
+        const Action = await getGenreFilms('Action');
+        const Thriller = await getGenreFilms('Thriller');
+        const Comedy = await getGenreFilms('Comedy');
+        const Romance = await getGenreFilms('Romance');
+        const Crime = await getGenreFilms('Crime');
+          
+           
+        if (Dramas.status === 200) {
+            this.addRow('Драмы', Dramas.body.films);
+        }
 
-        this.addRow('Популярное', popFilms);
-        this.addRow('Популярное', popFilms);
-        this.addRow('Популярное', popFilms);
-        this.addRow('Популярное', popFilms);
+        if (Fantasy.status === 200) {
+            this.addRow('Фэнтези', Fantasy.body.films);
+        }
 
+        if (Horror.status === 200) {
+            this.addRow('Ужасы', Horror.body.films);
+        }
+
+        if (Action.status === 200) {
+            this.addRow('Экшены', Action.body.films);
+        }
+
+        if (Thriller.status === 200) {
+            this.addRow('Триллеры', Thriller.body.films);
+        }
+
+        if (Comedy.status === 200) {
+            this.addRow('Комедии', Comedy.body.films);
+        }
+
+        if (Romance.status === 200) {
+            this.addRow('Мелодрамы', Romance.body.films);
+        }
+
+        if (Crime.status === 200) {
+            this.addRow('Детективы', Crime.body.films);
+        }
 
         const footer = document.createElement('div');
         footer.innerHTML = new FeedFooter().render();
@@ -100,12 +86,10 @@ export class FeedPage {
 
         goToFilms();
 
-       
-
-        document.getElementById('logout').addEventListener('click', async function(){
+        document.getElementById('logout').addEventListener('click', async function () {
             const response = await logoutRequest();
             console.log(response)
-            if(response.ok){
+            if (response.ok) {
                 goToLink('login');
             }
         })

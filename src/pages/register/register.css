@@ -59,7 +59,7 @@ content-fragment>h1 {
     margin: 100px 0 20px;
     width: 260px;
     display: block;
-    background: url(../../static/img/devices.png) no-repeat 50% 50%;
+    background: url(../../static/img/devices.webp) no-repeat 50% 50%;
     background-size: 260px;
     height: 90px;
 }
