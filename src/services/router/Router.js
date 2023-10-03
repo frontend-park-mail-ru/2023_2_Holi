@@ -1,3 +1,5 @@
+import { checkAccess } from "../api/auth.js";
+
 export class Router {
     constructor(routes) {
         this.routes = routes;
@@ -7,7 +9,6 @@ export class Router {
     init() {
         window.addEventListener('load', () => this.loadRoute());
         window.addEventListener('popstate', () => this.loadRoute());
-        console.log(3345435345345)
         document.body.addEventListener('click', e => {
             if (e.target.matches('[data-link]')) {
                 e.preventDefault();
@@ -24,15 +25,18 @@ export class Router {
     async loadRoute() {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
 
-         if (route instanceof ProtectedRoute) {
+        if (route instanceof ProtectedRoute) {
             //TODO Как проверить что мы авторизованы
-             const auth = true;
- 
-             if (!auth) {
-                 this.navigateTo('/login');
-                 return;
-             }
-         }
+
+           /* const auth = await checkAccess();
+
+            if (!auth.ok) {
+                this.navigateTo('/login');
+                return;
+            } else {
+                return;
+            }*/
+        }
         await route.page.render();
     }
 }

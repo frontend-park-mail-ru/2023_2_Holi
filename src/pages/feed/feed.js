@@ -4,6 +4,8 @@ import { FeedHeader } from "./components/header/header.js";
 import { uuid } from "../../services/uuid-time.js";
 import { FeedFooter } from "./components/footer/footer.js";
 import { logoutRequest } from "../../services/api/auth.js";
+import { goToLink } from "../../services/goToLink.js";
+import { getGenreFilms } from "../../services/api/genre.js";
 
 
 const witcherImage = 'The-Witcher-3-season-2022.jpg';
@@ -73,7 +75,8 @@ export class FeedPage {
         dragging(id_carousel, id_container);
     }
 
-    render() {
+    async render() {
+        await getGenreFilms('Dramas')
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const header = document.createElement('div')
@@ -97,8 +100,14 @@ export class FeedPage {
 
         goToFilms();
 
+       
+
         document.getElementById('logout').addEventListener('click', async function(){
-            await logoutRequest();
+            const response = await logoutRequest();
+            console.log(response)
+            if(response.ok){
+                goToLink('login');
+            }
         })
     }
 

@@ -1,6 +1,0 @@
-(function() {
-  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['header-feed.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return " <div class=\"header-content\">\r\n    <div class=\"row\">\r\n        <div class=\"col justify-content-start\">\r\n            <div class=\"row\">\r\n                <div class=\"col-3\">\r\n                    <img src=\"src/static/img/logo.svg\" alt=\"logo\">\r\n                </div>\r\n                <div\r\n                    class=\"ml-3 col d-flex align-items-center feed-header-menu margin-a\">\r\n                    <a href=\"/\" data-link>Начало</a>\r\n                    <a href=\"/serials\">Сериалы</a>\r\n                    <a href=\"/films\">Фильмы</a>\r\n                    <a href=\"/list\">Избранное</a>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n        <div\r\n            class=\"col d-flex align-items-center feed-header-menu margin-a justify-content-end\">\r\n\r\n            <a href=\"#begin\">Поиск</a>\r\n            <a href=\"#begin\">Пользователь</a>\r\n            <button class=\"btn-signIn ms-3\" id=\"logout\">Выйти</a>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n";
-},"useData":true});
-})();

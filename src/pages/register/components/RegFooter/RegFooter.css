@@ -37,12 +37,11 @@
 
 .footer-top {
     margin: 0 0 30px;
-    -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     font-size: 1em;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     padding: 0;
     color: #737373;
 }
@@ -51,36 +50,29 @@
     text-decoration: underline;
 }
 
-.footer-list {
-    padding: 4.5rem 0;
-    display: -webkit-inline-box;
-    display: -webkit-inline-flex;
+.footer-list-reg {
     display: -ms-inline-flexbox;
     display: inline-flex;
     -webkit-box-flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    width: inherit;
     height: inherit;
     margin-top: -1rem;
     margin-left: -0.75rem;
     width: calc(100% + 0.75rem);
-    -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
     padding: 0px;
 }
 
 
-.footer-list>li {
+.footer-list-reg>li {
     font-family: NetflixLight;
     font-size: 14px;
     font-weight: 100;
     color: #737373;
     text-decoration: none;
-    -webkit-text-size-adjust: 100%;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     box-sizing: border-box;
     margin-top: 1rem;
     margin-left: 0.75rem;
@@ -91,9 +83,8 @@
     flex: 0 0 calc(25% - 0.75rem);
 }
 
-.footer-list>li>a {
+.footer-list-reg>li>a {
     color: #737373;
     text-decoration: none;
     border-radius: 0.125rem;
 }
-

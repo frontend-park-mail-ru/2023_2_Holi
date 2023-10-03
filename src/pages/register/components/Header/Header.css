@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: Netflix Sans;
-    src: url(/fonts/NetflixSansRegular.ttf);
+    src: url(../../../../static/fonts/NetflixSansRegular.ttf);
 }
 
 header-reg{

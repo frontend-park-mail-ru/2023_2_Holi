@@ -33,11 +33,8 @@ const registerController = () => {
     const registerForm = document.forms['createPassword'];
     console.log(registerForm)
     const emailInput = registerForm.elements['email'];
+    emailInput.value = localStorage.getItem('userNewEmail');
     const passwordInput = registerForm.elements['password'];
-    console.log(emailInput, passwordInput)
-    setTimeout(() => { }, 100)
-
-    
     registerForm.addEventListener('submit', async function (event) {
         event.preventDefault();
         const email = emailInput.value;
@@ -47,8 +44,10 @@ const registerController = () => {
             if (email && password) {
                 const response = await registerRequest(email, password);
                 if (response.ok) {
+                    localStorage.removeItem('userNewEmail')
                     goToLink('feed')
                 } else {
+                    localStorage.removeItem('userNewEmail')
                     new Notify('Ошибка регистрации: ' + response.statusText).panic()
                     console.error('Ошибка регистрации:', response.statusText)
                 }
