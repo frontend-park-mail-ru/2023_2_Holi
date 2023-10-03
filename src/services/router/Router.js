@@ -1,4 +1,5 @@
 import { checkAccess } from "../api/auth.js";
+import { goToLink } from "../goToLink.js";
 
 export class Router {
     constructor(routes) {
@@ -24,16 +25,19 @@ export class Router {
 
     async loadRoute() {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
-
+        const auth = await checkAccess();
+        if (route instanceof Route) {
+            if (!auth.ok) {
+                this.navigateTo('/login');
+            }
+        }
         if (route instanceof ProtectedRoute) {
             //TODO Как проверить что мы авторизованы
-
-            const auth = await checkAccess();
-
             if (!auth.ok) {
                 this.navigateTo('/login');
                 return;
             } else {
+                this.navigateTo('/feed');
                 return;
             }
         }
