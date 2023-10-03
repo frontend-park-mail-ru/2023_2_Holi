@@ -1,0 +1,19 @@
+.menu-a>a {
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-decoration: none;
+    display: block;
+}
+
+.menu-a>a:hover {
+    text-decoration: underline;
+}
+
+.border-f {
+    border-right: 2px solid #454545;
+}
+
+.border-feed-footer-top{
+    border-top: 6px solid #454545;
+}

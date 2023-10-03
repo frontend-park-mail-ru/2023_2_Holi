@@ -1,0 +1,27 @@
+@keyframes hide {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+notify {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: red;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    /* Начальная прозрачность */
+    opacity: 1;
+    animation: hide 2s ease-in-out;
+    z-index: 9999;
+}
