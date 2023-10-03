@@ -6,7 +6,6 @@ import { CreatePassword } from './src/pages/register/register-page-create-passwo
 import { PasswordAlreadyCreated } from './src/pages/register/register-pssword-alredy-created.js';
 import { config } from './src/services/config.js';
 import { MainPage } from './src/pages/main/main-page.js';
-import Handlebars from 'handlebars';
 
 const rootElement = document.getElementById('root');
 
