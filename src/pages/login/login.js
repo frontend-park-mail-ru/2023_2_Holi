@@ -24,7 +24,6 @@ export class LoginPage {
         login_wrapper.appendChild(background);
 
         const header = document.createElement('login-header');
-        console.log(new LoginHeader())
         header.innerHTML = new LoginHeader().render();
         login_wrapper.appendChild(header);
 
@@ -46,7 +45,6 @@ export class LoginPage {
 
 const loginContoller = () => {
     const loginForm = document.forms['loginForm'];
-    console.log(loginForm)
     const emailInput = loginForm.elements['email'];
     const passwordInput = loginForm.elements['password'];
 

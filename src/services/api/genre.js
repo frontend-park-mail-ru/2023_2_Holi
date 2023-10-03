@@ -16,7 +16,6 @@ export const getGenreFilms = (genre) => {
         })
         .then(data => {
             // Здесь можно обрабатывать полученные данные в виде объекта JSON
-            console.log(data);
             return data; // Возвращаем объект JSON
         })
         .catch(error => {

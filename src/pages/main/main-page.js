@@ -11,7 +11,6 @@ export class MainPage {
     render() {
         this.#parent.innerHTML = '';
         const template = Handlebars.templates['main-page.hbs'];
-        console.log(template)
         this.#parent.innerHTML = template();
         mainController();
     }
