@@ -19,17 +19,10 @@ export class GenreRow {
             'id_container': this.#id_container,
             'id_carousel': this.#id_carousel
 
-        }
-
-        console.log(context)
-        
+        } 
         const template = Handlebars.templates['genre.hbs'];
-
         return template(context);
     }
 }
 
-window.linkTo = function (url) {
-    console.log(url)
-    history.pushState(null, null, url);
-}
+
