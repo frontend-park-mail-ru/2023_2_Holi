@@ -15,7 +15,7 @@ login {
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     font-size: 16px;
-    letter-spacing: 0 !important;
+    letter-spacing: 0;
     height: 100%;
     background-color: transparent;
     color: #fff;
@@ -25,7 +25,7 @@ login-wraper {
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     font-size: 16px;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     margin: 0;
     min-height: 100%;
     padding: 0;
@@ -41,7 +41,7 @@ login-background {
     display: block;
     position: absolute;
     z-index: -1;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     border: 0;
     min-height: 100%;
     min-width: 100%;
@@ -62,7 +62,7 @@ login-background {
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     font-size: 16px;
     color: #fff;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     border: 0;
     min-height: 100%;
     min-width: 100%;
@@ -87,7 +87,7 @@ login-header {
 login-footer {
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     color: #757575;
     font-size: 1em;
     min-width: 190px;
@@ -104,7 +104,7 @@ site-footer {
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     font-size: 1em;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     width: 90%;
     padding: 30px 0;
     margin: 0 auto;
@@ -118,7 +118,7 @@ site-footer {
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     font-size: 1em;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     margin: 0 0 30px;
     padding: 0;
     color: #737373;
@@ -130,7 +130,7 @@ site-footer {
     font-weight: 500;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     font-size: 1em;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     text-decoration: none;
     background-color: transparent;
     color: #737373;
@@ -147,7 +147,7 @@ site-footer {
 .login-checkbox {
     -webkit-font-smoothing: antialiased;
     direction: ltr;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     color: inherit;
     font: inherit;
     margin: 0;

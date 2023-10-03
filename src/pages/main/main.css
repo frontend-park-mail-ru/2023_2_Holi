@@ -196,7 +196,7 @@ content-main-6 {
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     color: rgb(255, 255, 255);
     text-align: center;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     overflow: hidden;
     position: absolute;
     left: 50%;
@@ -220,7 +220,7 @@ content-main-6 {
     font-family: Netfli;
     color: rgb(255, 255, 255);
     text-align: center;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     margin: 0 1rem 0 0;
     -webkit-box-flex: 0;
     flex-grow: 0;
@@ -230,7 +230,7 @@ content-main-6 {
 .mobile-col-2 {
     font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     color: rgb(255, 255, 255);
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     text-align: left;
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -241,7 +241,7 @@ content-main-6 {
 .mobile-col-2-row-1 {
     font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     text-align: left;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     color: rgb(255, 255, 255);
     font-weight: 500;
     font-size: 1rem;
@@ -250,7 +250,7 @@ content-main-6 {
 .mobile-col-2-row-2 {
     font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     text-align: left;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     font-weight: 400;
     color: #0071eb;
     font-size: 0.875rem;
@@ -260,7 +260,7 @@ content-main-6 {
     font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     color: rgb(255, 255, 255);
     text-align: center;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     width: 3rem;
     outline: 2px solid rgb(0, 0, 0);
     outline-offset: -2px;
@@ -278,7 +278,7 @@ content-main-6 {
     font-family: Netflix, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     color: rgb(255, 255, 255);
     text-align: center;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     border: 0;
     height: 5rem;
 }
@@ -287,7 +287,7 @@ content-main-6 {
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     color: rgb(255, 255, 255);
     text-align: center;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     z-index: -1;
     overflow: hidden;
     width: 100%;
@@ -323,7 +323,7 @@ content-main-6 {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.875rem;
     font-weight: 400;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     box-sizing: border-box;
     margin-top: 1rem;
     margin-left: 0.75rem;
@@ -365,7 +365,7 @@ content-main-6 {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.875rem;
     font-weight: 400;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     box-sizing: border-box;
     margin-top: 1rem;
     margin-left: 0.75rem;
@@ -381,7 +381,7 @@ content-main-6 {
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     font-size: 1em;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     text-decoration: none;
     background-color: transparent;
     color: #737373;
@@ -448,7 +448,6 @@ content-main-6 {
     fill: currentColor;
     position: relative;
     vertical-align: text-top;
-    width: auto;
     font-size: 0.875rem;
     font-weight: 500;
     min-height: 2rem;

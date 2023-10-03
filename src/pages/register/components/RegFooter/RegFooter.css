@@ -41,7 +41,7 @@
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     font-size: 1em;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     padding: 0;
     color: #737373;
 }
@@ -72,7 +72,7 @@
     font-weight: 100;
     color: #737373;
     text-decoration: none;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     box-sizing: border-box;
     margin-top: 1rem;
     margin-left: 0.75rem;

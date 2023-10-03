@@ -32,7 +32,7 @@ content-main-1-form-reg {
     max-width: 340px;
     margin-left: calc((-400px + 100%)/2);
     margin-bottom: 30px;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 ;
     padding: 20px 32px 60px;
 }
 
