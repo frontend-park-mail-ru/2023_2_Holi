@@ -26,19 +26,17 @@ export class Router {
     async loadRoute() {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
         const auth = await checkAccess();
-        if (route instanceof Route) {
-            if (!auth.ok) {
+        if (!auth.ok) {
+            // Если пользователь не авторизован
+            if (route instanceof ProtectedRoute) {
+                // Попытка доступа к защищенной странице, перенаправляем на страницу входа
                 this.navigateTo('/login');
             }
-        }
-        if (route instanceof ProtectedRoute) {
-            //TODO Как проверить что мы авторизованы
-            if (!auth.ok) {
-                this.navigateTo('/login');
-                return;
-            } else {
+        } else {
+            // Если пользователь авторизован
+            if (route instanceof Route) {
+                // Попытка доступа к обычной странице, перенаправляем на страницу /feed
                 this.navigateTo('/feed');
-                return;
             }
         }
         await route.page.render();
