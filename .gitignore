@@ -129,4 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-Docerfile
+Dockerfile
+
+.idea
+.vscode

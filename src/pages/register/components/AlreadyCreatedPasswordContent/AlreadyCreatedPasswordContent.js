@@ -2,7 +2,6 @@ import { RegisterContextBody } from "../RegisterContextBody/RegisterContextBody.
 import { SubmitRegisterButton } from "../SubmitRegisterButton/SubmitRegisterButton.js";
 import { RegisterStepHeader } from "../RegisterStepHeader/RegisterStepHeader.js";
 import { FormList } from "../FormList/FormList.js";
-import {EmailPreferenceContainer} from '../EmailPreferenceContainer/EmailPreferenceContainer.js';
 import { LinkForgotPassword } from "../LinkForgotPassword/LinkForgotPassword.js";
 
 export class AlreadyCreatedPasswordContent {

@@ -11,3 +11,223 @@
 @import url(components/RegisterStepHeader/RegisterStepHeader.css);
 @import url(components/SignInLink/SignInLink.css);
 @import url(components/SubmitRegisterButton/SubmitRegisterButton.css);
+
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+main-reg {
+    height: 100vh;
+    justify-content: space-between;
+}
+
+body {
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+}
+
+content-main-1-form-reg {
+    color: #333333;
+    font-size: 16px;
+    max-width: 340px;
+    margin-left: calc((-400px + 100%)/2);
+    margin-bottom: 30px;
+    letter-spacing: 0 !important;
+    padding: 20px 32px 60px;
+}
+
+content-fragment>h1 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.context-body {
+    text-align: center;
+}
+
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-logo-container {
+    display: inline-block;
+}
+
+.step-logo {
+    margin: 100px 0 20px;
+    width: 260px;
+    display: block;
+    background: url(../../static/img/devices.png) no-repeat 50% 50%;
+    background-size: 260px;
+    height: 90px;
+}
+
+.step-indicator {
+    font-size: 13px;
+    display: block;
+}
+
+.form-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: inherit;
+    flex-direction: column;
+    padding: 0px;
+}
+
+.form-list>li {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: inherit;
+    padding: 0px;
+    align-content: start;
+}
+
+input-continer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+}
+
+.form-input {
+    background: #FFFFFF;
+    border: 1px solid #8c8c8c;
+    border-radius: 0.25rem;
+    line-height: normal;
+    padding: 0.5rem 0.5rem 0.5rem;
+    color: #000;
+    font-family: Netflix Sans;
+    font: inherit;
+    width: 100%;
+    min-width: 12.5rem;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.link-forgot-password {
+    color: #0071eb;
+    text-decoration: none;
+}
+
+.link-forgot-password:hover {
+    text-decoration: underline;
+}
+
+
+
+.footer-divider {
+    border-top: 1px solid #e6e6e6;
+    height: 0;
+    width: 100%;
+}
+
+.footer-top {
+    margin: 0 0 30px;
+}
+
+.footer-top :hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin: 0;
+    height: 100%;
+    font-family: NetflixLight;
+    background-color: #f3f3f3;
+    border-top: none;
+    color: #737373;
+    text-decoration: none;
+}
+
+.footer-list>li {
+    font-family: NetflixLight;
+    font-size: 14px;
+    font-weight: 100;
+    color: #737373;
+    text-decoration: none;
+}
+
+.footer-list>li>a {
+    color: #737373;
+    text-decoration: none;
+}
+
+.footer-list>li>a :hover {
+    text-decoration: underline;
+}
+
+.container {
+    padding-top: 30px;
+    font-size: 1em;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+content-main-1-form-reg {
+    max-width: 440px;
+    margin-left: calc((-500px + 100%)/2);
+    margin-top: 25px;
+}
+
+content-fragment>h1 {
+    margin-top: 0;
+    text-align: left;
+}
+
+.step-indicator {
+    text-align: left;
+}
+
+.form-list {
+    margin-bottom: 10px;
+}
+
+input-continer {
+   height: 50px;
+   margin-top: 0;
+}
+
+.form-input {
+    border: 1px solid rgb(128, 128, 128)sparent;
+    border-radius: 4px;
+}
+
+.email-preference-container {
+    flex-wrap: wrap;
+    line-height: 1.125rem;
+    display: flex;
+    align-items: center;
+}
+
+#e83093c53429a {
+    width: 1.125rem;
+    height: 1.125rem;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+@media screen and (min-width: 1280px) {
+    .header-content {
+        max-width: calc(100% - 4rem);
+    }
+}
+
+header-reg{
+    width: 100%;
+    position: static;
+}
+
+
+content-fragment>h1 {
+    margin-top: 0;
+    text-align: left;
+}
+
+.step-indicator {
+    text-align: left;
+}
+

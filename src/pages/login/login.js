@@ -1,9 +1,10 @@
 import { Notify } from "../../components/notify/notify.js";
 import { loginRequest } from "../../services/api/auth.js";
 import { goToLink } from "../../services/goToLink.js";
+import { LoginHeader } from './components/header/header.js';
 import { LoginBody } from "./components/body/body.js";
 import { LoginFooter } from "./components/footer/footer.js";
-import { LoginHeader } from "./components/header/header.js";
+
 
 export class LoginPage {
     #parent
@@ -23,6 +24,7 @@ export class LoginPage {
         login_wrapper.appendChild(background);
 
         const header = document.createElement('login-header');
+        console.log(new LoginHeader())
         header.innerHTML = new LoginHeader().render();
         login_wrapper.appendChild(header);
 

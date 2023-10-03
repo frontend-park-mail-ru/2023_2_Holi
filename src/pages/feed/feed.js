@@ -99,8 +99,11 @@ export class FeedPage {
         goToFilms();
 
         document.getElementById('logout').addEventListener('click', async function(){
-            await logoutRequest();
-            goToLink('login');
+            const response = await logoutRequest();
+            console.log(response)
+            if(response.ok){
+                goToLink('login');
+            }
         })
     }
 

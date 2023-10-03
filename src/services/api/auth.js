@@ -29,3 +29,10 @@ export const logoutRequest = () => {
         credentials: 'include'
     })
 }
+
+export const checkAccess = () => {
+    return fetch(`${NETFLIX_API}/auth/check`, {
+        method: 'POST',
+        credentials: 'include'
+    })
+}

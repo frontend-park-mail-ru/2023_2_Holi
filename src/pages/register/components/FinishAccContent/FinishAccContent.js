@@ -22,8 +22,10 @@ export class FinishAccContent {
         const contextBody = new RegisterContextBody(upperSibling, this.#config.finishAcc.registerContextBody)
         const submitButton = new SubmitRegisterButton(upperSibling, '/register2')
 
-        stepHeader.render()
-        contextBody.render()
-        submitButton.render()
+        stepHeader.render();
+        document.querySelector('.step-indicator').style.textAlign = 'center';
+        console.log(document.querySelector('.step-indicator'))
+        contextBody.render();
+        submitButton.render();
     }
 }
