@@ -31,12 +31,14 @@ export class Router {
             if (route instanceof ProtectedRoute) {
                 // Попытка доступа к защищенной странице, перенаправляем на страницу входа
                 this.navigateTo('/login');
+                return
             }
         } else {
             // Если пользователь авторизован
             if (route instanceof Route) {
                 // Попытка доступа к обычной странице, перенаправляем на страницу /feed
                 this.navigateTo('/feed');
+                return
             }
         }
         await route.page.render();
