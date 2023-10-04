@@ -1,4 +1,6 @@
 export const NETFLIX_API = 'http://84.23.54.38:8080/api/v1'
+// export const NETFLIX_API = 'http://localhost:8080/api/v1'
+
 
 
 export const loginRequest = (email, password) => {

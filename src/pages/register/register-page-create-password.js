@@ -31,7 +31,6 @@ export class CreatePassword {
 
 const registerController = () => {
     const registerForm = document.forms['createPassword'];
-    console.log(registerForm)
     const emailInput = registerForm.elements['email'];
     emailInput.value = localStorage.getItem('userNewEmail');
     const passwordInput = registerForm.elements['password'];

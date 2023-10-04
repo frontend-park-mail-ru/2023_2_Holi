@@ -1,4 +1,5 @@
 import { checkAccess } from "../api/auth.js";
+import { goToLink } from "../goToLink.js";
 
 export class Router {
     constructor(routes) {
@@ -24,18 +25,19 @@ export class Router {
 
     async loadRoute() {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
+        const auth = await checkAccess();
+        // Проверка флага для избежания бесконечного рендера
+        if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
+            // Попытка доступа к защищенной странице, перенаправляем на страницу входа
+            this.navigateTo('/login');
+            return; // Прекратить выполнение функции
+        }
 
-        if (route instanceof ProtectedRoute) {
-            //TODO Как проверить что мы авторизованы
-
-           /* const auth = await checkAccess();
-
-            if (!auth.ok) {
-                this.navigateTo('/login');
-                return;
-            } else {
-                return;
-            }*/
+        // Проверка флага для избежания бесконечного рендера
+        if (auth.ok && route instanceof Route && location.pathname !== '/feed') {
+            // Попытка доступа к обычной странице, перенаправляем на страницу /feed
+            this.navigateTo('/feed');
+            return; // Прекратить выполнение функции
         }
         await route.page.render();
     }
