@@ -3,6 +3,6 @@ export const goToLink = (url) => {
     a.href = '/' + url;
     a.setAttribute('data-link', '');
     document.body.appendChild(a);
-    a.click()
-    a.remove()
-}
+    a.click();
+    a.remove();
+};

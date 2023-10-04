@@ -6,24 +6,24 @@ import { Header } from "./components/Header/Header.js";
 import { RegFooter } from "./components/RegFooter/RegFooter.js";
 
 export class CreatePassword {
-    #parent
-    #config
+    #parent;
+    #config;
 
     constructor(parent, config) {
         this.#parent = parent;
-        this.#config = config
+        this.#config = config;
     }
 
     render() {
-        this.#parent.innerHTML = ''
+        this.#parent.innerHTML = '';
         this.#parent.style.background = '#fff';
-        const header = new Header(this.#parent, this.#config)
-        const content = new CreatePasswordContent(this.#parent, this.#config)
-        const footer = new RegFooter(this.#parent)
+        const header = new Header(this.#parent, this.#config);
+        const content = new CreatePasswordContent(this.#parent, this.#config);
+        const footer = new RegFooter(this.#parent);
 
-        header.render()
-        content.render()
-        footer.render()
+        header.render();
+        content.render();
+        footer.render();
 
         registerController();
     }
@@ -43,22 +43,22 @@ const registerController = () => {
             if (email && password) {
                 const response = await registerRequest(email, password);
                 if (response.ok) {
-                    localStorage.removeItem('userNewEmail')
-                    goToLink('feed')
+                    localStorage.removeItem('userNewEmail');
+                    goToLink('feed');
                 } else {
-                    localStorage.removeItem('userNewEmail')
-                    new Notify('Ошибка регистрации: ' + response.statusText).panic()
-                    console.error('Ошибка регистрации:', response.statusText)
+                    localStorage.removeItem('userNewEmail');
+                    new Notify('Ошибка регистрации: ' + response.statusText).panic();
+                    console.error('Ошибка регистрации:', response.statusText);
                 }
             } else {
-                new Notify('Не ввели логин и/или пароль').panic()
+                new Notify('Не ввели логин и/или пароль').panic();
             }
 
 
 
         } catch (error) {
-            new Notify("Ошибка сети").panic()
-            console.error('Ошибка аутентификации:')
+            new Notify("Ошибка сети").panic();
+            console.error('Ошибка аутентификации:');
         }
-    })
-}
+    });
+};

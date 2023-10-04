@@ -1,6 +1,6 @@
 /* global Handlebars */
 export class SubmitRegisterButton {
-    #parent
+    #parent;
 
     constructor(parent) {
         this.#parent = parent;

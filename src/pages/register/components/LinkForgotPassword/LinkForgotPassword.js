@@ -1,7 +1,8 @@
 /* global Handlebars */
 
 export class LinkForgotPassword {
-    #parent 
+    #parent ;
+    
     constructor(parent) {
         this.#parent = parent;
     } 

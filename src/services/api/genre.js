@@ -1,4 +1,4 @@
-import { NETFLIX_API } from "./auth.js"
+import { NETFLIX_API } from "./auth.js";
 
 export const getGenreFilms = (genre) => {
     return fetch(`${NETFLIX_API}/films/genre/${genre}`, {
@@ -21,4 +21,4 @@ export const getGenreFilms = (genre) => {
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
         });
-}
+};
