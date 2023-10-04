@@ -1,6 +1,7 @@
 import { RegisterContextBody } from "../RegisterContextBody/RegisterContextBody.js";
 import { SubmitRegisterButton } from "../SubmitRegisterButton/SubmitRegisterButton.js";
 import { RegisterStepHeader } from "../RegisterStepHeader/RegisterStepHeader.js";
+/* global Handlebars */
 
 export class FinishAccContent {
     #parent

@@ -1,3 +1,4 @@
+/* global Handlebars */
 export class NetflixLogo {
     #parent 
 

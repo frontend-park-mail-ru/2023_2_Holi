@@ -7,6 +7,7 @@ import { PasswordAlreadyCreated } from './src/pages/register/register-pssword-al
 import { config } from './src/services/config.js';
 import { MainPage } from './src/pages/main/main-page.js';
 
+
 const rootElement = document.getElementById('root');
 
 const routes = [

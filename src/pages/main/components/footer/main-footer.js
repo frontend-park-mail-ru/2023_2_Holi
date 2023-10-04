@@ -1,5 +1,5 @@
+/* global Handlebars */
 export class MainFooter {
-
     constructor(parent) {
         const footer = document.createElement('footer');
         footer.innerHTML = this.render();

@@ -3,7 +3,7 @@ import { SubmitRegisterButton } from "../SubmitRegisterButton/SubmitRegisterButt
 import { RegisterStepHeader } from "../RegisterStepHeader/RegisterStepHeader.js";
 import { FormList } from "../FormList/FormList.js";
 import { LinkForgotPassword } from "../LinkForgotPassword/LinkForgotPassword.js";
-
+/* global Handlebars */
 export class AlreadyCreatedPasswordContent {
     #parent
     #config

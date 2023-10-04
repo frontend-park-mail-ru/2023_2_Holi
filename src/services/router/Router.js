@@ -1,5 +1,4 @@
 import { checkAccess } from "../api/auth.js";
-import { goToLink } from "../goToLink.js";
 
 export class Router {
     constructor(routes) {

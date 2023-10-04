@@ -1,3 +1,4 @@
+/* global Handlebars */
 export class LoginHeader {
     render() {
         const template = Handlebars.templates['header-login.hbs'];

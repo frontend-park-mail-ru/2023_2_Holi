@@ -1,5 +1,6 @@
 import { FormInput } from "../FormInput/FormInput.js";
 import { RegisterContextBody } from "../RegisterContextBody/RegisterContextBody.js";
+/* global Handlebars */
 export class FormList {
     #parent
     #config

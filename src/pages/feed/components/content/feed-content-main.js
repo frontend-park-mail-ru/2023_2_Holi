@@ -1,5 +1,4 @@
-
-
+/* global Handlebars */
 export class FeedContentMain {
     #image
     constructor(image) {

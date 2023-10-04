@@ -7,7 +7,6 @@ import { logoutRequest } from "../../services/api/auth.js";
 import { goToLink } from "../../services/goToLink.js";
 import { getGenreFilms } from "../../services/api/genre.js";
 
-
 const witcherImage = 'The-Witcher-3-season-2022.jpg';
 
 export class FeedPage {
@@ -46,9 +45,6 @@ export class FeedPage {
         const Comedy = await getGenreFilms('Comedy');
         const Romance = await getGenreFilms('Romance');
         const Crime = await getGenreFilms('Crime');
-          
-        const genres = ['Drama', 'Horror', 'Thriller', 'Action', 'Comedy', 'Romance', 'Crime', 'Fantasy'];
-
            
         if (Drama.status === 200) {
             this.addRow('Драмы', Drama.body.films);

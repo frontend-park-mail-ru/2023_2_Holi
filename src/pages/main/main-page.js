@@ -1,9 +1,8 @@
 import { Notify } from "../../components/notify/notify.js";
 import { goToLink } from "../../services/goToLink.js";
-
+/* global Handlebars */
 export class MainPage {
-    #parent
-
+    #parent;
     constructor(parent) {
         this.#parent = parent;
     }

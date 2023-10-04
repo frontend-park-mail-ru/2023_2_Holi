@@ -1,6 +1,6 @@
 import { NetflixLogo } from "../NetflixLogo/NetflixLogo.js"
 import { SignInLink } from "../SignInLink/SignInLink.js"
-
+/* global Handlebars */
 export class Header {
     #parent
     #config

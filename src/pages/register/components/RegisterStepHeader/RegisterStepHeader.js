@@ -1,3 +1,4 @@
+/* global Handlebars */
 export class RegisterStepHeader {
     #parent
     #config

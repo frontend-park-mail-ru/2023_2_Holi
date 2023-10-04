@@ -1,3 +1,4 @@
+/* global Handlebars */
 export class GenreRow {
     #genreTitle
     #genreContent
