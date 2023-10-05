@@ -17,3 +17,7 @@ https://www.figma.com/file/PEfIZ5K8ox9OKbxckS0KPo/NetflixHoliProject?type=design
 
 #### Netfix
 http://84.23.54.38
+
+
+# Описание методов API
+
