@@ -1,15 +1,25 @@
-.feed-header-menu > a{
-    font-family:  Netflix Sans;
+.feed-header-menu>a {
+    font-family: Netflix Sans;
     color: #fff;
     text-decoration: none;
 }
 
-.feed-header-menu > a:hover{
+.feed-header-menu>a:hover {
     color: gainsboro;
     text-decoration: underline;
 }
 
-.margin-a > a{
+.margin-a>a {
     margin-left: 0.75rem;
     margin-right: 0.75rem;
+}
+
+.logo-link {
+    display: block;
+    /* Убедимся, что элемент занимает всю доступную ширину */
+    width: 148px;
+    /* Установите желаемую ширину элемента */
+    height: 40px;
+    /* Установите желаемую высоту элемента */
+    position: absolute;
 }

@@ -45,8 +45,8 @@ export class Router {
      */
     async loadRoute() {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
-        const auth = await checkAccess();
-        if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
+        /*const auth = await checkAccess();
+       if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
             if (location.pathname !== '/feed') {
                 this.navigateTo(route.path);
             }
@@ -62,7 +62,7 @@ export class Router {
             this.navigateTo('/feed');
 
             return;
-        }
+        }*/
         await route.page.render();
     }
 }
