@@ -81,4 +81,11 @@ const loginContoller = () => {
             console.error('Ошибка аутентификации:');
         }
     });
+
+    const link = document.getElementById('login-link');
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.info(45354);
+        goToLink('/');
+    });
 };
