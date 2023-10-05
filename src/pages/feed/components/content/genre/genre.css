@@ -1,6 +1,7 @@
 .genre-carousel {
     width: 100%;
     height: 400px;
+    margin-bottom: 60px;
 }
 
 .genre-card-container {
@@ -8,14 +9,16 @@
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-top: 10px;
+    padding-top: 60px;
+    padding-bottom: 60px;
     gap: 20px;
     transition: transform 0.3s ease;
 }
 
-.genre-card{
+.genre-card {
     min-height: 350px;
     min-width: 250px;
+    border: 5px solid transparent;
 }
 
 .genre-card>img {
@@ -23,7 +26,7 @@
     max-height: 350px;
 }
 
-.genre-card:hover > img {
+.genre-card:hover>img {
     border: 5px solid rgba(255, 255, 255, 0.5);
     margin-top: -5px;
     box-shadow: 0 0 60px red;

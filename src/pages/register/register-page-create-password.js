@@ -5,15 +5,26 @@ import { CreatePasswordContent } from './components/CreatePasswordContent/Create
 import { Header } from './components/Header/Header.js';
 import { RegFooter } from './components/RegFooter/RegFooter.js';
 
+/**
+ * Класс, представляющий страницу создания пароля пользователя.
+ */
 export class CreatePassword {
     #parent;
     #config;
 
+     /**
+     * Создает новый экземпляр класса CreatePassword.
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница создания пароля.
+     * @param {Object} config - Конфигурация для страницы создания пароля.
+     */
     constructor(parent, config) {
         this.#parent = parent;
         this.#config = config;
     }
 
+    /**
+     * Рендерит страницу создания пароля пользователя.
+     */
     render() {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '#fff';
@@ -29,6 +40,9 @@ export class CreatePassword {
     }
 }
 
+/**
+ * Функция-контроллер для регистрации пользователя.
+ */
 const registerController = () => {
     const registerForm = document.forms['createPassword'];
     const emailInput = registerForm.elements['email'];

@@ -1,6 +1,11 @@
-export const NETFLIX_API = 'http://84.23.54.38:8080/api/v1';
-// export const NETFLIX_API = 'http://localhost:8080/api/v1'
+import { NETFLIX_API } from './const.js';
 
+/**
+ * Выполняет запрос на вход пользователя.
+ * @param {string} email - Электронная почта пользователя.
+ * @param {string} password - Пароль пользователя.
+ * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
+ */
 export const loginRequest = (email, password) => {
     return fetch(`${NETFLIX_API}/auth/login`, {
         method: 'POST',
@@ -12,6 +17,12 @@ export const loginRequest = (email, password) => {
     });
 };
 
+/**
+ * Выполняет запрос на регистрацию пользователя.
+ * @param {string} email - Электронная почта пользователя.
+ * @param {string} password - Пароль пользователя.
+ * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
+ */
 export const registerRequest = (email, password) => {
     return fetch(`${NETFLIX_API}/auth/register`, {
         method: 'POST',
@@ -23,6 +34,10 @@ export const registerRequest = (email, password) => {
     });
 };
 
+/**
+ * Выполняет запрос на выход пользователя.
+ * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
+ */
 export const logoutRequest = () => {
     return fetch(`${NETFLIX_API}/auth/logout`, {
         method: 'POST',
@@ -30,6 +45,10 @@ export const logoutRequest = () => {
     });
 };
 
+/**
+ * Выполняет проверку доступа пользователя.
+ * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
+ */
 export const checkAccess = () => {
     return fetch(`${NETFLIX_API}/auth/check`, {
         method: 'POST',
