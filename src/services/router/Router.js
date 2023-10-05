@@ -51,6 +51,10 @@ export class Router {
 
             return;
         }
+
+        if (!auth.ok && location.pathname !== '/feed') {
+            await route.page.render();
+        }
         if (auth.ok && route instanceof Route && location.pathname !== '/feed') {
             this.navigateTo('/feed');
 
