@@ -1,7 +1,7 @@
 # 2023_2_Holi
 
-#### Фронтенд репозиторий
-https://github.com/frontend-park-mail-ru/2023_2_Holi
+#### Бекенд репозиторий
+https://github.com/go-park-mail-ru/2023_2_Holi
 
 #### Команда:
 - Никита Чуйко
