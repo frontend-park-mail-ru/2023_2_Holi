@@ -45,24 +45,17 @@ export class Router {
      */
     async loadRoute() {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
-        /*const auth = await checkAccess();
-       if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
-            if (location.pathname !== '/feed') {
-                this.navigateTo(route.path);
-            }
+        const auth = await checkAccess();
+        if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
             this.navigateTo('/login');
 
             return;
-        }
-
-        if (!auth.ok && location.pathname !== '/feed') {
-            await route.page.render();
         }
         if (auth.ok && route instanceof Route && location.pathname !== '/feed') {
             this.navigateTo('/feed');
 
             return;
-        }*/
+        }
         await route.page.render();
     }
 }
