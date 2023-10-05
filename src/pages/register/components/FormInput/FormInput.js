@@ -1,6 +1,7 @@
+/* global Handlebars */
 export class FormInput {
-    #parent
-    #config
+    #parent;
+    #config;
 
     constructor(parent, config) {
         this.#parent = parent;

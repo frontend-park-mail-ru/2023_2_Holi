@@ -15,11 +15,8 @@ const routes = [
     new ProtectedRoute('/feed', new FeedPage(rootElement)),
     new Route('/register1', new FinishAсс(rootElement, config)),
     new Route('/register2', new CreatePassword(rootElement, config)),
-    new Route('/register3', new PasswordAlreadyCreated(rootElement, config))
+    new Route('/register3', new PasswordAlreadyCreated(rootElement, config)),
 
 ];
 
 new Router(routes);
-
-
-

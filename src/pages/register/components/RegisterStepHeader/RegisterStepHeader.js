@@ -1,6 +1,7 @@
+/* global Handlebars */
 export class RegisterStepHeader {
-    #parent
-    #config
+    #parent;
+    #config;
 
     constructor(parent, config) {
         this.#parent = parent;

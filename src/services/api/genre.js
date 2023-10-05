@@ -1,17 +1,18 @@
-import { NETFLIX_API } from "./auth.js"
+import { NETFLIX_API } from './auth.js';
 
 export const getGenreFilms = (genre) => {
     return fetch(`${NETFLIX_API}/films/genre/${genre}`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json;charset=utf-8'
+            'Content-Type': 'application/json;charset=utf-8',
         },
-        credentials: 'include'
+        credentials: 'include',
     })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+
             return response.json(); // Возвращает промис с объектом JSON
         })
         .then(data => {
@@ -21,4 +22,4 @@ export const getGenreFilms = (genre) => {
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
         });
-}
+};
