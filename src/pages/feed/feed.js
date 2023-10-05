@@ -6,7 +6,6 @@ import { FeedFooter } from './components/footer/footer.js';
 import { logoutRequest } from '../../services/api/auth.js';
 import { goToLink } from '../../services/goToLink.js';
 import { getGenreFilms } from '../../services/api/genre.js';
-import { feedMainContextStatic } from '../../../static/static-context-main-feed.js';
 
 /**
  * Класс, представляющий страницу ленты.
