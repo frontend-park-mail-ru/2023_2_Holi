@@ -30,5 +30,5 @@ app.get('*', (req, res) => {
  */
 const port = 80;
 app.listen(port, () => {
-    console.log(`Сервер запущен на порту ${port}`);
+    console.info(`Сервер запущен на порту ${port}`);
 });

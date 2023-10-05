@@ -1,11 +1,11 @@
-import { FeedContentMain } from "./components/content/feed-content-main.js";
-import { GenreRow } from "./components/content/genre/genre.js";
-import { FeedHeader } from "./components/header/header.js";
-import { uuid } from "../../services/uuid-time.js";
-import { FeedFooter } from "./components/footer/footer.js";
-import { logoutRequest } from "../../services/api/auth.js";
-import { goToLink } from "../../services/goToLink.js";
-import { getGenreFilms } from "../../services/api/genre.js";
+import { FeedContentMain } from './components/content/feed-content-main.js';
+import { GenreRow } from './components/content/genre/genre.js';
+import { FeedHeader } from './components/header/header.js';
+import { uuid } from '../../services/uuid-time.js';
+import { FeedFooter } from './components/footer/footer.js';
+import { logoutRequest } from '../../services/api/auth.js';
+import { goToLink } from '../../services/goToLink.js';
+import { getGenreFilms } from '../../services/api/genre.js';
 
 /**
  * Класс, представляющий страницу ленты.
@@ -96,7 +96,7 @@ export class FeedPage {
 
         goToFilms();
 
-        document.getElementById('logout').addEventListener('click', async function () {
+        document.getElementById('logout').addEventListener('click', async function() {
             const response = await logoutRequest();
             if (response.ok) {
                 goToLink('login');

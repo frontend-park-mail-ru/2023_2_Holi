@@ -1,6 +1,6 @@
-import { RegisterContextBody } from "../RegisterContextBody/RegisterContextBody.js";
-import { SubmitRegisterButton } from "../SubmitRegisterButton/SubmitRegisterButton.js";
-import { RegisterStepHeader } from "../RegisterStepHeader/RegisterStepHeader.js";
+import { RegisterContextBody } from '../RegisterContextBody/RegisterContextBody.js';
+import { SubmitRegisterButton } from '../SubmitRegisterButton/SubmitRegisterButton.js';
+import { RegisterStepHeader } from '../RegisterStepHeader/RegisterStepHeader.js';
 /* global Handlebars */
 
 export class FinishAccContent {
@@ -17,7 +17,7 @@ export class FinishAccContent {
 
         this.#parent.insertAdjacentHTML('beforeend', template());
 
-        const upperSibling = this.#parent.querySelector(".reg-form");
+        const upperSibling = this.#parent.querySelector('.reg-form');
 
         const stepHeader = new RegisterStepHeader(upperSibling, this.#config.finishAcc);
         const contextBody = new RegisterContextBody(upperSibling, this.#config.finishAcc.registerContextBody);

@@ -1,6 +1,6 @@
 /* global Handlebars */
 
-import { feedMainContextStatic } from "../../../../../static/static-context-main-feed";
+import { feedMainContextStatic } from '../../../../../static/static-context-main-feed.js';
 
 export class FeedContentMain {
     #image;
@@ -9,6 +9,7 @@ export class FeedContentMain {
     }
     render() {
         const template = Handlebars.templates['feed-content-main.hbs'];
+
         return template(feedMainContextStatic);
     }
 }

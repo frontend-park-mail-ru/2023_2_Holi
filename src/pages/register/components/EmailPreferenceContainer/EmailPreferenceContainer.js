@@ -12,7 +12,7 @@ export class EmailPreferenceContainer {
      */
     constructor(parent) {
         this.#parent = parent;
-    }   
+    }
 
     /**
      * Рендерит контейнер для настройки предпочтений по электронной почте.

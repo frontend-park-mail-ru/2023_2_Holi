@@ -7,6 +7,7 @@ export class MainFooter {
     }
     render() {
         const template = Handlebars.templates['main-footer.hbs'];
+
         return template();
     }
 }

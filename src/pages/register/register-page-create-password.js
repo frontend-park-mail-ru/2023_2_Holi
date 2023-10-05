@@ -1,9 +1,9 @@
-import { Notify } from "../../components/notify/notify.js";
-import { registerRequest } from "../../services/api/auth.js";
-import { goToLink } from "../../services/goToLink.js";
-import { CreatePasswordContent } from "./components/CreatePasswordContent/CreatePasswordContent.js";
-import { Header } from "./components/Header/Header.js";
-import { RegFooter } from "./components/RegFooter/RegFooter.js";
+import { Notify } from '../../components/notify/notify.js';
+import { registerRequest } from '../../services/api/auth.js';
+import { goToLink } from '../../services/goToLink.js';
+import { CreatePasswordContent } from './components/CreatePasswordContent/CreatePasswordContent.js';
+import { Header } from './components/Header/Header.js';
+import { RegFooter } from './components/RegFooter/RegFooter.js';
 
 export class CreatePassword {
     #parent;
@@ -34,7 +34,7 @@ const registerController = () => {
     const emailInput = registerForm.elements['email'];
     emailInput.value = localStorage.getItem('userNewEmail');
     const passwordInput = registerForm.elements['password'];
-    registerForm.addEventListener('submit', async function (event) {
+    registerForm.addEventListener('submit', async function(event) {
         event.preventDefault();
         const email = emailInput.value;
         const password = passwordInput.value;
@@ -54,10 +54,8 @@ const registerController = () => {
                 new Notify('Не ввели логин и/или пароль').panic();
             }
 
-
-
         } catch (error) {
-            new Notify("Ошибка сети").panic();
+            new Notify('Ошибка сети').panic();
             console.error('Ошибка аутентификации:');
         }
     });

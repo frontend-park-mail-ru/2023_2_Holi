@@ -14,6 +14,7 @@ export class FeedFooter {
         * @type {HandlebarsTemplateDelegate}
         */
         const template = Handlebars.templates['footer-feed.hbs'];
+
         return template();
     }
 }

@@ -1,5 +1,5 @@
-import { FormInput } from "../FormInput/FormInput.js";
-import { RegisterContextBody } from "../RegisterContextBody/RegisterContextBody.js";
+import { FormInput } from '../FormInput/FormInput.js';
+import { RegisterContextBody } from '../RegisterContextBody/RegisterContextBody.js';
 /* global Handlebars */
 export class FormList {
     #parent;
@@ -16,7 +16,7 @@ export class FormList {
         const classes = this.#config.classes;
         this.#parent.insertAdjacentHTML('beforeend', template({ classes }));
 
-        const mountPoint = this.#parent.querySelector(".form-list");
+        const mountPoint = this.#parent.querySelector('.form-list');
 
         if (this.#config.withHeader) {
             const emailStub = new RegisterContextBody(mountPoint, this.#config.headerStub);

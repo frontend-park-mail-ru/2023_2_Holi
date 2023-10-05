@@ -1,4 +1,4 @@
-import { checkAccess } from "../api/auth.js";
+import { checkAccess } from '../api/auth.js';
 
 export class Router {
     constructor(routes) {
@@ -29,6 +29,7 @@ export class Router {
         if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
             // Попытка доступа к защищенной странице, перенаправляем на страницу входа
             this.navigateTo('/login');
+
             return; // Прекратить выполнение функции
         }
 
@@ -36,7 +37,8 @@ export class Router {
         if (auth.ok && route instanceof Route && location.pathname !== '/feed') {
             // Попытка доступа к обычной странице, перенаправляем на страницу /feed
             this.navigateTo('/feed');
-            return; // Прекратить выполнение функции
+
+            return;
         }
         await route.page.render();
     }

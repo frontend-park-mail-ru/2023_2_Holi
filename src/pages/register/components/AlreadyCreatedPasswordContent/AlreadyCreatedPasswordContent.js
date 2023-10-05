@@ -1,8 +1,8 @@
-import { RegisterContextBody } from "../RegisterContextBody/RegisterContextBody.js";
-import { SubmitRegisterButton } from "../SubmitRegisterButton/SubmitRegisterButton.js";
-import { RegisterStepHeader } from "../RegisterStepHeader/RegisterStepHeader.js";
-import { FormList } from "../FormList/FormList.js";
-import { LinkForgotPassword } from "../LinkForgotPassword/LinkForgotPassword.js";
+import { RegisterContextBody } from '../RegisterContextBody/RegisterContextBody.js';
+import { SubmitRegisterButton } from '../SubmitRegisterButton/SubmitRegisterButton.js';
+import { RegisterStepHeader } from '../RegisterStepHeader/RegisterStepHeader.js';
+import { FormList } from '../FormList/FormList.js';
+import { LinkForgotPassword } from '../LinkForgotPassword/LinkForgotPassword.js';
 /* global Handlebars */
 
 /**
@@ -30,7 +30,7 @@ export class AlreadyCreatedPasswordContent {
 
         this.#parent.insertAdjacentHTML('beforeend', template());
 
-        const upperSibling = this.#parent.querySelector("form");
+        const upperSibling = this.#parent.querySelector('form');
 
         const stepHeader = new RegisterStepHeader(upperSibling, this.#config.alreadyCreated);
         const contextBody = new RegisterContextBody(upperSibling, this.#config.alreadyCreated.contextBody);

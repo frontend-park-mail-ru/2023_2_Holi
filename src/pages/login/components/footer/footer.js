@@ -15,6 +15,7 @@ export class LoginFooter {
         * @type {HandlebarsTemplateDelegate}
         */
         const template = Handlebars.templates['footer.hbs'];
+
         return template();
     }
 }

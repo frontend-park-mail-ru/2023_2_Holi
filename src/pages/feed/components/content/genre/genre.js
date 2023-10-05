@@ -23,7 +23,6 @@ export class GenreRow {
         this.#idContainer = idContainer;
     }
 
-
     /**
     * Рендерит строку жанра с использованием шаблона Handlebars.
     * @returns {string} - Строка HTML, представляющая строку жанра.
@@ -34,7 +33,7 @@ export class GenreRow {
             'genreTitle': this.#genreTitle,
             'genreContent': this.#genreContent,
             'idContainer': this.#idContainer,
-            'idCarousel': this.#idCarousel
+            'idCarousel': this.#idCarousel,
 
         };
         /**
@@ -46,5 +45,4 @@ export class GenreRow {
         return template(context);
     }
 }
-
 

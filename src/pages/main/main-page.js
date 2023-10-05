@@ -1,5 +1,5 @@
-import { Notify } from "../../components/notify/notify.js";
-import { goToLink } from "../../services/goToLink.js";
+import { Notify } from '../../components/notify/notify.js';
+import { goToLink } from '../../services/goToLink.js';
 /* global Handlebars */
 
 /**
@@ -15,7 +15,6 @@ export class MainPage {
     constructor(parent) {
         this.#parent = parent;
     }
-
 
     /**
      * Рендерит главную страницу.
@@ -36,7 +35,7 @@ const mainController = () => {
     const mainForm = document.forms['mainForm'];
     const emailInput = mainForm.elements['email'];
 
-    mainForm.addEventListener('submit', function (event) {
+    mainForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const email = emailInput.value;
         if (email) {

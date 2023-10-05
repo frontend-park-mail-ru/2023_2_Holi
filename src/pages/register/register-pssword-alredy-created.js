@@ -1,6 +1,6 @@
-import { AlreadyCreatedPasswordContent } from "./components/AlreadyCreatedPasswordContent/AlreadyCreatedPasswordContent.js";
-import { Header } from "./components/Header/Header.js";
-import { RegFooter } from "./components/RegFooter/RegFooter.js";
+import { AlreadyCreatedPasswordContent } from './components/AlreadyCreatedPasswordContent/AlreadyCreatedPasswordContent.js';
+import { Header } from './components/Header/Header.js';
+import { RegFooter } from './components/RegFooter/RegFooter.js';
 
 export class PasswordAlreadyCreated {
     #parent;

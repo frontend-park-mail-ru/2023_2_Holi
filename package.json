@@ -8,11 +8,12 @@
   },
   "dependencies": {
     "daemon": "^1.1.0",
-    "eslint-plugin-import": "^2.28.1",
     "express": "^4.18.2",
     "handlebars": "^4.7.8"
   },
   "devDependencies": {
-    "eslint": "^8.50.0"
+    "eslint": "^8.50.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3"
   }
 }

@@ -1,7 +1,7 @@
-import { RegisterContextBody } from "../RegisterContextBody/RegisterContextBody.js";
-import { SubmitRegisterButton } from "../SubmitRegisterButton/SubmitRegisterButton.js";
-import { RegisterStepHeader } from "../RegisterStepHeader/RegisterStepHeader.js";
-import { FormList } from "../FormList/FormList.js";
+import { RegisterContextBody } from '../RegisterContextBody/RegisterContextBody.js';
+import { SubmitRegisterButton } from '../SubmitRegisterButton/SubmitRegisterButton.js';
+import { RegisterStepHeader } from '../RegisterStepHeader/RegisterStepHeader.js';
+import { FormList } from '../FormList/FormList.js';
 import {EmailPreferenceContainer} from '../EmailPreferenceContainer/EmailPreferenceContainer.js';
 /* global Handlebars */
 
@@ -30,7 +30,7 @@ export class CreatePasswordContent {
 
         this.#parent.insertAdjacentHTML('beforeend', template());
 
-        const upperSibling = this.#parent.querySelector("form");
+        const upperSibling = this.#parent.querySelector('form');
 
         const stepHeader = new RegisterStepHeader(upperSibling, this.#config.createPassword);
         const upperContextBody = new RegisterContextBody(upperSibling, this.#config.createPassword.upperContextBody);

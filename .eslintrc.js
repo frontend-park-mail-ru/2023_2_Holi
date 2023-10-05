@@ -1,23 +1,34 @@
 module.exports = {
-  extends: 'eslint:recommended',
+  extends: [
+    'eslint:recommended',
+  ],
   parserOptions: {
-    ecmaVersion: 2022, // Или более новая версия, в зависимости от ваших потребностей
-    sourceType: 'module', // Для поддержки модулей ES6
-    allowImportExportEverywhere: true
+    ecmaVersion: 2022,
+    sourceType: 'module',
+    allowImportExportEverywhere: true,
   },
   env: {
-    browser: true, // Указываем, что код будет выполняться в браузерной среде
-    node: true,    // Если ваш код также выполняется в Node.js
+    browser: true,
+    node: true,
   },
-  overrides: [
-    {
-      files: ['**/*.js'], // Можете настроить паттерн для файлов
-      excludedFiles: 'dist/**', // Игнорируем файлы и папки внутри dist
-    },
-  ],
   rules: {
     'camelcase': 'error',
-    'semi': ['error', 'always'],
-    'eol-last': ['error', 'always']
-  }
+    'semi': ['error', 'always'], //точки с запятой
+    'eol-last': ['error', 'always'], // Пустая строка в конце файла
+    'quotes': ['error', 'single'], // Одинарные кавычки
+    'no-console': ['error', { allow: ['error', 'info'] }], // Запрет использования console.log
+    'no-unused-vars': 'error', // Запрет неиспользуемых переменных
+    'no-undef': 'error', // Запрет использования необъявленных переменных
+    'no-multiple-empty-lines': ['error', { max: 1 }], // Запрет множественных пустых строк
+    'no-trailing-spaces': 'error', // Запрет завершающих пробелов
+    'comma-dangle': ['error', 'always-multiline'], // Запятая в конце массивов и объектов
+    'space-before-function-paren': ['error', 'never'], // Пробел перед скобками функции
+    'no-else-return': 'error', // Запрет лишних else
+    'no-var': 'error', // Запрет использования var
+    'prefer-const': 'error', // Предпочтение const
+    'no-tabs': 'error', // Запрет использования табуляции
+    'newline-before-return': 'error', // Перенос строки перед return
+    'no-irregular-whitespace': 'error', // Запрет неправильных пробелов
+    'no-multi-spaces': 'error', // Запрет множественных пробелов
+  },
 };

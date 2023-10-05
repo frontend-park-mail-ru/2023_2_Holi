@@ -15,6 +15,7 @@ export class LoginHeader {
         * @type {HandlebarsTemplateDelegate}
         */
         const template = Handlebars.templates['header-login.hbs'];
+
         return template();
     }
 }

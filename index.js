@@ -7,7 +7,6 @@ import { PasswordAlreadyCreated } from './src/pages/register/register-pssword-al
 import { config } from './src/services/config.js';
 import { MainPage } from './src/pages/main/main-page.js';
 
-
 const rootElement = document.getElementById('root');
 
 const routes = [
@@ -16,11 +15,8 @@ const routes = [
     new ProtectedRoute('/feed', new FeedPage(rootElement)),
     new Route('/register1', new FinishAсс(rootElement, config)),
     new Route('/register2', new CreatePassword(rootElement, config)),
-    new Route('/register3', new PasswordAlreadyCreated(rootElement, config))
+    new Route('/register3', new PasswordAlreadyCreated(rootElement, config)),
 
 ];
 
 new Router(routes);
-
-
-

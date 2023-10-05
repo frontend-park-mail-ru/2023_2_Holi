@@ -14,6 +14,7 @@ export class LoginBody {
         * @type {HandlebarsTemplateDelegate}
         */
         const template = Handlebars.templates['body.hbs'];
+
         return template();
     }
 }

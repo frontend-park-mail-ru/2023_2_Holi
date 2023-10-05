@@ -1,7 +1,7 @@
-import { Header } from "./components/Header/Header.js";
-import { FinishAccContent } from "./components/FinishAccContent/FinishAccContent.js";
-import { RegFooter } from "./components/RegFooter/RegFooter.js";
-import { goToLink } from "../../services/goToLink.js";
+import { Header } from './components/Header/Header.js';
+import { FinishAccContent } from './components/FinishAccContent/FinishAccContent.js';
+import { RegFooter } from './components/RegFooter/RegFooter.js';
+import { goToLink } from '../../services/goToLink.js';
 
 export class FinishAсс {
     #parent;
@@ -29,7 +29,7 @@ export class FinishAсс {
 
 const finishRegController = () => {
     const finishReg = document.forms['finishReg'];
-    finishReg.addEventListener('submit', async function (event) {
+    finishReg.addEventListener('submit', async function(event) {
         event.preventDefault();
         goToLink('register2');
     });
