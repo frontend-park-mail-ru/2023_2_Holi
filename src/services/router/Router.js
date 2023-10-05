@@ -47,6 +47,9 @@ export class Router {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
         const auth = await checkAccess();
         if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
+            if (location.pathname !== '/feed') {
+                this.navigateTo(route.path);
+            }
             this.navigateTo('/login');
 
             return;
