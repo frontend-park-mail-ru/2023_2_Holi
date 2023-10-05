@@ -422,6 +422,13 @@ content-main-6 {
     }
 }
 
+@media screen and (max-width: 959px) {
+    .header-content {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
 .header-content {
     position: relative;
     width: inherit;

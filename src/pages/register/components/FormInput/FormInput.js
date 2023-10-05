@@ -1,13 +1,25 @@
 /* global Handlebars */
+
+/**
+ * Класс, представляющий компонент ввода формы.
+ */
 export class FormInput {
     #parent;
     #config;
 
+    /**
+     * Создает новый экземпляр класса FormInput.
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлен компонент.
+     * @param {Object} config - Конфигурация для компонента.
+     */
     constructor(parent, config) {
         this.#parent = parent;
         this.#config = config;
     }
 
+     /**
+     * Рендерит компонент ввода формы.
+     */
     render() {
         const template = Handlebars.templates['FormInput.hbs'];
 

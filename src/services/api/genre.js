@@ -1,5 +1,11 @@
-import { NETFLIX_API } from './auth.js';
+import { NETFLIX_API } from './const.js';
 
+/**
+ * Выполняет запрос на получение фильмов по указанному жанру.
+ * @param {string} genre - Жанр фильмов, которые требуется получить.
+ * @returns {Promise} Промис, который разрешится с данными о фильмах или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const getGenreFilms = (genre) => {
     return fetch(`${NETFLIX_API}/films/genre/${genre}`, {
         method: 'GET',
@@ -10,16 +16,15 @@ export const getGenreFilms = (genre) => {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Ответ сервера не 200');
             }
 
-            return response.json(); // Возвращает промис с объектом JSON
+            return response.json();
         })
         .then(data => {
-            // Здесь можно обрабатывать полученные данные в виде объекта JSON
-            return data; // Возвращаем объект JSON
+            return data;
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('Возникли проблемы с запросом:', error);
         });
 };

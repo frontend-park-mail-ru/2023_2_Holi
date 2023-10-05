@@ -15,6 +15,8 @@ header-reg{
 }
 .header-content-reg {
     margin: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
     padding-top: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #e6e6e6;

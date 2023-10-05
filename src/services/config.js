@@ -1,3 +1,7 @@
+/**
+ * Конфигурационный объект для различных компонентов и страниц приложения.
+ * @namespace
+ */
 export const config = {
     whiteHeader: {
         headerContent: {

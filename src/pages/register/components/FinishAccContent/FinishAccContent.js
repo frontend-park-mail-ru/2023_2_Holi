@@ -3,15 +3,26 @@ import { SubmitRegisterButton } from '../SubmitRegisterButton/SubmitRegisterButt
 import { RegisterStepHeader } from '../RegisterStepHeader/RegisterStepHeader.js';
 /* global Handlebars */
 
+/**
+ * Класс, представляющий содержимое 1 страницы регистрации.
+ */
 export class FinishAccContent {
     #parent;
     #config;
 
+    /**
+    * Создает новый экземпляр класса FinishAccContent.
+    * @param {HTMLElement} parent - Родительский элемент, в который будет вставлено содержимое.
+    * @param {Object} config - Конфигурация для содержимого.
+    */
     constructor(parent, config) {
         this.#parent = parent;
         this.#config = config;
     }
 
+    /**
+     * Рендерит содержимое страницы завершения аккаунта.
+     */
     render() {
         const template = Handlebars.templates['FinishAccContent.hbs'];
 
