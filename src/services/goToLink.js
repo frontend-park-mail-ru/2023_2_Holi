@@ -3,13 +3,11 @@
  * @param {string} url - URL, по которому нужно перенаправить пользователя.
  */
 export const goToLink = (url) => {
-    /*const a = document.createElement('a');
+    const a = document.createElement('a');
     a.href = '/' + url;
     a.setAttribute('data-link', '');
     document.body.appendChild(a);
     a.click();
-    a.remove();*/
+    a.remove();
 
-    const newUrl = '/' + url;
-    window.history.pushState(null, '', newUrl);
 };
