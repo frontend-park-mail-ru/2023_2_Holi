@@ -1,0 +1,14 @@
+.input-control {
+    background: #FFFFFF;
+    border: 1px solid #8c8c8c;
+    border-radius: 0.25rem;
+    line-height: normal;
+    padding: 0.5rem 0.5rem 0.5rem;
+    color: #000;
+    font-family: Netflix Sans;
+    font: inherit;
+    width: 100%;
+    min-width: 12.5rem;
+    font-size: 16px;
+    font-weight: 100;
+}

@@ -23,7 +23,6 @@ module.exports = {
     'no-trailing-spaces': 'error', // Запрет завершающих пробелов
     'comma-dangle': ['error', 'always-multiline'], // Запятая в конце массивов и объектов
     'space-before-function-paren': ['error', 'never'], // Пробел перед скобками функции
-    'no-else-return': 'error', // Запрет лишних else
     'no-var': 'error', // Запрет использования var
     'prefer-const': 'error', // Предпочтение const
     'no-tabs': 'error', // Запрет использования табуляции

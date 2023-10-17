@@ -1,15 +1,20 @@
 @import url(utils.css);
-@import url(header.css);
+@import url(colors.css);
+@import url(scrollbar.css);
+
+@import url(/src/partial/button/button.css);
+@import url(/src/partial/avatar/avatar.css);
+@import url(/src/partial/header/partial-header.css);
+@import url(/src/partial/footer/partial-footer.css);
+@import url(/src/partial/input-control/input-control.css);
 @import url(../../pages/login/login.css);
 @import url(../../pages/feed/feed.css);
 @import url(../../components/notify/notify.css);
 @import url(../../pages/register/register.css);
 @import url(../css/header.css);
 @import url(../../pages/main/main.css);
+
 @font-face {
     font-family: Netflix;
     src: url(../fonts/NetflixSansMedium.ttf);
 }
-
-
-
