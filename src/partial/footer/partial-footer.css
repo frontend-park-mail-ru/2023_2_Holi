@@ -1,0 +1,10 @@
+@font-face {
+    font-family: NetflixLight;
+    src: url(/src/static/fonts/NetflixSansLight.ttf);
+}
+
+.netflix-light {
+    font-family: NetflixLight;
+    font-size: 14px;
+    font-weight: 100;
+}

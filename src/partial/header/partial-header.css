@@ -1,0 +1,100 @@
+.header-content {
+    position: relative;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin: auto;
+    z-index: 1;
+    transition: max-width 0.5s, min-width 0.5s, padding 0.5s;
+}
+
+.header-content[kind="main-page"] {
+    position: absolute;
+    width: 100%;
+}
+
+
+@media screen and (min-width: 1920px) {
+    .header-content {
+        max-width: calc(66.66666666666666% - 6rem);
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .header-content {
+        max-width: calc(100% - 4rem);
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .header-content {
+        max-width: calc(100% - 4rem);
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 959px) {
+    .header-content {
+        max-width: calc(100% - 4rem);
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+.feed-header-menu>a {
+    font-family: Netflix Sans;
+    color: #fff;
+    text-decoration: none;
+}
+
+.feed-header-menu>a:hover {
+    color: gainsboro;
+    text-decoration: underline;
+}
+
+.margin-a>a {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+}
+
+
+/* Drop Down Styles
+================================ */
+nav .drop-down {
+    list-style: none;
+    overflow: hidden;
+    height: 200px;
+    font-family: Netflix Sans;
+    width: 200px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    -webkit-transition: height 0.3s ease;
+    transition: height 0.3s ease;
+}
+
+nav .drop-down.closed {
+    height: 50px;
+
+}
+
+nav .drop-down li {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+nav .drop-down li:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+nav .drop-down li a {
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px;
+}
+
+nav .drop-down li a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

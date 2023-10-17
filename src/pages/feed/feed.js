@@ -6,7 +6,6 @@ import { FeedFooter } from './components/footer/footer.js';
 import { logoutRequest } from '../../services/api/auth.js';
 import { goToLink } from '../../services/goToLink.js';
 import { getGenreFilms } from '../../services/api/genre.js';
-import { feedMainContextStatic } from '../../../static/static-context-main-feed.js';
 
 /**
  * Класс, представляющий страницу ленты.
@@ -50,7 +49,7 @@ export class FeedPage {
         mainContent.innerHTML = new FeedContentMain('').render();
         this.#parent.appendChild(mainContent);
 
-        const Drama = await getGenreFilms('Drama');
+        /*const Drama = await getGenreFilms('Drama');
         const Fantasy = await getGenreFilms('Fantasy');
         const Horror = await getGenreFilms('Horror');
         const Action = await getGenreFilms('Action');
@@ -89,7 +88,7 @@ export class FeedPage {
 
         if (Crime.status === 200) {
             this.addRow('Детективы', Crime.body.films);
-        }
+        }*/
 
         const footer = document.createElement('div');
         footer.innerHTML = new FeedFooter().render();
@@ -97,12 +96,25 @@ export class FeedPage {
 
         goToFilms();
 
-        document.getElementById('logout').addEventListener('click', async function() {
+        document.getElementById('logout').addEventListener('click', async function () {
+            console.info(132323);
             const response = await logoutRequest();
             if (response.ok) {
                 goToLink('login');
             }
         });
+
+        document.getElementById('profile').addEventListener('click', function () {
+            console.info(132323);
+            goToLink('profile');
+        });
+
+
+        document.getElementById('dropdown').addEventListener('click', function () {
+            /*  Toggle the CSS closed class which reduces the height of the UL thus 
+                hiding all LI apart from the first */
+            this.parentNode.parentNode.classList.toggle('closed')
+        }, false);
     }
 }
 

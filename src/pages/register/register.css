@@ -32,7 +32,7 @@ content-main-1-form-reg {
     max-width: 340px;
     margin-left: calc((-400px + 100%)/2);
     margin-bottom: 30px;
-    letter-spacing: 0 ;
+    letter-spacing: 0;
     padding: 20px 32px 60px;
 }
 
@@ -107,6 +107,8 @@ input-continer {
     font-size: 16px;
     font-weight: 100;
 }
+
+
 
 .link-forgot-password {
     color: #0071eb;
@@ -187,14 +189,11 @@ content-fragment>h1 {
 }
 
 input-continer {
-   height: 50px;
-   margin-top: 0;
+    height: 50px;
+    margin-top: 0;
 }
 
-.form-input {
-    border: 1px solid rgb(128, 128, 128)sparent;
-    border-radius: 4px;
-}
+
 
 .email-preference-container {
     flex-wrap: wrap;
@@ -210,13 +209,8 @@ input-continer {
     margin-right: 15px;
 }
 
-@media screen and (min-width: 1280px) {
-    .header-content {
-        max-width: calc(100% - 4rem);
-    }
-}
 
-header-reg{
+header-reg {
     width: 100%;
     position: static;
 }
@@ -230,4 +224,3 @@ content-fragment>h1 {
 .step-indicator {
     text-align: left;
 }
-

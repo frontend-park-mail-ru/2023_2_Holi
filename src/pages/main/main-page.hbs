@@ -1,223 +1,72 @@
-<main style="border-bottom: 7px solid #454545;">
-    <header>
-        <div class="header-content">
-            <div class="row">
-                <div class="col justify-content-start">
-                    <img src="src/static/img/logo.svg" alt="logo">
-                </div>
+<div class="main">
+    {{> partial-header kind="main-page" mainPage=true}}
 
-                <div class="col d-flex justify-content-end">
-                    <a href="/login" class="btn btn-red" data-link>Войти</a>
-                </div>
+    {{> main-background}}
+
+    {{> main-form}}
+
+    {{> main-banner}}
+
+    {{> main-content
+    firstMode=true
+    Title="Наслаждайтесь на своем телевизоре"
+    Description="Смотрите на телевизорах Smart TV, Playstation, Xbox,
+    Chromecast, Apple TV, Blu-ray плеерах и многом
+    другом."
+    content='<img src="src/static/img/tv.webp" alt>
+    <div class="main-content__video-container">
+        <video autoplay playsinline muted loop>
+            <source src="src/static/video/tv-main.m4v" type="video/mp4">
+        </video>
+    </div>'
+    }}
+
+    {{> main-content
+    secondMode=true
+    Title="Смотрите везде"
+    Description="Смотрите потоки неограниченных
+    фильмов и телепередач на своем телефоне, планшете,
+    ноутбуке и телевизоре."
+    content='<img src="src/static/img/device-pile.webp" alt="imac">
+    <div class="main-content__video-container imac">
+        <video autoplay playsinline muted loop>
+            <source src="src/static/video/video-devices.m4v"
+                type="video/mp4">
+        </video>
+    </div>'
+    }}
+
+    {{> main-content
+    firstMode=true
+    Title="Создавайте профили для
+    детей"
+    Description="Отправляйте детей в приключения с их любимыми
+    персонажами в пространстве, созданном специально для
+    них — бесплатно с вашим членством."
+    content='<img src="src/static/img/kids.webp" alt="kids">'
+    }}
+
+    {{> main-content
+    secondMode=true
+    Title="Загружайте свои шоу для
+    просмотра в автономном режиме"
+    Description="Доступно только в тарифных планах без рекламы."
+    content='<img src="src/static/img/mobile-0819.jpg" alt="mobile">
+    <div class="phone-background-content">
+        <div class="phone-background-content__col-poster">
+            <img alt="poster" src="src/static/img/boxshot.jpg"
+                class="phone-background-content__image">
+        </div>
+        <div class="phone-background-content__col-text">
+            <div class="phone-background-content__title">Очень
+                странные дела
+            </div>
+            <div class="phone-background-content__subtitle">Загрузка...
             </div>
         </div>
+        <div class="phone-background-content__col-spinner"></div>
+    </div>'
+    }}
 
-    </header>
-
-    <content-main-1>
-        <content-main-1-background> </content-main-1-background>
-    </content-main-1>
-    <content-main-1-form>
-        <content-fragment>
-            <h1>Смех. Слезы. Острые ощущения. Найдите все это на
-                Netflix.</h1>
-        </content-fragment>
-        <content-fragment>
-            <p class="m-0">Стоимость бесконечных развлечений
-                начинается всего с 5,99 евро. Отменить
-                в любое время.</p>
-        </content-fragment>
-        <email-form class="m-0">
-            <email-form-container>
-                <form name="mainForm" action="post">
-                    <h3 style="font-weight: 100; font-size: 16px;">Готовы
-                        смотреть? Введите свой адрес электронной
-                        почты, чтобы создать или перезапустить
-                        подписку.</h3>
-                    <input-continer>
-                        <input class="form-input me-3"
-                            placeholder="Email" name="email" type="email" name id>
-                        <button class="btn-red" type="submit">Начать</button>
-                    </input-continer>
-                </form>
-            </email-form-container>
-        </email-form>
-
-    </content-main-1-form>
-
-    <content-main-2>
-        <banner-container>
-            <banner-element-1>
-                <img src="src/static/img/banner-icon.svg" alt="banner-icon">
-            </banner-element-1>
-            <banner-element-2>
-                <p>Любимый вами Netflix всего за 5,99 евро.</p>
-                <p>Получите тарифный план "Стандарт с рекламой".</p>
-                <button class="btn-link">Подробнее
-                    <svg width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" xmlns="http://www.w3.org/2000/svg"
-                        data-mirrorinrtl="true"
-                        class="default-ltr-cache-4z3qvp e1svuwfo1"
-                        data-name="ChevronRight" aria-hidden="true"><path
-                            fill-rule="evenodd" clip-rule="evenodd"
-                            d="M15.5859 12L8.29303 19.2928L9.70725 20.7071L17.7072 12.7071C17.8948 12.5195 18.0001 12.2652 18.0001 12C18.0001 11.7347 17.8948 11.4804 17.7072 11.2928L9.70724 3.29285L8.29303 4.70706L15.5859 12Z"
-                            fill="currentColor"></path></svg>
-                </button>
-            </banner-element-2>
-        </banner-container>
-    </content-main-2>
-    <content-main-3>
-        <div class="row container">
-            <div class="col" style="padding-top: 50px;">
-                <h2 style="font-size: 48px;">Наслаждайтесь на своем
-                    телевизоре</h2>
-                <p>Смотрите на телевизорах Smart TV, Playstation, Xbox,
-                    Chromecast, Apple TV, Blu-ray плеерах и многом
-                    другом.</p>
-
-            </div>
-            <div class="col" style="padding-left: 6px;">
-                <div style="position: relative;">
-                    <img src="src/static/img/tv.webp" alt>
-                    <div class="video-container">
-                        <video autoplay playsinline muted loop>
-                            <source src="src/static/video/tv-main.m4v"
-                                type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </content-main-3>
-
-    <content-main-4>
-        <div class="row container">
-            <div class="col">
-                <div style="position: relative;">
-                    <img src="src/static/img/device-pile.webp" alt="imac">
-                    <div class="video-container-imac">
-                        <video autoplay playsinline muted loop>
-                            <source src="src/static/video/video-devices.m4v"
-                                type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <h2 style="font-size: 48px;">Смотрите везде</h2>
-                <p>Смотрите потоки неограниченных
-                    фильмов и телепередач на своем телефоне, планшете,
-                    ноутбуке и телевизоре.</p>
-            </div>
-        </div>
-    </content-main-4>
-
-    <content-main-5>
-        <div class="row container">
-
-            <div class="col">
-                <h2 style="font-size: 48px;">Создавайте профили для
-                    детей</h2>
-                <p>Отправляйте детей в приключения с их любимыми
-                    персонажами в пространстве, созданном специально для
-                    них — бесплатно с вашим членством.</p>
-            </div>
-
-            <div class="col">
-                <div style="position: relative;">
-                    <img src="src/static/img/kids.webp" alt="kids">
-
-                </div>
-            </div>
-        </div>
-    </content-main-5>
-
-    <content-main-6>
-        <div class="row container">
-
-            <div class="col">
-                <div style="position: relative;">
-                    <img src="src/static/img/mobile-0819.jpg" alt="mobile">
-
-                    <div class="mobile-container-1">
-                        <div class="mobile-col-1">
-                            <img alt="poster" src="src/static/img/boxshot.jpg"
-                                class="mobile-image">
-                        </div>
-                        <div class="mobile-col-2">
-                            <div class="mobile-col-2-row-1">Очень
-                                странные дела
-                            </div>
-                            <div
-                                class="mobile-col-2-row-2">Загрузка...
-                            </div>
-                        </div>
-
-                        <div class="mobile-col-3"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <h2 style="font-size: 48px;">Загружайте свои шоу для
-                    просмотра в автономном режиме</h2>
-                <p>Доступно только в тарифных планах без рекламы.</p>
-            </div>
-
-        </div>
-    </content-main-6>
-
-</main>
-<main-footer>
-    <div class="container pt-5 netflix-light">
-        <ul class="footer-list">
-            <li>
-                <a
-                    role="link"
-                    href="https://help.netflix.com/support/412">
-                    <span>FAQ</span>
-                </a>
-            </li>
-
-            <li>
-                <a
-                    role="link"
-                    href="https://help.netflix.com/support/412">
-                    <span>Аккаунт</span>
-                </a>
-            </li>
-
-            <li>
-                <a
-                    role="link"
-                    href="https://help.netflix.com/support/412">
-                    <span>Медиацентр</span>
-                </a>
-            </li>
-
-            <li>
-                <a
-                    role="link"
-                    href="https://help.netflix.com/support/412">
-                    <span>Магазин</span>
-                </a>
-            </li>
-
-            <li>
-                <a
-                    role="link"
-                    href="https://help.netflix.com/support/412">
-                    <span>Помощь</span>
-                </a>
-            </li>
-
-            <li>
-                <a
-                    role="link"
-                    href="https://help.netflix.com/support/412">
-                    <span>Только на Нетфликсе</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</main-footer>
+    {{> partial-footer}}
+</div>

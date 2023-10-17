@@ -1,0 +1,53 @@
+ <div class="header-content" kind="{{kind}}">
+    <div class="row">
+        <!-- Колонка логотипа {Существует всегда} -->
+        <div class="col justify-content-start">
+            {{> netflix-logo}}
+        </div>
+
+        <!-- Колонка ссылок {Только у подборок} -->
+        {{#if feedPage}}
+        <div
+            class="partial-header--link-block ml-3 col d-flex align-items-center feed-header-menu margin-a">
+            <a href="/" data-link>Начало</a>
+            <a href="#serials">Сериалы</a>
+            <a href="#films">Фильмы</a>
+            <a href="#list">Избранное</a>
+        </div>
+        {{/if}}
+
+        <!-- Колонка действие {
+                                    Существует вариативно:
+                                    -main: Ссылка входа
+                                    -login: отстуствует
+                                    -register: Ссылка входа
+                                    -feed: DropdownList с аватаркой пользователя и меню действий
+                                    } 
+            -->
+        <div class="col d-flex justify-content-end">
+
+            {{#if mainPage}}
+            {{> btn-link href="/login" btnClass="partial-btn-primary t-white"
+            label="Войти"}}
+            {{/if}}
+
+            {{#if regPage}}
+            {{> btn-link href="/login" btnClass="partial-btn-primary t-white"
+            label="Войти"}}
+            {{/if}}
+
+            {{#if feedPage}}
+            <nav style="position: absolute;">
+                <ul class="drop-down closed">
+                    <li><a class="nav-button" id="dropdown"> {{> avatar
+                            avatarUrl="src/static/img/avatarStatic.jpg"
+                            username="Manmaffin"}}</a></li>
+                    <li> <a id="profile">Профиль</a></li>
+                    <li><a id="logout">Выйти</a></li>
+                </ul>
+            </nav>
+            {{/if}}
+
+        </div>
+    </div>
+</div>

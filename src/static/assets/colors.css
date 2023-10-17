@@ -1,0 +1,8 @@
+:root{
+    --primary: rgb(229,9,20);
+    --primary-hover: rgb(193, 17, 25);
+}
+
+.t-white{
+    color: white;
+}

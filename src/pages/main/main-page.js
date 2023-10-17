@@ -24,6 +24,7 @@ export class MainPage {
         this.#parent.style.background = '';
         const template = Handlebars.templates['main-page.hbs'];
         this.#parent.innerHTML = template();
+
         mainController();
     }
 }
@@ -35,7 +36,7 @@ const mainController = () => {
     const mainForm = document.forms['mainForm'];
     const emailInput = mainForm.elements['email'];
 
-    mainForm.addEventListener('submit', function(event) {
+    mainForm.addEventListener('submit', function (event) {
         event.preventDefault();
         const email = emailInput.value;
         if (email) {
