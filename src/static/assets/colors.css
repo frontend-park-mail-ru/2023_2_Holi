@@ -1,8 +1,19 @@
-:root{
-    --primary: rgb(229,9,20);
+:root {
+    --primary: rgb(229, 9, 20);
     --primary-hover: rgb(193, 17, 25);
+
+    --dark: #333;
+    --dark-hover: #33333386;
 }
 
-.t-white{
+.t-white {
     color: white;
+}
+
+.t-dark {
+    color: var(--dark);
+}
+
+.t-dark:hover {
+    color: var(--dark-hover);
 }

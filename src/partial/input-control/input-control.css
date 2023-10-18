@@ -23,3 +23,12 @@
     height: 34px;
     line-height: normal;
 }
+
+.input-control[kind="register-page"] {
+    margin-top: 0.5rem;
+    width: 422px;
+    height: 42px;
+
+
+
+}

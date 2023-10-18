@@ -18,3 +18,13 @@
     font-family: Netflix;
     src: url(../fonts/NetflixSansMedium.ttf);
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+html {
+    height: 100%;
+}

@@ -9,7 +9,7 @@
         {{#if feedPage}}
         <div
             class="partial-header--link-block ml-3 col d-flex align-items-center feed-header-menu margin-a">
-            <a href="/" data-link>Начало</a>
+            <a href="/" spa-link>Начало</a>
             <a href="#serials">Сериалы</a>
             <a href="#films">Фильмы</a>
             <a href="#list">Избранное</a>
@@ -27,12 +27,12 @@
         <div class="col d-flex justify-content-end">
 
             {{#if mainPage}}
-            {{> btn-link href="/login" btnClass="partial-btn-primary t-white"
+            {{> btn-link href="/login" kind="primary"
             label="Войти"}}
             {{/if}}
 
             {{#if regPage}}
-            {{> btn-link href="/login" btnClass="partial-btn-primary t-white"
+            {{> btn-link href="/login" kind="secondary"
             label="Войти"}}
             {{/if}}
 

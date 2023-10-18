@@ -1,7 +1,5 @@
 /* global Handlebars */
 
-
-
 export const registerComponents = () => {
     Handlebars.registerPartial('btn-link', Handlebars.templates['btn-link.hbs']);
     Handlebars.registerPartial('netflix-logo', Handlebars.templates['netflix-logo.hbs']);
@@ -16,7 +14,6 @@ export const registerComponents = () => {
     Handlebars.registerPartial('login-form', Handlebars.templates['login-form.hbs']);
     Handlebars.registerPartial('login-background', Handlebars.templates['login-background.hbs']);
     Handlebars.registerPartial('main-content', Handlebars.templates['main-content.hbs']);
+    Handlebars.registerPartial('start-register-form', Handlebars.templates['start-register-form.hbs']);
+    Handlebars.registerPartial('register-form', Handlebars.templates['register-form.hbs']);
 };
-
-
-

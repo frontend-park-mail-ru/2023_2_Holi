@@ -18,15 +18,20 @@ export class Router {
 
     /**
      * Инициализация роутера.
-     * Устанавливает обработчики событий для загрузки и изменения URL, а также для нажатия на элементы с атрибутом 'data-link'.
+     * Устанавливает обработчики событий для загрузки и изменения URL, а также для нажатия на элементы с атрибутом 'spa-link'.
      */
     init() {
         window.addEventListener('load', () => this.loadRoute());
         window.addEventListener('popstate', () => this.loadRoute());
         document.body.addEventListener('click', e => {
-            if (e.target.matches('[data-link]')) {
-                e.preventDefault();
-                this.navigateTo(e.target.href);
+            let target = e.target;
+            while (target) {
+                if (target.tagName === 'A' && target.matches('[spa-link]')) {
+                    e.preventDefault();
+                    this.navigateTo(target.href);
+                    break;
+                }
+                target = target.parentElement;
             }
         });
     }
@@ -48,12 +53,12 @@ export class Router {
         /*const auth = await checkAccess();
         if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
             this.navigateTo('/login');
-
+    
             return;
         }
         if (auth.ok && route instanceof Route && location.pathname !== '/feed') {
             this.navigateTo('/feed');
-
+    
             return;
         }*/
         await route.page.render();

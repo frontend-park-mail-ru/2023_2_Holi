@@ -22,7 +22,7 @@ export class LoginPage {
      */
     render() {
         this.#parent.innerHTML = '';
-        this.#parent.style.background = '';
+        document.body.style.background = '#000';
         const template = Handlebars.templates['login-page.hbs'];
         this.#parent.innerHTML = template();
 

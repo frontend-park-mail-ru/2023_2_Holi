@@ -3,8 +3,92 @@
     src: url(/src/static/fonts/NetflixSansLight.ttf);
 }
 
-.netflix-light {
+.footer__border-top {
+    border-top: 8px solid #454545;
+
+}
+
+.footer__border-top[kind="reg-page"] {
+    border-top: 1px solid #e6e6e6;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+}
+
+.footer__border-top[kind="reg-page-main"] {
+    border-top: 1px solid #e6e6e6;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer__container {
+    width: 100%;
+    max-width: 1000px;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.footer__fonts {
     font-family: NetflixLight;
     font-size: 14px;
     font-weight: 100;
+}
+
+.footer__row {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-top: 0;
+    margin-right: -0.75rem;
+    margin-left: -0.75rem;
+}
+
+.footer__row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    margin-top: 0;
+}
+
+.footer__element {
+    flex: 1 0 0%;
+}
+
+.footer__element[kind="reg-page"]>a>img,
+.footer__element[kind="reg-page-main"]>a>img {
+    opacity: 0.3;
+}
+
+.footer__element-text {
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-decoration: none;
+    display: block;
+}
+
+.footer__element-text[kind="reg-page"],
+.footer__element-text[kind="reg-page-main"] {
+    color: #737373;
+}
+
+.footer__element-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer__element-border {
+    border-right: 2px solid #454545;
+}
+
+.footer__element-border[kind="reg-page"],
+.footer__element-border[kind="reg-page-main"] {
+    border-right: 2px solid #c5c3c3;
 }
