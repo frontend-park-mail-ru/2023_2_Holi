@@ -7,7 +7,8 @@
     transition: max-width 0.5s, min-width 0.5s, padding 0.5s;
 }
 
-.header-content[kind="main-page"] {
+.header-content[kind="main-page"],
+.header-content[kind="login-page"] {
     position: absolute;
     width: 100%;
 }

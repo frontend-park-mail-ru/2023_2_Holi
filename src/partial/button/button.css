@@ -16,6 +16,24 @@
     text-decoration: none;
 }
 
+.partial-btn[kind="login"] {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px;
+    margin: 24px 0 12px;
+}
+
+.partial-btn[kind="main-form"] {
+    appearance: none;
+    font: inherit;
+    margin: 0;
+    box-sizing: border-box;
+    letter-spacing: normal;
+    border: 0;
+    cursor: pointer;
+}
+
 .partial-btn-primary {
     background-color: var(--primary);
 }
@@ -23,14 +41,4 @@
 .partial-btn-primary:hover {
     transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
     background: var(--primary-hover);
-}
-
-.button{
-        appearance: none;
-        font: inherit;
-        margin: 0;
-        box-sizing: border-box;
-        letter-spacing: normal;
-        border: 0;
-        cursor: pointer;
 }

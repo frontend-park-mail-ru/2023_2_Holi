@@ -13,6 +13,8 @@ export const registerComponents = () => {
     Handlebars.registerPartial('main-form', Handlebars.templates['main-form.hbs']);
     Handlebars.registerPartial('button', Handlebars.templates['button.hbs']);
     Handlebars.registerPartial('main-banner', Handlebars.templates['main-banner.hbs']);
+    Handlebars.registerPartial('login-form', Handlebars.templates['login-form.hbs']);
+    Handlebars.registerPartial('login-background', Handlebars.templates['login-background.hbs']);
     Handlebars.registerPartial('main-content', Handlebars.templates['main-content.hbs']);
 };
 
