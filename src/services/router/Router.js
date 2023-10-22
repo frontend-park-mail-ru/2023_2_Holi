@@ -23,6 +23,7 @@ export class Router {
     init() {
         window.addEventListener('load', () => this.loadRoute());
         window.addEventListener('popstate', () => this.loadRoute());
+        window.addEventListener('pushstate', () => this.loadRoute());
         document.body.addEventListener('click', e => {
             let target = e.target;
             while (target) {
@@ -53,7 +54,6 @@ export class Router {
         const auth = await checkAccess();
         if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
             this.navigateTo('/login');
-
             return;
         }
         if (auth.ok && route instanceof Route && location.pathname !== '/feed') {

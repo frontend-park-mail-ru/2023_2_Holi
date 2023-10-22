@@ -5,13 +5,10 @@ webm-url="static/wednesday.webm"
 title="Wednesday"
 description="Уэнсдэй, дочь Гомеса и Мортиши Аддамс, учится в академии Nevermore. Ей предстоит освоить экстрасенсорные способности, чтобы остановить местного серийного убийцу и раскрыть тайну родителей."
 }}
-
-{{#each collections}}
-
-{{> feed-collection title="{{this.title}}" carousel="idCarousel{{this.title}}"
-container="idContainer{{container}}"
-content="{{this.content}}"}}
-
-{{/each}}
+<video controls class="feed-page__preview">
+    <source
+        src="https://static_holi.hb.ru-msk.vkcs.cloud/Media_Files/lecture2-part2.mp4"
+        type="video/mp4" />
+</video>
 
 {{> partial-footer}}

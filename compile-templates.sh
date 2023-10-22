@@ -23,5 +23,4 @@ handlebars src/pages/feed/components/feed-preview.hbs -f dist/feed-preview.preco
 handlebars src/pages/register/start-register.hbs -f dist/start-register.precompiled.js &&
 handlebars src/pages/register/components/start-register-form.hbs -f dist/start-register-form.precompiled.js &&
 
-handlebars src/pages/feed/components/content/genre/genre.hbs -f dist/genre.precompiled.js &&
 handlebars src/pages/main/main-page.hbs -f dist/main-page.precompiled.js

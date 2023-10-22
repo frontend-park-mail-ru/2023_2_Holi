@@ -1,5 +1,4 @@
-import { GenreRow } from './components/content/genre/genre.js';
-import { uuid } from '../../services/uuid-time.js';
+
 import { logoutRequest } from '../../services/api/auth.js';
 import { goToLink } from '../../services/goToLink.js';
 //import { getGenreFilms } from '../../services/api/genre.js';
@@ -24,7 +23,7 @@ export class FeedPage {
      */
     async render() {
         this.#parent.innerHTML = '';
-        this.#parent.style.background = '';
+        document.body.style.background = '';
 
         /*const Drama = await getGenreFilms('Drama');
       const Fantasy = await getGenreFilms('Fantasy');

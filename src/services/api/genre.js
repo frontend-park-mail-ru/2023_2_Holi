@@ -28,3 +28,4 @@ export const getGenreFilms = (genre) => {
             console.error('Возникли проблемы с запросом:', error);
         });
 };
+
