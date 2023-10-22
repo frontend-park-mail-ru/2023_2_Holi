@@ -1,16 +1,19 @@
-<video autoplay playsinline muted loop class="feed-page__preview">
-    <source src="{{webm-url}}" type="video/webm" />
-</video>
-
-<div class="feed-content__info">
-    <h1>
-        {{title}}
-    </h1>
-    <p>
-        {{description}}
-    </p>
-    <div class="feed-page__content-actions">
-        {{> btn-action label="Смотреть" kind="play"}}
-        {{> btn-action label="Подробнее" kind="info"}}
+<div class="feed-page__preview-container">
+    <video autoplay playsinline muted loop class="feed-page__preview">
+        <source src="{{webm-url}}" type="video/webm" />
+    </video>
+    <div class="feed-content__info">
+        <div class="feed-content__info-sticky">
+            <h1>
+                {{title}}
+            </h1>
+            <p>
+                {{description}}
+            </p>
+            <div class="feed-page__content-actions">
+                {{> btn-action label="Смотреть" kind="play"}}
+                {{> btn-action label="Подробнее" kind="info"}}
+            </div>
+        </div>
     </div>
 </div>

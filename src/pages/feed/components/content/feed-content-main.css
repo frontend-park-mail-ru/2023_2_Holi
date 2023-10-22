@@ -8,12 +8,14 @@
     display: flex;
     flex-direction: column;
     width: 600px;
-    top: 600px;
-    left: 50px;
+    margin-left: 50px;
+    margin-bottom: 15%;
     padding: 3rem;
     background: linear-gradient(336deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70.71%);
     box-shadow: 25px 25px 50px rgba(0, 0, 0, 0.6), -25px -25px 50px rgba(0, 0, 0, 0.6);
 }
+
+
 
 .feed-content__info>p {
     line-height: 1.6;
@@ -33,4 +35,10 @@
     gap: 10px;
     margin-top: auto;
 
+}
+
+.feed-page__preview-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
 }
