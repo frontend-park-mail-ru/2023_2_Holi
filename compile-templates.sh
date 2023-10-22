@@ -15,14 +15,13 @@ handlebars src/pages/login/components/login-form.hbs -f dist/login-form.precompi
 handlebars src/pages/login/components/login-background.hbs -f dist/login-background.precompiled.js &&
 handlebars src/pages/register/components/register-form.hbs -f dist/register-form.precompiled.js &&
 handlebars src/pages/register/main-register.hbs -f dist/main-register.precompiled.js &&
+handlebars src/pages/feed/feed-page.hbs -f dist/feed-page.precompiled.js &&
+handlebars src/partial/button/btn-action.hbs -f dist/btn-action.precompiled.js &&
 
+handlebars src/pages/feed/components/feed-preview.hbs -f dist/feed-preview.precompiled.js &&
 
 handlebars src/pages/register/start-register.hbs -f dist/start-register.precompiled.js &&
 handlebars src/pages/register/components/start-register-form.hbs -f dist/start-register-form.precompiled.js &&
 
-
-handlebars src/pages/feed/components/footer/footer-feed.hbs -f dist/footer-feed.precompiled.js &&
-handlebars src/pages/feed/components/header/header-feed.hbs -f dist/header-feed.precompiled.js &&
-handlebars src/pages/feed/components/content/feed-content-main.hbs -f dist/feed-content-main.precompiled.js &&
 handlebars src/pages/feed/components/content/genre/genre.hbs -f dist/genre.precompiled.js &&
 handlebars src/pages/main/main-page.hbs -f dist/main-page.precompiled.js

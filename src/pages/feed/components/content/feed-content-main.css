@@ -1,42 +1,36 @@
-.feed-content-main {
+.feed-page__preview {
     width: 100%;
 }
 
-.feed-content-info {
+.feed-content__info {
+    color: white;
     position: absolute;
-    height: 500px;
+    display: flex;
+    flex-direction: column;
     width: 600px;
-    top: 150px;
+    top: 600px;
     left: 50px;
     padding: 3rem;
     background: linear-gradient(336deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70.71%);
     box-shadow: 25px 25px 50px rgba(0, 0, 0, 0.6), -25px -25px 50px rgba(0, 0, 0, 0.6);
 }
 
-.feed-content-info>p {
+.feed-content__info>p {
     line-height: 1.6;
     font-family: NetflixLight;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
-.btn-main-play {
-    display: flex;
-    width: 167px;
-    height: 60px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 7px;
-    background: #FFF;
-    color: black;
-}
 
-.btn-main-info {
+
+.feed-page__content-actions {
     display: flex;
-    width: 281px;
-    height: 60px;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
     gap: 10px;
-    border-radius: 7px;
-    background: rgba(255, 255, 255, 0.20);
+    margin-top: auto;
+
 }

@@ -14,6 +14,9 @@
 @import url(../css/header.css);
 @import url(../../pages/main/main.css);
 
+
+@import url(../icons/netflix.css);
+
 @font-face {
     font-family: Netflix;
     src: url(../fonts/NetflixSansMedium.ttf);
@@ -26,5 +29,6 @@ body {
 }
 
 html {
+    font-family: Netflix;
     height: 100%;
 }

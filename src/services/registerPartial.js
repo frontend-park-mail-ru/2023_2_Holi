@@ -16,4 +16,6 @@ export const registerComponents = () => {
     Handlebars.registerPartial('main-content', Handlebars.templates['main-content.hbs']);
     Handlebars.registerPartial('start-register-form', Handlebars.templates['start-register-form.hbs']);
     Handlebars.registerPartial('register-form', Handlebars.templates['register-form.hbs']);
+    Handlebars.registerPartial('btn-action', Handlebars.templates['btn-action.hbs']);
+    Handlebars.registerPartial('feed-preview', Handlebars.templates['feed-preview.hbs']);
 };

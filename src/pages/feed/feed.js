@@ -1,12 +1,10 @@
-import { FeedContentMain } from './components/content/feed-content-main.js';
 import { GenreRow } from './components/content/genre/genre.js';
-import { FeedHeader } from './components/header/header.js';
 import { uuid } from '../../services/uuid-time.js';
-import { FeedFooter } from './components/footer/footer.js';
 import { logoutRequest } from '../../services/api/auth.js';
 import { goToLink } from '../../services/goToLink.js';
-import { getGenreFilms } from '../../services/api/genre.js';
+//import { getGenreFilms } from '../../services/api/genre.js';
 
+/* global Handlebars */
 /**
  * Класс, представляющий страницу ленты.
  */
@@ -41,13 +39,9 @@ export class FeedPage {
     async render() {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
-        const header = document.createElement('div');
-        header.innerHTML = new FeedHeader().render();
-        this.#parent.appendChild(header);
 
-        const mainContent = document.createElement('div');
-        mainContent.innerHTML = new FeedContentMain('').render();
-        this.#parent.appendChild(mainContent);
+        const template = Handlebars.templates['feed-page.hbs'];
+        this.#parent.innerHTML = template();
 
         /*const Drama = await getGenreFilms('Drama');
         const Fantasy = await getGenreFilms('Fantasy');
@@ -90,10 +84,6 @@ export class FeedPage {
             this.addRow('Детективы', Crime.body.films);
         }*/
 
-        const footer = document.createElement('div');
-        footer.innerHTML = new FeedFooter().render();
-        this.#parent.appendChild(footer);
-
         goToFilms();
 
         document.getElementById('logout').addEventListener('click', async function () {
@@ -109,11 +99,8 @@ export class FeedPage {
             goToLink('profile');
         });
 
-
         document.getElementById('dropdown').addEventListener('click', function () {
-            /*  Toggle the CSS closed class which reduces the height of the UL thus 
-                hiding all LI apart from the first */
-            this.parentNode.parentNode.classList.toggle('closed')
+            this.parentNode.parentNode.classList.toggle('closed');
         }, false);
     }
 }
