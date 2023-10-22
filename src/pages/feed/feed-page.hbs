@@ -6,6 +6,12 @@ title="Wednesday"
 description="Уэнсдэй, дочь Гомеса и Мортиши Аддамс, учится в академии Nevermore. Ей предстоит освоить экстрасенсорные способности, чтобы остановить местного серийного убийцу и раскрыть тайну родителей."
 }}
 
-<div id="collections"></div>
+{{#each collections}}
+
+{{> feed-collection title="{{this.title}}" carousel="idCarousel{{this.title}}"
+container="idContainer{{container}}"
+content="{{this.content}}"}}
+
+{{/each}}
 
 {{> partial-footer}}

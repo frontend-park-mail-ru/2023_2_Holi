@@ -1,4 +1,4 @@
-//import { checkAccess } from '../api/auth.js';
+import { checkAccess } from '../api/auth.js';
 
 /**
  * Класс, представляющий роутер приложения.
@@ -50,17 +50,17 @@ export class Router {
      */
     async loadRoute() {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
-        /*const auth = await checkAccess();
+        const auth = await checkAccess();
         if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
             this.navigateTo('/login');
-    
+
             return;
         }
         if (auth.ok && route instanceof Route && location.pathname !== '/feed') {
             this.navigateTo('/feed');
-    
+
             return;
-        }*/
+        }
         await route.page.render();
     }
 }

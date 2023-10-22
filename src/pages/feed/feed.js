@@ -20,71 +20,56 @@ export class FeedPage {
     }
 
     /**
-     * Добавляет строку жанра в ленту.
-     * @param {string} title - Заголовок жанра.
-     * @param {string} content - Содержимое жанра.
-     */
-    addRow(title, content) {
-        const genre = document.createElement('div');
-        const idCarousel = uuid();
-        const idContainer = uuid();
-        genre.innerHTML = new GenreRow(title, content, idCarousel, idContainer).render();
-        this.#parent.appendChild(genre);
-        dragging(idCarousel, idContainer);
-    }
-
-    /**
      * Рендерит страницу ленты.
      */
     async render() {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
 
+        /*const Drama = await getGenreFilms('Drama');
+      const Fantasy = await getGenreFilms('Fantasy');
+      const Horror = await getGenreFilms('Horror');
+      const Action = await getGenreFilms('Action');
+      const Thriller = await getGenreFilms('Thriller');
+      const Comedy = await getGenreFilms('Comedy');
+      const Romance = await getGenreFilms('Romance');
+      const Crime = await getGenreFilms('Crime');
+
+      if (Drama.status === 200) {
+          this.addRow('Драмы', Drama.body.films);
+      }
+
+      if (Fantasy.status === 200) {
+          this.addRow('Фэнтези', Fantasy.body.films);
+      }
+
+      if (Horror.status === 200) {
+          this.addRow('Ужасы', Horror.body.films);
+      }
+
+      if (Action.status === 200) {
+          this.addRow('Экшены', Action.body.films);
+      }
+
+      if (Thriller.status === 200) {
+          this.addRow('Триллеры', Thriller.body.films);
+      }
+
+      if (Comedy.status === 200) {
+          this.addRow('Комедии', Comedy.body.films);
+      }
+
+      if (Romance.status === 200) {
+          this.addRow('Мелодрамы', Romance.body.films);
+      }
+
+      if (Crime.status === 200) {
+          this.addRow('Детективы', Crime.body.films);
+      }*/
+
         const template = Handlebars.templates['feed-page.hbs'];
         this.#parent.innerHTML = template();
 
-        /*const Drama = await getGenreFilms('Drama');
-        const Fantasy = await getGenreFilms('Fantasy');
-        const Horror = await getGenreFilms('Horror');
-        const Action = await getGenreFilms('Action');
-        const Thriller = await getGenreFilms('Thriller');
-        const Comedy = await getGenreFilms('Comedy');
-        const Romance = await getGenreFilms('Romance');
-        const Crime = await getGenreFilms('Crime');
-
-        if (Drama.status === 200) {
-            this.addRow('Драмы', Drama.body.films);
-        }
-
-        if (Fantasy.status === 200) {
-            this.addRow('Фэнтези', Fantasy.body.films);
-        }
-
-        if (Horror.status === 200) {
-            this.addRow('Ужасы', Horror.body.films);
-        }
-
-        if (Action.status === 200) {
-            this.addRow('Экшены', Action.body.films);
-        }
-
-        if (Thriller.status === 200) {
-            this.addRow('Триллеры', Thriller.body.films);
-        }
-
-        if (Comedy.status === 200) {
-            this.addRow('Комедии', Comedy.body.films);
-        }
-
-        if (Romance.status === 200) {
-            this.addRow('Мелодрамы', Romance.body.films);
-        }
-
-        if (Crime.status === 200) {
-            this.addRow('Детективы', Crime.body.films);
-        }*/
-
-        goToFilms();
 
         document.getElementById('logout').addEventListener('click', async function () {
             console.info(132323);
@@ -104,20 +89,6 @@ export class FeedPage {
         }, false);
     }
 }
-
-/**
- * Обработчик события для перехода к фильмам определенного жанра.
- */
-const goToFilms = () => {
-    const genreCardLinks = document.querySelectorAll('.genre-card-link');
-    genreCardLinks.forEach((link) => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const id = link.getAttribute('data-id');
-            history.pushState(null, null, id);
-        });
-    });
-};
 
 /**
  * Обработчик события для перетаскивания содержимого карусели.
