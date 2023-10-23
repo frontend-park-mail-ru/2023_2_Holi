@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'netflix';
+  src: url('netflix.woff?g5zjyq') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+
+}
+
+.netflix {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'netflix' !important;
+  speak: never;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.netflix[kind="info"]:before {
+  content: "\e900";
+}
+
+
+
+.netflix[kind="play"]:before {
+  content: "\e901";
+}

@@ -7,7 +7,8 @@
     transition: max-width 0.5s, min-width 0.5s, padding 0.5s;
 }
 
-.header-content[kind="main-page"] {
+.header-content[kind="main-page"],
+.header-content[kind="login-page"] {
     position: absolute;
     width: 100%;
 }
@@ -42,7 +43,7 @@
 }
 
 .feed-header-menu>a {
-    font-family: Netflix Sans;
+    font-family: Netflix;
     color: #fff;
     text-decoration: none;
 }
@@ -57,14 +58,11 @@
     margin-right: 0.75rem;
 }
 
-
-/* Drop Down Styles
-================================ */
 nav .drop-down {
     list-style: none;
     overflow: hidden;
     height: 200px;
-    font-family: Netflix Sans;
+    font-family: Netflix;
     width: 200px;
     margin: 0 auto;
     padding: 0;

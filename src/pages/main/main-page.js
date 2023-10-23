@@ -21,7 +21,7 @@ export class MainPage {
      */
     render() {
         this.#parent.innerHTML = '';
-        this.#parent.style.background = '';
+        document.body.style.background = '#000';
         const template = Handlebars.templates['main-page.hbs'];
         this.#parent.innerHTML = template();
 
@@ -41,7 +41,7 @@ const mainController = () => {
         const email = emailInput.value;
         if (email) {
             localStorage.setItem('userNewEmail', email);
-            goToLink('register1');
+            goToLink('start-register');
         } else {
             console.error('Не введен email');
             new Notify('Введите email').panic();

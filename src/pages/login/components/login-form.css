@@ -1,0 +1,37 @@
+.login-page__login-content {
+    position: absolute;
+    margin-left: calc((100% - 450px)/2);
+    margin-right: calc((100% - 450px)/2);
+    margin-top: 90px;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0;
+    color: #333;
+    background: rgba(0, 0, 0, .75);
+    max-width: 450px;
+    min-height: 550px;
+    border-radius: 4px;
+}
+
+.login-page__form {
+    color: #fff;
+    padding: 60px 68px 40px;
+}
+
+.login-page__form-title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 28px;
+}
+
+.login-page__form-action {
+    color: #737373;
+    margin-top: 1.5rem;
+}
+
+.login-page__form-action-link {
+    color: #fff;
+}
