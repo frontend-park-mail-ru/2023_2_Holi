@@ -29,7 +29,7 @@ export class MainRegister {
         const emailInput = registerForm.elements['email'];
         emailInput.value = localStorage.getItem('userNewEmail');
         const passwordInput = registerForm.elements['password'];
-        registerForm.addEventListener('submit', async function (event) {
+        registerForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             const email = emailInput.value;
             const password = passwordInput.value;
@@ -44,7 +44,10 @@ export class MainRegister {
                     const response = await registerRequest(email, password);
                     if (response.ok) {
                         localStorage.removeItem('userNewEmail');
-                        history.pushState(null, null, '/feed');
+
+                        //Вручную эмитим событие popState
+                        const popStateEvent = new PopStateEvent('popstate', { state: null, url: '/feed' });
+                        window.dispatchEvent(popStateEvent);
                     } else {
                         localStorage.removeItem('userNewEmail');
                         new Notify('Ошибка регистрации: ' + response.statusText).panic();

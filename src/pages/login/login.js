@@ -1,6 +1,6 @@
 import { Notify } from '../../components/notify/notify.js';
 import { loginRequest } from '../../services/api/auth.js';
-import { goToLink } from '../../services/goToLink.js';
+import { navigate } from '../../services/router/Router.js';
 /*global Handlebars */
 
 /**
@@ -38,7 +38,7 @@ const loginContoller = () => {
     const emailInput = loginForm.elements['email'];
     const passwordInput = loginForm.elements['password'];
 
-    loginForm.addEventListener('submit', async function (event) {
+    loginForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
         const email = emailInput.value;
@@ -48,16 +48,20 @@ const loginContoller = () => {
             if (email && password) {
                 const response = await loginRequest(email, password);
                 if (response.ok) {
-                    goToLink('feed');
+                    navigate('/feed');
                 } else {
-                    new Notify('Ошибка аутентификации: ' + response.statusText).panic();
-                    console.error('Ошибка аутентификации:', response.statusText);
+                    new Notify('Неверный логин или пароль');
+                    console.error('Ошибка аутентификации:\n', response.statusText);
+
+                    return;
                 }
             } else {
-                new Notify('Не ввели логин и/или пароль').panic();
+                new Notify('Не ввели данные для входа');
+
+                return;
             }
         } catch (error) {
-            new Notify('Ошибка сети').panic();
+            new Notify('Упс... Что то пошло не так :(');
             console.error('Ошибка аутентификации:');
         }
     });

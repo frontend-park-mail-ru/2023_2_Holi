@@ -32,3 +32,7 @@
 .netflix[kind="play"]:before {
   content: "\e901";
 }
+
+.netflix[kind="close"]:before {
+  content: "\e902";
+}

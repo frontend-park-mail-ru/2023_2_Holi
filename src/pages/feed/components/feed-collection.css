@@ -8,6 +8,10 @@
     margin-bottom: 60px;
 }
 
+.feed-collection__title{
+    color: white;
+    margin-left: 2rem;
+}
 .feed-collection__container {
     width: 100%;
     display: flex;

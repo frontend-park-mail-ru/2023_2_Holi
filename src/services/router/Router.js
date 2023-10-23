@@ -21,17 +21,20 @@ export class Router {
      * Устанавливает обработчики событий для загрузки и изменения URL, а также для нажатия на элементы с атрибутом 'spa-link'.
      */
     init() {
+        //Обработка загрузки странички
         window.addEventListener('load', () => this.loadRoute());
+        //Обработка удаления маршрута из пути
         window.addEventListener('popstate', () => this.loadRoute());
-        window.addEventListener('pushstate', () => this.loadRoute());
         document.body.addEventListener('click', e => {
             let target = e.target;
+
             while (target) {
                 if (target.tagName === 'A' && target.matches('[spa-link]')) {
                     e.preventDefault();
                     this.navigateTo(target.href);
                     break;
                 }
+                //Ищем среди родителей элемент ссылку
                 target = target.parentElement;
             }
         });
@@ -42,6 +45,7 @@ export class Router {
      * @param {string} url - URL, по которому следует перейти.
      */
     navigateTo(url) {
+        document.getElementById('toasts').innerHTML = '';
         history.pushState(null, null, url);
         this.loadRoute();
     }
@@ -54,6 +58,7 @@ export class Router {
         const auth = await checkAccess();
         if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
             this.navigateTo('/login');
+
             return;
         }
         if (auth.ok && route instanceof Route && location.pathname !== '/feed') {
@@ -101,3 +106,9 @@ export class ProtectedRoute extends Route {
         this.isProtected = isProtected;
     }
 }
+
+//Эммитит событие popstate для последующей обработки в роутере
+export const navigate = (url) => {
+    const popStateEvent = new PopStateEvent('popstate', { state: null, url: url });
+    window.dispatchEvent(popStateEvent);
+};

@@ -1,7 +1,7 @@
-
 import { logoutRequest } from '../../services/api/auth.js';
-import { goToLink } from '../../services/goToLink.js';
-//import { getGenreFilms } from '../../services/api/genre.js';
+import { navigate } from '../../services/router/Router.js';
+import { getGenreFilms } from '../../services/api/genre.js';
+import { FeedCollection } from './components/feed-collection.js';
 
 /* global Handlebars */
 /**
@@ -18,6 +18,14 @@ export class FeedPage {
         this.#parent = parent;
     }
 
+    addCollections(content) {
+        const root = document.getElementById('feed-collections');
+        root.innerHTML = '';
+        content.forEach((data) => {
+            new FeedCollection(root, data.title, data.content);
+        });
+
+    }
     /**
      * Рендерит страницу ленты.
      */
@@ -25,100 +33,62 @@ export class FeedPage {
         this.#parent.innerHTML = '';
         document.body.style.background = '';
 
-        /*const Drama = await getGenreFilms('Drama');
-      const Fantasy = await getGenreFilms('Fantasy');
-      const Horror = await getGenreFilms('Horror');
-      const Action = await getGenreFilms('Action');
-      const Thriller = await getGenreFilms('Thriller');
-      const Comedy = await getGenreFilms('Comedy');
-      const Romance = await getGenreFilms('Romance');
-      const Crime = await getGenreFilms('Crime');
+        const Drama = await getGenreFilms('Drama');
+        const Fantasy = await getGenreFilms('Fantasy');
+        const Horror = await getGenreFilms('Horror');
+        const Action = await getGenreFilms('Action');
+        const Thriller = await getGenreFilms('Thriller');
+        const Comedy = await getGenreFilms('Comedy');
+        const Romance = await getGenreFilms('Romance');
+        const Crime = await getGenreFilms('Crime');
 
-      if (Drama.status === 200) {
-          this.addRow('Драмы', Drama.body.films);
-      }
+        const content = [];
+        if (Drama.status === 200) {
+            content.push({title: 'Драмы',content: Drama.body.films});
+        }
 
-      if (Fantasy.status === 200) {
-          this.addRow('Фэнтези', Fantasy.body.films);
-      }
+        if (Fantasy.status === 200) {
+            content.push({ title: 'Фэнтези', content: Fantasy.body.films });
+        }
 
-      if (Horror.status === 200) {
-          this.addRow('Ужасы', Horror.body.films);
-      }
+        if (Horror.status === 200) {
+            content.push({ title: 'Ужасы', content: Horror.body.films });
+        }
 
-      if (Action.status === 200) {
-          this.addRow('Экшены', Action.body.films);
-      }
+        if (Action.status === 200) {
+            content.push({ title: 'Экшены', content: Action.body.films });
+        }
 
-      if (Thriller.status === 200) {
-          this.addRow('Триллеры', Thriller.body.films);
-      }
+        if (Thriller.status === 200) {
+            content.push({ title: 'Триллеры', content: Thriller.body.films });
+        }
 
-      if (Comedy.status === 200) {
-          this.addRow('Комедии', Comedy.body.films);
-      }
+        if (Comedy.status === 200) {
+            content.push({ title: 'Комедии', content: Comedy.body.films });
+        }
 
-      if (Romance.status === 200) {
-          this.addRow('Мелодрамы', Romance.body.films);
-      }
+        if (Romance.status === 200) {
+            content.push({ title: 'Мелодрамы', Romance: Action.body.films });
+        }
 
-      if (Crime.status === 200) {
-          this.addRow('Детективы', Crime.body.films);
-      }*/
+        if (Crime.status === 200) {
+            content.push({ title: 'Детективы', content: Crime.body.films });
+        }
 
         const template = Handlebars.templates['feed-page.hbs'];
         this.#parent.innerHTML = template();
 
+        this.addCollections(content);
 
-        document.getElementById('logout').addEventListener('click', async function () {
-            console.info(132323);
+        document.getElementById('logout').addEventListener('click', async function() {
             const response = await logoutRequest();
             if (response.ok) {
-                goToLink('login');
+                navigate('/login');
             }
         });
 
-        document.getElementById('profile').addEventListener('click', function () {
-            console.info(132323);
-            goToLink('profile');
-        });
-
-        document.getElementById('dropdown').addEventListener('click', function () {
+        document.getElementById('dropdown').addEventListener('click', function() {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
     }
 }
-
-/**
- * Обработчик события для перетаскивания содержимого карусели.
- * @param {string} idCarousel - Идентификатор карусели.
- * @param {string} container - Идентификатор контейнера карусели.
- */
-const dragging = (idCarousel, container) => {
-    const carousel = document.getElementById(idCarousel);
-    const wrapper = document.getElementById(container);
-    let isDragging = false;
-    let startX, scrollLeft;
-
-    carousel.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.pageX - wrapper.offsetLeft;
-        scrollLeft = wrapper.scrollLeft;
-    });
-
-    carousel.addEventListener('mouseleave', () => {
-        isDragging = false;
-    });
-
-    carousel.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
-
-    carousel.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - wrapper.offsetLeft;
-        const walk = (x - startX) * 1; // Увеличьте число, чтобы увеличить скорость перемещения
-        wrapper.scrollLeft = scrollLeft - walk;
-    });
-};

@@ -4,11 +4,11 @@
 
         <form name="loginForm" action="post">
 
-            {{> input-control placeholder="Email"
+            {{> input-control placeholder="Email" id="email"
             name="email" type="email" kind="login-page"}}
-            {{> input-control placeholder="Введите пароль"
+            {{> input-control placeholder="Введите пароль" id="password"
             name="password" type="password" kind="login-page"}}
-            {{> button type="submit" kind="login" label="Войти"}}
+            {{> button type="submit" kind="login" label="Войти" id="submit"}}
 
             <div class="login-page__form-action">
                 <span>Недавно на Netflix? <a href="/start-register"

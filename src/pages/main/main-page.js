@@ -1,5 +1,5 @@
 import { Notify } from '../../components/notify/notify.js';
-import { goToLink } from '../../services/goToLink.js';
+import { navigate } from '../../services/router/Router.js';
 /* global Handlebars */
 
 /**
@@ -36,12 +36,12 @@ const mainController = () => {
     const mainForm = document.forms['mainForm'];
     const emailInput = mainForm.elements['email'];
 
-    mainForm.addEventListener('submit', function (event) {
+    mainForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const email = emailInput.value;
         if (email) {
             localStorage.setItem('userNewEmail', email);
-            goToLink('start-register');
+            navigate('/start-register');
         } else {
             console.error('Не введен email');
             new Notify('Введите email').panic();
