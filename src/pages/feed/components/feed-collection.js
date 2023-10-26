@@ -21,43 +21,71 @@ export class FeedCollection {
      */
     scrolling = (carouselUUID, containerUUID) => {
         const carousel = document.getElementById(carouselUUID);
-        const wrapper = document.getElementById(containerUUID);
-        let isDragging = false;
+        const viewport = document.getElementById(containerUUID);
+        let isScrolling = false;
         let startX, scrollLeft;
 
         carousel.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX - wrapper.offsetLeft;
-            scrollLeft = wrapper.scrollLeft;
+            isScrolling = true;
+            startX = e.pageX - viewport.offsetLeft;
+            scrollLeft = viewport.scrollLeft;
         });
 
         carousel.addEventListener('mouseleave', () => {
-            isDragging = false;
+            isScrolling = false;
         });
 
         carousel.addEventListener('mouseup', () => {
-            isDragging = false;
+            isScrolling = false;
         });
 
         carousel.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
+            if (!isScrolling) return;
             e.preventDefault();
-            const x = e.pageX - wrapper.offsetLeft;
+            const x = e.pageX - viewport.offsetLeft;
             const walk = (x - startX) * 1; // Увеличьте число, чтобы увеличить скорость перемещения
-            wrapper.scrollLeft = scrollLeft - walk;
+            viewport.scrollLeft = scrollLeft - walk;
         });
     };
+
+    ratingFillColor() {
+        // Получите все элементы с рейтингом
+        const ratingElements = document.querySelectorAll('.feed-collection__advanced-info__rating');
+
+        // Переберите элементы и добавьте классы в зависимости от значения рейтинга
+        ratingElements.forEach(element => {
+            const rating = parseInt(element.getAttribute('data-rating'), 10);
+
+            if (rating >= 4) {
+                element.classList.add('rating-high');
+            } else if (rating >= 2) {
+                element.classList.add('rating-medium');
+            } else {
+                element.classList.add('rating-low');
+            }
+        });
+    }
 
     render() {
         const template = Handlebars.templates['feed-collection.hbs'];
         const carouselUUID = uuid();
         const containerUUID = uuid();
-        this.#parent.insertAdjacentHTML('beforeend', template({
+        const collectionUUID = uuid();
+
+        const collection = document.createElement('div');
+        collection.id = collectionUUID;
+
+        this.#parent.appendChild(collection);
+
+        // Отобразите все элементы контента
+        collection.innerHTML = template({
             carousel: carouselUUID,
             container: containerUUID,
             title: this.#title,
             content: this.#content,
-        }));
+        });
+
         this.scrolling(carouselUUID, containerUUID);
+        this.ratingFillColor();
     }
 }

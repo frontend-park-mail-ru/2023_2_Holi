@@ -8,10 +8,11 @@
     margin-bottom: 60px;
 }
 
-.feed-collection__title{
+.feed-collection__title {
     color: white;
     margin-left: 2rem;
 }
+
 .feed-collection__container {
     width: 100%;
     display: flex;
@@ -25,17 +26,73 @@
 
 .feed-collection__container-card {
     min-height: 350px;
-    min-width: 250px;
-    border: 5px solid transparent;
 }
 
-.feed-collection__container-card>img {
+.feed-collection__container-card:hover {
+    transform: scale(1.1);
+    transform-origin: center center;
+    transition: all .4s ease-in-out;
+}
+
+.feed-collection__container-card>div>img {
     overflow: hidden;
     max-height: 350px;
 }
 
-.feed-collection__container-card:hover>img {
-    border: 5px solid rgba(255, 255, 255, 0.5);
-    margin-top: -5px;
-    box-shadow: 0 0 60px red;
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.feed-collection__advanced-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #454545;
+    border-radius: 0.25rem;
+    align-items: center;
+    height: 40px;
+    width: -webkit-fill-available;
+    padding: 10px;
+    position: absolute;
+    margin-top: -50px;
+    opacity: 0;
+    animation: show .4s ;
+}
+
+.feed-collection__container-card:hover div .feed-collection__advanced-info {
+    opacity: 1;
+    animation: show .4s;
+}
+
+.feed-collection__advanced-info__name {
+    color: white;
+}
+
+.feed-collection__advanced-info__rating {
+    font-weight: bold;
+    /* По умолчанию, сделаем жирный текст */
+
+    /* Задаем стили в зависимости от значения рейтинга */
+}
+
+.feed-collection__advanced-info__rating {
+    font-weight: bold;
+    /* По умолчанию, сделаем жирный текст */
+}
+
+/* Добавьте стили для разных рейтингов с использованием классов в JavaScript */
+.rating-high {
+    color: green;
+}
+
+.rating-medium {
+    color: orange;
+}
+
+.rating-low {
+    color: red;
 }

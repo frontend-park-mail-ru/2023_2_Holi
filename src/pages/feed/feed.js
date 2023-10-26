@@ -44,7 +44,7 @@ export class FeedPage {
 
         const content = [];
         if (Drama.status === 200) {
-            content.push({title: 'Драмы',content: Drama.body.films});
+            content.push({ title: 'Драмы', content: Drama.body.films });
         }
 
         if (Fantasy.status === 200) {
@@ -90,5 +90,6 @@ export class FeedPage {
         document.getElementById('dropdown').addEventListener('click', function() {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
+
     }
 }

@@ -38,6 +38,19 @@ export class Router {
                 target = target.parentElement;
             }
         });
+
+        document.body.addEventListener('mousemove', e => {
+            let target = e.target;
+
+            while (target) {
+                if (target.tagName === 'A' && target.matches('[media-content]')) {
+                    e.preventDefault();
+                    break;
+                }
+                //Ищем среди родителей элемент ссылку
+                target = target.parentElement;
+            }
+        });
     }
 
     /**
