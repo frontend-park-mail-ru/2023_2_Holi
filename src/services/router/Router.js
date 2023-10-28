@@ -38,19 +38,6 @@ export class Router {
                 target = target.parentElement;
             }
         });
-
-        document.body.addEventListener('mousemove', e => {
-            let target = e.target;
-
-            while (target) {
-                if (target.tagName === 'A' && target.matches('[media-content]')) {
-                    e.preventDefault();
-                    break;
-                }
-                //Ищем среди родителей элемент ссылку
-                target = target.parentElement;
-            }
-        });
     }
 
     /**
@@ -69,17 +56,28 @@ export class Router {
     async loadRoute() {
         const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
         const auth = await checkAccess();
-        if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
-            this.navigateTo('/login');
 
-            return;
+        if (route instanceof ProtectedRoute) {
+            if (route.accessLevel === 'auth') {
+                if (auth.ok) {
+                    // Маршрут доступен авторизованным
+                    await route.page.render();
+                } else {
+                    this.navigateTo('/login');
+                }
+            } else if (route.accessLevel === 'anonim') {
+                if (!auth.ok) {
+                    // Маршрут доступен неавторизованным
+                    await route.page.render();
+                } else {
+                    // Перенаправление авторизованных пользователей
+                    this.navigateTo('/feed');
+                }
+            }
+        } else if (route instanceof Route) {
+            // Обработка не защищенных маршрутов
+            await route.page.render();
         }
-        if (auth.ok && route instanceof Route && location.pathname !== '/feed') {
-            this.navigateTo('/feed');
-
-            return;
-        }
-        await route.page.render();
     }
 }
 
@@ -112,11 +110,11 @@ export class ProtectedRoute extends Route {
      * @constructor
      * @param {string} path - Путь маршрута.
      * @param {Object} page - Страница, связанная с маршрутом.
-     * @param {boolean} [isProtected=true] - Флаг, указывающий на защищенность маршрута.
+     * @param {string} [accessLevel='all'] - Флаг, указывающий на защищенность маршрута. По умолчанию авторизованные
      */
-    constructor(path, page, isProtected = true) {
+    constructor(path, page, accessLevel = 'auth') {
         super(path, page);
-        this.isProtected = isProtected;
+        this.accessLevel = accessLevel;
     }
 }
 

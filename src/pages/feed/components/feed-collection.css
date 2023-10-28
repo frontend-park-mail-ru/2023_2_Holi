@@ -21,7 +21,7 @@
     padding-top: 60px;
     padding-bottom: 60px;
     gap: 20px;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s linear;
 }
 
 .feed-collection__container-card {
@@ -31,7 +31,7 @@
 .feed-collection__container-card:hover {
     transform: scale(1.1);
     transform-origin: center center;
-    transition: all .4s ease-in-out;
+    transition: all .2s linear;
 }
 
 .feed-collection__container-card>div>img {
@@ -60,12 +60,11 @@
     position: absolute;
     margin-top: -50px;
     opacity: 0;
-    animation: show .4s ;
 }
 
-.feed-collection__container-card:hover div .feed-collection__advanced-info {
+.feed-collection__container-card:hover div a .feed-collection__advanced-info {
     opacity: 1;
-    animation: show .4s;
+    animation: show .2s linear;
 }
 
 .feed-collection__advanced-info__name {

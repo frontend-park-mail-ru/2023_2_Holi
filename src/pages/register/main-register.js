@@ -36,7 +36,7 @@ export class MainRegister {
             const valid = validatePassword(passwordInput.value);
             try {
                 if (valid !== '') {
-                    new Notify(valid).panic();
+                    new Notify(valid);
 
                     return;
                 }
@@ -50,16 +50,16 @@ export class MainRegister {
                         window.dispatchEvent(popStateEvent);
                     } else {
                         localStorage.removeItem('userNewEmail');
-                        new Notify('Ошибка регистрации: ' + response.statusText).panic();
+                        new Notify('Ошибка регистрации: ' + response.statusText);
                         console.error('Ошибка регистрации:', response.statusText);
                     }
                 } else {
-                    new Notify('Не ввели логин и/или пароль').panic();
+                    new Notify('Не ввели логин и/или пароль');
                 }
 
             } catch (error) {
-                new Notify('Ошибка сети').panic();
-                console.error('Ошибка аутентификации:');
+                new Notify('Ошибка регистрации');
+                console.error('Ошибка аутентификации: ' + error);
             }
         });
     }

@@ -6,17 +6,18 @@ import { registerComponents } from './src/services/registerPartial.js';
 import { Page404 } from './src/pages/404/404.js';
 import { StartRegister } from './src/pages/register/start-register.js';
 import { MainRegister } from './src/pages/register/main-register.js';
+import { ContentPage } from './src/pages/content/content.js';
 
 const rootElement = document.getElementById('root');
 
 registerComponents();
 const routes = [
-    new Route('/', new MainPage(rootElement)),
-    new Route('/login', new LoginPage(rootElement)),
+    new ProtectedRoute('/', new MainPage(rootElement), 'anonim'),
+    new ProtectedRoute('/login', new LoginPage(rootElement), 'anonim'),
     new ProtectedRoute('/feed', new FeedPage(rootElement)),
-    new Route('/start-register', new StartRegister(rootElement)),
-    new Route('/register', new MainRegister(rootElement)),
-
+    new ProtectedRoute('/start-register', new StartRegister(rootElement), 'anonim'),
+    new ProtectedRoute('/register', new MainRegister(rootElement), 'anonim'),
+    new Route('/id', new ContentPage(rootElement)),
     new Route('*', new Page404(rootElement)),
 ];
 

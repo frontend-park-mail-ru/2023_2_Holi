@@ -5,21 +5,26 @@
 <div class="feed-collection__carousel" id="{{carousel}}">
     <div class="feed-collection__container" id="{{container}}">
         {{#each content}}
-        <a href="/feed/{{this.id}}"
-            style="margin-left: 1rem;"
-            spa-link media-content>
-            <div class="feed-collection__container-card"
-                title="{{this.name}}">
-                <div>
-                    <img src="{{this.previewPath}}" alt="{{this.previewPath}}">
+
+        <div class="feed-collection__container-card"
+            title="{{this.name}}">
+            <div>
+                <img src="{{this.previewPath}}" alt="{{this.previewPath}}">
+
+                <a href="/feed/{{this.id}}"
+                    style="margin-left: 1rem;"
+                    spa-link>
                     <div class="feed-collection__advanced-info">
                         <div class="feed-collection__advanced-info__name">{{this.name}}</div>
-                        <div class="feed-collection__advanced-info__rating" data-rating="{{this.rating}}">{{this.rating}}</div>
+                        <div class="feed-collection__advanced-info__rating"
+                            data-rating="{{this.rating}}">{{this.rating}}</div>
                     </div>
-                </div>
+                </a>
 
             </div>
-        </a>
+
+        </div>
+
         {{/each}}
     </div>
 </div>

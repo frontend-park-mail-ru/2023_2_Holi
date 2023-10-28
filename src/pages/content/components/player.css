@@ -1,0 +1,9 @@
+.player {
+    display: block;
+    width: calc(100% - 5vw);
+    margin: auto;
+    border: 2px solid #454545;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.25rem;
+}

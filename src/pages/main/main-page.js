@@ -44,7 +44,7 @@ const mainController = () => {
             navigate('/start-register');
         } else {
             console.error('Не введен email');
-            new Notify('Введите email').panic();
+            new Notify('Введите email');
         }
     });
 };
