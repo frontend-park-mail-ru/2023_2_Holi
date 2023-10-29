@@ -11,9 +11,9 @@
 @import url(../../pages/feed/feed.css);
 @import url(../../components/notify/notify.css);
 @import url(../../pages/register/register.css);
-@import url(../css/header.css);
 @import url(../../pages/main/main.css);
 @import url(../../pages/404/404.css);
+@import url(../../pages/content/content.css);
 
 @import url(../icons/netflix.css);
 
@@ -31,4 +31,10 @@ body {
 html {
     font-family: Netflix;
     height: 100%;
+}
+
+#root{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }

@@ -38,9 +38,11 @@ const mainController = () => {
 
     mainForm.addEventListener('submit', function(event) {
         event.preventDefault();
+        console.info(1);
         const email = emailInput.value;
         if (email) {
             localStorage.setItem('userNewEmail', email);
+            history.pushState(null, null, '/start-register');
             navigate('/start-register');
         } else {
             console.error('Не введен email');

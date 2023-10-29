@@ -54,10 +54,18 @@ export class Router {
      * Загружает маршрут, соответствующий текущему URL, и отображает соответствующую страницу.
      */
     async loadRoute() {
-        const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
-        const auth = await checkAccess();
+        console.info(location.pathname);
+        const route = this.routes.find((r) => {
+            if (r.path instanceof RegExp) {
+                return r.path.test(location.pathname);
+            } else if (r.path === location.pathname) {
+                return true;
+            }
 
+            return false;
+        }) || this.routes.find((r) => r.path === '*');
         if (route instanceof ProtectedRoute) {
+            const auth = await checkAccess();
             if (route.accessLevel === 'auth') {
                 if (auth.ok) {
                     // Маршрут доступен авторизованным

@@ -3,24 +3,18 @@
     src: url(/src/static/fonts/NetflixSansLight.ttf);
 }
 
-.footer__border-top {
+.footer {
+    margin-top: auto;
     border-top: 8px solid #454545;
 
 }
 
-.footer__border-top[kind="reg-page"] {
+.footer[kind="reg-page"] {
     border-top: 1px solid #e6e6e6;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
 }
 
-.footer__border-top[kind="reg-page-main"] {
+.footer[kind="reg-page-main"] {
     border-top: 1px solid #e6e6e6;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 }
 
 .footer__container {

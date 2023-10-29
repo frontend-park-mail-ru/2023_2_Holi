@@ -17,7 +17,8 @@ const routes = [
     new ProtectedRoute('/feed', new FeedPage(rootElement)),
     new ProtectedRoute('/start-register', new StartRegister(rootElement), 'anonim'),
     new ProtectedRoute('/register', new MainRegister(rootElement), 'anonim'),
-    new Route('/id', new ContentPage(rootElement)),
+    new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
+    new ProtectedRoute('/test', new ContentPage(rootElement)),
     new Route('*', new Page404(rootElement)),
 ];
 

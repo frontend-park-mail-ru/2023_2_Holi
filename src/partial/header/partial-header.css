@@ -2,15 +2,18 @@
     position: relative;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    margin: auto;
     z-index: 1;
     transition: max-width 0.5s, min-width 0.5s, padding 0.5s;
 }
 
 .header-content[kind="main-page"],
 .header-content[kind="login-page"] {
-    position: absolute;
     width: 100%;
+    display: flex;
+}
+
+.header-content[kind="feed-page"]{
+    margin: 0;
 }
 
 

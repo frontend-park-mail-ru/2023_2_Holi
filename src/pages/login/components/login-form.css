@@ -1,8 +1,7 @@
 .login-page__login-content {
-    position: absolute;
     margin-left: calc((100% - 450px)/2);
     margin-right: calc((100% - 450px)/2);
-    margin-top: 90px;
+    margin-top: 30px;
     -webkit-font-smoothing: antialiased;
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
