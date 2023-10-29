@@ -4,7 +4,6 @@
 }
 
 .video-item__container-card {
-    min-height: 350px;
     margin: 15px 10px;
 }
 
@@ -14,12 +13,15 @@
     transition: all .2s linear;
 }
 
-.video-item__container-card>div>img {
-    overflow: hidden;
-    max-height: 350px;
+.video-item__container-card>div {
+    height: 375px;
     width: 100%;
     object-fit: fill;
-    float: left;
+}
+
+.video-item__container-card>div>img {
+    width: 100%;
+    height: 100%;
 }
 
 @keyframes show {
