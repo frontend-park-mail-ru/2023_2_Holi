@@ -1,18 +1,18 @@
-<div class="feed-collection__container-card"
-     title="{{this.name}}">
-    <div>
-        <img src="{{this.previewPath}}" alt="{{this.previewPath}}">
+    <div class="video-item__container-card"
+         title="{{content.name}}">
+        <div>
+            <img src="{{content.previewPath}}" alt="{{content.previewPath}}">
 
-        <a href="/feed/{{this.id}}"
-           style="margin-left: 1rem;"
-           spa-link>
-            <div class="feed-collection__advanced-info">
-                <div class="feed-collection__advanced-info__name">{{this.name}}</div>
-                <div class="feed-collection__advanced-info__rating"
-                     data-rating="{{this.rating}}">{{this.rating}}</div>
-            </div>
-        </a>
+            <a href="/feed/{{content.id}}"
+               style="margin-left: 1rem;"
+               spa-link>
+                <div class="video-item__advanced-info">
+                    <div class="video-item__advanced-info__name">{{content.name}}</div>
+                    <div class="video-item__advanced-info__rating"
+                         data-rating="{{content.rating}}">{{content.rating}}</div>
+                </div>
+            </a>
+
+        </div>
 
     </div>
-
-</div>

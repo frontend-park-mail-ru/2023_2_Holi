@@ -1,6 +1,9 @@
-import { Notify } from '../../components/notify/notify.js';
-import { navigate } from '../../services/router/Router.js';
+// import { Notify } from '../../components/notify/notify.js';
+// import { navigate } from '../../services/router/Router.js';
 /*global Handlebars */
+
+import {getGenreFilms} from "../../services/api/genre.js";
+import {VideoItem} from "./components/video-item.js";
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -16,14 +19,33 @@ export class CastPage {
         this.#parent = parent;
     }
 
+    addCollections(content) {
+        const root = document.getElementById('cast-page');
+        root.innerHTML = '';
+        content.forEach((data) => {
+            new VideoItem(root, data);
+        });
+
+    }
+
     /**
      * Рендерит страницу.
      */
-    render() {
+    async render() {
+        const Fantasy = await getGenreFilms('Fantasy');
+        let content = [];
+
+        if (Fantasy.status === 200) {
+            content = Fantasy.body.films;
+        }
+
         this.#parent.innerHTML = '';
-        document.body.style.background = '#000';
-        const template = Handlebars.templates['login-page.hbs'];
+        document.body.style.background = '#181818';
+        const template = Handlebars.templates['cast.hbs'];
         this.#parent.innerHTML = template();
+
+        this.addCollections(content);
+
 
         // loginContoller();
     }

@@ -1,42 +1,25 @@
-.feed-collection__container-offset {
-    margin-top: 2rem;
-}
-
-.feed-collection__carousel {
-    width: 100%;
-    height: 400px;
-    margin-bottom: 60px;
-}
-
-.feed-collection__title {
+.video-item__title {
     color: white;
     margin-left: 2rem;
 }
 
-.feed-collection__container {
-    width: 100%;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    gap: 20px;
-    transition: transform 0.2s linear;
-}
-
-.feed-collection__container-card {
+.video-item__container-card {
     min-height: 350px;
+    margin: 15px 10px;
 }
 
-.feed-collection__container-card:hover {
+.video-item__container-card:hover {
     transform: scale(1.1);
     transform-origin: center center;
     transition: all .2s linear;
 }
 
-.feed-collection__container-card>div>img {
+.video-item__container-card>div>img {
     overflow: hidden;
     max-height: 350px;
+    width: 100%;
+    object-fit: fill;
+    float: left;
 }
 
 @keyframes show {
@@ -47,7 +30,7 @@
         opacity: 1;
     }
 }
-.feed-collection__advanced-info {
+.video-item__advanced-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -62,23 +45,23 @@
     opacity: 0;
 }
 
-.feed-collection__container-card:hover div a .feed-collection__advanced-info {
+.video-item__container-card:hover div a .video-item__advanced-info {
     opacity: 1;
     animation: show .2s linear;
 }
 
-.feed-collection__advanced-info__name {
+.video-item__advanced-info__name {
     color: white;
 }
 
-.feed-collection__advanced-info__rating {
+.video-item__advanced-info__rating {
     font-weight: bold;
     /* По умолчанию, сделаем жирный текст */
 
     /* Задаем стили в зависимости от значения рейтинга */
 }
 
-.feed-collection__advanced-info__rating {
+.video-item__advanced-info__rating {
     font-weight: bold;
     /* По умолчанию, сделаем жирный текст */
 }
