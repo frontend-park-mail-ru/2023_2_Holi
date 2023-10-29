@@ -3,11 +3,5 @@
 #cast-page {
     display: grid;
     grid-template-columns: repeat(5, auto);
-    /*grid-template-columns: 4fr 4fr 5fr;*/
-    /*grid-template-areas:*/
-    /*          'card card card card card card'*/
-    /*          !*'img img content'*!*/
-    /*          !*'img img .';*!*/
-    /*max-width: 1000px;*/
     margin: 20px 25px 65px;
 }
