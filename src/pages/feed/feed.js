@@ -1,6 +1,6 @@
 import { logoutRequest } from '../../services/api/auth.js';
 import { navigate } from '../../services/router/Router.js';
-import { getGenreFilms } from '../../services/api/genre.js';
+import { getGenreFilms } from '../../services/api/content.js';
 import { FeedCollection } from './components/feed-collection.js';
 
 /* global Handlebars */

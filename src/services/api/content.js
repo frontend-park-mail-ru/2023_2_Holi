@@ -29,3 +29,25 @@ export const getGenreFilms = (genre) => {
         });
 };
 
+export const getContentById = (id) => {
+    return fetch(`${NETFLIX_API}/films/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+        },
+        credentials: 'include',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ответ сервера не 200');
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            console.error('Возникли проблемы с запросом:', error);
+        });
+};

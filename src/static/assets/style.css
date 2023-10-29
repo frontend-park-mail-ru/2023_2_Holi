@@ -20,6 +20,10 @@
 @font-face {
     font-family: Netflix;
     src: url(../fonts/NetflixSansMedium.ttf);
+    src: url(../fonts/NetflixSansBold.ttf);
+    src: url(../fonts/NetflixSansLight.ttf);
+    src: url(../fonts/NetflixSansRegular.ttf);
+    src: url(../fonts/NetflixSansThin.ttf);
 }
 
 body {
@@ -33,7 +37,7 @@ html {
     height: 100%;
 }
 
-#root{
+#root {
     display: flex;
     flex-direction: column;
     height: 100vh;
