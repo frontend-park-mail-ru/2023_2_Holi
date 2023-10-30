@@ -79,13 +79,21 @@ nav .drop-down.closed {
 
 }
 
-nav .drop-down li {
+.drop-down__li {
     background: rgba(0, 0, 0, 0.5);
 }
 
-nav .drop-down li:hover {
+.drop-down__li:hover {
     background: rgba(0, 0, 0, 0.25);
 }
+
+/*nav .drop-down li {*/
+/*    background: rgba(0, 0, 0, 0.5);*/
+/*}*/
+
+/*nav .drop-down li:hover {*/
+/*    background: rgba(0, 0, 0, 0.25);*/
+/*}*/
 
 nav .drop-down li a {
     display: block;

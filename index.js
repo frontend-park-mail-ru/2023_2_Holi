@@ -20,7 +20,7 @@ const routes = [
     new ProtectedRoute('/register', new MainRegister(rootElement), 'anonim'),
     new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
     new ProtectedRoute('/test', new ContentPage(rootElement)),
-    new Route('/person', new CastPage(rootElement)),
+    new Route(/^\/cast\/\d+$/, new CastPage(rootElement)),
     new Route('*', new Page404(rootElement)),
 ];
 

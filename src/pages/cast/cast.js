@@ -1,9 +1,8 @@
-// import { Notify } from '../../components/notify/notify.js';
-// import { navigate } from '../../services/router/Router.js';
 /*global Handlebars */
 
-import {getGenreFilms} from "../../services/api/genre.js";
 import {VideoItem} from "./components/video-item.js";
+import {getLastNumber} from "../../services/getParams.js";
+import {getContentByCastId} from "../../services/api/content.js";
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -19,7 +18,7 @@ export class CastPage {
         this.#parent = parent;
     }
 
-    addCollections(content) {
+    addVideoCard(content) {
         const root = document.getElementById('cast-page');
         root.innerHTML = '';
         content.forEach((data) => {
@@ -32,19 +31,24 @@ export class CastPage {
      * Рендерит страницу.
      */
     async render() {
-        const Fantasy = await getGenreFilms('Fantasy');
-        let content = [];
+        const id = getLastNumber(location.href);
 
-        if (Fantasy.status === 200) {
-            content = Fantasy.body.films;
-        }
+        const filmsByCast = await getContentByCastId(id);
+        let content = [];
+        let castName;
+        // if (filmsByCast.status === 200) {
+            content = filmsByCast.films;
+            castName = filmsByCast.cast.name
+        // }
 
         this.#parent.innerHTML = '';
         document.body.style.background = '#181818';
         const template = Handlebars.templates['cast.hbs'];
-        this.#parent.innerHTML = template();
+        this.#parent.innerHTML = template({
+            name: castName,
+        });
 
-        this.addCollections(content);
+        this.addVideoCard(content);
 
 
         // loginContoller();
