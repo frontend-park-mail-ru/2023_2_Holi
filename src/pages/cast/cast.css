@@ -1,0 +1,7 @@
+@import url(components/video-item.css);
+
+#cast-page {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    margin: 20px 25px 65px;
+}

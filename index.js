@@ -7,6 +7,7 @@ import { Page404 } from './src/pages/404/404.js';
 import { StartRegister } from './src/pages/register/start-register.js';
 import { MainRegister } from './src/pages/register/main-register.js';
 import { ContentPage } from './src/pages/content/content.js';
+import { CastPage } from './src/pages/cast/cast.js';
 
 const rootElement = document.getElementById('root');
 
@@ -19,6 +20,7 @@ const routes = [
     new ProtectedRoute('/register', new MainRegister(rootElement), 'anonim'),
     new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
     new ProtectedRoute('/test', new ContentPage(rootElement)),
+    new Route('/person', new CastPage(rootElement)),
     new Route('*', new Page404(rootElement)),
 ];
 
