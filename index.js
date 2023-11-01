@@ -35,5 +35,3 @@ const routes = [
 ];
 
 new Router(routes);
-
-export default routes;
