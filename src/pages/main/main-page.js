@@ -1,3 +1,4 @@
+import { rootElement } from '../../../index.js';
 import { Notify } from '../../components/notify/notify.js';
 import { navigate } from '../../services/router/Router.js';
 /* global Handlebars */
@@ -5,7 +6,7 @@ import { navigate } from '../../services/router/Router.js';
 /**
  * Класс, представляющий главную страницу.
  */
-export class MainPage {
+class MainPage {
     #parent;
 
     /**
@@ -50,3 +51,5 @@ const mainController = () => {
         }
     });
 };
+
+export default new MainPage(rootElement);

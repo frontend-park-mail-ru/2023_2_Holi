@@ -1,9 +1,11 @@
 /*global Handlebars*/
 
+import { rootElement } from '../../../index.js';
+
 /**
  * Класс, представляющий начало регистрации.
  */
-export class StartRegister {
+class StartRegister {
     #parent;
 
     /**
@@ -24,3 +26,5 @@ export class StartRegister {
         this.#parent.innerHTML = template();
     }
 }
+
+export default new StartRegister(rootElement);

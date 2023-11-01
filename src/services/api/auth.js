@@ -54,13 +54,14 @@ export const checkAccess = () => {
         method: 'POST',
         credentials: 'include',
     })
-    .then(response => {
-        if(response.ok){
-            return response;
-        } else{
-            console.error('Ошибка проверки авторизации');
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                console.error('Ошибка проверки авторизации');
 
-            return response;
-        }
-    });
+                return response;
+            }
+        });
 };
+

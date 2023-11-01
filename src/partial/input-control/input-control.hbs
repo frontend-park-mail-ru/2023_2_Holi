@@ -1,3 +1,18 @@
-<input class="input-control" kind="{{kind}}"
+{{#if default}}
+<input class="input-control" kind="{{kind}}" autocomplete={{autocomplete}}
     placeholder="{{placeholder}}" name="{{name}}" type="{{type}}"
     id="{{id}}">
+{{/if}}
+
+{{#if file}}
+<label class="input-control__file">
+    <input class="input-control" kind="profile-page"
+        name="{{name}}" type="file"
+        id="{{id}}">
+    <span kind="secondary" class="partial-btn partial-btn-primary t-white">
+        <i class="netflix" kind="upload"></i>
+    </span>
+    <span class="input-control__file-text">{{placeholder}}</span>
+</label>
+
+{{/if}}

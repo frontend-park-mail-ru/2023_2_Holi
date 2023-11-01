@@ -1,0 +1,22 @@
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-width: 600px;
+    margin: auto;
+    background-color: rgba(218, 216, 216, 0.3);
+    max-height: 500px;
+    padding: 50px;
+    border-radius: 0.45rem;
+}
+
+.profile-form div {
+   display: flex;
+   flex-direction: column;
+   font-family: Netflix;
+   font-weight: 600;
+
+}

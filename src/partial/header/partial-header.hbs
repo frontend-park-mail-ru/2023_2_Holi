@@ -36,13 +36,23 @@
             label="Войти"}}
             {{/if}}
 
+            {{#if profilePage}}
+            <nav style="position: absolute;">
+                <ul class="drop-down closed">
+                    <li kind={{kind}}><a class="nav-button" id="dropdown">{{>
+                            avatar
+                            avatarUrl="{{avatar}}"}}</a></li>
+                    <li kind={{kind}}><a id="logout">Выйти</a></li>
+                </ul>
+            </nav>
+            {{/if}}
             {{#if feedPage}}
             <nav style="position: absolute;">
                 <ul class="drop-down closed">
                     <li><a class="nav-button" id="dropdown"> {{> avatar
                             avatarUrl="/src/static/img/avatarStatic.jpg"
                             username="Manmaffin"}}</a></li>
-                    <li> <a id="profile">Профиль</a></li>
+                    <li> <a href="/profile" spa-link>Профиль</a></li>
                     <li><a id="logout">Выйти</a></li>
                 </ul>
             </nav>

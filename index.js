@@ -1,25 +1,18 @@
 import { Router, ProtectedRoute, Route } from './src/services/router/Router.js';
-import { LoginPage } from './src/pages/login/login.js';
-import { FeedPage } from './src/pages/feed/feed.js';
-import { MainPage } from './src/pages/main/main-page.js';
 import { registerComponents } from './src/services/registerPartial.js';
-import { Page404 } from './src/pages/404/404.js';
-import { StartRegister } from './src/pages/register/start-register.js';
-import { MainRegister } from './src/pages/register/main-register.js';
-import { ContentPage } from './src/pages/content/content.js';
+import { checkAccess } from './src/services/api/auth.js';
 
-const rootElement = document.getElementById('root');
-
+export const rootElement = document.getElementById('root');
 registerComponents();
 const routes = [
-    new ProtectedRoute('/', new MainPage(rootElement), 'anonim'),
-    new ProtectedRoute('/login', new LoginPage(rootElement), 'anonim'),
-    new ProtectedRoute('/feed', new FeedPage(rootElement)),
-    new ProtectedRoute('/start-register', new StartRegister(rootElement), 'anonim'),
-    new ProtectedRoute('/register', new MainRegister(rootElement), 'anonim'),
-    new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
-    new ProtectedRoute('/test', new ContentPage(rootElement)),
-    new Route('*', new Page404(rootElement)),
+    new ProtectedRoute('/', '/src/pages/main/main-page.js', 'anonim'),
+    new ProtectedRoute('/login', '/src/pages/login/login.js', 'anonim'),
+    new ProtectedRoute('/feed', '/src/pages/feed/feed.js'),
+    new ProtectedRoute('/start-register', '/src/pages/register/start-register.js', 'anonim'),
+    new ProtectedRoute('/register', '/src/pages/register/main-register.js', 'anonim'),
+    new ProtectedRoute(/^\/movies\/\d+$/, '/src/pages/content/content.js'),
+    new ProtectedRoute('/profile', '/src/pages/profile/profile-page.js'),
+    new Route('*', '/src/pages/404/404.js'),
 ];
 
-new Router(routes);
+new Router(routes, checkAccess, '/login', '/feed', '[spa-link]', 'toasts');

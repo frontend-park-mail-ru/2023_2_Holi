@@ -4,9 +4,9 @@
 
         <form name="loginForm" action="post">
 
-            {{> input-control placeholder="Email" id="email"
+            {{> input-control default=true placeholder="Email" id="email"
             name="email" type="email" kind="login-page"}}
-            {{> input-control placeholder="Введите пароль" id="password"
+            {{> input-control default=true placeholder="Введите пароль" id="password"
             name="password" type="password" kind="login-page"}}
             {{> button type="submit" kind="login" label="Войти" id="submit"}}
 

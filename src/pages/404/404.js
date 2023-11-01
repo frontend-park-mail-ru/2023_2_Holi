@@ -1,5 +1,7 @@
+import { rootElement } from '../../../index.js';
+
 /* global Handlebars */
-export class Page404 {
+ class Page404 {
     #parent;
 
     constructor(parent) {
@@ -13,3 +15,5 @@ export class Page404 {
         this.#parent.innerHTML = template();
     }
 }
+
+export default new Page404(rootElement);

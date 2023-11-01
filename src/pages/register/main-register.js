@@ -2,10 +2,11 @@
 
 import { registerRequest } from '../../services/api/auth.js';
 import { Notify } from '../../components/notify/notify.js';
+import { rootElement } from '../../../index.js';
 /**
  * Класс, представляющий начало регистрации.
  */
-export class MainRegister {
+class MainRegister {
     #parent;
 
     /**
@@ -29,7 +30,7 @@ export class MainRegister {
         const emailInput = registerForm.elements['email'];
         emailInput.value = localStorage.getItem('userNewEmail');
         const passwordInput = registerForm.elements['password'];
-        registerForm.addEventListener('submit', async function(event) {
+        registerForm.addEventListener('submit', async function (event) {
             event.preventDefault();
             const email = emailInput.value;
             const password = passwordInput.value;
@@ -43,6 +44,8 @@ export class MainRegister {
                 if (email && password) {
                     const response = await registerRequest(email, password);
                     if (response.ok) {
+                        const res = await response.json();
+                        localStorage.setItem('userId', res.body.id);
                         localStorage.removeItem('userNewEmail');
 
                         //Вручную эмитим событие popState
@@ -93,3 +96,5 @@ function validatePassword(password) {
 
     return '';
 }
+
+export default new MainRegister(rootElement);

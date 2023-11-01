@@ -36,3 +36,8 @@
 .netflix[kind="close"]:before {
   content: "\e902";
 }
+
+.netflix[kind="upload"]:before {
+  content: "\e904";
+}
+

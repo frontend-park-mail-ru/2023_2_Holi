@@ -9,6 +9,7 @@ const __dirname = dirname(__filename);
 const app = express();
 
 app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '../manifest.json')));
 app.use(express.static(path.resolve(__dirname, '..', 'node_modules')));
 
 app.get(/^(?!.*\.(css|js|img|png|webp|webm|svg)).*$/, (req, res) => {
