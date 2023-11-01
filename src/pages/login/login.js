@@ -1,12 +1,14 @@
 import { Notify } from '../../components/notify/notify.js';
 import { loginRequest } from '../../services/api/auth.js';
 import { navigate } from '../../services/router/Router.js';
+import { rootElement } from '../../../index.js';
+import Store from '../../services/store.js';
 /*global Handlebars */
 
 /**
  * Класс, представляющий страницу входа.
  */
-export class LoginPage {
+class LoginPage {
     #parent;
 
     /**
@@ -38,7 +40,7 @@ const loginContoller = () => {
     const emailInput = loginForm.elements['email'];
     const passwordInput = loginForm.elements['password'];
 
-    loginForm.addEventListener('submit', async function(event) {
+    loginForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const email = emailInput.value;
@@ -48,6 +50,8 @@ const loginContoller = () => {
             if (email && password) {
                 const response = await loginRequest(email, password);
                 if (response.ok) {
+                    const res = await response.json();
+                    localStorage.setItem('userId', res.body.id);
                     navigate('/feed');
                 } else {
                     new Notify('Неверный логин или пароль');
@@ -62,7 +66,9 @@ const loginContoller = () => {
             }
         } catch (error) {
             new Notify('Упс... Что то пошло не так :(');
-            console.error('Ошибка аутентификации:');
+            console.error('Ошибка аутентификации:', error);
         }
     });
 };
+
+export default new LoginPage(rootElement);

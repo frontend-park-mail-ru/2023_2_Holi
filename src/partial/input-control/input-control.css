@@ -32,3 +32,31 @@
 
 
 }
+
+.input-control__file {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 442px;
+}
+
+.input-control__file .partial-btn {
+    margin-top: 0;
+    min-width: 0;
+    min-height: 0;
+    padding: 10px;
+    max-width: 60px;
+}
+
+.input-control__file .input-control[type=file] {
+    display: none;
+}
+
+.input-control__file-text {
+    font-family: Netflix;
+    font-weight: 600;
+    font-size: 16px;
+    width: 100%;
+}

@@ -1,5 +1,3 @@
-import { checkAccess } from '../api/auth.js';
-
 /**
  * Класс, представляющий роутер приложения.
  * @class
@@ -11,7 +9,12 @@ export class Router {
      * @constructor
      * @param {Array<Route>} routes - Массив маршрутов, доступных в приложении.
      */
-    constructor(routes) {
+    constructor(routes, checkAuth, defaultAnAuth, defaultAuth, linkAttribute, notifyId) {
+        this.checkAuth = checkAuth;
+        this.defaultAuth = defaultAuth;
+        this.linkAttribute = linkAttribute;
+        this.notifyId = notifyId;
+        this.defaultAnAuth = defaultAnAuth;
         this.routes = routes;
         this.init();
     }
@@ -29,7 +32,7 @@ export class Router {
             let target = e.target;
 
             while (target) {
-                if (target.tagName === 'A' && target.matches('[spa-link]')) {
+                if (target.tagName === 'A' && target.matches(this.linkAttribute)) {
                     e.preventDefault();
                     this.navigateTo(target.href);
                     break;
@@ -45,7 +48,7 @@ export class Router {
      * @param {string} url - URL, по которому следует перейти.
      */
     navigateTo(url) {
-        document.getElementById('toasts').innerHTML = '';
+        document.getElementById(this.notifyId).innerHTML = '';
         history.pushState(null, null, url);
         this.loadRoute();
     }
@@ -54,7 +57,6 @@ export class Router {
      * Загружает маршрут, соответствующий текущему URL, и отображает соответствующую страницу.
      */
     async loadRoute() {
-        console.info(location.pathname);
         const route = this.routes.find((r) => {
             if (r.path instanceof RegExp) {
                 return r.path.test(location.pathname);
@@ -65,26 +67,28 @@ export class Router {
             return false;
         }) || this.routes.find((r) => r.path === '*');
         if (route instanceof ProtectedRoute) {
-            const auth = await checkAccess();
+            const auth = await this.checkAuth();
             if (route.accessLevel === 'auth') {
                 if (auth.ok) {
-                    // Маршрут доступен авторизованным
-                    await route.page.render();
+                    const page = await import(route.page);
+                    await page.default.render();
                 } else {
-                    this.navigateTo('/login');
+                    this.navigateTo(this.defaultAnAuth);
                 }
             } else if (route.accessLevel === 'anonim') {
                 if (!auth.ok) {
                     // Маршрут доступен неавторизованным
-                    await route.page.render();
+                    const page = await import(route.page);
+                    await page.default.render();
                 } else {
                     // Перенаправление авторизованных пользователей
-                    this.navigateTo('/feed');
+                    this.navigateTo(this.defaultAuth);
                 }
             }
         } else if (route instanceof Route) {
             // Обработка не защищенных маршрутов
-            await route.page.render();
+            const page = await import(route.page);
+            await page.default.render();
         }
     }
 }

@@ -1,13 +1,14 @@
 /*global Handlebars */
 
-import {VideoItem} from "./components/video-item.js";
-import {getLastNumber} from "../../services/getParams.js";
-import {getContentByCastId} from "../../services/api/content.js";
+import {VideoItem} from './components/video-item.js';
+import {getLastNumber} from '../../services/getParams.js';
+import {getContentByCastId} from '../../services/api/content.js';
+import { rootElement } from '../../../index.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
  */
-export class CastPage {
+class CastPage {
     #parent;
 
     /**
@@ -38,7 +39,7 @@ export class CastPage {
         let castName;
         // if (filmsByCast.status === 200) {
         content = filmsByCast.body.films;
-        castName = filmsByCast.body.cast.name
+        castName = filmsByCast.body.cast.name;
         // }
 
         this.#parent.innerHTML = '';
@@ -50,11 +51,11 @@ export class CastPage {
 
         this.addVideoCard(content);
 
-
         // loginContoller();
     }
 }
 
+export default new CastPage(rootElement);
 /**
  * Функция-контроллер для обработки событий на странице входа.
  */

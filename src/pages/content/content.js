@@ -2,9 +2,9 @@ import { logoutRequest } from '../../services/api/auth.js';
 import { getContentById } from '../../services/api/content.js';
 import { getLastNumber } from '../../services/getParams.js';
 import { navigate } from '../../services/router/Router.js';
-
+import { rootElement } from '../../../index.js';
 /*global Handlebars */
-export class ContentPage {
+class ContentPage {
     #parent;
     constructor(parent) {
         this.#parent = parent;
@@ -18,14 +18,14 @@ export class ContentPage {
         getContentById(id);
         this.#parent.innerHTML = template();
 
-        document.getElementById('logout').addEventListener('click', async function () {
+        document.getElementById('logout').addEventListener('click', async function() {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
             }
         });
 
-        document.getElementById('dropdown').addEventListener('click', function () {
+        document.getElementById('dropdown').addEventListener('click', function() {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
 
@@ -50,3 +50,5 @@ export const videoController = () => {
         localStorage.setItem(location.href, video.currentTime);
     });
 };
+
+export default new ContentPage(rootElement);

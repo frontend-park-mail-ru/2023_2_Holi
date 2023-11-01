@@ -12,7 +12,7 @@
     display: flex;
 }
 
-.header-content[kind="feed-page"]{
+.header-content[kind="feed-page"] {
     margin: 0;
 }
 
@@ -75,25 +75,33 @@ nav .drop-down {
 }
 
 nav .drop-down.closed {
-    height: 50px;
+    height: 66px;
 
 }
 
-.drop-down__li {
-    background: rgba(0, 0, 0, 0.5);
+nav .drop-down li {
+    background:rgba(0, 0, 0, 0.15)
 }
 
 .drop-down__li:hover {
     background: rgba(0, 0, 0, 0.25);
 }
 
-/*nav .drop-down li {*/
-/*    background: rgba(0, 0, 0, 0.5);*/
-/*}*/
+nav .drop-down li[kind="profile-page"] {
+    background: rgba(255, 255, 255);
+}
 
-/*nav .drop-down li:hover {*/
-/*    background: rgba(0, 0, 0, 0.25);*/
-/*}*/
+nav .drop-down li[kind="profile-page"]:hover {
+    background: rgba(228, 227, 227, 0.25);
+}
+
+nav .drop-down li[kind="profile-page"] a {
+    display: block;
+    font-size: 14px;
+    color: #454545;
+    text-decoration: none;
+    padding: 12px;
+}
 
 nav .drop-down li a {
     display: block;

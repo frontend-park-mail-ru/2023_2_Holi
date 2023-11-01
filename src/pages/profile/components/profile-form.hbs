@@ -1,0 +1,32 @@
+<form name="profile-form" class="profile-form">
+    <div>
+        <b><h3>Редактировать профиль</h1></b>
+        <label for="name">Имя пользователя</label>
+        {{> input-control kind="register-page" id="username"
+        default=true
+        autocomplete="nickname"
+        placeholder="Имя пользователя"
+        name="username" type="text"}}
+    </div>
+    <div>
+        <label for="email">Почта</label>
+        {{> input-control kind="register-page" id="email"
+        default=true
+        placeholder="Почта"
+        autocomplete="email"
+        name="email" type="email"}}
+    </div>
+    <div>
+        <label for="password">Пароль</label>
+        {{> input-control kind="register-page"
+        id="password" default=true
+        placeholder="Пароль"
+        autocomplete="password"
+        name="password" type="password"}}
+    </div>
+
+    {{> input-control kind="register-page" file=true id="file"
+    name="file" placeholder="Загрузите аватар" type="file"}}
+
+    {{> button type="submit" kind="login" label="Применить" id="submit"}}
+</form>
