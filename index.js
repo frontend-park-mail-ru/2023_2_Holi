@@ -12,6 +12,7 @@ const routes = [
     new ProtectedRoute('/register', '/src/pages/register/main-register.js', 'anonim'),
     new ProtectedRoute(/^\/movies\/\d+$/, '/src/pages/content/content.js'),
     new ProtectedRoute('/profile', '/src/pages/profile/profile-page.js'),
+    new Route(/^\/cast\/\d+$/, '/src/pages/cast/cast.js'),
     new Route('*', '/src/pages/404/404.js'),
 ];
 

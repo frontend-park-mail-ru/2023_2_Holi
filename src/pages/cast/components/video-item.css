@@ -1,0 +1,82 @@
+.video-item__title {
+    color: white;
+    margin-left: 2rem;
+}
+
+.video-item__container-card {
+    margin: 15px 10px;
+}
+
+.video-item__container-card:hover {
+    transform: scale(1.1);
+    transform-origin: center center;
+    transition: all .2s linear;
+}
+
+.video-item__container-card>div {
+    height: 375px;
+    width: 100%;
+    object-fit: fill;
+}
+
+.video-item__container-card>div>img {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.video-item__advanced-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #454545;
+    border-radius: 0.25rem;
+    align-items: center;
+    height: 40px;
+    width: -webkit-fill-available;
+    padding: 10px;
+    position: absolute;
+    margin-top: -50px;
+    opacity: 0;
+}
+
+.video-item__container-card:hover div a .video-item__advanced-info {
+    opacity: 1;
+    animation: show .2s linear;
+}
+
+.video-item__advanced-info__name {
+    color: white;
+}
+
+.video-item__advanced-info__rating {
+    font-weight: bold;
+    /* По умолчанию, сделаем жирный текст */
+
+    /* Задаем стили в зависимости от значения рейтинга */
+}
+
+.video-item__advanced-info__rating {
+    font-weight: bold;
+    /* По умолчанию, сделаем жирный текст */
+}
+
+/* Добавьте стили для разных рейтингов с использованием классов в JavaScript */
+.rating-high {
+    color: green;
+}
+
+.rating-medium {
+    color: orange;
+}
+
+.rating-low {
+    color: red;
+}

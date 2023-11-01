@@ -26,4 +26,7 @@ handlebars src/pages/register/start-register.hbs -f dist/start-register.precompi
 handlebars src/pages/register/components/start-register-form.hbs -f dist/start-register-form.precompiled.js &&
 handlebars src/pages/main/main-page.hbs -f dist/main-page.precompiled.js &&
 handlebars src/components/notify/notify.hbs -f dist/notify.precompiled.js &&
-handlebars src/pages/feed/components/feed-collection.hbs -f dist/feed-collection.precompiled.js
+handlebars src/pages/feed/components/feed-collection.hbs -f dist/feed-collection.precompiled.js &&
+
+handlebars src/pages/cast/components/video-item.hbs -f dist/video-item.precompiled.js &&
+handlebars src/pages/cast/cast.hbs -f dist/cast.precompiled.js

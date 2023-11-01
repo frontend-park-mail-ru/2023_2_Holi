@@ -21,4 +21,5 @@ export const registerComponents = () => {
     Handlebars.registerPartial('feed-collection', Handlebars.templates['feed-collection.hbs']);
     Handlebars.registerPartial('player', Handlebars.templates['player.hbs']);
     Handlebars.registerPartial('profile-form', Handlebars.templates['profile-form.hbs']);
+    Handlebars.registerPartial('video-item', Handlebars.templates['video-item.hbs']);
 };
