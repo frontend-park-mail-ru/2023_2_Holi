@@ -9,6 +9,16 @@ import { MainRegister } from './src/pages/register/main-register.js';
 import { ContentPage } from './src/pages/content/content.js';
 import { CastPage } from './src/pages/cast/cast.js';
 
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('serviceWorker.js')
+//         .then((reg) => {
+//             console.log('sw registered', reg);
+//         })
+//         .catch((e) => {
+//             console.error(e);
+//         });
+// }
+
 const rootElement = document.getElementById('root');
 
 registerComponents();
@@ -25,3 +35,5 @@ const routes = [
 ];
 
 new Router(routes);
+
+export default routes;
