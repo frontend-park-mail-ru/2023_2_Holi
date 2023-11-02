@@ -1,5 +1,5 @@
 import { NETFLIX_API } from './const.js';
-
+import EventEmitter from '../store.js';
 export const getUserInfo = (id) => {
     return fetch(`${NETFLIX_API}/profile/${id}`, {
         method: 'GET',
@@ -15,6 +15,9 @@ export const getUserInfo = (id) => {
         return response.json();
     })
         .then(data => {
+            EventEmitter.emit('getUserData', data);
+            EventEmitter.setState('getUserData', data);
+
             return data;
         })
         .catch(error => {

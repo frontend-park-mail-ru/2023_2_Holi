@@ -72,58 +72,27 @@ export const getContentByCastId = (id) => {
         })
         .catch(error => {
             console.error('Возникли проблемы с запросом:', error);
-            return {
-                "name": "Henry Cavill",
-                "films": [
-                    {
-                        "id": 1,
-                        "name": "name",
-                        "rating": 7.8,
-                        "previewPath": "https://fs.kinomania.ru/image/file/film_poster/c/36/c36d4557f6955b864e70fd55a02505f1.228.313.jpeg"
-                    },
-                    {
-                        "id": 1,
-                        "name": "name",
-                        "rating": 7.8,
-                        "previewPath": "https://fs.kinomania.ru/image/file/film_poster/c/36/c36d4557f6955b864e70fd55a02505f1.228.313.jpeg"
-                    },
-                    {
-                        "id": 1,
-                        "name": "name",
-                        "rating": 7.8,
-                        "previewPath": "https://fs.kinomania.ru/image/file/film_poster/c/36/c36d4557f6955b864e70fd55a02505f1.228.313.jpeg"
-                    },
-                    {
-                        "id": 1,
-                        "name": "name",
-                        "rating": 7.8,
-                        "previewPath": "https://fs.kinomania.ru/image/file/film_poster/c/36/c36d4557f6955b864e70fd55a02505f1.228.313.jpeg"
-                    },
-                    {
-                        "id": 1,
-                        "name": "name",
-                        "rating": 7.8,
-                        "previewPath": "https://fs.kinomania.ru/image/file/film_poster/c/36/c36d4557f6955b864e70fd55a02505f1.228.313.jpeg"
-                    },
-                    {
-                        "id": 1,
-                        "name": "name",
-                        "rating": 7.8,
-                        "previewPath": "https://fs.kinomania.ru/image/file/film_poster/c/36/c36d4557f6955b864e70fd55a02505f1.228.313.jpeg"
-                    },
-                    {
-                        "id": 1,
-                        "name": "name",
-                        "rating": 7.8,
-                        "previewPath": "https://fs.kinomania.ru/image/file/film_poster/c/36/c36d4557f6955b864e70fd55a02505f1.228.313.jpeg"
-                    },
-                    {
-                        "id": 1,
-                        "name": "name",
-                        "rating": 7.8,
-                        "previewPath": "https://fs.kinomania.ru/image/file/film_poster/c/36/c36d4557f6955b864e70fd55a02505f1.228.313.jpeg"
-                    },
-                ]
-            }
+        });
+};
+
+export const getGenreAlias = () => {
+    return fetch(`${NETFLIX_API}/genres`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+        },
+        credentials: 'include',
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Ответ сервера не 200');
+        }
+
+        return response.json();
+    })
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            console.error('Возникли проблемы с запросом:', error);
         });
 };

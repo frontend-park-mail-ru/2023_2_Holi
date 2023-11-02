@@ -1,7 +1,9 @@
 import { Notify } from '../../components/notify/notify.js';
 import { loginRequest } from '../../services/api/auth.js';
-import { navigate } from '../../services/router/Router.js';
+import EventEmitter from '../../services/store.js';
 import { rootElement } from '../../../index.js';
+import { getUserInfo } from '../../services/api/user.js';
+import { navigate } from '../../services/router/Router.js';
 /*global Handlebars */
 
 /**
@@ -51,6 +53,7 @@ const loginContoller = () => {
                 if (response.ok) {
                     const res = await response.json();
                     localStorage.setItem('userId', res.body.id);
+                    getUserInfo(res.body.id);
                     navigate('/feed');
                 } else {
                     new Notify('Неверный логин или пароль');

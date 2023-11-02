@@ -1,7 +1,6 @@
 module.exports = {
   extends: [
-    'eslint:recommended',
-    'es6: true'
+    'eslint:recommended'
   ],
   parserOptions: {
     ecmaVersion: 2022,

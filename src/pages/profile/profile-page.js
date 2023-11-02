@@ -21,20 +21,31 @@ class ProfilePage {
         }
     }
     async render() {
+        const userInfo = await getUserInfo(localStorage.getItem('userId'));
         this.#parent.innerHTML = '';
         document.body.style.background = '#fff';
         const template = Handlebars.templates['profile-page.hbs'];
         this.#parent.innerHTML = template();
-
-        const userInfo = await getUserInfo(localStorage.getItem('userId'));
-        console.info(userInfo.body.user);
-
         const profileForm = document.forms['profile-form'];
-
         const nameInput = profileForm.elements['username'];
         const emailInput = profileForm.elements['email'];
         const passwordInput = profileForm.elements['password'];
         const fileInput = profileForm.elements['file'];
+        setTimeout(() => profileForm.reset(), 300 );
+
+        if (userInfo.body.user.imagePath) {
+            setTimeout(() => {
+                profileForm.reset();
+                nameInput.value = userInfo.body.user.name;
+                emailInput.value = userInfo.body.user.email;
+                document.querySelector('.avatar').src = userInfo.body.user.imagePath;
+            }, 0);
+        }
+
+        EventEmitter.on('getUserData', (data) => {
+
+            document.querySelector('.avatar').src = data.body.user.imagePath;
+        });
 
         this.setInput(emailInput, userInfo.body.user.email);
         let file = null;
@@ -48,20 +59,18 @@ class ProfilePage {
                     const arrayBuffer = e.target.result; // Получаем массив байт (ArrayBuffer)
                     const uint8Array = new Uint8Array(arrayBuffer); // Преобразуем его в Uint8Array
                     file = Array.from(uint8Array);
-                    // Теперь у вас есть Uint8Array с содержимым файла
-                    console.log(Array.from(uint8Array));
                 };
 
                 reader.readAsArrayBuffer(file); // Считываем файл как ArrayBuffer
             }
         });
-        profileForm.addEventListener('submit', async function (event) {
+        profileForm.addEventListener('submit', async function(event) {
             event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
 
             // Собираем данные из формы, например:
             const name = nameInput.value;
             const email = emailInput.value;
-            const password = passwordInput.value;
+            const password = Array.from(new TextEncoder().encode(passwordInput.value));
 
             // Отправляем запрос на сервер с измененными данными
             try {
@@ -69,14 +78,16 @@ class ProfilePage {
                 if (response.ok) {
                     // Обработка успешного ответаArray.from(uint8Array)
                     // Обработка ошибки
-                   new Notify('Профиль успешно обновлен');
+                    new Notify('Профиль успешно обновлен');
+                    profileForm.reset();
+                    getUserInfo(Number(localStorage.getItem('userId')));
                 }
             } catch (error) {
                 console.error('Произошла ошибка при отправке запроса', error);
             }
         });
 
-        document.getElementById('dropdown').addEventListener('click', function () {
+        document.getElementById('dropdown').addEventListener('click', function() {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
 
