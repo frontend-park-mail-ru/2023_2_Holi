@@ -33,7 +33,8 @@ class MainRegister {
         registerForm.addEventListener('submit', async function (event) {
             event.preventDefault();
             const email = emailInput.value;
-            const password = passwordInput.value;
+            const password = Array.from(new TextEncoder().encode(passwordInput.value));
+
             const valid = validatePassword(passwordInput.value);
             try {
                 if (valid !== '') {

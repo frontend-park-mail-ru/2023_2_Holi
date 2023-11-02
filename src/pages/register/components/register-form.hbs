@@ -1,25 +1,29 @@
-<div class="register-form">
-    <form name="createPassword" method="post">
 
-        <h1 class="register-form__title">
-            Создайте пароль, чтобы присоединиться к Netflix
-        </h1>
+<form name="createPassword" method="post" class="register-form">
 
-        <div class="mt-3">
-            Еще несколько шагов, и все готово!
-        </div>
+    <h1 class="register-form__title">
+        Создайте пароль, чтобы присоединиться к Netflix
+    </h1>
 
-        <div class="mb-3">
-            Мы тоже ненавидим бумажную волокиту.
-        </div>
+    <div class="mt-3 register-form__step">
+        Еще несколько шагов, и все готово!
+    </div>
 
-        {{> input-control default=true kind="register-page" placeholder="Введите почту"
-        name="email" type="email"}}
-        {{> input-control default=true kind="register-page" placeholder="Введите пароль"
-        name="password"
-        type="password" }}
-        <div class="mt-5"></div>
-        {{> button type="submit" kind="primary-xl" label="Далее"}}
+    <div class="mb-3 register-form__description">
+        Мы тоже ненавидим бумажную волокиту.
+    </div>
 
-    </form>
-</div>
+    <label for="email">Имя пользователя</label>
+    {{> input-control default=true kind="register-page" placeholder="Введите почту"
+    name="email" type="email" id="email"}}
+
+    <label for="password">Пароль</label>
+    {{> input-control default=true kind="register-page" placeholder="Введите пароль"
+    name="password"
+    id="password"
+    type="password" }}
+
+    <div class="mt-5"></div>
+    {{> button type="submit" kind="primary-xl" label="Далее"}}
+
+</form>

@@ -2,7 +2,6 @@ import { Notify } from '../../components/notify/notify.js';
 import { loginRequest } from '../../services/api/auth.js';
 import { navigate } from '../../services/router/Router.js';
 import { rootElement } from '../../../index.js';
-import Store from '../../services/store.js';
 /*global Handlebars */
 
 /**
@@ -40,11 +39,11 @@ const loginContoller = () => {
     const emailInput = loginForm.elements['email'];
     const passwordInput = loginForm.elements['password'];
 
-    loginForm.addEventListener('submit', async function (event) {
+    loginForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
         const email = emailInput.value;
-        const password = passwordInput.value;
+        const password = Array.from(new TextEncoder().encode(passwordInput.value));
 
         try {
             if (email && password) {
