@@ -2,17 +2,17 @@ import { Router, ProtectedRoute, Route } from './src/services/router/Router.js';
 import { registerComponents } from './src/services/registerPartial.js';
 import { checkAccess } from './src/services/api/auth.js';
 
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('serviceWorker.js')
-//         .then((reg) => {
-//             console.log('sw registered', reg);
-//         })
-//         .catch((e) => {
-//             console.error(e);
-//         });
-// }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+        .then((reg) => {
+            console.log('sw registered', reg);
+        })
+        .catch((e) => {
+            console.error(e);
+        });
+}
 
-const rootElement = document.getElementById('root');
+export const rootElement = document.getElementById('root');
 
 registerComponents();
 const routes = [

@@ -48,6 +48,7 @@ class FeedPage {
         }
 
         const genres = await getGenreAlias();
+        //TODO нужно обрабатывать случвй, когда genres пустой
         const genrePromises = genres.body.genres.map(genre => fetchGenreFilms(genre));
 
         await Promise.all(genrePromises);
