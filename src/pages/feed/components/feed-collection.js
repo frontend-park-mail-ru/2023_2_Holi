@@ -76,13 +76,19 @@ export class FeedCollection {
         collection.id = collectionUUID;
 
         this.#parent.appendChild(collection);
+        const roundedMovies = this.#content.map(movie => {
+            // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
+            const roundedRating = parseFloat(movie.rating.toFixed(1));
+            // Создайте новый объект с округленным значением rating
 
+            return { ...movie, rating: roundedRating };
+        });
         // Отобразите все элементы контента
         collection.innerHTML = template({
             carousel: carouselUUID,
             container: containerUUID,
             title: this.#title,
-            content: this.#content,
+            content: roundedMovies,
         });
 
         this.scrolling(carouselUUID, containerUUID);

@@ -3,6 +3,7 @@
 import { registerRequest } from '../../services/api/auth.js';
 import { Notify } from '../../components/notify/notify.js';
 import { rootElement } from '../../../index.js';
+import { getUserInfo } from '../../services/api/user.js';
 /**
  * Класс, представляющий начало регистрации.
  */
@@ -30,10 +31,11 @@ class MainRegister {
         const emailInput = registerForm.elements['email'];
         emailInput.value = localStorage.getItem('userNewEmail');
         const passwordInput = registerForm.elements['password'];
-        registerForm.addEventListener('submit', async function (event) {
+        registerForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             const email = emailInput.value;
-            const password = passwordInput.value;
+            const password = Array.from(new TextEncoder().encode(passwordInput.value));
+
             const valid = validatePassword(passwordInput.value);
             try {
                 if (valid !== '') {
@@ -46,6 +48,7 @@ class MainRegister {
                     if (response.ok) {
                         const res = await response.json();
                         localStorage.setItem('userId', res.body.id);
+                        getUserInfo(res.body.id);
                         localStorage.removeItem('userNewEmail');
 
                         //Вручную эмитим событие popState
