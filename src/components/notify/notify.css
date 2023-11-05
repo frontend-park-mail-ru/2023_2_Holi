@@ -1,6 +1,6 @@
-@keyframes hide {
+@keyframes show {
     0% {
-        opacity: 1;
+        opacity: 0;
     }
 
     50% {
@@ -8,20 +8,62 @@
     }
 
     100% {
-        opacity: 0;
+        opacity: 1;
     }
 }
 
-notify {
+#toasts {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    background-color: red;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    /* Начальная прозрачность */
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    color: rgba(33, 37, 41, 0.75);
+    background-color: rgba(255, 255, 255, 0.85);
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+    border-top-left-radius: calc(0.375rem - 1px);
+    border-top-right-radius: calc(0.375rem - 1px);
+}
+
+.btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: black;
+    border: 0;
+    border-radius: 0.375rem;
     opacity: 1;
-    animation: hide 2s ease-in-out;
-    z-index: 9999;
+}
+
+.toast__img {
+    height: 32px;
+}
+
+.toast {
+    width: 350px;
+    max-width: 100%;
+    font-size: 0.875rem;
+    pointer-events: auto;
+    background-color: rgba(255, 255, 255, 0.85);
+    background-clip: padding-box;
+    border: 1px solidrgba(0, 0, 0, 0.175);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.375rem;
+    animation: show 0.5s ease-in-out;
+}
+
+.toast-body {
+    padding: 0.75rem;
+    word-wrap: break-word;
 }

@@ -11,9 +11,15 @@ export const loginRequest = (email, password) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRF-TOKEN': localStorage.getItem('csrf'), // CSRF-токен из кук
         },
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
+    }).then(response => {
+        const csrfToken = response.headers.get('X-CSRF-TOKEN');
+        localStorage.setItem('csrf', csrfToken);
+
+        return response;
     });
 };
 
@@ -28,9 +34,15 @@ export const registerRequest = (email, password) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRF-TOKEN': localStorage.getItem('csrf'),
         },
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
+    }).then(response => {
+        const csrfToken = response.headers.get('X-CSRF-TOKEN');
+        localStorage.setItem('csrf', csrfToken);
+
+        return response;
     });
 };
 
@@ -42,6 +54,14 @@ export const logoutRequest = () => {
     return fetch(`${NETFLIX_API}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
+        headers: {
+            'X-CSRF-TOKEN': localStorage.getItem('csrf'),
+        },
+    }).then(response => {
+        const csrfToken = response.headers.get('X-CSRF-TOKEN');
+        localStorage.setItem('csrf', csrfToken);
+
+        return response;
     });
 };
 
@@ -53,5 +73,20 @@ export const checkAccess = () => {
     return fetch(`${NETFLIX_API}/auth/check`, {
         method: 'POST',
         credentials: 'include',
-    });
+        headers: {
+            'X-CSRF-TOKEN': localStorage.getItem('csrf'),
+        },
+    })
+        .then(response => {
+            const csrfToken = response.headers.get('X-CSRF-TOKEN');
+            localStorage.setItem('csrf', csrfToken);
+            if (response.ok) {
+                return response;
+            } else {
+                console.error('Ошибка проверки авторизации');
+
+                return response;
+            }
+        });
 };
+

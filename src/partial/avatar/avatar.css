@@ -1,0 +1,15 @@
+.avatar {
+    color: #333;
+    direction: ltr;
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    line-height: 70px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    border: 0;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 5px;
+    vertical-align: middle;
+    width: 32px;
+}

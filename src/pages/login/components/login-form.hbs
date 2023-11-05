@@ -1,0 +1,19 @@
+<div class="login-page__login-content">
+    <div class="login-page__form">
+        <h1 class="login-page__form-title">Авторизация</h1>
+
+        <form name="loginForm" action="post">
+
+            {{> input-control default=true placeholder="Email" id="email"
+            name="email" type="email" kind="login-page"}}
+            {{> input-control default=true placeholder="Введите пароль" id="password"
+            name="password" type="password" kind="login-page"}}
+            {{> button type="submit" kind="login" label="Войти" id="submit"}}
+
+            <div class="login-page__form-action">
+                <span>Недавно на Netflix? <a href="/start-register"
+                        class="login-page__form-action-link" spa-link>Зарегестрируйтесь</a></span>
+            </div>
+        </form>
+    </div>
+</div>

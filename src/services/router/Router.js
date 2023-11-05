@@ -1,5 +1,3 @@
-import { checkAccess } from '../api/auth.js';
-
 /**
  * Класс, представляющий роутер приложения.
  * @class
@@ -11,22 +9,36 @@ export class Router {
      * @constructor
      * @param {Array<Route>} routes - Массив маршрутов, доступных в приложении.
      */
-    constructor(routes) {
+    constructor(routes, checkAuth, defaultAnAuth, defaultAuth, linkAttribute, notifyId) {
+        this.checkAuth = checkAuth;
+        this.defaultAuth = defaultAuth;
+        this.linkAttribute = linkAttribute;
+        this.notifyId = notifyId;
+        this.defaultAnAuth = defaultAnAuth;
         this.routes = routes;
         this.init();
     }
 
     /**
      * Инициализация роутера.
-     * Устанавливает обработчики событий для загрузки и изменения URL, а также для нажатия на элементы с атрибутом 'data-link'.
+     * Устанавливает обработчики событий для загрузки и изменения URL, а также для нажатия на элементы с атрибутом 'spa-link'.
      */
     init() {
+        //Обработка загрузки странички
         window.addEventListener('load', () => this.loadRoute());
+        //Обработка удаления маршрута из пути
         window.addEventListener('popstate', () => this.loadRoute());
         document.body.addEventListener('click', e => {
-            if (e.target.matches('[data-link]')) {
-                e.preventDefault();
-                this.navigateTo(e.target.href);
+            let target = e.target;
+
+            while (target) {
+                if (target.tagName === 'A' && target.matches(this.linkAttribute)) {
+                    e.preventDefault();
+                    this.navigateTo(target.href);
+                    break;
+                }
+                //Ищем среди родителей элемент ссылку
+                target = target.parentElement;
             }
         });
     }
@@ -36,6 +48,7 @@ export class Router {
      * @param {string} url - URL, по которому следует перейти.
      */
     navigateTo(url) {
+        document.getElementById(this.notifyId).innerHTML = '';
         history.pushState(null, null, url);
         this.loadRoute();
     }
@@ -44,19 +57,39 @@ export class Router {
      * Загружает маршрут, соответствующий текущему URL, и отображает соответствующую страницу.
      */
     async loadRoute() {
-        const route = this.routes.find(r => r.path === location.pathname) || this.routes.find(r => r.path === '*');
-        const auth = await checkAccess();
-        if (route instanceof ProtectedRoute && !auth.ok && location.pathname !== '/login') {
-            this.navigateTo('/login');
+        const route = this.routes.find((r) => {
+            if (r.path instanceof RegExp) {
+                return r.path.test(location.pathname);
+            } else if (r.path === location.pathname) {
+                return true;
+            }
 
-            return;
+            return false;
+        }) || this.routes.find((r) => r.path === '*');
+        if (route instanceof ProtectedRoute) {
+            const auth = await this.checkAuth();
+            if (route.accessLevel === 'auth') {
+                if (auth.ok) {
+                    const page = await import(route.page);
+                    await page.default.render();
+                } else {
+                    this.navigateTo(this.defaultAnAuth);
+                }
+            } else if (route.accessLevel === 'guest') {
+                if (!auth.ok) {
+                    // Маршрут доступен неавторизованным
+                    const page = await import(route.page);
+                    await page.default.render();
+                } else {
+                    // Перенаправление авторизованных пользователей
+                    this.navigateTo(this.defaultAuth);
+                }
+            }
+        } else if (route instanceof Route) {
+            // Обработка не защищенных маршрутов
+            const page = await import(route.page);
+            await page.default.render();
         }
-        if (auth.ok && route instanceof Route && location.pathname !== '/feed') {
-            this.navigateTo('/feed');
-
-            return;
-        }
-        await route.page.render();
     }
 }
 
@@ -89,10 +122,16 @@ export class ProtectedRoute extends Route {
      * @constructor
      * @param {string} path - Путь маршрута.
      * @param {Object} page - Страница, связанная с маршрутом.
-     * @param {boolean} [isProtected=true] - Флаг, указывающий на защищенность маршрута.
+     * @param {string} [accessLevel='all'] - Флаг, указывающий на защищенность маршрута. По умолчанию авторизованные
      */
-    constructor(path, page, isProtected = true) {
+    constructor(path, page, accessLevel = 'auth') {
         super(path, page);
-        this.isProtected = isProtected;
+        this.accessLevel = accessLevel;
     }
 }
+
+//Эммитит событие popstate для последующей обработки в роутере
+export const navigate = (url) => {
+    const popStateEvent = new PopStateEvent('popstate', { state: null, url: url });
+    window.dispatchEvent(popStateEvent);
+};

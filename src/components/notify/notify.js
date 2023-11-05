@@ -1,34 +1,29 @@
+/* global Handlebars */
 /**
  * Класс для создания уведомлений в веб-приложении.
  */
 export class Notify {
-    /**
-    * Сообщение, отображаемое в уведомлении.
-    * @private
-    * @type {string}
-    */
-    #message;
 
     /**
      * Создает экземпляр класса Notify с заданным сообщением.
      * @param {string} message - Сообщение для отображения в уведомлении.
      */
     constructor(message) {
-        this.#message = message;
+        this.render(message);
     }
 
-    /**
-     * Отображает уведомление на веб-странице и автоматически скрывает его через 2 секунды.
-     * @method
-     */
-    panic() {
-        const root = document.getElementById('root');
+    clear(parent){
+        parent.innerHTML = '';
+    }
 
-        const notify = document.createElement('notify');
+    render(message) {
+        const template = Handlebars.templates['notify.hbs'];
+        const toast = document.getElementById('toasts');
+        toast.innerHTML = template({ message: message });
+
         setTimeout(() => {
-            notify.remove();
-        }, 2000);
-        notify.innerHTML = this.#message;
-        root.appendChild(notify);
+            toast.innerHTML = '';
+        }, 8000);
+
     }
 }

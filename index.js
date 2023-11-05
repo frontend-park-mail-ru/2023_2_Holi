@@ -1,22 +1,30 @@
 import { Router, ProtectedRoute, Route } from './src/services/router/Router.js';
-import { LoginPage } from './src/pages/login/login.js';
-import { FeedPage } from './src/pages/feed/feed.js';
-import { FinishAсс } from './src/pages/register/register-finish.js';
-import { CreatePassword } from './src/pages/register/register-page-create-password.js';
-import { PasswordAlreadyCreated } from './src/pages/register/register-pssword-alredy-created.js';
-import { config } from './src/services/config.js';
-import { MainPage } from './src/pages/main/main-page.js';
+import { registerComponents } from './src/services/registerPartial.js';
+import { checkAccess } from './src/services/api/auth.js';
 
-const rootElement = document.getElementById('root');
+/*if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+        .then((reg) => {
+            console.info('sw registered', reg);
+        })
+        .catch((e) => {
+            console.error(e);
+        });
+}*/
 
+export const rootElement = document.getElementById('root');
+
+registerComponents();
 const routes = [
-    new Route('/', new MainPage(rootElement)),
-    new Route('/login', new LoginPage(rootElement)),
-    new ProtectedRoute('/feed', new FeedPage(rootElement)),
-    new Route('/register1', new FinishAсс(rootElement, config)),
-    new Route('/register2', new CreatePassword(rootElement, config)),
-    new Route('/register3', new PasswordAlreadyCreated(rootElement, config)),
-
+    new ProtectedRoute('/', '/src/pages/main/main-page.js', 'guest'),
+    new ProtectedRoute('/login', '/src/pages/login/login.js', 'guest'),
+    new ProtectedRoute('/feed', '/src/pages/feed/feed.js'),
+    new ProtectedRoute('/start-register', '/src/pages/register/start-register.js', 'guest'),
+    new ProtectedRoute('/register', '/src/pages/register/main-register.js', 'guest'),
+    new ProtectedRoute(/^\/movies\/\d+$/, '/src/pages/content/content.js'),
+    new ProtectedRoute('/profile', '/src/pages/profile/profile-page.js'),
+    new ProtectedRoute(/^\/cast\/\d+$/, '/src/pages/cast/cast.js'),
+    new Route('*', '/src/pages/404/404.js'),
 ];
 
-new Router(routes);
+new Router(routes, checkAccess, '/login', '/feed', '[spa-link]', 'toasts');
