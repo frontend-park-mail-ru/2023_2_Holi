@@ -1,14 +1,15 @@
 import { Notify } from '../../components/notify/notify.js';
 import { loginRequest } from '../../services/api/auth.js';
-import { goToLink } from '../../services/goToLink.js';
-import { LoginHeader } from './components/header/header.js';
-import { LoginBody } from './components/body/body.js';
-import { LoginFooter } from './components/footer/footer.js';
+import EventEmitter from '../../services/store.js';
+import { rootElement } from '../../../index.js';
+import { getUserInfo } from '../../services/api/user.js';
+import { navigate } from '../../services/router/Router.js';
+/*global Handlebars */
 
 /**
  * Класс, представляющий страницу входа.
  */
-export class LoginPage {
+class LoginPage {
     #parent;
 
     /**
@@ -23,28 +24,10 @@ export class LoginPage {
      * Рендерит страницу входа.
      */
     render() {
-        this.#parent.style.background = '';
         this.#parent.innerHTML = '';
-        const login = document.createElement('login');
-        const loginWrapper = document.createElement('login-wraper');
-        login.appendChild(loginWrapper);
-
-        const background = document.createElement('login-background');
-        loginWrapper.appendChild(background);
-
-        const header = document.createElement('login-header');
-        header.innerHTML = new LoginHeader().render();
-        loginWrapper.appendChild(header);
-
-        const body = document.createElement('login-body');
-        body.innerHTML = new LoginBody().render();
-        loginWrapper.appendChild(body);
-
-        const footer = document.createElement('login-footer');
-        footer.innerHTML = new LoginFooter().render();
-        loginWrapper.appendChild(footer);
-
-        this.#parent.appendChild(login);
+        document.body.style.background = '#000';
+        const template = Handlebars.templates['login-page.hbs'];
+        this.#parent.innerHTML = template();
 
         loginContoller();
     }
@@ -62,23 +45,32 @@ const loginContoller = () => {
         event.preventDefault();
 
         const email = emailInput.value;
-        const password = passwordInput.value;
+        const password = Array.from(new TextEncoder().encode(passwordInput.value));
 
         try {
             if (email && password) {
                 const response = await loginRequest(email, password);
                 if (response.ok) {
-                    goToLink('feed');
+                    const res = await response.json();
+                    localStorage.setItem('userId', res.body.id);
+                    getUserInfo(res.body.id);
+                    navigate('/feed');
                 } else {
-                    new Notify('Ошибка аутентификации: ' + response.statusText).panic();
-                    console.error('Ошибка аутентификации:', response.statusText);
+                    new Notify('Неверный логин или пароль');
+                    console.error('Ошибка аутентификации:\n', response.statusText);
+
+                    return;
                 }
             } else {
-                new Notify('Не ввели логин и/или пароль').panic();
+                new Notify('Не ввели данные для входа');
+
+                return;
             }
         } catch (error) {
-            new Notify('Ошибка сети').panic();
-            console.error('Ошибка аутентификации:');
+            new Notify('Упс... Что то пошло не так :(');
+            console.error('Ошибка аутентификации:', error);
         }
     });
 };
+
+export default new LoginPage(rootElement);

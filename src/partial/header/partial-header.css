@@ -2,14 +2,18 @@
     position: relative;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    margin: auto;
     z-index: 1;
     transition: max-width 0.5s, min-width 0.5s, padding 0.5s;
 }
 
-.header-content[kind="main-page"] {
-    position: absolute;
+.header-content[kind="main-page"],
+.header-content[kind="login-page"] {
     width: 100%;
+    display: flex;
+}
+
+.header-content[kind="feed-page"] {
+    margin: 0;
 }
 
 
@@ -42,7 +46,7 @@
 }
 
 .feed-header-menu>a {
-    font-family: Netflix Sans;
+    font-family: Netflix;
     color: #fff;
     text-decoration: none;
 }
@@ -57,14 +61,11 @@
     margin-right: 0.75rem;
 }
 
-
-/* Drop Down Styles
-================================ */
 nav .drop-down {
     list-style: none;
     overflow: hidden;
     height: 200px;
-    font-family: Netflix Sans;
+    font-family: Netflix;
     width: 200px;
     margin: 0 auto;
     padding: 0;
@@ -74,16 +75,32 @@ nav .drop-down {
 }
 
 nav .drop-down.closed {
-    height: 50px;
+    height: 66px;
 
 }
 
 nav .drop-down li {
-    background: rgba(0, 0, 0, 0.5);
+    background:rgba(0, 0, 0, 0.15)
 }
 
-nav .drop-down li:hover {
+.drop-down__li:hover {
     background: rgba(0, 0, 0, 0.25);
+}
+
+nav .drop-down li[kind="profile-page"] {
+    background: rgba(255, 255, 255);
+}
+
+nav .drop-down li[kind="profile-page"]:hover {
+    background: rgba(228, 227, 227, 0.25);
+}
+
+nav .drop-down li[kind="profile-page"] a {
+    display: block;
+    font-size: 14px;
+    color: #454545;
+    text-decoration: none;
+    padding: 12px;
 }
 
 nav .drop-down li a {

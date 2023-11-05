@@ -1,0 +1,104 @@
+.feed-collection__container-offset {
+    margin-top: 2rem;
+}
+
+.feed-collection__carousel {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 60px;
+}
+
+.collection{
+    padding-top: 3rem;
+}
+.feed-collection__title {
+    color: white;
+    margin-left: 2rem;
+}
+
+.feed-collection__container {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 60px;
+    gap: 20px;
+    padding-left: 20px;
+    transition: transform 0.2s linear;
+}
+
+.feed-collection__container-card {
+    min-height: 350px;
+}
+
+.feed-collection__container-card:hover {
+    margin-left: 16px;
+    margin-right: 16px;
+    transform: scale(1.1);
+    transform-origin: center center;
+    transition: all .2s linear;
+}
+
+.feed-collection__container-card>div>img {
+    overflow: hidden;
+    max-height: 350px;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.feed-collection__advanced-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #454545;
+    border-radius: 0.25rem;
+    align-items: center;
+    height: 40px;
+    width: -webkit-fill-available;
+    padding: 10px;
+    position: absolute;
+    margin-top: -50px;
+    opacity: 0;
+}
+
+.feed-collection__container-card:hover div .feed-collection__advanced-info {
+    opacity: 1;
+    animation: show .2s linear;
+}
+
+.feed-collection__advanced-info__name {
+    color: white;
+}
+
+.feed-collection__advanced-info__rating {
+    font-weight: bold;
+    /* По умолчанию, сделаем жирный текст */
+
+    /* Задаем стили в зависимости от значения рейтинга */
+}
+
+.feed-collection__advanced-info__rating {
+    font-weight: bold;
+    /* По умолчанию, сделаем жирный текст */
+}
+
+/* Добавьте стили для разных рейтингов с использованием классов в JavaScript */
+.rating-high {
+    color: green;
+}
+
+.rating-medium {
+    color: orange;
+}
+
+.rating-low {
+    color: red;
+}

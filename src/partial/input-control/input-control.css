@@ -12,3 +12,50 @@
     font-size: 16px;
     font-weight: 100;
 }
+
+.input-control[kind="login-page"] {
+    margin-bottom: 16px;
+    background: #333;
+    border: 0;
+    font-family: Netflix;
+    max-width: -webkit-fill-available;
+    color: #8c8c8c;
+    height: 34px;
+    line-height: normal;
+}
+
+.input-control[kind="register-page"] {
+    width: 422px;
+    height: 42px;
+
+
+
+}
+
+.input-control__file {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 442px;
+}
+
+.input-control__file .partial-btn {
+    margin-top: 0;
+    min-width: 0;
+    min-height: 0;
+    padding: 10px;
+    max-width: 60px;
+}
+
+.input-control__file .input-control[type=file] {
+    display: none;
+}
+
+.input-control__file-text {
+    font-family: Netflix;
+    font-weight: 600;
+    font-size: 16px;
+    width: 100%;
+}
