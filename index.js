@@ -1,7 +1,8 @@
 import { Router, ProtectedRoute, Route } from './src/services/router/Router.js';
 import { registerComponents } from './src/services/registerPartial.js';
 import { checkAccess } from './src/services/api/auth.js';
-
+import { getCookie } from './src/services/getCookie.js';
+console.log(document.getElementsByName("gorilla.csrf.Token")[0])
 export const rootElement = document.getElementById('root');
 registerComponents();
 const routes = [
