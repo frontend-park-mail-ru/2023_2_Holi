@@ -28,7 +28,7 @@ class ContentPage {
             const hours = Math.floor(durationInSeconds / 3600);
             const minutes = Math.floor((durationInSeconds % 3600) / 60);
 
-            console.log(`Длительность видео: ${hours} часов ${minutes} минут`);
+            document.getElementById('duration').innerText = (`${hours} часов ${minutes} минут`);
         });
 
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
