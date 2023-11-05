@@ -16,9 +16,9 @@
         <div class="content-container__advanced-info__meta">
             <div class="content-container__advanced-info__meta-year"><b>Год
                     выхода:</b>
-                2021</div>
+                {{film.film.releaseYear}}</div>
             <div class="content-container__advanced-info__meta-age"><b>Возрастное
-                    ограничение:</b> 16+</div>
+                    ограничение:</b> {{film.film.ageRestriction}}+</div>
             <div class="content-container__advanced-info__meta-rating"><b>Рейтинг:</b>
                 <span id="rating"></span></div>
             <div class="content-container__advanced-info__meta-time"><b>Длительность:</b>
@@ -26,6 +26,7 @@
         </div>
         <div class="content-container__advanced-info__about">
             <div class="content-container__advanced-info__description">
+                {{film.film.description}}
             </div>
 
             <div class="content-container__advanced-info__genres">
@@ -35,7 +36,7 @@
                 <div class="content-container__advanced-info__genres-list">
                     {{#each film.artists}}
                     <a class="content-container__advanced-info__genres-link"
-                        href="#1">{{this.name}}
+                        href="/artist/{{this.id}}" spa-link>{{this.name}}
                     </a>
                     {{/each}}
                 </div>

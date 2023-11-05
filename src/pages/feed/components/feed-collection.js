@@ -118,15 +118,16 @@ export class FeedCollection {
                     videoElements.forEach((otherContainer) => {
                         const otherVideo = otherContainer.querySelector('video');
                         if (otherVideo !== video && !otherVideo.paused) {
-                            otherVideo.load();
+                            otherVideo.pause();
+                            otherVideo.setAttribute('autoplay', 'false');
+                            otherVideo.preload = 'none';
                         }
                     });
 
-                    if (video.paused) {
-                        video.play();
-                    } else {
-                        video.load();
-                    }
+                    video.preload = 'auto'; // Запустить загрузку видео
+                    video.setAttribute('autoplay', '');
+                    video.play();
+
                 }
             });
 
