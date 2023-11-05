@@ -1,9 +1,19 @@
 import { Router, ProtectedRoute, Route } from './src/services/router/Router.js';
 import { registerComponents } from './src/services/registerPartial.js';
 import { checkAccess } from './src/services/api/auth.js';
-import { getCookie } from './src/services/getCookie.js';
-console.log(document.getElementsByName("gorilla.csrf.Token")[0])
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+        .then((reg) => {
+            console.info('sw registered', reg);
+        })
+        .catch((e) => {
+            console.error(e);
+        });
+}
+
 export const rootElement = document.getElementById('root');
+
 registerComponents();
 const routes = [
     new ProtectedRoute('/', '/src/pages/main/main-page.js', 'anonim'),

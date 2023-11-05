@@ -38,8 +38,8 @@ class CastPage {
         let content = [];
         let castName;
         // if (filmsByCast.status === 200) {
-            content = filmsByCast.films;
-            castName = filmsByCast.cast.name;
+        content = filmsByCast.body.films;
+        castName = filmsByCast.body.cast.name;
         // }
 
         this.#parent.innerHTML = '';
