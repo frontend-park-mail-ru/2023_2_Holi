@@ -130,6 +130,13 @@ button.partial-btn[kind="primary-xl"] {
     color: black;
 }
 
+.btn-action[kind="play-card"] {
+    background: white;
+    color: black;
+    padding: 7px;
+    min-height: 1rem;
+    font-size: 0.5rem;
+}
 
 .btn-action[kind="info"] {
     background: rgba(255, 255, 255, 0.20);

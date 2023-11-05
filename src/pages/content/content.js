@@ -10,22 +10,37 @@ class ContentPage {
         this.#parent = parent;
     }
 
-    render() {
+    async render() {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const template = Handlebars.templates['content.hbs'];
         const id = getLastNumber(location.href);
-        getContentById(id);
-        this.#parent.innerHTML = template();
+        const film = await getContentById(id);
 
-        document.getElementById('logout').addEventListener('click', async function() {
+        console.info({ content: film.body });
+        this.#parent.innerHTML = template({ film: film.body });
+
+        const video = document.querySelector('video');
+        video.addEventListener('loadedmetadata', function() {
+            const durationInSeconds = video.duration;
+
+            // Преобразуем длительность из секунд в часы и минуты
+            const hours = Math.floor(durationInSeconds / 3600);
+            const minutes = Math.floor((durationInSeconds % 3600) / 60);
+
+            console.log(`Длительность видео: ${hours} часов ${minutes} минут`);
+        });
+
+        document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
+
+        document.getElementById('logout').addEventListener('click', async function () {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
             }
         });
 
-        document.getElementById('dropdown').addEventListener('click', function() {
+        document.getElementById('dropdown').addEventListener('click', function () {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
 

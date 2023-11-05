@@ -9,22 +9,21 @@
         <div class="feed-collection__container-card"
             title="{{this.name}}">
             <div>
-                <!--<img src="{{this.previewPath}}" alt="{{this.previewPath}}">-->
-
-                <video autoplay muted poster="{{this.previewPath}}">
+                <video height="428" playsinline preload
+                    poster="{{this.previewPath}}">
                     <source src="{{this.previewVideoPath}}"
                         type='video/mp4'>
                 </video>
 
-                <a href="/movies/{{this.id}}"
-                    style="margin-left: 1rem;"
-                    spa-link>
-                    <div class="feed-collection__advanced-info">
+                <div class="feed-collection__advanced-info">
+                    <a href="/movies/{{this.id}}"
+                        style="margin-left: 1rem;"
+                        spa-link>
                         <div class="feed-collection__advanced-info__name">{{this.name}}</div>
-                        <div class="feed-collection__advanced-info__rating"
-                            data-rating="{{this.rating}}">{{this.rating}}</div>
-                    </div>
-                </a>
+                    </a>
+                    <div class="feed-collection__advanced-info__rating"
+                        data-rating="{{this.rating}}">{{this.rating}}</div>
+                </div>
 
             </div>
 

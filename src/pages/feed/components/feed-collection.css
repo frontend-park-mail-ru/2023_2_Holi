@@ -8,6 +8,9 @@
     margin-bottom: 60px;
 }
 
+.collection{
+    padding-top: 3rem;
+}
 .feed-collection__title {
     color: white;
     margin-left: 2rem;
@@ -18,7 +21,6 @@
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-top: 60px;
     padding-bottom: 60px;
     gap: 20px;
     padding-left: 20px;
@@ -30,6 +32,8 @@
 }
 
 .feed-collection__container-card:hover {
+    margin-left: 16px;
+    margin-right: 16px;
     transform: scale(1.1);
     transform-origin: center center;
     transition: all .2s linear;
@@ -44,10 +48,12 @@
     0% {
         opacity: 0;
     }
-    100%{
+
+    100% {
         opacity: 1;
     }
 }
+
 .feed-collection__advanced-info {
     display: flex;
     flex-direction: row;
@@ -63,7 +69,7 @@
     opacity: 0;
 }
 
-.feed-collection__container-card:hover div a .feed-collection__advanced-info {
+.feed-collection__container-card:hover div .feed-collection__advanced-info {
     opacity: 1;
     animation: show .2s linear;
 }

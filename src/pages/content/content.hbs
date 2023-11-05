@@ -1,3 +1,47 @@
 {{> partial-header kind="feed-page" feedPage=true}}
-{{> player }}
+<!--{{> player content="{{film}}"
+}}-->
+
+<div class="content-container">
+
+    <h1 class="content-container__title">{{film.film.name}}</h1>
+    <video controls
+        controlslist="nodownload noremoteplayback"
+        class="content-container__player">
+        <source
+            src="{{film.film.previewVideoPath}}"
+            type="video/mp4" />
+    </video>
+    <div class="content-container__advanced-info">
+        <div class="content-container__advanced-info__meta">
+            <div class="content-container__advanced-info__meta-year"><b>Год
+                    выхода:</b>
+                2021</div>
+            <div class="content-container__advanced-info__meta-age"><b>Возрастное
+                    ограничение:</b> 16+</div>
+            <div class="content-container__advanced-info__meta-rating"><b>Рейтинг:</b>
+                <span id="rating"></span></div>
+            <div class="content-container__advanced-info__meta-time"><b>Длительность:</b>
+                <span id="duration"></span></div>
+        </div>
+        <div class="content-container__advanced-info__about">
+            <div class="content-container__advanced-info__description">
+            </div>
+
+            <div class="content-container__advanced-info__genres">
+                <div class="content-container__advanced-info__genres-title">
+                    <b>Актеры</b>
+                </div>
+                <div class="content-container__advanced-info__genres-list">
+                    {{#each film.artists}}
+                    <a class="content-container__advanced-info__genres-link"
+                        href="#1">{{this.name}}
+                    </a>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {{> partial-footer}}

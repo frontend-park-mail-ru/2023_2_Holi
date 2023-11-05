@@ -2,7 +2,7 @@ import { Router, ProtectedRoute, Route } from './src/services/router/Router.js';
 import { registerComponents } from './src/services/registerPartial.js';
 import { checkAccess } from './src/services/api/auth.js';
 
-if ('serviceWorker' in navigator) {
+/*if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
         .then((reg) => {
             console.info('sw registered', reg);
@@ -10,7 +10,7 @@ if ('serviceWorker' in navigator) {
         .catch((e) => {
             console.error(e);
         });
-}
+}*/
 
 export const rootElement = document.getElementById('root');
 

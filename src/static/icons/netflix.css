@@ -33,6 +33,15 @@
   content: "\e901";
 }
 
+.netflix[kind="play-card"]:before {
+  content: "\e901";
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+  align-items: center;
+}
+
 .netflix[kind="close"]:before {
   content: "\e902";
 }
@@ -40,4 +49,3 @@
 .netflix[kind="upload"]:before {
   content: "\e904";
 }
-
