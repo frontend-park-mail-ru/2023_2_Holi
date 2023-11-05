@@ -44,3 +44,10 @@ html {
     flex-direction: column;
     height: 100vh;
 }
+
+[disable="true"] {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none!important;
+    color: black!important;
+}

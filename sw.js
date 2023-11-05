@@ -1,5 +1,6 @@
 const CACHE_NAME = 'offline-v1';
 
+// eslint-disable-next-line no-undef, no-unused-vars
 const cashTypes = new Map([
     ['document', true],
     ['font', true],
@@ -43,7 +44,7 @@ self.addEventListener('fetch', (event) => {
     if (event.request.destination !== 'video') {
         event.respondWith(caches.open(CACHE_NAME).then((cache) => {
             return fetch(event.request).then((fetchedResponse) => {
-                cache.put(event.request.url, fetchedResponse.clone()).catch(err => console.log(err));
+                cache.put(event.request.url, fetchedResponse.clone()).catch(err => console.info(err));
 
                 return fetchedResponse;
             }).catch(() => {

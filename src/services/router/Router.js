@@ -75,7 +75,7 @@ export class Router {
                 } else {
                     this.navigateTo(this.defaultAnAuth);
                 }
-            } else if (route.accessLevel === 'anonim') {
+            } else if (route.accessLevel === 'guest') {
                 if (!auth.ok) {
                     // Маршрут доступен неавторизованным
                     const page = await import(route.page);

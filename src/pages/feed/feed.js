@@ -3,7 +3,6 @@ import { navigate } from '../../services/router/Router.js';
 import { getGenreAlias, getGenreFilms } from '../../services/api/content.js';
 import { FeedCollection } from './components/feed-collection.js';
 import { rootElement } from '../../../index.js';
-import Store from '../../services/store.js';
 import { getUserInfo } from '../../services/api/user.js';
 /* global Handlebars */
 /**
@@ -51,6 +50,7 @@ class FeedPage {
         //TODO нужно обрабатывать случвй, когда genres пустой
         const genrePromises = genres.body.genres.map(genre => fetchGenreFilms(genre));
 
+        // eslint-disable-next-line no-undef
         await Promise.all(genrePromises);
 
         console.info(content);
@@ -66,14 +66,14 @@ class FeedPage {
             this.addCollections(content);
         }
 
-        document.getElementById('logout').addEventListener('click', async function () {
+        document.getElementById('logout').addEventListener('click', async function() {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
             }
         });
 
-        document.getElementById('dropdown').addEventListener('click', function () {
+        document.getElementById('dropdown').addEventListener('click', function() {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
 

@@ -16,14 +16,14 @@ export const rootElement = document.getElementById('root');
 
 registerComponents();
 const routes = [
-    new ProtectedRoute('/', '/src/pages/main/main-page.js', 'anonim'),
-    new ProtectedRoute('/login', '/src/pages/login/login.js', 'anonim'),
+    new ProtectedRoute('/', '/src/pages/main/main-page.js', 'guest'),
+    new ProtectedRoute('/login', '/src/pages/login/login.js', 'guest'),
     new ProtectedRoute('/feed', '/src/pages/feed/feed.js'),
-    new ProtectedRoute('/start-register', '/src/pages/register/start-register.js', 'anonim'),
-    new ProtectedRoute('/register', '/src/pages/register/main-register.js', 'anonim'),
+    new ProtectedRoute('/start-register', '/src/pages/register/start-register.js', 'guest'),
+    new ProtectedRoute('/register', '/src/pages/register/main-register.js', 'guest'),
     new ProtectedRoute(/^\/movies\/\d+$/, '/src/pages/content/content.js'),
     new ProtectedRoute('/profile', '/src/pages/profile/profile-page.js'),
-    new Route(/^\/cast\/\d+$/, '/src/pages/cast/cast.js'),
+    new ProtectedRoute(/^\/cast\/\d+$/, '/src/pages/cast/cast.js'),
     new Route('*', '/src/pages/404/404.js'),
 ];
 

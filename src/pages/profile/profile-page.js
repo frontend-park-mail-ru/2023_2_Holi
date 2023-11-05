@@ -1,17 +1,17 @@
 /* global Handlebars */
 import { rootElement } from '../../../index.js';
 import { Notify } from '../../components/notify/notify.js';
+import { logoutRequest } from '../../services/api/auth.js';
 import { getUserInfo, setUserInfo } from '../../services/api/user.js';
+import { navigate } from '../../services/router/Router.js';
 import EventEmitter from '../../services/store.js';
+
 class ProfilePage {
     #parent;
 
     constructor(parent) {
         this.#parent = parent;
     }
-    /**
-     * Рендерит страницу входа.
-     */
 
     setInput(input, value) {
         if (value) {
@@ -31,7 +31,8 @@ class ProfilePage {
         const emailInput = profileForm.elements['email'];
         const passwordInput = profileForm.elements['password'];
         const fileInput = profileForm.elements['file'];
-        setTimeout(() => profileForm.reset(), 300 );
+
+        setTimeout(() => profileForm.reset(), 300);
 
         if (userInfo.body.user.imagePath) {
             setTimeout(() => {
@@ -57,6 +58,7 @@ class ProfilePage {
 
                 reader.onload = (e) => {
                     const arrayBuffer = e.target.result; // Получаем массив байт (ArrayBuffer)
+                    // eslint-disable-next-line no-undef
                     const uint8Array = new Uint8Array(arrayBuffer); // Преобразуем его в Uint8Array
                     file = Array.from(uint8Array);
                 };
@@ -90,6 +92,13 @@ class ProfilePage {
         document.getElementById('dropdown').addEventListener('click', function() {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
+
+        document.getElementById('logout').addEventListener('click', async function() {
+            const response = await logoutRequest();
+            if (response.ok) {
+                navigate('/login');
+            }
+        });
 
         document.querySelector('.avatar').src = '/src/static/img/avatarStatic.jpg';
     }
