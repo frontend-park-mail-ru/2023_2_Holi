@@ -1,3 +1,4 @@
+import { getCookie } from '../getCookie.js';
 import { NETFLIX_API } from './const.js';
 
 /**
@@ -11,14 +12,11 @@ export const loginRequest = (email, password) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
-            'X-CSRF-TOKEN': localStorage.getItem('csrf'), // CSRF-токен из кук
+            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'), // CSRF-токен из кук
         },
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
     }).then(response => {
-        const csrfToken = response.headers.get('X-CSRF-TOKEN');
-        localStorage.setItem('csrf', csrfToken);
-
         return response;
     });
 };
@@ -34,14 +32,11 @@ export const registerRequest = (email, password) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
-            'X-CSRF-TOKEN': localStorage.getItem('csrf'),
+            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
         },
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
     }).then(response => {
-        const csrfToken = response.headers.get('X-CSRF-TOKEN');
-        localStorage.setItem('csrf', csrfToken);
-
         return response;
     });
 };
@@ -55,12 +50,9 @@ export const logoutRequest = () => {
         method: 'POST',
         credentials: 'include',
         headers: {
-            'X-CSRF-TOKEN': localStorage.getItem('csrf'),
+            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
         },
     }).then(response => {
-        const csrfToken = response.headers.get('X-CSRF-TOKEN');
-        localStorage.setItem('csrf', csrfToken);
-
         return response;
     });
 };
@@ -74,12 +66,10 @@ export const checkAccess = () => {
         method: 'POST',
         credentials: 'include',
         headers: {
-            'X-CSRF-TOKEN': localStorage.getItem('csrf'),
+            'X-CSRF-TOKEN': getCookie('csrf'),
         },
     })
         .then(response => {
-            const csrfToken = response.headers.get('X-CSRF-TOKEN');
-            localStorage.setItem('csrf', csrfToken);
             if (response.ok) {
                 return response;
             } else {
