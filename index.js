@@ -1,6 +1,6 @@
 import { Router, ProtectedRoute, Route } from './src/services/router/Router.js';
 import { registerComponents } from './src/services/registerPartial.js';
-import { checkAccess } from './src/services/api/auth.js';
+import { checkAccess, csrfInit } from './src/services/api/auth.js';
 
 /*if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
@@ -13,7 +13,7 @@ import { checkAccess } from './src/services/api/auth.js';
 }*/
 
 export const rootElement = document.getElementById('root');
-
+await csrfInit();
 registerComponents();
 const routes = [
     new ProtectedRoute('/', '/src/pages/main/main-page.js', 'guest'),

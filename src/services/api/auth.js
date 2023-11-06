@@ -21,6 +21,13 @@ export const loginRequest = (email, password) => {
     });
 };
 
+export const csrfInit = () => {
+    return fetch(`${NETFLIX_API}/csrf`, {
+        method: 'POST',
+        credentials: 'include',
+    });
+};
+
 /**
  * Выполняет запрос на регистрацию пользователя.
  * @param {string} email - Электронная почта пользователя.
