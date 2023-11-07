@@ -93,7 +93,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
-    padding: 4px;
+    background-color: none;
+    padding: 0;
     cursor: pointer;
+    color: #fff;
+}
+
+.content-container__player__actions a:hover {
+    color: gainsboro;
 }

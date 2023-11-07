@@ -25,19 +25,13 @@ export const getUserInfo = (id) => {
         });
 };
 
-export const setUserInfo = (id, name, email, password, file) => {
+export const setUserInfo = (data) => {
     return fetch(`${NETFLIX_API}/profile/update`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
         },
         credentials: 'include',
-        body: JSON.stringify({
-            id: id,
-            name: name,
-            email: email,
-            password: password,
-            imageData: file,
-        }),
+        body: JSON.stringify(data),
     });
 };
