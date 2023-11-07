@@ -23,9 +23,16 @@ export const loginRequest = (email, password) => {
 
 export const csrfInit = () => {
     return fetch(`${NETFLIX_API}/csrf`, {
-        method: 'POST',
+         method: 'GET',
         credentials: 'include',
-    });
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ответ сервера не 200');
+            }
+
+            return response.json();
+        })
 };
 
 /**
