@@ -27,6 +27,7 @@ export const csrfInit = () => {
         credentials: 'include',
     })
         .then(response => {
+            console.log(response);
             return response;
         });
 };
@@ -38,6 +39,7 @@ export const csrfInit = () => {
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const registerRequest = (email, password) => {
+
     return fetch(`${NETFLIX_API}/auth/register`, {
         method: 'POST',
         headers: {
@@ -76,7 +78,7 @@ export const checkAccess = () => {
         method: 'POST',
         credentials: 'include',
         headers: {
-            'X-CSRF-TOKEN': getCookie('csrf'),
+            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
         },
     })
         .then(response => {
