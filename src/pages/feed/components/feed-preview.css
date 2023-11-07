@@ -1,0 +1,39 @@
+.feed-page__preview {
+    width: 100%;
+}
+
+.feed-content__info {
+    color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin-left: 50px;
+    margin-bottom: 10%;
+    padding: 3rem;
+    border-radius: 0.25rem;
+    background: linear-gradient(336deg, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2) 50%);
+}
+
+.feed-content__info>p {
+    line-height: 1.6;
+    font-family: NetflixLight;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.feed-page__content-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.feed-page__preview-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}

@@ -1,11 +1,12 @@
+import { rootElement } from '../../../index.js';
 import { Notify } from '../../components/notify/notify.js';
-import { goToLink } from '../../services/goToLink.js';
+import { navigate } from '../../services/router/Router.js';
 /* global Handlebars */
 
 /**
  * Класс, представляющий главную страницу.
  */
-export class MainPage {
+class MainPage {
     #parent;
 
     /**
@@ -21,9 +22,10 @@ export class MainPage {
      */
     render() {
         this.#parent.innerHTML = '';
-        this.#parent.style.background = '';
+        document.body.style.background = '#000';
         const template = Handlebars.templates['main-page.hbs'];
         this.#parent.innerHTML = template();
+
         mainController();
     }
 }
@@ -37,13 +39,17 @@ const mainController = () => {
 
     mainForm.addEventListener('submit', function(event) {
         event.preventDefault();
+        console.info(1);
         const email = emailInput.value;
         if (email) {
             localStorage.setItem('userNewEmail', email);
-            goToLink('register1');
+            history.pushState(null, null, '/start-register');
+            navigate('/start-register');
         } else {
             console.error('Не введен email');
-            new Notify('Введите email').panic();
+            new Notify('Введите email');
         }
     });
 };
+
+export default new MainPage(rootElement);

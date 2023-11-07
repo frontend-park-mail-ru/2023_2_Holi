@@ -1,15 +1,53 @@
 @import url(utils.css);
-@import url(header.css);
+@import url(colors.css);
+@import url(scrollbar.css);
+
+@import url(/src/partial/button/button.css);
+@import url(/src/partial/avatar/avatar.css);
+@import url(/src/partial/header/partial-header.css);
+@import url(/src/partial/footer/partial-footer.css);
+@import url(/src/partial/input-control/input-control.css);
 @import url(../../pages/login/login.css);
 @import url(../../pages/feed/feed.css);
 @import url(../../components/notify/notify.css);
 @import url(../../pages/register/register.css);
-@import url(../css/header.css);
 @import url(../../pages/main/main.css);
+@import url(../../pages/404/404.css);
+@import url(../../pages/content/content.css);
+@import url(../../pages/profile/profile-page.css);
+@import url(../../pages/cast/cast.css);
+
+@import url(../icons/netflix.css);
+
 @font-face {
     font-family: Netflix;
     src: url(../fonts/NetflixSansMedium.ttf);
+    src: url(../fonts/NetflixSansBold.ttf);
+    src: url(../fonts/NetflixSansLight.ttf);
+    src: url(../fonts/NetflixSansRegular.ttf);
+    src: url(../fonts/NetflixSansThin.ttf);
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+}
 
+html {
+    font-family: Netflix;
+    height: 100%;
+}
 
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+[disable="true"] {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none!important;
+    color: black!important;
+}

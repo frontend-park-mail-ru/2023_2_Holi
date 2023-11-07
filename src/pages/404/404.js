@@ -1,0 +1,19 @@
+import { rootElement } from '../../../index.js';
+
+/* global Handlebars */
+ class Page404 {
+    #parent;
+
+    constructor(parent) {
+        this.#parent = parent;
+    }
+
+    render() {
+        this.#parent.innerHTML = '';
+        this.#parent.style.background = '';
+        const template = Handlebars.templates['404.hbs'];
+        this.#parent.innerHTML = template();
+    }
+}
+
+export default new Page404(rootElement);
