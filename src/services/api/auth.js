@@ -26,13 +26,7 @@ export const csrfInit = () => {
          method: 'GET',
         credentials: 'include',
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Ответ сервера не 200');
-            }
-
-            return response.json();
-        })
+        .then(response => {})
 };
 
 /**
@@ -79,9 +73,9 @@ export const checkAccess = () => {
     return fetch(`${NETFLIX_API}/auth/check`, {
         method: 'POST',
         credentials: 'include',
-        headers: {
-            'X-CSRF-TOKEN': getCookie('csrf'),
-        },
+        // headers: {
+        //     'X-CSRF-TOKEN': getCookie('csrf'),
+        // },
     })
         .then(response => {
             if (response.ok) {
