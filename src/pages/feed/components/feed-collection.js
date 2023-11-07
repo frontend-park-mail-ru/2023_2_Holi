@@ -101,6 +101,10 @@ export class FeedCollection {
         let isDragging = false;
         let prevDrag = false;
 
+        collection.addEventListener('click', () => {
+            localStorage.setItem('lastCollection', JSON.stringify(this.#content));
+        });
+
         videoElements.forEach((container) => {
             const video = container.querySelector('video');
 

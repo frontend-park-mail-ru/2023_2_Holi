@@ -3,6 +3,7 @@ import { getContentById } from '../../services/api/content.js';
 import { getLastNumber } from '../../services/getParams.js';
 import { navigate } from '../../services/router/Router.js';
 import { rootElement } from '../../../index.js';
+import { getAdjacentElements } from '../../services/arrayUtils.js';
 /*global Handlebars */
 class ContentPage {
     #parent;
@@ -21,7 +22,7 @@ class ContentPage {
         this.#parent.innerHTML = template({ film: film.body });
 
         const video = document.querySelector('video');
-        video.addEventListener('loadedmetadata', function() {
+        video.addEventListener('loadedmetadata', function () {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -33,16 +34,26 @@ class ContentPage {
 
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
 
-        document.getElementById('logout').addEventListener('click', async function() {
+        document.getElementById('logout').addEventListener('click', async function () {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
             }
         });
 
-        document.getElementById('dropdown').addEventListener('click', function() {
+        document.getElementById('dropdown').addEventListener('click', function () {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
+        const collectonContent = JSON.parse(localStorage.getItem('lastCollection'));
+
+        const idsArray = collectonContent.map(item => item.id);
+
+        const prevLink = document.getElementById('prev-button');
+        const nextLink = document.getElementById('next-button');
+        const { previous, next } = getAdjacentElements(idsArray, Number(id));
+        console.info(getAdjacentElements(idsArray, Number(id)));
+        prevLink.href = previous ? `/movies/${previous}` : `/movies/${id}`;
+        nextLink.href = next ? `/movies/${next}` : `/movies/${id}`;
 
         videoController();
     }
