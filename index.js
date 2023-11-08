@@ -14,7 +14,7 @@ import { checkAccess, csrfInit } from './src/services/api/auth.js';
 
 export const rootElement = document.getElementById('root');
 
-csrfInit();
+// csrfInit();
 
 registerComponents();
 const routes = [
