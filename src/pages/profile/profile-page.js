@@ -5,6 +5,7 @@ import { logoutRequest } from '../../services/api/auth.js';
 import { getUserInfo, setUserInfo } from '../../services/api/user.js';
 import { navigate } from '../../services/router/Router.js';
 import EventEmitter from '../../services/store.js';
+import { validatePassword } from '../../services/validate.js';
 
 class ProfilePage {
     #parent;
@@ -66,22 +67,59 @@ class ProfilePage {
                 reader.readAsArrayBuffer(file); // Считываем файл как ArrayBuffer
             }
         });
-        profileForm.addEventListener('submit', async function(event) {
+        let formData = {
+            id: Number(localStorage.getItem('userId')),
+        };
+
+        // Добавьте обработчики событий на соответствующие инпуты
+
+        nameInput.addEventListener('change', (e) => {
+            if (nameInput.value) {
+                formData.name = nameInput.value;
+            }
+        });
+        emailInput.addEventListener('change', () => {
+            if (emailInput.value) {
+                formData.email = emailInput.value;
+            }
+        });
+        passwordInput.addEventListener('change', () => {
+            if (passwordInput.value) {
+                formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
+            }
+        });
+        fileInput.addEventListener('change', () => { formData.imageData = file; });
+        profileForm.addEventListener('submit', async function (event) {
             event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
 
-            // Собираем данные из формы, например:
-            const name = nameInput.value;
-            const email = emailInput.value;
-            const password = Array.from(new TextEncoder().encode(passwordInput.value));
-
-            // Отправляем запрос на сервер с измененными данными
             try {
-                const response = await setUserInfo(Number(localStorage.getItem('userId')), name, email, password, file);
+
+                const response = await setUserInfo(formData);
+                profileForm.reset();
+                nameInput.addEventListener('change', (e) => {
+                    if (nameInput.value) {
+                        formData.name = nameInput.value;
+                    }
+                });
+                emailInput.addEventListener('change', () => {
+                    if (emailInput.value) {
+                        formData.email = emailInput.value;
+                    }
+                });
+                passwordInput.addEventListener('change', () => {
+                    if (passwordInput.value) {
+                        formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
+                    }
+                });
+                fileInput.addEventListener('change', () => { formData.imageData = file; });
+                formData = {
+                    id: Number(localStorage.getItem('userId')),
+                };
                 if (response.ok) {
                     // Обработка успешного ответаArray.from(uint8Array)
                     // Обработка ошибки
                     new Notify('Профиль успешно обновлен');
-                    profileForm.reset();
+
                     getUserInfo(Number(localStorage.getItem('userId')));
                 }
             } catch (error) {
@@ -89,11 +127,11 @@ class ProfilePage {
             }
         });
 
-        document.getElementById('dropdown').addEventListener('click', function() {
+        document.getElementById('dropdown').addEventListener('click', function () {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
 
-        document.getElementById('logout').addEventListener('click', async function() {
+        document.getElementById('logout').addEventListener('click', async function () {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');

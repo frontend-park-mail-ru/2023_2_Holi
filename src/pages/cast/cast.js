@@ -51,44 +51,7 @@ class CastPage {
 
         this.addVideoCard(content);
 
-        // loginContoller();
     }
 }
 
 export default new CastPage(rootElement);
-/**
- * Функция-контроллер для обработки событий на странице входа.
- */
-// const loginContoller = () => {
-//     const loginForm = document.forms['loginForm'];
-//     const emailInput = loginForm.elements['email'];
-//     const passwordInput = loginForm.elements['password'];
-//
-//     loginForm.addEventListener('submit', async function(event) {
-//         event.preventDefault();
-//
-//         const email = emailInput.value;
-//         const password = passwordInput.value;
-//
-//         try {
-//             if (email && password) {
-//                 const response = await loginRequest(email, password);
-//                 if (response.ok) {
-//                     navigate('/feed');
-//                 } else {
-//                     new Notify('Неверный логин или пароль');
-//                     console.error('Ошибка аутентификации:\n', response.statusText);
-//
-//                     return;
-//                 }
-//             } else {
-//                 new Notify('Не ввели данные для входа');
-//
-//                 return;
-//             }
-//         } catch (error) {
-//             new Notify('Упс... Что то пошло не так :(');
-//             console.error('Ошибка аутентификации:');
-//         }
-//     });
-// };

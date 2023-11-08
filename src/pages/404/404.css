@@ -24,8 +24,7 @@
     animation: fadeInText 3s ease-in 3.5s forwards, flicker4 5s linear 7.5s infinite, hueRotate 6s ease-in-out 3s infinite;
 }
 
-#svgWrap_1,
-#svgWrap_2 {
+#svgWrap {
     position: absolute;
     height: auto;
     width: 600px;
@@ -35,43 +34,42 @@
     transform: translate(-50%, -50%);
 }
 
-#svgWrap_1,
-#svgWrap_2,
+#svgWrap,
 .page404__container {
     animation: hueRotate 6s ease-in-out 3s infinite;
 }
 
-#id1_1,
-#id2_1,
-#id3_1 {
+#digitThird,
+#digitSecond,
+#digitFirst {
     stroke: #ff005d;
     stroke-width: 3px;
     fill: transparent;
     filter: url(#glow);
 }
 
-#id1_2,
-#id2_2,
-#id3_2 {
+#digitThird,
+#digitSecond,
+#digitFirst {
     stroke: #12000a;
     stroke-width: 3px;
     fill: transparent;
     filter: url(#glow);
 }
 
-#id3_1 {
+#digitFirst {
     stroke-dasharray: 940px;
     stroke-dashoffset: -940px;
     animation: drawLine3 2.5s ease-in-out 0s forwards, flicker3 4s linear 4s infinite;
 }
 
-#id2_1 {
+#digitSecond{
     stroke-dasharray: 735px;
     stroke-dashoffset: -735px;
     animation: drawLine2 2.5s ease-in-out 0.5s forwards, flicker2 4s linear 4.5s infinite;
 }
 
-#id1_1 {
+#digitThird {
     stroke-dasharray: 940px;
     stroke-dashoffset: -940px;
     animation: drawLine1 2.5s ease-in-out 1s forwards, flicker1 4s linear 5s infinite;

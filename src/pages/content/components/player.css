@@ -79,3 +79,26 @@
     display: flex;
     flex-direction: column;
 }
+
+.content-container__player__actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.content-container__player__actions a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: none;
+    padding: 0;
+    cursor: pointer;
+    color: #fff;
+}
+
+.content-container__player__actions a:hover {
+    color: gainsboro;
+}

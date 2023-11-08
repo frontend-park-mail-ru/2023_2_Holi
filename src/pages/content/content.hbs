@@ -9,9 +9,13 @@
         controlslist="nodownload noremoteplayback"
         class="content-container__player">
         <source
-            src="{{film.film.previewVideoPath}}"
+            src="{{film.film.mediaPath}}"
             type="video/mp4" />
     </video>
+    <div class="content-container__player__actions">
+        {{>btn-action id="prev-button" kind="prev"}}
+        {{>btn-action id="next-button" kind="next"}}
+    </div>
     <div class="content-container__advanced-info">
         <div class="content-container__advanced-info__meta">
             <div class="content-container__advanced-info__meta-year"><b>Год

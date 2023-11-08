@@ -23,16 +23,13 @@ export const loginRequest = (email, password) => {
 
 export const csrfInit = () => {
     return fetch(`${NETFLIX_API}/csrf`, {
-         method: 'GET',
+        method: 'GET',
         credentials: 'include',
     })
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Ответ сервера не 200');
-            }
-
-            return response.json();
-        })
+            console.log(response);
+            return response;
+        });
 };
 
 /**
@@ -42,6 +39,7 @@ export const csrfInit = () => {
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const registerRequest = (email, password) => {
+
     return fetch(`${NETFLIX_API}/auth/register`, {
         method: 'POST',
         headers: {

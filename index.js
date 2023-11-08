@@ -13,7 +13,11 @@ import { checkAccess, csrfInit } from './src/services/api/auth.js';
 }*/
 
 export const rootElement = document.getElementById('root');
+<<<<<<< HEAD
 csrfInit();
+=======
+
+>>>>>>> a8077a1f46e1e37efda0ef8fbbafc30261474f59
 registerComponents();
 const routes = [
     new ProtectedRoute('/', '/src/pages/main/main-page.js', 'guest'),
@@ -28,3 +32,5 @@ const routes = [
 ];
 
 new Router(routes, checkAccess, '/login', '/feed', '[spa-link]', 'toasts');
+
+//csrfInit();

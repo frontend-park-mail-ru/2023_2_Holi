@@ -72,12 +72,6 @@ const loginContoller = () => {
         }
     });
 
-    const link = document.getElementById('login-link');
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.info(45354);
-        goToLink('/');
-    });
 };
 
 export default new LoginPage(rootElement);

@@ -1,16 +1,8 @@
-/* eslint-disable no-useless-escape */
 export const getCookie = (name) => {
-    const cookieName = name + '=';
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i];
-        while (cookie.charAt(0) === ' ') {
-            cookie = cookie.substring(1);
-        }
-        if (cookie.indexOf(cookieName) === 0) {
-            return cookie.substring(cookieName.length, cookie.length);
-        }
-    }
+    const matches = document.cookie.match(
+        // eslint-disable-next-line no-useless-escape
+        new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'),
+    );
 
-    return null;
+    return matches ? decodeURIComponent(matches[1]) : undefined;
 };

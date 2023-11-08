@@ -33,6 +33,14 @@
   content: "\e901";
 }
 
+.netflix[kind="prev"]:before {
+  content: "\e906";
+}
+
+.netflix[kind="next"]:before {
+  content: "\e905";
+}
+
 .netflix[kind="play-card"]:before {
   content: "\e901";
   font-size: 1rem;
