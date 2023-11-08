@@ -73,21 +73,21 @@ class ProfilePage {
 
         // Добавьте обработчики событий на соответствующие инпуты
 
-        // nameInput.addEventListener('change', (e) => {
+        nameInput.addEventListener('change', (e) => {
             if (nameInput.value) {
                 formData.name = nameInput.value;
             }
-        // });
-        // emailInput.addEventListener('change', () => {
+        });
+        emailInput.addEventListener('change', () => {
             if (emailInput.value) {
                 formData.email = emailInput.value;
             }
-        // });
-        // passwordInput.addEventListener('change', () => {
+        });
+        passwordInput.addEventListener('change', () => {
             if (passwordInput.value) {
                 formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
             }
-        // });
+        });
         // fileInput.addEventListener('change', () => { formData.imageData = file; });
         profileForm.addEventListener('submit', async function (event) {
             event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
@@ -96,21 +96,21 @@ class ProfilePage {
 
                 const response = await setUserInfo(formData);
                 profileForm.reset();
-                // nameInput.addEventListener('change', (e) => {
-                //     if (nameInput.value) {
-                //         formData.name = nameInput.value;
-                //     }
-                // });
-                // emailInput.addEventListener('change', () => {
-                //     if (emailInput.value) {
-                //         formData.email = emailInput.value;
-                //     }
-                // });
-                // passwordInput.addEventListener('change', () => {
-                //     if (passwordInput.value) {
-                //         formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
-                //     }
-                // });
+                nameInput.addEventListener('change', (e) => {
+                    if (nameInput.value) {
+                        formData.name = nameInput.value;
+                    }
+                });
+                emailInput.addEventListener('change', () => {
+                    if (emailInput.value) {
+                        formData.email = emailInput.value;
+                    }
+                });
+                passwordInput.addEventListener('change', () => {
+                    if (passwordInput.value) {
+                        formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
+                    }
+                });
                 // // fileInput.addEventListener('change', () => { formData.imageData = file; });
                 // formData = {
                 //     id: Number(localStorage.getItem('userId')),
