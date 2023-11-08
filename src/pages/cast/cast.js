@@ -3,7 +3,7 @@
 import {VideoItem} from './components/video-item.js';
 import {getLastNumber} from '../../services/getParams.js';
 import {getContentByCastId} from '../../services/api/content.js';
-import { rootElement } from '../../../index.js';
+import {rootElement} from '../../../index.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -41,6 +41,13 @@ class CastPage {
         content = filmsByCast.body.films;
         castName = filmsByCast.body.cast.name;
         // }
+        content = content.map(movie => {
+            // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
+            const roundedRating = parseFloat(movie.rating.toFixed(1));
+            // Создайте новый объект с округленным значением rating
+
+            return {...movie, rating: roundedRating};
+        });
 
         this.#parent.innerHTML = '';
         document.body.style.background = '#181818';
