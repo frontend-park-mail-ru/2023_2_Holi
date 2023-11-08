@@ -21,16 +21,16 @@ export const loginRequest = (email, password) => {
     });
 };
 
-// export const csrfInit = () => {
-//     return fetch(`${NETFLIX_API}/csrf`, {
-//         method: 'GET',
-//         credentials: 'include',
-//     })
-//         .then(response => {
-//             console.log(response);
-//             return response;
-//         });
-// };
+export const csrfInit = () => {
+    return fetch(`${NETFLIX_API}/csrf`, {
+        method: 'GET',
+        credentials: 'include',
+    })
+        .then(response => {
+            console.log(response);
+            return response;
+        });
+};
 
 /**
  * Выполняет запрос на регистрацию пользователя.
