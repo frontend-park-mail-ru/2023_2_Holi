@@ -12,7 +12,7 @@ export const loginRequest = (email, password) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
-            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'), // CSRF-токен из кук
+            'X-CSRF-TOKEN': getCookie('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
@@ -44,7 +44,7 @@ export const registerRequest = (email, password) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
-            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
+            'X-CSRF-TOKEN': getCookie('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
@@ -62,7 +62,7 @@ export const logoutRequest = () => {
         method: 'POST',
         credentials: 'include',
         headers: {
-            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
+            'X-CSRF-TOKEN': getCookie('csrf-token'),
         },
     }).then(response => {
         return response;
@@ -78,7 +78,7 @@ export const checkAccess = () => {
         method: 'POST',
         credentials: 'include',
         // headers: {
-        //     'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
+        //     'X-CSRF-TOKEN': getCookie('csrf-token'),
         // },
     })
         .then(response => {

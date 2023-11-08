@@ -14,6 +14,8 @@ import { checkAccess, csrfInit } from './src/services/api/auth.js';
 
 export const rootElement = document.getElementById('root');
 
+csrfInit();
+
 registerComponents();
 const routes = [
     new ProtectedRoute('/', '/src/pages/main/main-page.js', 'guest'),
@@ -29,4 +31,3 @@ const routes = [
 
 new Router(routes, checkAccess, '/login', '/feed', '[spa-link]', 'toasts');
 
-// csrfInit();
