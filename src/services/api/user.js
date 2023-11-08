@@ -1,5 +1,6 @@
 import {NETFLIX_API} from './const.js';
 import EventEmitter from '../store.js';
+import {getCookie} from "../getCookie.js";
 
 export const getUserInfo = (id) => {
     return fetch(`${NETFLIX_API}/profile/${id}`, {
@@ -26,8 +27,12 @@ export const getUserInfo = (id) => {
 
 export const setUserInfo = (data) => {
     return fetch(`${NETFLIX_API}/profile/update`, {
-        method: 'POST', headers: {
+        method: 'POST',
+        headers: {
             'Content-Type': 'application/json;charset=utf-8',
-        }, credentials: 'include', body: JSON.stringify(data),
+            'X-CSRF-TOKEN': getCookie('csrf-token'),
+        },
+        credentials: 'include',
+        body: JSON.stringify(data),
     });
 };
