@@ -45,8 +45,7 @@ class ProfilePage {
         }
 
         EventEmitter.on('getUserData', (data) => {
-
-            document.querySelector('.avatar').src = data.body.user.imagePath;
+            setTimeout(() => document.querySelector('.avatar').src = data.body.user.imagePath, 0);
         });
 
         this.setInput(emailInput, userInfo.body.user.email);
@@ -61,7 +60,8 @@ class ProfilePage {
                     const arrayBuffer = e.target.result; // Получаем массив байт (ArrayBuffer)
                     // eslint-disable-next-line no-undef
                     const uint8Array = new Uint8Array(arrayBuffer); // Преобразуем его в Uint8Array
-                    file = Array.from(uint8Array);
+                    formData.imageData = Array.from(uint8Array);
+
                 };
 
                 reader.readAsArrayBuffer(file); // Считываем файл как ArrayBuffer
@@ -73,22 +73,22 @@ class ProfilePage {
 
         // Добавьте обработчики событий на соответствующие инпуты
 
-        nameInput.addEventListener('change', (e) => {
+        // nameInput.addEventListener('change', (e) => {
             if (nameInput.value) {
                 formData.name = nameInput.value;
             }
-        });
-        emailInput.addEventListener('change', () => {
+        // });
+        // emailInput.addEventListener('change', () => {
             if (emailInput.value) {
                 formData.email = emailInput.value;
             }
-        });
-        passwordInput.addEventListener('change', () => {
+        // });
+        // passwordInput.addEventListener('change', () => {
             if (passwordInput.value) {
                 formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
             }
-        });
-        fileInput.addEventListener('change', () => { formData.imageData = file; });
+        // });
+        // fileInput.addEventListener('change', () => { formData.imageData = file; });
         profileForm.addEventListener('submit', async function (event) {
             event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
 
@@ -96,31 +96,31 @@ class ProfilePage {
 
                 const response = await setUserInfo(formData);
                 profileForm.reset();
-                nameInput.addEventListener('change', (e) => {
-                    if (nameInput.value) {
-                        formData.name = nameInput.value;
-                    }
-                });
-                emailInput.addEventListener('change', () => {
-                    if (emailInput.value) {
-                        formData.email = emailInput.value;
-                    }
-                });
-                passwordInput.addEventListener('change', () => {
-                    if (passwordInput.value) {
-                        formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
-                    }
-                });
-                fileInput.addEventListener('change', () => { formData.imageData = file; });
-                formData = {
-                    id: Number(localStorage.getItem('userId')),
-                };
+                // nameInput.addEventListener('change', (e) => {
+                //     if (nameInput.value) {
+                //         formData.name = nameInput.value;
+                //     }
+                // });
+                // emailInput.addEventListener('change', () => {
+                //     if (emailInput.value) {
+                //         formData.email = emailInput.value;
+                //     }
+                // });
+                // passwordInput.addEventListener('change', () => {
+                //     if (passwordInput.value) {
+                //         formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
+                //     }
+                // });
+                // // fileInput.addEventListener('change', () => { formData.imageData = file; });
+                // formData = {
+                //     id: Number(localStorage.getItem('userId')),
+                // };
                 if (response.ok) {
                     // Обработка успешного ответаArray.from(uint8Array)
                     // Обработка ошибки
                     new Notify('Профиль успешно обновлен');
 
-                    getUserInfo(Number(localStorage.getItem('userId')));
+                    await getUserInfo(Number(localStorage.getItem('userId')));
                 }
             } catch (error) {
                 console.error('Произошла ошибка при отправке запроса', error);

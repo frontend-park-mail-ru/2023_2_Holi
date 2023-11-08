@@ -77,9 +77,9 @@ export const checkAccess = () => {
     return fetch(`${NETFLIX_API}/auth/check`, {
         method: 'POST',
         credentials: 'include',
-        headers: {
-            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
-        },
+        // headers: {
+        //     'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
+        // },
     })
         .then(response => {
             if (response.ok) {
