@@ -1,34 +1,55 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+console.info(__dirname);
 module.exports = {
-    entry: {
-        app: './index.js', // Ваш главный файл с ES6 модулями
-        iife: './dist/combinedIIFE.js', // Ваши IIFE-файлы
-    },
-
+    entry: './index.js',
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist'),
-        chunkFilename: '[id].[chunkhash].js',
+        path: path.resolve(__dirname, 'bun'),
     },
-
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader', // Настройте Babel для транспиляции ES6 модулей
+                    loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env'],
                     },
                 },
             },
+            {
+                test: /\.hbs$/,
+                loader: 'handlebars-loader',
+                options: {
+                    partialDirs: [
+                        path.join(__dirname, 'src', 'partial', '**', '*.hbs'),
+                        path.join(__dirname, 'src', 'pages', '**', 'components', '*.hbs'),
+                        path.join(__dirname, 'dist', '*.js'),
+                    ], // путь к директории с частичными шаблонами Handlebars
+                },
+            },
         ],
     },
     optimization: {
-        minimize: true,
-        minimizer: [new TerserPlugin()], // Минимизация с помощью Terser
+        minimizer: [
+            new TerserPlugin({
+                extractComments: false,
+            }),
+        ],
+        splitChunks: {
+            chunks: 'all',
+        },
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './index.html',
+            filename: 'index.html',
+            minify: {
+                collapseWhitespace: true,
+            },
+        }),
+    ],
 };

@@ -1,12 +1,11 @@
-import { rootElement } from '../../../index.js';
 import { Notify } from '../../components/notify/notify.js';
 import { navigate } from '../../services/router/Router.js';
+import main from '../../../dist/main-page.js';
 /* global Handlebars */
-
 /**
  * Класс, представляющий главную страницу.
  */
-class MainPage {
+export class MainPage {
     #parent;
 
     /**
@@ -23,8 +22,8 @@ class MainPage {
     render() {
         this.#parent.innerHTML = '';
         document.body.style.background = '#000';
-        const template = Handlebars.templates['main-page.hbs'];
-        this.#parent.innerHTML = template();
+        console.log(Handlebars);
+        this.#parent.innerHTML = Handlebars.templates['main-page.hbs']();
 
         mainController();
     }
@@ -37,7 +36,7 @@ const mainController = () => {
     const mainForm = document.forms['mainForm'];
     const emailInput = mainForm.elements['email'];
 
-    mainForm.addEventListener('submit', function(event) {
+    mainForm.addEventListener('submit', function (event) {
         event.preventDefault();
         console.info(1);
         const email = emailInput.value;
@@ -52,4 +51,3 @@ const mainController = () => {
     });
 };
 
-export default new MainPage(rootElement);
