@@ -2,7 +2,7 @@ const CACHE_NAME = 'offline-v1';
 
 const PRECACHED = [
     'src/static/img/netflix.svg',
-    'static/wednesday.webm',
+    // 'static/wednesday.webm',
 ];
 
 self.addEventListener('install', (event) => {

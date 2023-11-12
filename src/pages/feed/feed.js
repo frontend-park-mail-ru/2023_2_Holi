@@ -1,6 +1,6 @@
 import { logoutRequest } from '../../services/api/auth.js';
 import { navigate } from '../../services/router/Router.js';
-import { getGenreAlias, getGenreFilms } from '../../services/api/content.js';
+import {getGenreAlias, getGenreFilms, getTopRated} from '../../services/api/content.js';
 import { FeedCollection } from './components/feed-collection.js';
 import { rootElement } from '../../../index.js';
 import { getUserInfo } from '../../services/api/user.js';
@@ -54,8 +54,10 @@ class FeedPage {
         await Promise.all(genrePromises);
 
         console.info(content);
+        const preview = (await getTopRated()).body.film;
+
         const template = Handlebars.templates['feed-page.hbs'];
-        this.#parent.innerHTML = template();
+        this.#parent.innerHTML = template({'preview': preview});
         const userInfo = await getUserInfo(localStorage.getItem('userId'));
         if (userInfo.body.user.imagePath) {
             setTimeout(() => {

@@ -96,3 +96,26 @@ export const getGenreAlias = () => {
             console.error('Возникли проблемы с запросом:', error);
         });
 };
+
+export const getTopRated = () => {
+    return fetch(`${NETFLIX_API}/films/top/rate`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+        },
+        credentials: 'include',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ответ сервера не 200');
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            console.error('Возникли проблемы с запросом:', error);
+        });
+};
