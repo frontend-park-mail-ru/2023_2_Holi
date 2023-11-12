@@ -1,4 +1,4 @@
-/* global Handlebars */
+import  collectionTemplate from './feed-collection.hbs';
 import { uuid } from '../../../services/uuid-time.js';
 export class FeedCollection {
     #title;
@@ -67,7 +67,6 @@ export class FeedCollection {
     }
 
     render() {
-        const template = Handlebars.templates['feed-collection.hbs'];
         const carouselUUID = uuid();
         const containerUUID = uuid();
         const collectionUUID = uuid();
@@ -85,7 +84,7 @@ export class FeedCollection {
             return { ...movie, rating: roundedRating };
         });
         // Отобразите все элементы контента
-        collection.innerHTML = template({
+        collection.innerHTML = collectionTemplate({
             carousel: carouselUUID,
             container: containerUUID,
             title: this.#title,

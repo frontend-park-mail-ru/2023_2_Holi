@@ -1,10 +1,10 @@
 <div class="login-page">
-    {{> login-background}}
+    {{> components/login-background}}
     <div class="login-page__container">
-        {{> partial-header loginPage=true kind="login-page"}}
+        {{> partial/header/partial-header loginPage=true kind="login-page"}}
 
-        {{> login-form}}
+        {{> components/login-form}}
 
     </div>
-    {{> partial-footer}}
+    {{> partial/footer/partial-footer}}
 </login>

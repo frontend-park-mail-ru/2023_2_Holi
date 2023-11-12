@@ -8,12 +8,12 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../bun')));
+app.use(express.static(path.join(__dirname, '../bundle')));
 app.use(express.static(path.join(__dirname, '../manifest.json')));
 app.use(express.static(path.resolve(__dirname, '..', 'node_modules')));
 
 app.get(/^(?!.*\.(css|js|img|png|webp|webm|svg)).*$/, (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'index.html'));
+    res.sendFile(path.join(__dirname, '../bundle', 'index.html'));
 });
 const port = 80;
 app.listen(port, () => {

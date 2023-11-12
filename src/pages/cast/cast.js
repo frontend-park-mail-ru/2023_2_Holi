@@ -1,14 +1,12 @@
-/*global Handlebars */
-
 import {VideoItem} from './components/video-item.js';
 import {getLastNumber} from '../../services/getParams.js';
 import {getContentByCastId} from '../../services/api/content.js';
-import {rootElement} from '../../../index.js';
+import cast from './cast.hbs';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
  */
-class CastPage {
+export class CastPage {
     #parent;
 
     /**
@@ -51,8 +49,7 @@ class CastPage {
 
         this.#parent.innerHTML = '';
         document.body.style.background = '#181818';
-        const template = Handlebars.templates['cast.hbs'];
-        this.#parent.innerHTML = template({
+        this.#parent.innerHTML = cast({
             name: castName,
         });
 
@@ -60,5 +57,3 @@ class CastPage {
 
     }
 }
-
-export default new CastPage(rootElement);

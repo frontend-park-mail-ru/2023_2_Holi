@@ -1,6 +1,5 @@
-{{> partial-header kind="feed-page" feedPage=true}}
-<!--{{> player content="{{film}}"
-}}-->
+{{> partial/header/partial-header kind="feed-page" feedPage=true}}
+
 
 <div class="content-container">
 
@@ -13,8 +12,8 @@
             type="video/mp4" />
     </video>
     <div class="content-container__player__actions">
-        {{>btn-action id="prev-button" kind="prev"}}
-        {{>btn-action id="next-button" kind="next"}}
+        {{>partial/button/btn-action id="prev-button" kind="prev"}}
+        {{>partial/button/btn-action id="next-button" kind="next"}}
     </div>
     <div class="content-container__advanced-info">
         <div class="content-container__advanced-info__meta">
@@ -49,4 +48,4 @@
     </div>
 </div>
 
-{{> partial-footer}}
+{{> partial/footer/partial-footer}}

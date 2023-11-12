@@ -1,14 +1,13 @@
-/*global Handlebars*/
-
 import { registerRequest } from '../../services/api/auth.js';
 import { Notify } from '../../components/notify/notify.js';
 import { rootElement } from '../../../index.js';
 import { getUserInfo } from '../../services/api/user.js';
 import { validatePassword } from '../../services/validate.js';
+import register from './main-register.hbs';
 /**
  * Класс, представляющий начало регистрации.
  */
-class MainRegister {
+export class MainRegister {
     #parent;
 
     /**
@@ -25,8 +24,7 @@ class MainRegister {
     render() {
         this.#parent.innerHTML = '';
         document.body.style.background = '#fff';
-        const template = Handlebars.templates['main-register.hbs'];
-        this.#parent.innerHTML = template();
+        this.#parent.innerHTML = register();
 
         const registerForm = document.forms['createPassword'];
         const emailInput = registerForm.elements['email'];
@@ -72,4 +70,3 @@ class MainRegister {
     }
 }
 
-export default new MainRegister(rootElement);

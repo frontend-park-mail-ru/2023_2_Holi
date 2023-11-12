@@ -1,7 +1,15 @@
 import { Router, ProtectedRoute, Route } from './src/services/router/Router.js';
-import { registerComponents } from './src/services/registerPartial.js';
 import { checkAccess, csrfInit } from './src/services/api/auth.js';
 import { MainPage } from './src/pages/main/main-page.js';
+import './src/static/assets/style.css';
+import { LoginPage } from './src/pages/login/login.js';
+import { StartRegister } from './src/pages/register/start-register.js';
+import { MainRegister } from './src/pages/register/main-register.js';
+import { FeedPage } from './src/pages/feed/feed.js';
+import { Page404 } from './src/pages/404/404.js';
+import { ContentPage } from './src/pages/content/content.js';
+import { ProfilePage } from './src/pages/profile/profile-page.js';
+import { CastPage } from './src/pages/cast/cast.js';
 
 /*if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
@@ -17,17 +25,17 @@ export const rootElement = document.getElementById('root');
 
 csrfInit();
 
-registerComponents();
 const routes = [
     new ProtectedRoute('/', new MainPage(rootElement), 'guest'),
-    /*new ProtectedRoute('/login', '/src/pages/login/login.js', 'guest'),
-    new ProtectedRoute('/feed', '/src/pages/feed/feed.js'),
-    new ProtectedRoute('/start-register', '/src/pages/register/start-register.js', 'guest'),
-    new ProtectedRoute('/register', '/src/pages/register/main-register.js', 'guest'),
-    new ProtectedRoute(/^\/movies\/\d+$/, '/src/pages/content/content.js'),
-    new ProtectedRoute('/profile', '/src/pages/profile/profile-page.js'),
-    new ProtectedRoute(/^\/cast\/\d+$/, '/src/pages/cast/cast.js'),
-    new Route('*', '/src/pages/404/404.js'),*/
+    new ProtectedRoute('/login', new LoginPage(rootElement), 'guest'),
+    new ProtectedRoute('/start-register', new StartRegister(rootElement), 'guest'),
+    new ProtectedRoute('/register',new MainRegister(rootElement), 'guest'),
+    new ProtectedRoute('/feed', new FeedPage(rootElement)),
+
+    new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
+    new ProtectedRoute('/profile', new ProfilePage(rootElement)),
+    new ProtectedRoute(/^\/cast\/\d+$/, new CastPage(rootElement)),
+    new Route('*', new Page404(rootElement)),
 ];
 
 new Router(routes, checkAccess, '/login', '/feed', '[spa-link]', 'toasts');

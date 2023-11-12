@@ -4,8 +4,8 @@ import { getLastNumber } from '../../services/getParams.js';
 import { navigate } from '../../services/router/Router.js';
 import { rootElement } from '../../../index.js';
 import { getAdjacentElements } from '../../services/arrayUtils.js';
-/*global Handlebars */
-class ContentPage {
+import content from './content.hbs';
+export class ContentPage {
     #parent;
     constructor(parent) {
         this.#parent = parent;
@@ -14,12 +14,11 @@ class ContentPage {
     async render() {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
-        const template = Handlebars.templates['content.hbs'];
         const id = getLastNumber(location.href);
         const film = await getContentById(id);
 
         console.info({ content: film.body });
-        this.#parent.innerHTML = template({ film: film.body });
+        this.#parent.innerHTML = content({ film: film.body });
 
         const video = document.querySelector('video');
         video.addEventListener('loadedmetadata', function () {
@@ -77,4 +76,3 @@ export const videoController = () => {
     });
 };
 
-export default new ContentPage(rootElement);

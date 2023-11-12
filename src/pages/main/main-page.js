@@ -1,7 +1,7 @@
 import { Notify } from '../../components/notify/notify.js';
 import { navigate } from '../../services/router/Router.js';
-import main from '../../../dist/main-page.js';
-/* global Handlebars */
+import main from './main-page.hbs';
+
 /**
  * Класс, представляющий главную страницу.
  */
@@ -22,8 +22,7 @@ export class MainPage {
     render() {
         this.#parent.innerHTML = '';
         document.body.style.background = '#000';
-        console.log(Handlebars);
-        this.#parent.innerHTML = Handlebars.templates['main-page.hbs']();
+        this.#parent.innerHTML = main();
 
         mainController();
     }
