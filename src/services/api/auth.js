@@ -1,5 +1,6 @@
 import { getCookie } from '../getCookie.js';
 import { NETFLIX_API } from './const.js';
+import {Notify} from "../../components/notify/notify.js";
 
 /**
  * Выполняет запрос на вход пользователя.
@@ -8,6 +9,9 @@ import { NETFLIX_API } from './const.js';
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const loginRequest = (email, password) => {
+    if (!navigator.onLine) {
+        new Notify("Нет соединения")
+    }
     return fetch(`${NETFLIX_API}/auth/login`, {
         method: 'POST',
         headers: {
@@ -39,7 +43,9 @@ export const csrfInit = () => {
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const registerRequest = (email, password) => {
-
+    if (!navigator.onLine) {
+        new Notify("Нет соединения")
+    }
     return fetch(`${NETFLIX_API}/auth/register`, {
         method: 'POST',
         headers: {
@@ -58,6 +64,9 @@ export const registerRequest = (email, password) => {
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const logoutRequest = () => {
+    if (!navigator.onLine) {
+        new Notify("Нет соединения")
+    }
     return fetch(`${NETFLIX_API}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
