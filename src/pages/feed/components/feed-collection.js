@@ -105,6 +105,7 @@ export class FeedCollection {
             localStorage.setItem('lastCollection', JSON.stringify(this.#content));
         });
 
+
         videoElements.forEach((container) => {
             const video = container.querySelector('video');
 

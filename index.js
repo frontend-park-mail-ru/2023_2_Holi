@@ -30,4 +30,3 @@ const routes = [
 ];
 
 new Router(routes, checkAccess, '/login', '/feed', '[spa-link]', 'toasts');
-

@@ -1,9 +1,10 @@
-import { logoutRequest } from '../../services/api/auth.js';
-import { navigate } from '../../services/router/Router.js';
+import {logoutRequest} from '../../services/api/auth.js';
+import {navigate} from '../../services/router/Router.js';
 import {getGenreAlias, getGenreFilms, getTopRated} from '../../services/api/content.js';
-import { FeedCollection } from './components/feed-collection.js';
-import { rootElement } from '../../../index.js';
-import { getUserInfo } from '../../services/api/user.js';
+import {FeedCollection} from './components/feed-collection.js';
+import {rootElement} from '../../../index.js';
+import {getUserInfo} from '../../services/api/user.js';
+
 /* global Handlebars */
 /**
  * Класс, представляющий страницу ленты.
@@ -12,9 +13,9 @@ class FeedPage {
     #parent;
 
     /**
-    * Создает новый экземпляр класса FeedPage.
-    * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
-    */
+     * Создает новый экземпляр класса FeedPage.
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
+     */
     constructor(parent) {
         this.#parent = parent;
     }
@@ -27,6 +28,7 @@ class FeedPage {
         });
 
     }
+
     /**
      * Рендерит страницу ленты.
      */
@@ -39,7 +41,7 @@ class FeedPage {
             try {
                 const result = await getGenreFilms(genre.name); // Используйте genre.name вместо просто genre
                 if (result.body.films) {
-                    content.push({ title: genre.name, content: result.body.films });
+                    content.push({title: genre.name, content: result.body.films});
                 }
             } catch (error) {
                 // Обработка ошибки (можно добавить логирование или другие действия)
@@ -57,7 +59,7 @@ class FeedPage {
         const preview = (await getTopRated()).body.film;
 
         const template = Handlebars.templates['feed-page.hbs'];
-        this.#parent.innerHTML = template({'preview': preview});
+        this.#parent.innerHTML = template({'preview': preview, 'id': 'playButton'});
         const userInfo = await getUserInfo(localStorage.getItem('userId'));
         if (userInfo.body.user.imagePath) {
             setTimeout(() => {
@@ -68,17 +70,21 @@ class FeedPage {
             this.addCollections(content);
         }
 
-        document.getElementById('logout').addEventListener('click', async function() {
+        document.getElementById('logout').addEventListener('click', async function () {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
             }
         });
 
-        document.getElementById('dropdown').addEventListener('click', function() {
+        document.getElementById('dropdown').addEventListener('click', function () {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
 
+        const btn = document.getElementById('playButton')
+        btn.addEventListener('click', () => {
+            btn.href = '/movies/' + preview.id
+        })
     }
 }
 
