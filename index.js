@@ -3,7 +3,7 @@ import { registerComponents } from './src/services/registerPartial.js';
 import { checkAccess, csrfInit } from './src/services/api/auth.js';
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
+    navigator.serviceWorker.register('/sw.js')
         .then((reg) => {
             console.info('sw registered', reg);
         })
