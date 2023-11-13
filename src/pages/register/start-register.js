@@ -1,7 +1,7 @@
 /*global Handlebars*/
 
 import { rootElement } from '../../../index.js';
-
+import register from './start-register.hbs';
 /**
  * Класс, представляющий начало регистрации.
  */
@@ -12,7 +12,7 @@ class StartRegister {
      * Создает новый экземпляр класса StartRegister.
      * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница входа.
      */
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -22,8 +22,7 @@ class StartRegister {
     render() {
         this.#parent.innerHTML = '';
         document.body.style.background = '#fff';
-        const template = Handlebars.templates['start-register.hbs'];
-        this.#parent.innerHTML = template();
+        this.#parent.innerHTML = register();
     }
 }
 

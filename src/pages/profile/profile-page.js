@@ -1,16 +1,16 @@
-/* global Handlebars */
-import { rootElement } from '../../../index.js';
 import { Notify } from '../../components/notify/notify.js';
 import { logoutRequest } from '../../services/api/auth.js';
 import { getUserInfo, setUserInfo } from '../../services/api/user.js';
 import { navigate } from '../../services/router/Router.js';
 import EventEmitter from '../../services/store.js';
 import { validatePassword } from '../../services/validate.js';
+import profile from './profile-page.hbs';
+import { rootElement } from '../../../index.js';
 
 class ProfilePage {
     #parent;
 
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -25,8 +25,7 @@ class ProfilePage {
         const userInfo = await getUserInfo(localStorage.getItem('userId'));
         this.#parent.innerHTML = '';
         document.body.style.background = '#fff';
-        const template = Handlebars.templates['profile-page.hbs'];
-        this.#parent.innerHTML = template();
+        this.#parent.innerHTML = profile();
         const profileForm = document.forms['profile-form'];
         const nameInput = profileForm.elements['username'];
         const emailInput = profileForm.elements['email'];
@@ -41,6 +40,10 @@ class ProfilePage {
                 nameInput.value = userInfo.body.user.name;
                 emailInput.value = userInfo.body.user.email;
                 document.querySelector('.avatar').src = userInfo.body.user.imagePath;
+            }, 0);
+        } else {
+            setTimeout(() => {
+                document.querySelector('.avatar').src = 'img/avatarStatic.jpg';
             }, 0);
         }
 
@@ -138,7 +141,7 @@ class ProfilePage {
             }
         });
 
-        document.querySelector('.avatar').src = '/src/static/img/avatarStatic.jpg';
+        document.querySelector('.avatar').src = 'img/avatarStatic.jpg';
     }
 }
 

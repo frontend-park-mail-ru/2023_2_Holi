@@ -70,16 +70,15 @@ export class Router {
             const auth = await this.checkAuth();
             if (route.accessLevel === 'auth') {
                 if (auth.ok) {
-                    const page = await import(route.page);
-                    await page.default.render();
+
+                    route.page.default.render();
                 } else {
                     this.navigateTo(this.defaultAnAuth);
                 }
             } else if (route.accessLevel === 'guest') {
                 if (!auth.ok) {
                     // Маршрут доступен неавторизованным
-                    const page = await import(route.page);
-                    await page.default.render();
+                    route.page.default.render();
                 } else {
                     // Перенаправление авторизованных пользователей
                     this.navigateTo(this.defaultAuth);
@@ -87,8 +86,7 @@ export class Router {
             }
         } else if (route instanceof Route) {
             // Обработка не защищенных маршрутов
-            const page = await import(route.page);
-            await page.default.render();
+            route.page.default.render();
         }
     }
 }

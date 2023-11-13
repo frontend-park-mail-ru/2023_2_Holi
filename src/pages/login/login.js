@@ -1,10 +1,9 @@
+import { rootElement } from '../../../index.js';
 import { Notify } from '../../components/notify/notify.js';
 import { loginRequest } from '../../services/api/auth.js';
-import EventEmitter from '../../services/store.js';
-import { rootElement } from '../../../index.js';
 import { getUserInfo } from '../../services/api/user.js';
 import { navigate } from '../../services/router/Router.js';
-/*global Handlebars */
+import login from './login-page.hbs';
 
 /**
  * Класс, представляющий страницу входа.
@@ -16,7 +15,7 @@ class LoginPage {
      * Создает новый экземпляр класса LoginPage.
      * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница входа.
      */
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -26,8 +25,7 @@ class LoginPage {
     render() {
         this.#parent.innerHTML = '';
         document.body.style.background = '#000';
-        const template = Handlebars.templates['login-page.hbs'];
-        this.#parent.innerHTML = template();
+        this.#parent.innerHTML = login();
 
         loginContoller();
     }

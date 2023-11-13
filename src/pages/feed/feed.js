@@ -5,7 +5,8 @@ import {FeedCollection} from './components/feed-collection.js';
 import {rootElement} from '../../../index.js';
 import {getUserInfo} from '../../services/api/user.js';
 
-/* global Handlebars */
+import feed from './feed-page.hbs';
+
 /**
  * Класс, представляющий страницу ленты.
  */
@@ -13,10 +14,10 @@ class FeedPage {
     #parent;
 
     /**
-     * Создает новый экземпляр класса FeedPage.
-     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
-     */
-    constructor(parent) {
+    * Создает новый экземпляр класса FeedPage.
+    * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
+    */
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -58,12 +59,16 @@ class FeedPage {
         console.info(content);
         const preview = (await getTopRated()).body.film;
 
-        const template = Handlebars.templates['feed-page.hbs'];
-        this.#parent.innerHTML = template({'preview': preview, 'id': 'playButton'});
+        this.#parent.innerHTML = feed({'preview': preview, 'id': 'playButton'});
         const userInfo = await getUserInfo(localStorage.getItem('userId'));
-        if (userInfo.body.user.imagePath) {
+
+        if (userInfo.body.user.imagePath.length) {
             setTimeout(() => {
                 document.querySelector('.avatar').src = userInfo.body.user.imagePath;
+            }, 0);
+        } else {
+            setTimeout(() => {
+                document.querySelector('.avatar').src = 'img/avatarStatic.jpg';
             }, 0);
         }
         if (content.length) {
@@ -89,3 +94,4 @@ class FeedPage {
 }
 
 export default new FeedPage(rootElement);
+

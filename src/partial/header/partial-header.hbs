@@ -2,7 +2,7 @@
     <div class="row" style="width: 100%;">
         <!-- Колонка логотипа {Существует всегда} -->
         <div class="col justify-content-start">
-            {{> netflix-logo}}
+            {{> partial/netflix-logo/netflix-logo}}
         </div>
 
         <!-- Колонка ссылок {Только у подборок} -->
@@ -27,12 +27,12 @@
         <div class="col d-flex justify-content-end">
 
             {{#if mainPage}}
-            {{> btn-link href="/login" kind="primary"
+            {{> partial/button/btn-link href="/login" kind="primary"
             label="Войти"}}
             {{/if}}
 
             {{#if regPage}}
-            {{> btn-link href="/login" kind="secondary"
+            {{> partial/button/btn-link href="/login" kind="secondary"
             label="Войти"}}
             {{/if}}
 
@@ -41,7 +41,7 @@
                 <ul class="drop-down closed">
                     <li kind={{kind}}>
                         <a class="nav-button" id="dropdown">
-                            {{> avatar avatarUrl="/src/static/img/avatarStatic.jpg"}}
+                            {{> partial/avatar/avatar avatarUrl="/img/avatarStatic.jpg"}}
                         </a>
                     </li>
                     <li kind={{kind}}>
@@ -56,7 +56,7 @@
                     <li>
                         
                         <a  class="nav-button" id="dropdown">
-                            {{> avatar avatarUrl="/src/static/img/avatarStatic.jpg"}}
+                            {{> partial/avatar/avatar avatarUrl="/img/avatarStatic.jpg"}}
                         </a>
                     </li>
                     <li>

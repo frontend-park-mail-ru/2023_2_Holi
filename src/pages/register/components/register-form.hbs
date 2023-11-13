@@ -14,16 +14,16 @@
     </div>
 
     <label for="email">Имя пользователя</label>
-    {{> input-control default=true kind="register-page" placeholder="Введите почту"
+    {{> partial/input-control/input-control default=true kind="register-page" placeholder="Введите почту"
     name="email" type="email" id="email"}}
 
     <label for="password">Пароль</label>
-    {{> input-control default=true kind="register-page" placeholder="Введите пароль"
+    {{> partial/input-control/input-control default=true kind="register-page" placeholder="Введите пароль"
     name="password"
     id="password"
     type="password" }}
 
     <div class="mt-5"></div>
-    {{> button type="submit" kind="primary-xl" label="Далее"}}
+    {{> partial/button/button type="submit" kind="primary-xl" label="Далее"}}
 
 </form>

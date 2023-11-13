@@ -4,22 +4,21 @@ import { getLastNumber } from '../../services/getParams.js';
 import { navigate } from '../../services/router/Router.js';
 import { rootElement } from '../../../index.js';
 import { getAdjacentElements } from '../../services/arrayUtils.js';
-/*global Handlebars */
+import content from './content.hbs';
 class ContentPage {
     #parent;
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
     async render() {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
-        const template = Handlebars.templates['content.hbs'];
         const id = getLastNumber(location.href);
         const film = await getContentById(id);
 
         console.info({ content: film.body });
-        this.#parent.innerHTML = template({ film: film.body });
+        this.#parent.innerHTML = content({ film: film.body });
 
         const video = document.querySelector('video');
         video.addEventListener('loadedmetadata', function () {
