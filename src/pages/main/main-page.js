@@ -1,3 +1,4 @@
+import { rootElement } from '../../../index.js';
 import { Notify } from '../../components/notify/notify.js';
 import { navigate } from '../../services/router/Router.js';
 import main from './main-page.hbs';
@@ -5,14 +6,14 @@ import main from './main-page.hbs';
 /**
  * Класс, представляющий главную страницу.
  */
-export class MainPage {
+class MainPage {
     #parent;
 
     /**
      * Создает новый экземпляр класса MainPage.
      * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена главная страница.
      */
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -50,3 +51,4 @@ const mainController = () => {
     });
 };
 
+export default new MainPage(rootElement);

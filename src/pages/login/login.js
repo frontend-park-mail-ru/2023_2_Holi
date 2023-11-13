@@ -1,3 +1,4 @@
+import { rootElement } from '../../../index.js';
 import { Notify } from '../../components/notify/notify.js';
 import { loginRequest } from '../../services/api/auth.js';
 import { getUserInfo } from '../../services/api/user.js';
@@ -7,14 +8,14 @@ import login from './login-page.hbs';
 /**
  * Класс, представляющий страницу входа.
  */
-export class LoginPage {
+class LoginPage {
     #parent;
 
     /**
      * Создает новый экземпляр класса LoginPage.
      * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница входа.
      */
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -71,3 +72,4 @@ const loginContoller = () => {
 
 };
 
+export default new LoginPage(rootElement);

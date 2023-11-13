@@ -5,9 +5,9 @@ import { navigate } from '../../services/router/Router.js';
 import { rootElement } from '../../../index.js';
 import { getAdjacentElements } from '../../services/arrayUtils.js';
 import content from './content.hbs';
-export class ContentPage {
+class ContentPage {
     #parent;
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -76,3 +76,4 @@ export const videoController = () => {
     });
 };
 
+export default new ContentPage(rootElement);

@@ -2,6 +2,7 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 console.info(__dirname);
 module.exports = {
@@ -35,7 +36,21 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    'postcss-preset-env',
+                                    ['cssnano', { preset: 'default' }],
+                                ],
+                            },
+                        },
+                    },
+                ],
             },
             {
                 test: /\.hbs$/,
@@ -62,15 +77,18 @@ module.exports = {
             filename: 'index.html',
             minify: {
                 collapseWhitespace: true,
+
             },
+            publicPath: '/',
         }),
         new CopyWebpackPlugin({
             patterns: [
-              { from: 'src/static/img', to: 'img' },
-              { from: 'src/static/video', to: 'video' },
-              // Замените 'src/sourceFolder' на путь к вашей исходной директории
-              // и 'dist/destinationFolder' на путь, куда вы хотите скопировать директорию во время сборки.
+                { from: 'src/static/img', to: 'img' },
+                { from: 'src/static/video', to: 'video' },
             ],
-          }),
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        }),
     ],
 };

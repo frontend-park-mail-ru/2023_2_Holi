@@ -7,14 +7,14 @@ import register from './main-register.hbs';
 /**
  * Класс, представляющий начало регистрации.
  */
-export class MainRegister {
+class MainRegister {
     #parent;
 
     /**
      * Создает новый экземпляр класса MainRegister.
      * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница регистрации.
      */
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -70,3 +70,4 @@ export class MainRegister {
     }
 }
 
+export default new MainRegister(rootElement);

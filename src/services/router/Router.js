@@ -71,14 +71,14 @@ export class Router {
             if (route.accessLevel === 'auth') {
                 if (auth.ok) {
 
-                    route.page.render();
+                    route.page.default.render();
                 } else {
                     this.navigateTo(this.defaultAnAuth);
                 }
             } else if (route.accessLevel === 'guest') {
                 if (!auth.ok) {
                     // Маршрут доступен неавторизованным
-                    route.page.render();
+                    route.page.default.render();
                 } else {
                     // Перенаправление авторизованных пользователей
                     this.navigateTo(this.defaultAuth);
@@ -86,7 +86,7 @@ export class Router {
             }
         } else if (route instanceof Route) {
             // Обработка не защищенных маршрутов
-            route.page.render();
+            route.page.default.render();
         }
     }
 }

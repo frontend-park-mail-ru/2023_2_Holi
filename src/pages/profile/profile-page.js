@@ -5,11 +5,12 @@ import { navigate } from '../../services/router/Router.js';
 import EventEmitter from '../../services/store.js';
 import { validatePassword } from '../../services/validate.js';
 import profile from './profile-page.hbs';
+import { rootElement } from '../../../index.js';
 
-export class ProfilePage {
+class ProfilePage {
     #parent;
 
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -39,6 +40,10 @@ export class ProfilePage {
                 nameInput.value = userInfo.body.user.name;
                 emailInput.value = userInfo.body.user.email;
                 document.querySelector('.avatar').src = userInfo.body.user.imagePath;
+            }, 0);
+        } else {
+            setTimeout(() => {
+                document.querySelector('.avatar').src = 'img/avatarStatic.jpg';
             }, 0);
         }
 
@@ -140,3 +145,4 @@ export class ProfilePage {
     }
 }
 
+export default new ProfilePage(rootElement);

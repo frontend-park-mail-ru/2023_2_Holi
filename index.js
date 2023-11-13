@@ -26,16 +26,16 @@ export const rootElement = document.getElementById('root');
 csrfInit();
 
 const routes = [
-    new ProtectedRoute('/', new MainPage(rootElement), 'guest'),
-    new ProtectedRoute('/login', new LoginPage(rootElement), 'guest'),
-    new ProtectedRoute('/start-register', new StartRegister(rootElement), 'guest'),
-    new ProtectedRoute('/register',new MainRegister(rootElement), 'guest'),
-    new ProtectedRoute('/feed', new FeedPage(rootElement)),
+    new ProtectedRoute('/', await import('/src/pages/main/main-page.js'), 'guest'),
+    new ProtectedRoute('/login', await import('/src/pages/login/login.js'), 'guest'),
+    new ProtectedRoute('/start-register', await import('/src/pages/register/start-register.js'), 'guest'),
+    new ProtectedRoute('/register',await import('/src/pages/register/main-register.js'), 'guest'),
+    new ProtectedRoute('/feed', await import('/src/pages/feed/feed.js')),
 
-    new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
-    new ProtectedRoute('/profile', new ProfilePage(rootElement)),
-    new ProtectedRoute(/^\/cast\/\d+$/, new CastPage(rootElement)),
-    new Route('*', new Page404(rootElement)),
+    new ProtectedRoute(/^\/movies\/\d+$/, await import('/src/pages/content/content.js')),
+    new ProtectedRoute('/profile', await import('/src/pages/profile/profile-page.js')),
+    new ProtectedRoute(/^\/cast\/\d+$/, await import('/src/pages/cast/cast.js')),
+    new Route('*', await import('/src/pages/404/404.js')),
 ];
 
 new Router(routes, checkAccess, '/login', '/feed', '[spa-link]', 'toasts');

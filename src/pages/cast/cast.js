@@ -1,19 +1,20 @@
-import {VideoItem} from './components/video-item.js';
-import {getLastNumber} from '../../services/getParams.js';
-import {getContentByCastId} from '../../services/api/content.js';
+import { VideoItem } from './components/video-item.js';
+import { getLastNumber } from '../../services/getParams.js';
+import { getContentByCastId } from '../../services/api/content.js';
 import cast from './cast.hbs';
+import { rootElement } from '../../../index.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
  */
-export class CastPage {
+class CastPage {
     #parent;
 
     /**
      * Создает новый экземпляр класса CastPage.
      * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
      */
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -31,7 +32,7 @@ export class CastPage {
      */
     async render() {
         const id = getLastNumber(location.href);
-
+        this.#parent.style.background = '';
         const filmsByCast = await getContentByCastId(id);
         let content = [];
         let castName;
@@ -44,16 +45,21 @@ export class CastPage {
             const roundedRating = parseFloat(movie.rating.toFixed(1));
             // Создайте новый объект с округленным значением rating
 
-            return {...movie, rating: roundedRating};
+            return { ...movie, rating: roundedRating };
         });
 
         this.#parent.innerHTML = '';
-        document.body.style.background = '#181818';
         this.#parent.innerHTML = cast({
             name: castName,
         });
 
         this.addVideoCard(content);
 
+        document.getElementById('dropdown').addEventListener('click', function () {
+            this.parentNode.parentNode.classList.toggle('closed');
+        }, false);
+
     }
 }
+
+export default new CastPage(rootElement);

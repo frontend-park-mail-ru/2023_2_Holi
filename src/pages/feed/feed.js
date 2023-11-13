@@ -4,18 +4,18 @@ import { getGenreAlias, getGenreFilms } from '../../services/api/content.js';
 import { FeedCollection } from './components/feed-collection.js';
 import feed from './feed-page.hbs';
 import { getUserInfo } from '../../services/api/user.js';
-/* global Handlebars */
+import { rootElement } from '../../../index.js';
 /**
  * Класс, представляющий страницу ленты.
  */
-export class FeedPage {
+class FeedPage {
     #parent;
 
     /**
     * Создает новый экземпляр класса FeedPage.
     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
     */
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -56,26 +56,33 @@ export class FeedPage {
         console.info(content);
         this.#parent.innerHTML = feed();
         const userInfo = await getUserInfo(localStorage.getItem('userId'));
-        if (userInfo.body.user.imagePath) {
+        console.log(userInfo.body.user.imagePath.length > 0);
+        if (userInfo.body.user.imagePath.length) {
             setTimeout(() => {
                 document.querySelector('.avatar').src = userInfo.body.user.imagePath;
+            }, 0);
+        } else {
+            setTimeout(() => {
+                document.querySelector('.avatar').src = 'img/avatarStatic.jpg';
             }, 0);
         }
         if (content.length) {
             this.addCollections(content);
         }
 
-        document.getElementById('logout').addEventListener('click', async function() {
+        document.getElementById('logout').addEventListener('click', async function () {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
             }
         });
 
-        document.getElementById('dropdown').addEventListener('click', function() {
+        document.getElementById('dropdown').addEventListener('click', function () {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
 
     }
 }
+
+export default new FeedPage(rootElement);
 
