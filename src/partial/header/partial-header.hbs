@@ -1,21 +1,19 @@
- <div class="header-content" kind="{{kind}}">
-    <div class="header-content__container">
+ <div class="row" style="width: 100%;">
         <!-- Колонка логотипа {Существует всегда} -->
-        <div class="header-content__logo">
+        <div class="col justify-content-start">
             {{> partial/netflix-logo/netflix-logo}}
         </div>
 
         <!-- Колонка ссылок {Только у подборок} -->
         {{#if feedPage}}
         <div
-            class="header-content__links feed-header-menu margin-a">
+            class="partial-header--link-block ml-3 col d-flex align-items-center feed-header-menu margin-a">
             <a href="/" spa-link>Начало</a>
             <a href="#serials" disable="true">Сериалы</a>
             <a href="#films" disable="true">Фильмы</a>
             <a href="#list" disable="true">Избранное</a>
         </div>
         {{/if}}
-
         <!-- Колонка действие {
                                     Существует вариативно:
                                     -main: Ссылка входа
@@ -24,7 +22,7 @@
                                     -feed: DropdownList с аватаркой пользователя и меню действий
                                     } 
             -->
-        <div class="header-content__user-info">
+        <div class="col d-flex justify-content-end">
 
             {{#if mainPage}}
             {{> partial/button/btn-link href="/login" kind="primary"
@@ -37,7 +35,7 @@
             {{/if}}
 
             {{#if profilePage}}
-            <nav style="position: absolute; top: 0">
+            <nav style="position: absolute;">
                 <ul class="drop-down closed">
                     <li kind={{kind}}>
                         <a class="nav-button" id="dropdown">
@@ -54,7 +52,7 @@
             <nav style="position: absolute;">
                 <ul class="drop-down closed">
                     <li>
-                        
+
                         <a  class="nav-button" id="dropdown">
                             {{> partial/avatar/avatar avatarUrl="https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg"}}
                         </a>
@@ -68,7 +66,6 @@
                 </ul>
             </nav>
             {{/if}}
-
         </div>
     </div>
 </div>
