@@ -5,6 +5,7 @@ import { navigate } from '../../services/router/Router.js';
 import { rootElement } from '../../../index.js';
 import { getAdjacentElements } from '../../services/arrayUtils.js';
 import content from './content.hbs';
+import { getUserInfo } from '../../services/api/user.js';
 class ContentPage {
     #parent;
     constructor(parent = document.getElementById('root')) {
@@ -40,6 +41,17 @@ class ContentPage {
             }
         });
 
+        const userInfo = await getUserInfo(localStorage.getItem('userId'));
+
+        if (userInfo.body.user.imagePath.length > 0) {
+            setTimeout(() => {
+                document.querySelector('.avatar').src = userInfo.body.user.imagePath;
+            }, 0);
+        } else {
+            setTimeout(() => {
+                document.querySelector('.avatar').src = 'https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg';
+            }, 0);
+        }
         document.getElementById('dropdown').addEventListener('click', function () {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
@@ -66,9 +78,6 @@ export const videoController = () => {
     if (currentTime) {
         video.currentTime = parseFloat(currentTime);
     }
-    video.addEventListener('play', () => {
-        video.requestFullscreen();
-    });
 
     // Сохраняем текущее время воспроизведения при его изменении
     video.addEventListener('timeupdate', () => {

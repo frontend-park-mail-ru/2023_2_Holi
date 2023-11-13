@@ -1,15 +1,19 @@
-const CACHE_NAME = 'offline-v1';
+import { precacheAndRoute } from 'workbox-precaching';
 
-const PRECACHED = [
+const CACHE_NAME = 'offline-v1';
+precacheAndRoute(self.__WB_MANIFEST);
+/*const PRECACHED = [
     'src/static/img/netflix.svg',
     // 'static/wednesday.webm',
 ];
+
+
 
 self.addEventListener('install', (event) => {
     event.waitUntil(caches.open(CACHE_NAME).then((cache) => {
         return cache.addAll(PRECACHED);
     }));
-});
+});*/
 self.addEventListener('fetch', (event) => {
     if (event.request.headers.get('range')) {
         return

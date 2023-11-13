@@ -43,7 +43,7 @@ class ProfilePage {
             }, 0);
         } else {
             setTimeout(() => {
-                document.querySelector('.avatar').src = 'img/avatarStatic.jpg';
+                document.querySelector('.avatar').src = 'https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg';
             }, 0);
         }
 
@@ -141,7 +141,7 @@ class ProfilePage {
             }
         });
 
-        document.querySelector('.avatar').src = 'img/avatarStatic.jpg';
+        document.querySelector('.avatar').src = 'https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg';
     }
 }
 

@@ -3,6 +3,7 @@ import { getLastNumber } from '../../services/getParams.js';
 import { getContentByCastId } from '../../services/api/content.js';
 import cast from './cast.hbs';
 import { rootElement } from '../../../index.js';
+import { getUserInfo } from '../../services/api/user.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -48,6 +49,17 @@ class CastPage {
             return { ...movie, rating: roundedRating };
         });
 
+        const userInfo = await getUserInfo(localStorage.getItem('userId'));
+
+        if (userInfo.body.user.imagePath.length) {
+            setTimeout(() => {
+                document.querySelector('.avatar').src = userInfo.body.user.imagePath;
+            }, 0);
+        } else {
+            setTimeout(() => {
+                document.querySelector('.avatar').src = 'https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg';
+            }, 0);
+        }
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = cast({
             name: castName,

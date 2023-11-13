@@ -3,6 +3,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const WorkBoxWebpackPlugin = require('workbox-webpack-plugin');
 
 console.info(__dirname);
 module.exports = {
@@ -58,6 +60,18 @@ module.exports = {
                 ],
             },
             {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'img/[name].[ext]',
+                            publicPath: '/',
+                        },
+                    },
+                ],
+            },
+            {
                 test: /\.hbs$/,
                 loader: 'handlebars-loader',
                 options: {
@@ -67,14 +81,21 @@ module.exports = {
         ],
     },
     optimization: {
+        minimize: true,
         minimizer: [
-            new TerserPlugin({
-                extractComments: false,
+            new TerserPlugin(),
+            new CssMinimizerPlugin({
+                minimizerOptions: {
+
+                    preset: [
+                        'default',
+                        {
+                            discardComments: { removeAll: true },
+                        },
+                    ],
+                },
             }),
         ],
-        splitChunks: {
-            chunks: 'all',
-        },
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -94,6 +115,10 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css',
+        }),
+        new WorkBoxWebpackPlugin.InjectManifest({
+            swSrc: '/sw.js',
+            swDest: 'sw.js',
         }),
     ],
 };

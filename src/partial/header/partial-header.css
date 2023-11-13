@@ -80,7 +80,7 @@ nav .drop-down.closed {
 }
 
 nav .drop-down li {
-    background:rgba(0, 0, 0, 0.15)
+    background: rgba(0, 0, 0, 0.15)
 }
 
 .drop-down__li:hover {
@@ -114,4 +114,31 @@ nav .drop-down li a {
 nav .drop-down li a:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.header-content__links {
+    align-items: center;
+    display: flex;
+    flex-direction: col;
+}
+
+.header-content__container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.header-content__logo {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-content__user-info {
+    position: absolute;
+    top: 0;
+    display: flex;
+    width: 100%;
+    align-items: end;
+    flex-direction: column;
+    justify-content: end;
 }
