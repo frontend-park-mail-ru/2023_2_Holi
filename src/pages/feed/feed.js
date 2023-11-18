@@ -10,7 +10,7 @@ import feed from './feed-page.hbs';
 /**
  * Класс, представляющий страницу ленты.
  */
-class FeedPage {
+export class FeedPage {
     #parent;
 
     /**
@@ -56,7 +56,6 @@ class FeedPage {
         // eslint-disable-next-line no-undef
         await Promise.all(genrePromises);
 
-        console.info(content);
         const preview = (await getTopRated()).body.film;
 
         this.#parent.innerHTML = feed({'preview': preview, 'id': 'playButton'});
@@ -75,23 +74,17 @@ class FeedPage {
             this.addCollections(content);
         }
 
-        document.getElementById('logout').addEventListener('click', async function () {
+        document.getElementById('logout').addEventListener('click', async function() {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
             }
         });
 
-        document.getElementById('dropdown').addEventListener('click', function () {
-            this.parentNode.parentNode.classList.toggle('closed');
-        }, false);
-
-        const btn = document.getElementById('playButton')
+        const btn = document.getElementById('playButton');
         btn.addEventListener('click', () => {
-            btn.href = '/movies/' + preview.id
-        })
+            btn.href = '/movies/' + preview.id;
+        });
     }
 }
-
-export default new FeedPage(rootElement);
 

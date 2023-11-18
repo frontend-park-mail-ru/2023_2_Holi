@@ -1,11 +1,8 @@
-/*global Handlebars*/
-
-import { rootElement } from '../../../index.js';
 import register from './start-register.hbs';
 /**
  * Класс, представляющий начало регистрации.
  */
-class StartRegister {
+export class StartRegister {
     #parent;
 
     /**
@@ -25,5 +22,3 @@ class StartRegister {
         this.#parent.innerHTML = register();
     }
 }
-
-export default new StartRegister(rootElement);

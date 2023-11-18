@@ -1,6 +1,6 @@
 import { getCookie } from '../getCookie.js';
 import { NETFLIX_API } from './const.js';
-import {Notify} from "../../components/notify/notify.js";
+import { Notify } from '../../components/notify/notify.js';
 
 /**
  * Выполняет запрос на вход пользователя.
@@ -10,8 +10,9 @@ import {Notify} from "../../components/notify/notify.js";
  */
 export const loginRequest = (email, password) => {
     if (!navigator.onLine) {
-        new Notify("Нет соединения")
+        new Notify('Нет соединения');
     }
+
     return fetch(`${NETFLIX_API}/auth/login`, {
         method: 'POST',
         headers: {
@@ -21,6 +22,8 @@ export const loginRequest = (email, password) => {
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
     }).then(response => {
+        localStorage.setItem('authData', true);
+
         return response;
     });
 };
@@ -31,7 +34,7 @@ export const csrfInit = () => {
         credentials: 'include',
     })
         .then(response => {
-            console.log(response);
+
             return response;
         });
 };
@@ -44,8 +47,9 @@ export const csrfInit = () => {
  */
 export const registerRequest = (email, password) => {
     if (!navigator.onLine) {
-        new Notify("Нет соединения")
+        new Notify('Нет соединения');
     }
+
     return fetch(`${NETFLIX_API}/auth/register`, {
         method: 'POST',
         headers: {
@@ -55,6 +59,8 @@ export const registerRequest = (email, password) => {
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
     }).then(response => {
+        localStorage.setItem('authData', true);
+
         return response;
     });
 };
@@ -65,8 +71,9 @@ export const registerRequest = (email, password) => {
  */
 export const logoutRequest = () => {
     if (!navigator.onLine) {
-        new Notify("Нет соединения")
+        new Notify('Нет соединения');
     }
+
     return fetch(`${NETFLIX_API}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
@@ -74,6 +81,8 @@ export const logoutRequest = () => {
             'X-CSRF-TOKEN': getCookie('csrf-token'),
         },
     }).then(response => {
+        localStorage.setItem('authData', false);
+
         return response;
     });
 };
@@ -91,13 +100,7 @@ export const checkAccess = () => {
         },
     })
         .then(response => {
-            if (response.ok) {
-                return response;
-            } else {
-                console.error('Ошибка проверки авторизации');
-
-                return response;
-            }
+            return response;
         });
 };
 

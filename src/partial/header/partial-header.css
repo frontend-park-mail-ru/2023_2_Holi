@@ -1,7 +1,7 @@
 .header-content {
     position: relative;
     padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 0;
     z-index: 1;
     transition: max-width 0.5s, min-width 0.5s, padding 0.5s;
 }
@@ -16,6 +16,28 @@
     margin: 0;
 }
 
+.header-content__row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+.header-content__links{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-left: 30px;
+}
+
+.header-content__links a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-content__column{
+    display: flex;
+    flex-direction: column;
+}
 
 @media screen and (min-width: 1920px) {
     .header-content {
@@ -59,59 +81,4 @@
 .margin-a>a {
     margin-left: 0.75rem;
     margin-right: 0.75rem;
-}
-
-nav .drop-down {
-    list-style: none;
-    overflow: hidden;
-    height: 200px;
-    font-family: Netflix;
-    width: 200px;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-    -webkit-transition: height 0.3s ease;
-    transition: height 0.3s ease;
-}
-
-nav .drop-down.closed {
-    height: 66px;
-
-}
-
-nav .drop-down li {
-    background:rgba(0, 0, 0, 0.15)
-}
-
-.drop-down__li:hover {
-    background: rgba(0, 0, 0, 0.25);
-}
-
-nav .drop-down li[kind="profile-page"] {
-    background: rgba(255, 255, 255);
-}
-
-nav .drop-down li[kind="profile-page"]:hover {
-    background: rgba(228, 227, 227, 0.25);
-}
-
-nav .drop-down li[kind="profile-page"] a {
-    display: block;
-    font-size: 14px;
-    color: #454545;
-    text-decoration: none;
-    padding: 12px;
-}
-
-nav .drop-down li a {
-    display: block;
-    font-size: 14px;
-    color: #fff;
-    text-decoration: none;
-    padding: 12px;
-}
-
-nav .drop-down li a:hover {
-    text-decoration: underline;
-    cursor: pointer;
 }

@@ -12,7 +12,7 @@
 @import url(../../pages/content/content.css);
 @import url(../../pages/profile/profile-page.css);
 @import url(../../pages/cast/cast.css);
-
+@import url(./dropdown.css);
 @import url(../icons/netflix.css);
 
 @font-face {

@@ -1,14 +1,13 @@
- <div class="header-content" kind="{{kind}}">
-    <div class="row" style="width: 100%;">
+<div class="header-content" kind="{{kind}}">
+    <div class="header-content__row">
         <!-- Колонка логотипа {Существует всегда} -->
-        <div class="col justify-content-start">
+        <div class="header-content__column">
             {{> partial/netflix-logo/netflix-logo}}
         </div>
 
         <!-- Колонка ссылок {Только у подборок} -->
         {{#if feedPage}}
-        <div
-            class="partial-header--link-block ml-3 col d-flex align-items-center feed-header-menu margin-a">
+        <div class="header-content__links">
             <a href="/" spa-link>Начало</a>
             <a href="#serials" disable="true">Сериалы</a>
             <a href="#films" disable="true">Фильмы</a>
@@ -37,36 +36,27 @@
             {{/if}}
 
             {{#if profilePage}}
-            <nav style="position: absolute;">
-                <ul class="drop-down closed">
-                    <li kind={{kind}}>
-                        <a class="nav-button" id="dropdown">
-                            {{> partial/avatar/avatar avatarUrl="https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg"}}
-                        </a>
-                    </li>
-                    <li kind={{kind}}>
-                        <a id="logout">Выйти</a>
-                    </li>
+            <div class="dropdown hover">
+                <a class="dropdown-logo">
+                    {{> partial/avatar/avatar
+                    avatarUrl="https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg"}}
+                </a>
+                <ul>
+                    <li> <a class="dropdown-item" id="logout">Выйти</a> </li>
                 </ul>
-            </nav>
+            </div>
             {{/if}}
             {{#if feedPage}}
-            <nav style="position: absolute;">
-                <ul class="drop-down closed">
-                    <li>
-                        
-                        <a  class="nav-button" id="dropdown">
-                            {{> partial/avatar/avatar avatarUrl="https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg"}}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/profile" spa-link>Профиль</a>
-                    </li>
-                    <li>
-                        <a id="logout">Выйти</a>
-                    </li>
+            <div class="dropdown hover">
+                <a class="dropdown-logo">
+                    {{> partial/avatar/avatar
+                    avatarUrl="https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg"}}
+                </a>
+                <ul>
+                    <li> <a class="dropdown-item" href="/profile" spa-link>Профиль</a> </li>
+                    <li> <a class="dropdown-item" id="logout">Выйти</a> </li>
                 </ul>
-            </nav>
+            </div>
             {{/if}}
 
         </div>

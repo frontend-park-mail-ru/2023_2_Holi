@@ -1,4 +1,3 @@
-import { rootElement } from '../../../index.js';
 import { Notify } from '../../components/notify/notify.js';
 import { loginRequest } from '../../services/api/auth.js';
 import { getUserInfo } from '../../services/api/user.js';
@@ -8,7 +7,7 @@ import login from './login-page.hbs';
 /**
  * Класс, представляющий страницу входа.
  */
-class LoginPage {
+export class LoginPage {
     #parent;
 
     /**
@@ -55,7 +54,6 @@ const loginContoller = () => {
                     navigate('/feed');
                 } else {
                     new Notify('Неверный логин или пароль');
-                    console.error('Ошибка аутентификации:\n', response.statusText);
 
                     return;
                 }
@@ -66,10 +64,8 @@ const loginContoller = () => {
             }
         } catch (error) {
             new Notify('Упс... Что то пошло не так :(');
-            console.error('Ошибка аутентификации:', error);
         }
     });
 
 };
 
-export default new LoginPage(rootElement);

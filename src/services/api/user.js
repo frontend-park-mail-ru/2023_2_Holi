@@ -1,7 +1,7 @@
-import {NETFLIX_API} from './const.js';
+import { NETFLIX_API } from './const.js';
 import EventEmitter from '../store.js';
-import {getCookie} from "../getCookie.js";
-import {Notify} from "../../components/notify/notify.js";
+import { getCookie } from '../getCookie.js';
+import { Notify } from '../../components/notify/notify.js';
 
 export const getUserInfo = (id) => {
     return fetch(`${NETFLIX_API}/profile/${id}`, {
@@ -22,14 +22,15 @@ export const getUserInfo = (id) => {
             return data;
         })
         .catch(error => {
-            console.error('Возникли проблемы с запросом:', error);
+            throw new Error(error);
         });
 };
 
 export const setUserInfo = (data) => {
     if (!navigator.onLine) {
-        new Notify("Нет соединения")
+        new Notify('Нет соединения');
     }
+
     return fetch(`${NETFLIX_API}/profile/update`, {
         method: 'POST',
         headers: {

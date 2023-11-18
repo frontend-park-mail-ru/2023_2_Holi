@@ -139,7 +139,6 @@ button.partial-btn[kind="primary-xl"] {
 }
 
 .btn-action[kind="info"] {
-    background: rgba(255, 255, 255, 0.20);
     color: white;
 }
 
@@ -152,6 +151,5 @@ button.partial-btn[kind="primary-xl"] {
 
 .btn-action[kind="info"]:hover {
     transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-    background: rgba(255, 255, 255, 0.4);
-    color: white;
+    color: rgba(255, 255, 255, 0.575);
 }

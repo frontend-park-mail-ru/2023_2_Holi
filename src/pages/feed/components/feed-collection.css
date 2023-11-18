@@ -8,9 +8,10 @@
     margin-bottom: 60px;
 }
 
-.collection{
+.collection {
     padding-top: 3rem;
 }
+
 .feed-collection__title {
     color: white;
     margin-left: 2rem;
@@ -22,13 +23,20 @@
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 60px;
+    padding-top: 30px;
     gap: 20px;
     padding-left: 20px;
-    transition: transform 0.2s linear;
+    transition: transform .3s linear;
 }
 
 .feed-collection__container-card {
     min-height: 350px;
+    transition: all .3s linear;
+}
+
+.feed-collection__container-card__video {
+    padding-left: 20px;
+    padding-right: 20px
 }
 
 .feed-collection__container-card:hover {
@@ -36,7 +44,7 @@
     margin-right: 16px;
     transform: scale(1.1);
     transform-origin: center center;
-    transition: all .2s linear;
+    transition: all .3s linear;
 }
 
 .feed-collection__container-card>div>img {
@@ -64,6 +72,8 @@
     height: 40px;
     width: -webkit-fill-available;
     padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
     position: absolute;
     margin-top: -50px;
     opacity: 0;
@@ -71,7 +81,7 @@
 
 .feed-collection__container-card:hover div .feed-collection__advanced-info {
     opacity: 1;
-    animation: show .2s linear;
+    animation: show .3s;
 }
 
 .feed-collection__advanced-info__name {

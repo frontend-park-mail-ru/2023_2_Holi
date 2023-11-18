@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const WorkBoxWebpackPlugin = require('workbox-webpack-plugin');
 
-console.info(__dirname);
 module.exports = {
     entry: './index.js',
     output: {

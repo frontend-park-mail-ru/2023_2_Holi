@@ -1,13 +1,12 @@
 import { registerRequest } from '../../services/api/auth.js';
 import { Notify } from '../../components/notify/notify.js';
-import { rootElement } from '../../../index.js';
 import { getUserInfo } from '../../services/api/user.js';
 import { validatePassword } from '../../services/validate.js';
 import register from './main-register.hbs';
 /**
  * Класс, представляющий начало регистрации.
  */
-class MainRegister {
+export class MainRegister {
     #parent;
 
     /**
@@ -56,7 +55,6 @@ class MainRegister {
                     } else {
                         localStorage.removeItem('userNewEmail');
                         new Notify('Ошибка регистрации: ' + response.statusText);
-                        console.error('Ошибка регистрации:', response.statusText);
                     }
                 } else {
                     new Notify('Не ввели логин и/или пароль');
@@ -64,10 +62,7 @@ class MainRegister {
 
             } catch (error) {
                 new Notify('Ошибка регистрации');
-                console.error('Ошибка аутентификации: ' + error);
             }
         });
     }
 }
-
-export default new MainRegister(rootElement);

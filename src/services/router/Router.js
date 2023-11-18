@@ -9,8 +9,7 @@ export class Router {
      * @constructor
      * @param {Array<Route>} routes - Массив маршрутов, доступных в приложении.
      */
-    constructor(routes, checkAuth, defaultAnAuth, defaultAuth, linkAttribute, notifyId) {
-        this.checkAuth = checkAuth;
+    constructor(routes, defaultAnAuth, defaultAuth, linkAttribute, notifyId) {
         this.defaultAuth = defaultAuth;
         this.linkAttribute = linkAttribute;
         this.notifyId = notifyId;
@@ -67,26 +66,28 @@ export class Router {
             return false;
         }) || this.routes.find((r) => r.path === '*');
         if (route instanceof ProtectedRoute) {
-            const auth = await this.checkAuth();
+            const auth = localStorage.getItem('authData');
             if (route.accessLevel === 'auth') {
-                if (auth.ok) {
-
-                    route.page.default.render();
+                if (auth === 'true') {
+                    route.page.render();
                 } else {
-                    this.navigateTo(this.defaultAnAuth);
+                    // Заменяем текущее состояние в истории и перенаправляем на страницу по умолчанию для неавторизованных пользователей
+                    history.replaceState(null, null, this.defaultAnAuth);
+                    window.location.href = this.defaultAnAuth;
                 }
             } else if (route.accessLevel === 'guest') {
-                if (!auth.ok) {
+                if (auth === 'false') {
                     // Маршрут доступен неавторизованным
-                    route.page.default.render();
+                    route.page.render();
                 } else {
-                    // Перенаправление авторизованных пользователей
-                    this.navigateTo(this.defaultAuth);
+                    // Заменяем текущее состояние в истории и перенаправляем на страницу по умолчанию для авторизованных пользователей
+                    history.replaceState(null, null, this.defaultAuth);
+                    window.location.href = this.defaultAuth;
                 }
             }
         } else if (route instanceof Route) {
             // Обработка не защищенных маршрутов
-            route.page.default.render();
+            route.page.render();
         }
     }
 }

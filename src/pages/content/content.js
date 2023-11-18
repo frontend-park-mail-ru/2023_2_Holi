@@ -2,11 +2,10 @@ import { logoutRequest } from '../../services/api/auth.js';
 import { getContentById } from '../../services/api/content.js';
 import { getLastNumber } from '../../services/getParams.js';
 import { navigate } from '../../services/router/Router.js';
-import { rootElement } from '../../../index.js';
 import { getAdjacentElements } from '../../services/arrayUtils.js';
 import content from './content.hbs';
 import { getUserInfo } from '../../services/api/user.js';
-class ContentPage {
+export class ContentPage {
     #parent;
     constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
@@ -18,7 +17,6 @@ class ContentPage {
         const id = getLastNumber(location.href);
         const film = await getContentById(id);
 
-        console.info({ content: film.body });
         this.#parent.innerHTML = content({ film: film.body });
 
         const video = document.querySelector('video');
@@ -62,7 +60,6 @@ class ContentPage {
         const prevLink = document.getElementById('prev-button');
         const nextLink = document.getElementById('next-button');
         const { previous, next } = getAdjacentElements(idsArray, Number(id));
-        console.info(getAdjacentElements(idsArray, Number(id)));
         prevLink.href = previous ? `/movies/${previous}` : `/movies/${id}`;
         nextLink.href = next ? `/movies/${next}` : `/movies/${id}`;
 
@@ -85,4 +82,3 @@ export const videoController = () => {
     });
 };
 
-export default new ContentPage(rootElement);

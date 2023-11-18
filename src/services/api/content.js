@@ -25,7 +25,7 @@ export const getGenreFilms = (genre) => {
             return data;
         })
         .catch(error => {
-            console.error('Возникли проблемы с запросом:', error);
+            throw new Error(error);
         });
 };
 
@@ -48,7 +48,7 @@ export const getContentById = (id) => {
             return data;
         })
         .catch(error => {
-            console.error('Возникли проблемы с запросом:', error);
+            throw new Error(error);
         });
 };
 
@@ -71,7 +71,7 @@ export const getContentByCastId = (id) => {
             return data;
         })
         .catch(error => {
-            console.error('Возникли проблемы с запросом:', error);
+            throw new Error(error);
         });
 };
 
@@ -93,7 +93,7 @@ export const getGenreAlias = () => {
             return data;
         })
         .catch(error => {
-            console.error('Возникли проблемы с запросом:', error);
+            throw new Error(error);
         });
 };
 
@@ -116,6 +116,6 @@ export const getTopRated = () => {
             return data;
         })
         .catch(error => {
-            console.error('Возникли проблемы с запросом:', error);
+            throw new Error(error);
         });
 };

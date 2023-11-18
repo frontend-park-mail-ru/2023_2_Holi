@@ -2,13 +2,12 @@ import { VideoItem } from './components/video-item.js';
 import { getLastNumber } from '../../services/getParams.js';
 import { getContentByCastId } from '../../services/api/content.js';
 import cast from './cast.hbs';
-import { rootElement } from '../../../index.js';
 import { getUserInfo } from '../../services/api/user.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
  */
-class CastPage {
+export class CastPage {
     #parent;
 
     /**
@@ -73,5 +72,3 @@ class CastPage {
 
     }
 }
-
-export default new CastPage(rootElement);

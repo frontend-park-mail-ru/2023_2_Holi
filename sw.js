@@ -7,8 +7,6 @@ precacheAndRoute(self.__WB_MANIFEST);
     // 'static/wednesday.webm',
 ];
 
-
-
 self.addEventListener('install', (event) => {
     event.waitUntil(caches.open(CACHE_NAME).then((cache) => {
         return cache.addAll(PRECACHED);
@@ -16,7 +14,7 @@ self.addEventListener('install', (event) => {
 });*/
 self.addEventListener('fetch', (event) => {
     if (event.request.headers.get('range')) {
-        return
+        return;
     }
 
     event.respondWith(caches.open(CACHE_NAME).then((cache) => {
