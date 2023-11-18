@@ -10,4 +10,4 @@ RUN apk add --no-cache bash
 
 RUN npm install
 
-CMD [ "npm", "start", "bash"]
+CMD [ "npm", "run", "build"]
