@@ -22,7 +22,6 @@ export class MainRegister {
      */
     render() {
         this.#parent.innerHTML = '';
-        document.body.style.background = '#fff';
         this.#parent.innerHTML = register();
 
         const registerForm = document.forms['createPassword'];

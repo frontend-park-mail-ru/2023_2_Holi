@@ -14,7 +14,7 @@
 }
 
 .video-item__container-card>div {
-    height: 375px;
+    height: 100%;
     width: 100%;
     object-fit: fill;
 }
@@ -79,4 +79,10 @@
 
 .rating-low {
     color: red;
+}
+
+@media screen and (max-width: 900px) {
+    .video-item__advanced-info__name{
+        font-size: 12px;
+    }
 }

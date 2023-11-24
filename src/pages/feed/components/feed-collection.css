@@ -86,8 +86,15 @@
 
 .feed-collection__advanced-info__name {
     color: white;
+    text-decoration: none;
+    font-family: Netflix;
 }
 
+.feed-collection__advanced-info__link{
+    text-decoration: none;
+    font-family: Netflix;
+    margin-left: 1rem;
+}
 .feed-collection__advanced-info__rating {
     font-weight: bold;
     /* По умолчанию, сделаем жирный текст */

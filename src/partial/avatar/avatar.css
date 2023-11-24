@@ -7,9 +7,31 @@
     font-size: 12px;
     font-weight: 500;
     border: 0;
-    border-radius: 4px;
+    border-radius: 50%;
     display: inline-block;
     margin: 5px;
     vertical-align: middle;
-    width: 32px;
+    width: 50px;
+    /* Задайте нужную ширину */
+    height: 50px;
+    /* Задайте нужную высоту */
+    object-fit: cover;
+}
+
+.avatar-preview {
+    color: #333;
+    direction: ltr;
+    font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    line-height: 70px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    border: 0;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+    vertical-align: middle;
+    width: 200px;
+    object-fit: cover;
+    height: 200px;
 }

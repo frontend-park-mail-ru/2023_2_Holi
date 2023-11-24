@@ -1,8 +1,11 @@
-import { Notify } from '../../components/notify/notify.js';
-import { loginRequest } from '../../services/api/auth.js';
+//import { Notify } from '../../components/notify/notify.js';
+/*import { loginRequest } from '../../services/api/auth.js';
 import { getUserInfo } from '../../services/api/user.js';
+*/
 import { navigate } from '../../services/router/Router.js';
+import store from '../../../index.js';
 import login from './login-page.hbs';
+import { $sentAuthRequest } from '../../services/flux/actions/auth.js';
 
 /**
  * Класс, представляющий страницу входа.
@@ -44,26 +47,8 @@ const loginContoller = () => {
         const email = emailInput.value;
         const password = Array.from(new TextEncoder().encode(passwordInput.value));
 
-        try {
-            if (email && password) {
-                const response = await loginRequest(email, password);
-                if (response.ok) {
-                    const res = await response.json();
-                    localStorage.setItem('userId', res.body.id);
-                    getUserInfo(res.body.id);
-                    navigate('/feed');
-                } else {
-                    new Notify('Неверный логин или пароль');
-
-                    return;
-                }
-            } else {
-                new Notify('Не ввели данные для входа');
-
-                return;
-            }
-        } catch (error) {
-            new Notify('Упс... Что то пошло не так :(');
+        if (email && password) {
+            store.dispatch($sentAuthRequest(email, password, () => navigate('/feed')));
         }
     });
 

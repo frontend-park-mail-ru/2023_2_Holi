@@ -1,5 +1,5 @@
 .dropdown {
-    width: 100px;
+    width: 150px;
     display: inline-block;
     margin-right: 10px;
     position: relative;
@@ -76,7 +76,7 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-bottom: 10px solid #FFF;
-    margin: -10px 0 0 30px;
+    margin: -10px 0 0 60px;
 }
 
 .dropdown a:hover,

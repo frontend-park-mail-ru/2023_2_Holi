@@ -2,7 +2,6 @@ import {logoutRequest} from '../../services/api/auth.js';
 import {navigate} from '../../services/router/Router.js';
 import {getGenreAlias, getGenreFilms, getTopRated} from '../../services/api/content.js';
 import {FeedCollection} from './components/feed-collection.js';
-import {rootElement} from '../../../index.js';
 import {getUserInfo} from '../../services/api/user.js';
 
 import feed from './feed-page.hbs';
@@ -64,10 +63,6 @@ export class FeedPage {
         if (userInfo.body.user.imagePath.length) {
             setTimeout(() => {
                 document.querySelector('.avatar').src = userInfo.body.user.imagePath;
-            }, 0);
-        } else {
-            setTimeout(() => {
-                document.querySelector('.avatar').src = 'https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg';
             }, 0);
         }
         if (content.length) {

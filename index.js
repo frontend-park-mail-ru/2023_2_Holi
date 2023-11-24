@@ -11,6 +11,8 @@ import { Page404 } from './src/pages/404/404.js';
 import { ContentPage } from './src/pages/content/content.js';
 import { ProfilePage } from './src/pages/profile/profile-page.js';
 import { CastPage } from './src/pages/cast/cast.js';
+import { createStore } from './src/services/flux/redux-lite.js';
+import { rootReducer } from './src/services/flux/reducers/root-reducer.js';
 
 /*if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
@@ -21,7 +23,6 @@ import { CastPage } from './src/pages/cast/cast.js';
             console.error(e);
         });
 }*/
-
 export const rootElement = document.getElementById('root');
 
 csrfInit();
@@ -47,3 +48,9 @@ if (isAuth.ok) {
 } else {
     localStorage.setItem('authData', false);
 }
+
+// Создание стора
+const store = createStore(rootReducer);
+
+// Экспорт стора, чтобы он был доступен в других частях приложения
+export default store;

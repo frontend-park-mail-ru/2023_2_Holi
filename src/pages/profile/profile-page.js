@@ -3,8 +3,11 @@ import { logoutRequest } from '../../services/api/auth.js';
 import { getUserInfo, setUserInfo } from '../../services/api/user.js';
 import { navigate } from '../../services/router/Router.js';
 import EventEmitter from '../../services/store.js';
-import { validatePassword } from '../../services/validate.js';
+//import { validatePassword } from '../../services/validate.js';
 import profile from './profile-page.hbs';
+
+import store from '../../../index.js';
+import { $sentUserInfoRequest } from '../../services/flux/actions/user-info.js';
 
 export class ProfilePage {
     #parent;
@@ -13,13 +16,6 @@ export class ProfilePage {
         this.#parent = parent;
     }
 
-    setInput(input, value) {
-        if (value) {
-            input.value = value;
-        } else {
-            input.value = '-';
-        }
-    }
     async render() {
         const userInfo = await getUserInfo(localStorage.getItem('userId'));
         this.#parent.innerHTML = '';
@@ -29,25 +25,36 @@ export class ProfilePage {
         const passwordInput = profileForm.elements['password'];
         const fileInput = profileForm.elements['file'];
 
-        setTimeout(() => profileForm.reset(), 300);
+        /**
+         * Узнаю о пользователе
+         */
+        store.dispatch($sentUserInfoRequest());
 
+        /**
+         * Подписка сраюотает при изменении стора
+         */
+        store.subscribe(() => {
+            console.info(store.getState().user);
+            const stateUser = store.getState().user.userInfo;
+            if (stateUser) {
+                if (stateUser.user.email) {
+                    emailInput.value = stateUser.user.email;
+                }
+                if(stateUser.user.imagePath.length > 0){
+                    console.info(document.querySelectorAll('img[data-avatar]'));
+                }
+
+            }
+
+        });
         if (userInfo.body.user.imagePath) {
             setTimeout(() => {
                 profileForm.reset();
                 emailInput.value = userInfo.body.user.email;
                 document.querySelector('.avatar').src = userInfo.body.user.imagePath;
             }, 0);
-        } else {
-            setTimeout(() => {
-                document.querySelector('.avatar').src = 'https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg';
-            }, 0);
         }
 
-        EventEmitter.on('getUserData', (data) => {
-            setTimeout(() => document.querySelector('.avatar').src = data.body.user.imagePath, 0);
-        });
-
-        this.setInput(emailInput, userInfo.body.user.email);
         let file = null;
         fileInput.addEventListener('change', (event) => {
             if (event.target.files[0]) {
@@ -55,7 +62,6 @@ export class ProfilePage {
                 const allowedExtensions = ['jpg', 'jpeg', 'png'];
                 const fileName = file.name.toLowerCase();
                 const fileExtension = fileName.split('.').pop();
-
 
                 if (allowedExtensions.includes(fileExtension)) {
                     document.querySelector('.input-control__file-text').innerHTML = event.target.files[0].name;
@@ -71,7 +77,7 @@ export class ProfilePage {
 
                     reader.readAsArrayBuffer(file); // Считываем файл как ArrayBuffer
                 }
-                else{
+                else {
                     new Notify('Выберите файл с расширением jpg, jpeg или png');
                 }
             }
@@ -132,7 +138,5 @@ export class ProfilePage {
                 navigate('/login');
             }
         });
-
-        document.querySelector('.avatar').src = 'https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg';
     }
 }

@@ -2,6 +2,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "npm run build && node server/server.mjs",
+    "serve": "webpack serve",
     "lint": "eslint ."
   },
   "dependencies": {

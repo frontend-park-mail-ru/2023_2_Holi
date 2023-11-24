@@ -1,3 +1,5 @@
+@import url(./header-icons.css);
+
 @font-face {
   font-family: 'netflix';
   src: url('netflix.woff?g5zjyq') format('woff');
@@ -6,6 +8,8 @@
   font-display: block;
 
 }
+
+
 
 .netflix {
   /* use !important to prevent issues with browser extensions that change fonts */

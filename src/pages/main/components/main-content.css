@@ -8,22 +8,21 @@
 
 .main-content__video-container {
     z-index: -1;
-    overflow: hidden;
     width: 100%;
     height: 100%;
     max-width: 73%;
     max-height: 54%;
     position: absolute;
     top: 46%;
-    left: 50%;
+    left: 43%;
     transform: translate(-50%, -50%);
 }
 
 .imac {
-    max-width: 63%;
+    left: 23%;
     max-height: 47%;
+    max-width: 30%;
     top: 34%;
-    left: 50%;
 }
 
 .main-content__video-container video {
@@ -121,4 +120,29 @@
     letter-spacing: 0;
     border: 0;
     height: 5rem;
+}
+
+.content-block {
+    position: relative;
+}
+
+.main-content_container {
+    text-align: center;
+    max-width: 540px;
+}
+
+.main-content_container__block {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+    .video-panel {
+        display: none;
+    }
+    .main-content {
+        transform: scale(.7);
+    }
 }

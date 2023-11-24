@@ -80,7 +80,7 @@
     flex-direction: column;
 }
 
-.content-container__player__actions{
+.content-container__player__actions {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +89,7 @@
     gap: 10px;
 }
 
-.content-container__player__actions a{
+.content-container__player__actions a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,4 +101,17 @@
 
 .content-container__player__actions a:hover {
     color: gainsboro;
+}
+
+
+@media screen and (max-width: 900px) {
+    .content-container__advanced-info__meta {
+        flex-direction: column;
+    }
+    .content-container__advanced-info__about{
+        flex-direction: column;
+    }
+    .content-container__advanced-info__genres{
+        margin: 0;
+    }
 }

@@ -39,10 +39,12 @@
             <div class="dropdown hover">
                 <a class="dropdown-logo">
                     {{> partial/avatar/avatar
-                    avatarUrl="https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg"}}
+                    avatarUrl="/img/camera_50.png"}}
                 </a>
                 <ul>
-                    <li> <a class="dropdown-item" id="logout">Выйти</a> </li>
+                    <li> <a class="dropdown-item" id="logout">
+                            <i class="logout-icon"></i>
+                            Выйти</a> </li>
                 </ul>
             </div>
             {{/if}}
@@ -50,11 +52,21 @@
             <div class="dropdown hover">
                 <a class="dropdown-logo">
                     {{> partial/avatar/avatar
-                    avatarUrl="https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg"}}
+                    avatarUrl="/img/camera_50.png"}}
                 </a>
                 <ul>
-                    <li> <a class="dropdown-item" href="/profile" spa-link>Профиль</a> </li>
-                    <li> <a class="dropdown-item" id="logout">Выйти</a> </li>
+                    <li>
+                        <a class="dropdown-item" href="/profile" spa-link>
+                            <i class="profile-icon"></i>
+                            Профиль
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" id="logout">
+                            <i class="logout-icon"></i>
+                            Выйти
+                        </a>
+                    </li>
                 </ul>
             </div>
             {{/if}}

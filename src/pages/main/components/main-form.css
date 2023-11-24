@@ -5,10 +5,16 @@
     right: 0;
     bottom: 0;
     left: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.main-form__title {
+    font-weight: 900;
+    font-size: large;
 }
 
 .main-form__input {
@@ -19,11 +25,11 @@
 }
 
 .main-form__description,
-.main-form__email-form{
+.main-form__email-form {
     margin: 0;
 }
 
-.main-form__email-form__container{
+.main-form__email-form__container {
     padding-left: 2rem;
     padding-right: 2rem;
 }

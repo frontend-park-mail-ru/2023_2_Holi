@@ -1,7 +1,5 @@
 .login-page__login-content {
-    margin-left: calc((100% - 450px)/2);
-    margin-right: calc((100% - 450px)/2);
-    margin-top: 30px;
+    margin: auto;
     -webkit-font-smoothing: antialiased;
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
@@ -10,8 +8,9 @@
     color: #333;
     background: rgba(0, 0, 0, .75);
     max-width: 450px;
-    min-height: 550px;
     border-radius: 4px;
+    margin: auto;
+    margin-bottom: 5rem;
 }
 
 .login-page__form {

@@ -5,36 +5,34 @@
 
     {{> components/main-banner}}
     {{> components/main-content
-    firstMode=true
     Title="Наслаждайтесь на своем телевизоре"
     Description="Смотрите на телевизорах Smart TV, Playstation, Xbox,
     Chromecast, Apple TV, Blu-ray плеерах и многом
     другом."
-    content='<img src="img/tv.webp" alt>
+    content='<div class="video-panel"><img src="img/tv.webp" alt>
     <div class="main-content__video-container">
         <video autoplay playsinline muted loop>
             <source src="video/tv-main.m4v" type="video/mp4">
         </video>
-    </div>'
+    </div></div>'
     }}
 
     {{> components/main-content
-    secondMode=true
     Title="Смотрите везде"
     Description="Смотрите потоки неограниченных
     фильмов и телепередач на своем телефоне, планшете,
     ноутбуке и телевизоре."
-    content='<img src="img/device-pile.webp" alt="imac">
+    content='
+    <div class="video-panel"><img src="img/device-pile.webp" alt="imac">
     <div class="main-content__video-container imac">
         <video autoplay playsinline muted loop>
             <source src="video/video-devices.m4v"
                 type="video/mp4">
         </video>
-    </div>'
+    </div></div>'
     }}
 
     {{> components/main-content
-    firstMode=true
     Title="Создавайте профили для
     детей"
     Description="Отправляйте детей в приключения с их любимыми
@@ -44,7 +42,6 @@
     }}
 
     {{> components/main-content
-    secondMode=true
     Title="Загружайте свои шоу для
     просмотра в автономном режиме"
     Description="Доступно только в тарифных планах без рекламы."
@@ -61,7 +58,7 @@
             <div class="phone-background-content__subtitle">Загрузка...
             </div>
         </div>
-        <div class="phone-background-content__col-spinner"></div>
+        <div style="background: url(/img/download-icon.gif) center center no-repeat;" class="phone-background-content__col-spinner"></div>
     </div>'
     }}
 

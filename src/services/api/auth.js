@@ -22,10 +22,17 @@ export const loginRequest = (email, password) => {
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
     }).then(response => {
-        localStorage.setItem('authData', true);
 
-        return response;
-    });
+        if (response.ok) {
+            localStorage.setItem('authData', true);
+
+            return response.json();
+        }
+
+    })
+        .then(data => {
+            return data;
+        });
 };
 
 export const csrfInit = () => {

@@ -18,7 +18,6 @@ export class StartRegister {
      */
     render() {
         this.#parent.innerHTML = '';
-        document.body.style.background = '#fff';
         this.#parent.innerHTML = register();
     }
 }
