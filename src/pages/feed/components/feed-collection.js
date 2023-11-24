@@ -1,4 +1,4 @@
-import  collectionTemplate from './feed-collection.hbs';
+import collectionTemplate from './feed-collection.hbs';
 import { uuid } from '../../../services/uuid-time.js';
 export class FeedCollection {
     #title;
@@ -103,7 +103,6 @@ export class FeedCollection {
         collection.addEventListener('click', () => {
             localStorage.setItem('lastCollection', JSON.stringify(this.#content));
         });
-
 
         videoElements.forEach((container) => {
             const video = container.querySelector('video');

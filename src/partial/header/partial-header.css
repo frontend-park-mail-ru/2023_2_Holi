@@ -41,8 +41,11 @@
 }
 
 @media screen and (max-width: 900px) {
+
     .header-content__row {
         flex-direction: column;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .header-content {

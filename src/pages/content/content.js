@@ -20,7 +20,7 @@ export class ContentPage {
         this.#parent.innerHTML = content({ film: film.body });
 
         const video = document.querySelector('video');
-        video.addEventListener('loadedmetadata', function () {
+        video.addEventListener('loadedmetadata', function() {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -32,7 +32,7 @@ export class ContentPage {
 
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
 
-        document.getElementById('logout').addEventListener('click', async function () {
+        document.getElementById('logout').addEventListener('click', async function() {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
@@ -45,12 +45,8 @@ export class ContentPage {
             setTimeout(() => {
                 document.querySelector('.avatar').src = userInfo.body.user.imagePath;
             }, 0);
-        } else {
-            setTimeout(() => {
-                document.querySelector('.avatar').src = 'https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg';
-            }, 0);
         }
-        document.getElementById('dropdown').addEventListener('click', function () {
+        document.getElementById('dropdown').addEventListener('click', function() {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
         const collectonContent = JSON.parse(localStorage.getItem('lastCollection'));
