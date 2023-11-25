@@ -128,12 +128,12 @@ export class ProfilePage {
                     if (document.querySelector('iframe')) {
                         document.querySelector('iframe').remove();
                     }
-                    const access = await getCheckSurvey('csi/profile');
+                    const access = await getCheckSurvey('csi_profile');
                     if (access.body.passed === 'false') {
                         const frame = document.createElement('iframe');
                         frame.width = '889';
                         frame.height = '500';
-                        frame.src = 'http://localhost:4510/csi/profile';
+                        frame.src = 'http://localhost:4510/csi_profile';
                         frame.frameBorder = '0';
                         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
                         frame.allowFullscreen = true;
