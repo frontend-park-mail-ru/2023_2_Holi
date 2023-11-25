@@ -7,6 +7,7 @@
 @import url(../../components/notify/notify.css);
 @import url(../../pages/register/register.css);
 @import url(../../pages/main/main.css);
+@import url(../../pages//admin/admin.css);
 @import url(../../pages/404/404.css);
 @import url(../../pages/content/content.css);
 @import url(../../pages/profile/profile-page.css);
@@ -46,3 +47,13 @@ html {
     text-decoration: none!important;
     color: black!important;
 }
+
+iframe {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 350px; /* задайте необходимую ширину */
+    height: 250px; /* задайте необходимую высоту */
+    border: none;
+    animation: show 0.5s ease-in-out;
+  }

@@ -5,6 +5,7 @@ import { navigate } from '../../services/router/Router.js';
 import { getAdjacentElements } from '../../services/arrayUtils.js';
 import content from './content.hbs';
 import { getUserInfo } from '../../services/api/user.js';
+import { getCheckSurvey } from '../../services/api/iframe.js';
 export class ContentPage {
     #parent;
     constructor(parent = document.getElementById('root')) {
@@ -20,7 +21,7 @@ export class ContentPage {
         this.#parent.innerHTML = content({ film: film.body });
 
         const video = document.querySelector('video');
-        video.addEventListener('loadedmetadata', function() {
+        video.addEventListener('loadedmetadata', function () {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -32,7 +33,7 @@ export class ContentPage {
 
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
 
-        document.getElementById('logout').addEventListener('click', async function() {
+        document.getElementById('logout').addEventListener('click', async function () {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
@@ -46,9 +47,6 @@ export class ContentPage {
                 document.querySelector('.avatar').src = userInfo.body.user.imagePath;
             }, 0);
         }
-        document.getElementById('dropdown').addEventListener('click', function() {
-            this.parentNode.parentNode.classList.toggle('closed');
-        }, false);
         const collectonContent = JSON.parse(localStorage.getItem('lastCollection'));
 
         const idsArray = collectonContent.map(item => item.id);
@@ -60,6 +58,23 @@ export class ContentPage {
         nextLink.href = next ? `/movies/${next}` : `/movies/${id}`;
 
         videoController();
+
+        if (document.querySelector('iframe')) {
+            document.querySelector('iframe').remove();
+        }
+        const access = await getCheckSurvey('nps');
+        if (access.body.passed === 'false') {
+            const frame = document.createElement('iframe');
+            frame.width = '889';
+            frame.height = '500';
+            frame.src = 'http://localhost:4510/nps';
+            frame.frameBorder = '0';
+            frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            frame.allowFullscreen = true;
+
+            document.body.appendChild(frame);
+        }
+
     }
 }
 

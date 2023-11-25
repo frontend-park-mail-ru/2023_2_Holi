@@ -13,6 +13,7 @@ import { ProfilePage } from './src/pages/profile/profile-page.js';
 import { CastPage } from './src/pages/cast/cast.js';
 import { createStore } from './src/services/flux/redux-lite.js';
 import { rootReducer } from './src/services/flux/reducers/root-reducer.js';
+import { Admin } from './src/pages/admin/admin.js';
 
 /*if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
@@ -33,7 +34,7 @@ const routes = [
     new ProtectedRoute('/start-register', new StartRegister(rootElement), 'guest'),
     new ProtectedRoute('/register', new MainRegister(rootElement), 'guest'),
     new ProtectedRoute('/feed', new FeedPage(rootElement)),
-
+    new ProtectedRoute('/admin', new Admin(rootElement)),
     new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
     new ProtectedRoute('/profile', new ProfilePage(rootElement)),
     new ProtectedRoute(/^\/cast\/\d+$/, new CastPage(rootElement)),

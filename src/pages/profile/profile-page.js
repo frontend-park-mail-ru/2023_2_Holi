@@ -2,21 +2,21 @@ import { Notify } from '../../components/notify/notify.js';
 import { logoutRequest } from '../../services/api/auth.js';
 import { getUserInfo, setUserInfo } from '../../services/api/user.js';
 import { navigate } from '../../services/router/Router.js';
-import EventEmitter from '../../services/store.js';
 //import { validatePassword } from '../../services/validate.js';
 import profile from './profile-page.hbs';
 
 import store from '../../../index.js';
 import { $sentUserInfoRequest } from '../../services/flux/actions/user-info.js';
+import { getCheckSurvey } from '../../services/api/iframe.js';
 
 export class ProfilePage {
     #parent;
-
     constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
     async render() {
+
         const userInfo = await getUserInfo(localStorage.getItem('userId'));
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = profile();
@@ -40,7 +40,7 @@ export class ProfilePage {
                 if (stateUser.user.email) {
                     emailInput.value = stateUser.user.email;
                 }
-                if(stateUser.user.imagePath.length > 0){
+                if (stateUser.user.imagePath.length > 0) {
                     console.info(document.querySelectorAll('img[data-avatar]'));
                 }
 
@@ -124,6 +124,22 @@ export class ProfilePage {
                     // Обработка успешного ответаArray.from(uint8Array)
                     // Обработка ошибки
                     new Notify('Профиль успешно обновлен');
+
+                    if (document.querySelector('iframe')) {
+                        document.querySelector('iframe').remove();
+                    }
+                    const access = await getCheckSurvey('csi/profile');
+                    if (access.body.passed === 'false') {
+                        const frame = document.createElement('iframe');
+                        frame.width = '889';
+                        frame.height = '500';
+                        frame.src = 'http://localhost:4510/csi/profile';
+                        frame.frameBorder = '0';
+                        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                        frame.allowFullscreen = true;
+
+                        document.body.appendChild(frame);
+                    }
 
                     await getUserInfo(Number(localStorage.getItem('userId')));
                 }
