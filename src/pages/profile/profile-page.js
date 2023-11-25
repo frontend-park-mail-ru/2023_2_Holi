@@ -128,7 +128,7 @@ export class ProfilePage {
                     if (document.querySelector('iframe')) {
                         document.querySelector('iframe').remove();
                     }
-                    const access = await getCheckSurvey('csi/profile');
+                    const access = await getCheckSurvey('csi_profile');
                     if (access.body.passed === 'false') {
                         const frame = document.createElement('iframe');
                         frame.width = '889';

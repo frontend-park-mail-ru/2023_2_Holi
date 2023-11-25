@@ -62,7 +62,7 @@ export const getStateSurveyMock = () => {
 };
 
 export const getCheckSurvey = (key) => {
-    return fetch(`${NETFLIX_API}/survey/add/${key}`, {
+    return fetch(`${NETFLIX_API}/survey/check/${key}`, {
         method: 'GET', headers: {
             'Content-Type': 'application/json;charset=utf-8',
         }, credentials: 'include',

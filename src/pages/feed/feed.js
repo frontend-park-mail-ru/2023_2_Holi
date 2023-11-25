@@ -94,18 +94,17 @@ export class FeedPage {
         if (document.querySelector('iframe')) {
             document.querySelector('iframe').remove();
         }
-        const access = await getCheckSurvey('csi/feed');
-        if (access.body.passed === 'false') {
-            const frame = document.createElement('iframe');
-            frame.width = '889';
-            frame.height = '500';
-            frame.src = 'http://localhost:4510/csi/feed';
-            frame.frameBorder = '0';
-            frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-            frame.allowFullscreen = true;
 
-            document.body.appendChild(frame);
-        }
+        const frame = document.createElement('iframe');
+        frame.width = '889';
+        frame.height = '500';
+        frame.src = 'http://localhost:4510/csi_feed';
+        frame.frameBorder = '0';
+        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        frame.allowFullscreen = true;
+
+        document.body.appendChild(frame);
+
 
     }
 }
