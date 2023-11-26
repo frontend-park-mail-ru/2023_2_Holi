@@ -1,7 +1,7 @@
-import { NETFLIX_API } from './const';
+import { SURVEY_API } from './const';
 
 export const getStateSurvey = () => {
-    return fetch(`${NETFLIX_API}/survey/stat`, {
+    return fetch(`${SURVEY_API}/stat`, {
         method: 'GET', headers: {
             'Content-Type': 'application/json;charset=utf-8',
         }, credentials: 'include',
@@ -62,7 +62,7 @@ export const getStateSurveyMock = () => {
 };
 
 export const getCheckSurvey = (key) => {
-    return fetch(`${NETFLIX_API}/survey/check/${key}`, {
+    return fetch(`${SURVEY_API}/check/${key}`, {
         method: 'GET', headers: {
             'Content-Type': 'application/json;charset=utf-8',
         }, credentials: 'include',
@@ -74,6 +74,7 @@ export const getCheckSurvey = (key) => {
         return response.json();
     })
         .then(data => {
+            console.log(data)
             return data;
         })
         .catch(error => {

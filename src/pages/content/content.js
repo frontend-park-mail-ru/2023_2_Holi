@@ -62,15 +62,13 @@ export class ContentPage {
        /* if (document.querySelector('iframe')) {
             document.querySelector('iframe').remove();
         }
-        const access = await getCheckSurvey('nps');
-        if (access.body.passed === 'false') {
-            const frame = document.createElement('iframe');
-            frame.width = '889';
-            frame.height = '500';
-            frame.src = 'http://localhost:4510/nps';
-            frame.frameBorder = '0';
-            frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-            frame.allowFullscreen = true;
+        const frame = document.createElement('iframe');
+        frame.width = '889';
+        frame.height = '500';
+        frame.src = 'http://localhost:81/nps';
+        frame.frameBorder = '0';
+        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        frame.allowFullscreen = true;
 
             document.body.appendChild(frame);
         }*/

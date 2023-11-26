@@ -126,7 +126,9 @@ export class ProfilePage {
                         document.querySelector('iframe').remove();
                     }
                     const access = await getCheckSurvey('csi_profile');
-                    if (access.body.passed == 'false') {
+                    console.info(access.body.passed)
+                    if (access.body.passed == false) {
+                        console.info("test")
                         const frame = document.createElement('iframe');
                         frame.width = '889';
                         frame.height = '500';
