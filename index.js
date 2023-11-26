@@ -14,7 +14,13 @@ import { CastPage } from './src/pages/cast/cast.js';
 import { createStore } from './src/services/flux/redux-lite.js';
 import { rootReducer } from './src/services/flux/reducers/root-reducer.js';
 import { Admin } from './src/pages/admin/admin.js';
+import { GenrePage } from './src/pages/genre/genre.js';
 
+// Создание стора
+const store = createStore(rootReducer);
+
+// Экспорт стора, чтобы он был доступен в других частях приложения
+export default store;
 /*if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
         .then((reg) => {
@@ -38,6 +44,7 @@ const routes = [
     new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
     new ProtectedRoute('/profile', new ProfilePage(rootElement)),
     new ProtectedRoute(/^\/cast\/\d+$/, new CastPage(rootElement)),
+    new ProtectedRoute(/^\/genre\/\w+$/, new GenrePage(rootElement)),
     new Route('*', new Page404(rootElement)),
 ];
 
@@ -50,8 +57,4 @@ if (isAuth.ok) {
     localStorage.setItem('authData', false);
 }
 
-// Создание стора
-const store = createStore(rootReducer);
 
-// Экспорт стора, чтобы он был доступен в других частях приложения
-export default store;

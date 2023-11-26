@@ -8,3 +8,13 @@
 body {
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
 }
+
+.main-register-page{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.main-register-page__container {
+    position: absolute;
+    width: 100vw;
+}

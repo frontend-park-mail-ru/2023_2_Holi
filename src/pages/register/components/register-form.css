@@ -7,7 +7,8 @@
     font-size: 16px;
     gap: 10px;
     letter-spacing: 0;
-    margin: auto;
+    margin: auto auto 5rem;
+    min-height: 450px;
     max-width: 440px;
     padding: 3rem;
 }

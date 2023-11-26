@@ -14,6 +14,7 @@
 @import url(../../pages/cast/cast.css);
 @import url(./dropdown.css);
 @import url(../icons/netflix.css);
+@import url(../../pages/genre/genre.css);
 
 @font-face {
     font-family: Netflix;
@@ -44,16 +45,84 @@ html {
 [disable="true"] {
     pointer-events: none;
     cursor: default;
-    text-decoration: none!important;
-    color: black!important;
+    text-decoration: none !important;
+    color: black !important;
 }
 
 iframe {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 350px; /* задайте необходимую ширину */
-    height: 250px; /* задайте необходимую высоту */
+    width: 350px;
+    /* задайте необходимую ширину */
+    height: 250px;
+    /* задайте необходимую высоту */
     border: none;
     animation: show 0.5s ease-in-out;
-  }
+}
+
+.glow-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 3rem;
+    padding: 0 6%;
+    text-align: center;
+    animation: fadeInText 3s ease-in 3.5s forwards, flicker4 5s linear 7.5s infinite, hueRotate 6s ease-in-out 3s infinite;
+    color: #fff;
+    display: block;
+    font-weight: 600;
+    text-shadow: 0 0 4px #12000a;
+    text-transform: uppercase;
+    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+}
+
+.feed-collection__title:hover,
+.text-glow{
+	text-shadow: 
+	0 0 10px rgba(255,255,255,.8),
+	0 0 20px rgba(255,255,255,.8),
+	0 0 22px rgba(255,255,255,.8),
+	0 0 40px rgba(219,66,217,.8),
+	0 0 60px rgba(219,66,217,.8),
+	0 0 80px rgba(219,66,217,.8),
+	0 0 100px rgba(219,66,217,.5),
+	0 0 140px rgba(219,66,217,.5),
+	0 0 200px rgba(219,66,217,.5);
+	animation: neon 3s infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes neon {
+	0% {
+		opacity: 1;
+	}
+	45% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	55% {
+		opacity: 1;
+	}
+	60% {
+		opacity: 0;
+	}
+	63% {
+		opacity: 1;
+	}
+	93% {
+		opacity: 1;
+	}
+	95% {
+		opacity: 0;
+	}
+	97% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}

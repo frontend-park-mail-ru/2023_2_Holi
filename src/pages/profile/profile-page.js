@@ -4,10 +4,8 @@ import { getUserInfo, setUserInfo } from '../../services/api/user.js';
 import { navigate } from '../../services/router/Router.js';
 //import { validatePassword } from '../../services/validate.js';
 import profile from './profile-page.hbs';
-
 import store from '../../../index.js';
 import { $sentUserInfoRequest } from '../../services/flux/actions/user-info.js';
-import { getCheckSurvey } from '../../services/api/iframe.js';
 
 export class ProfilePage {
     #parent;
@@ -34,7 +32,6 @@ export class ProfilePage {
          * Подписка сраюотает при изменении стора
          */
         store.subscribe(() => {
-            console.info(store.getState().user);
             const stateUser = store.getState().user.userInfo;
             if (stateUser) {
                 if (stateUser.user.email) {
@@ -125,7 +122,7 @@ export class ProfilePage {
                     // Обработка ошибки
                     new Notify('Профиль успешно обновлен');
 
-                    if (document.querySelector('iframe')) {
+                    /*if (document.querySelector('iframe')) {
                         document.querySelector('iframe').remove();
                     }
                     const access = await getCheckSurvey('csi_profile');
@@ -133,13 +130,13 @@ export class ProfilePage {
                         const frame = document.createElement('iframe');
                         frame.width = '889';
                         frame.height = '500';
-                        frame.src = 'http://localhost:81/csi/profile';
+                        frame.src = 'http://localhost:81/csi_profile';
                         frame.frameBorder = '0';
                         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
                         frame.allowFullscreen = true;
 
                         document.body.appendChild(frame);
-                    }
+                    }*/
 
                     await getUserInfo(Number(localStorage.getItem('userId')));
                 }

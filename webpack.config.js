@@ -1,5 +1,5 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
+//const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,7 +14,7 @@ module.exports = {
     },
     module: {
         rules: [
-            {
+            /*{
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
@@ -28,7 +28,7 @@ module.exports = {
                         ],
                     },
                 },
-            },
+            },*/
             {
                 test: /\.(m4v)$/,
                 use: [
@@ -82,7 +82,7 @@ module.exports = {
     optimization: {
         minimize: true,
         minimizer: [
-            new TerserPlugin(),
+            //new TerserPlugin(),
             new CssMinimizerPlugin({
                 minimizerOptions: {
 

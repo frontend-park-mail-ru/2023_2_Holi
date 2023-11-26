@@ -1,16 +1,13 @@
 .login-page__login-background {
     display: flex;
-    position: absolute;
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 700px;
+    min-height: calc(100vh - 200px);
     transform: scale(1.25) translateY(-42px);
     opacity: 0.5;
-    background-image: url(../../../static/img/main.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
-    z-index: -1;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export const createStore = (reducer, initialState) => {
   let state = initialState;
   let subscribers = [];
@@ -8,9 +9,10 @@ export const createStore = (reducer, initialState) => {
         if (Object.prototype.hasOwnProperty.call(action, 'type')) {
           state = reducer(state, action);
           subscribers.forEach((cb) => cb());
-
+          console.log(state);
           return action;
-        } else {
+        }
+        else {
           action(this.dispatch, this.getState);
         }
       }

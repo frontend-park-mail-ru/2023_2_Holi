@@ -59,7 +59,7 @@ export class ContentPage {
 
         videoController();
 
-        if (document.querySelector('iframe')) {
+       /* if (document.querySelector('iframe')) {
             document.querySelector('iframe').remove();
         }
         const access = await getCheckSurvey('nps');
@@ -73,7 +73,7 @@ export class ContentPage {
             frame.allowFullscreen = true;
 
             document.body.appendChild(frame);
-        }
+        }*/
 
     }
 }

@@ -12,11 +12,13 @@
     align-items: center;
     height: 200px;
     font-size: 3rem;
-    font-weight: 900;
     padding: 0 6%;
     text-align: center;
-    color: #D2DBDD;
+    animation: fadeInText 3s ease-in 3.5s forwards, flicker4 5s linear 7.5s infinite, hueRotate 6s ease-in-out 3s infinite;
+    color: #12000a;
+    display: block;
+    font-weight: 600;
+    text-shadow: 0 0 4px #12000a;
+    text-transform: uppercase;
     font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
-    margin-top: 80px;
-    margin-bottom: 80px;
 }

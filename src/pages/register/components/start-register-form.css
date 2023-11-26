@@ -5,7 +5,8 @@
     color: #fff;
     font-size: 16px;
     max-width: 340px;
-    margin: auto;
+    margin: auto auto 5rem;
+    min-height: 450px;
     letter-spacing: 0;
     background: rgba(0, 0, 0, .75);
     padding: 3rem;
