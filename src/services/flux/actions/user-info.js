@@ -7,11 +7,14 @@ export const USER_INFO_ERROR = 'USER_INFO_ERROR';
 /**
  * Генераторы экшенов
  */
-export const $userInfoRequest = () => ({ type: USER_INFO_REQUEST });
 
-export const $userInfoSuccess = (info) => ({ type: USER_INFO_SUCCESS, payload:  info });
+export const USER_REDUCER = 'USER_REDUCER';
 
-export const $userInfoError = (error) => ({ type: USER_INFO_ERROR, payload: { isError: true, error: error } });
+export const $userInfoRequest = () => ({ type: USER_INFO_REQUEST, reducerName: USER_REDUCER });
+
+export const $userInfoSuccess = (info) => ({ type: USER_INFO_SUCCESS, payload: info, reducerName: USER_REDUCER });
+
+export const $userInfoError = (error) => ({ type: USER_INFO_ERROR, payload: { isError: true, error: error }, reducerName: USER_REDUCER });
 
 export const $sentUserInfoRequest = () => {
     store.dispatch($userInfoRequest());

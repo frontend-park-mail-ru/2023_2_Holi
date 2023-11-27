@@ -3,7 +3,11 @@ import { navigate } from '../../services/router/Router.js';
 import { FeedCollection } from './components/feed-collection.js';
 import feed from './feed-page.hbs';
 import store from '../../..';
-import { $sendCollectionAliasRequest } from '../../services/flux/actions/collections.js';
+import { $sendCollectionAliasRequest, COLLECTION_REDUCER } from '../../services/flux/actions/collections.js';
+import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
+import { debounce } from '../../services/debounce.js';
+import { searchRequest } from '../../services/api/search.js';
+import { seachHandler } from '../../services/search-utils.js';
 
 /**
  * Класс, представляющий страницу ленты.
@@ -37,7 +41,7 @@ export class FeedPage {
 
         store.dispatch($sendCollectionAliasRequest());
         console.info(store.getState());
-        store.subscribe(() => {
+        store.subscribe(COLLECTION_REDUCER, () => {
 
             const state = store.getState().collections;
             this.#parent.innerHTML = feed({ 'preview': state.preview, 'id': 'playButton' });
@@ -53,7 +57,24 @@ export class FeedPage {
             btn.addEventListener('click', () => {
                 btn.href = '/movies/' + state.preview.id;
             });
+            seachHandler();
         });
+
+        store.dispatch($sentUserInfoRequest());
+
+        store.subscribe(USER_REDUCER, () => {
+            const stateUser = store.getState().user.userInfo;
+            if (stateUser) {
+                if (stateUser.user.imagePath.length > 0) {
+                    console.info(document.querySelectorAll('img[data-avatar]'));
+                    /**
+                     * Тут сделать подстановку аватарки
+                     */
+                }
+            }
+        });
+
+        // Получаем поле ввода
 
         /*if (document.querySelector('iframe')) {
             document.querySelector('iframe').remove();

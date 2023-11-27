@@ -5,7 +5,8 @@ import { navigate } from '../../services/router/Router.js';
 import { getAdjacentElements } from '../../services/arrayUtils.js';
 import content from './content.hbs';
 import { getUserInfo } from '../../services/api/user.js';
-import { getCheckSurvey } from '../../services/api/iframe.js';
+import { setLike } from '../../services/api/like.js';
+import { seachHandler } from '../../services/search-utils.js';
 export class ContentPage {
     #parent;
     constructor(parent = document.getElementById('root')) {
@@ -21,7 +22,7 @@ export class ContentPage {
         this.#parent.innerHTML = content({ film: film.body });
 
         const video = document.querySelector('video');
-        video.addEventListener('loadedmetadata', function () {
+        video.addEventListener('loadedmetadata', function() {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -33,7 +34,7 @@ export class ContentPage {
 
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
 
-        document.getElementById('logout').addEventListener('click', async function () {
+        document.getElementById('logout').addEventListener('click', async function() {
             const response = await logoutRequest();
             if (response.ok) {
                 navigate('/login');
@@ -56,8 +57,11 @@ export class ContentPage {
         const { previous, next } = getAdjacentElements(idsArray, Number(id));
         prevLink.href = previous ? `/movies/${previous}` : `/movies/${id}`;
         nextLink.href = next ? `/movies/${next}` : `/movies/${id}`;
-
+        document.querySelector('.heart-button').addEventListener('click', () => {
+            setLike(id);
+        });
         videoController();
+        seachHandler();
 
        /* if (document.querySelector('iframe')) {
             document.querySelector('iframe').remove();

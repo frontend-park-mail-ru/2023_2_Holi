@@ -8,13 +8,16 @@ export const COLLECTION_PREVIEW = 'COLLECTION_PREVIEW';
 /**
  * Генераторы экшенов
  */
-export const $collectionRequest = () => ({ type: COLLECTION_REQUEST });
 
-export const $collectionSuccess = (data) => ({ type: COLLECTION_SUCCESS, payload: data });
+export const COLLECTION_REDUCER = 'COLLECTION_REDUCER'; // Задайте имя вашего редьюсера
 
-export const $collectionError = (error) => ({ type: COLLECTION_ERROR, payload: { isError: true, error: error } });
+export const $collectionRequest = () => ({ type: COLLECTION_REQUEST, reducerName: COLLECTION_REDUCER });
 
-export const $collectionPreview = (preview) => ({ type: COLLECTION_PREVIEW, payload: preview });
+export const $collectionSuccess = (data) => ({ type: COLLECTION_SUCCESS, payload: data, reducerName: COLLECTION_REDUCER });
+
+export const $collectionError = (error) => ({ type: COLLECTION_ERROR, payload: { isError: true, error: error }, reducerName: COLLECTION_REDUCER });
+
+export const $collectionPreview = (preview) => ({ type: COLLECTION_PREVIEW, payload: preview, reducerName: COLLECTION_REDUCER });
 
 export const $sendCollectionAliasRequest = () => {
     store.dispatch($collectionRequest());

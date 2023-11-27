@@ -1,0 +1,16 @@
+{{> partial/header/partial-header feedPage=true kind="feed-page"}}
+{{#if empty}}
+<div class="glow-title">Добавьте в избранное что-нибудь</div>
+{{/if}}
+
+{{#if notEmpty}}
+<div class="glow-title">{{title}}</div>
+<div class="genre-container">
+
+    {{#each content}}
+    {{> like-item content=this}}
+    {{/each}}
+</div>
+{{/if}}
+
+{{> partial/footer/partial-footer}}

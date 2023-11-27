@@ -3,6 +3,7 @@ import { getLastNumber } from '../../services/getParams.js';
 import { getContentByCastId } from '../../services/api/content.js';
 import cast from './cast.hbs';
 import { getUserInfo } from '../../services/api/user.js';
+import { seachHandler } from '../../services/search-utils.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -63,6 +64,8 @@ export class CastPage {
         this.#parent.innerHTML = cast({
             name: castName,
         });
+
+        seachHandler();
 
         this.addVideoCard(content);
 

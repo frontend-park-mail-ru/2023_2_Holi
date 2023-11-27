@@ -11,8 +11,16 @@
             <a href="/" spa-link>Начало</a>
             <a href="/admin" spa-link>Статистика</a>
             <a href="#serials" disable="true">Сериалы</a>
-            <a href="#films" disable="true">Фильмы</a>
-            <a href="#list" disable="true">Избранное</a>
+            <a href="/list" spa-link>Избранное</a>
+        </div>
+        <div style="display: flex; flex-direction: column">
+            <div class="search-box">
+                <button class="btn-search"><i class="search-icon"></i></button>
+                <input type="text" class="input-search" placeholder="Поищем?)">
+            </div>
+            <div id="search-list" class="dropdown hover">
+                <ul id="dropdown-list"></ul>
+            </div>
         </div>
         {{/if}}
 

@@ -1,13 +1,13 @@
 import store from '../../..';
-import { $sendCollectionAliasRequest } from '../../services/flux/actions/collections';
-import { getLastNumber } from '../../services/getParams';
+import { deleteLike } from '../../services/api/like';
+import { $sendGetFavourites } from '../../services/flux/actions/like';
 import { seachHandler } from '../../services/search-utils';
-import genre from './genre.hbs';
+import like from './like.hbs';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
  */
-export class GenrePage {
+export class FavouritesPage {
     #parent;
 
     /**
@@ -39,18 +39,19 @@ export class GenrePage {
      * Рендерит страницу.
      */
     async render() {
-        const currentPath = window.location.pathname;
-        const pathParts = currentPath.split('/');
+        this.#parent.innerHTML = '';
 
-        // Получаем последнюю часть адреса
-        const lastPart = pathParts[pathParts.length - 1];
-        const state = store.getState();
-        if (!state) {
-            store.dispatch($sendCollectionAliasRequest());
-            store.subscribe(() => {
-                const startContent = store.getState().collections.collections.find(obj => obj.name === lastPart);
+        store.dispatch($sendGetFavourites());
+        store.subscribe('FAVOURITES_REDUCER', () => {
+            console.info(store.getState());
 
-                const roundedMovies = startContent.content.map(movie => {
+            const startContent = store.getState().favourites.favourites.videos;
+            if (!startContent) {
+                this.#parent.innerHTML = like({
+                    empty: true,
+                });
+            } else {
+                const roundedMovies = startContent.map(movie => {
                     // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
                     const roundedRating = parseFloat(movie.rating.toFixed(1));
                     // Создайте новый объект с округленным значением rating
@@ -58,34 +59,32 @@ export class GenrePage {
                     return { ...movie, rating: roundedRating };
                 });
                 console.info(startContent);
-                this.#parent.innerHTML = '';
 
-                this.#parent.innerHTML = genre({
-                    title: startContent.name,
+                this.#parent.innerHTML = like({
+                    notEmpty: true,
+                    title: 'Избранное',
                     content: roundedMovies,
                 });
                 this.ratingFillColor();
-            });
-        } else {
-            const startContent = state.collections.collections.find(obj => obj.name === lastPart);
 
-            const roundedMovies = startContent.content.map(movie => {
-                // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
-                const roundedRating = parseFloat(movie.rating.toFixed(1));
-                // Создайте новый объект с округленным значением rating
+                document.querySelectorAll('.heart-button').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        deleteLike(button.id)
+                            .then(res => {
+                                // Находим родительский элемент с классом feed-collection__container-card
+                                const containerCard = button.closest('.feed-collection__container-card');
 
-                return { ...movie, rating: roundedRating };
-            });
-            console.info(startContent);
-            this.#parent.innerHTML = '';
+                                // Если родительский элемент найден, скрываем его
+                                if (containerCard) {
+                                    containerCard.style.display = 'none';
+                                }
+                            });
+                    });
+                });
+            }
 
-            this.#parent.innerHTML = genre({
-                title: startContent.name,
-                content: roundedMovies,
-            });
-            this.ratingFillColor();
-        }
-        seachHandler();
+            seachHandler();
+        });
 
     }
 }

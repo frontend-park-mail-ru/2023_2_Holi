@@ -1,5 +1,5 @@
 import { getCookie } from '../getCookie.js';
-import { NETFLIX_API } from './const.js';
+import { NETFLIX_API, NETFLIX_AUTH_API } from './const.js';
 import { Notify } from '../../components/notify/notify.js';
 
 /**
@@ -13,7 +13,7 @@ export const loginRequest = (email, password) => {
         new Notify('Нет соединения');
     }
 
-    return fetch(`${NETFLIX_API}/auth/login`, {
+    return fetch(`${NETFLIX_AUTH_API}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -36,7 +36,7 @@ export const loginRequest = (email, password) => {
 };
 
 export const csrfInit = () => {
-    return fetch(`${NETFLIX_API}/csrf`, {
+    return fetch(`${NETFLIX_AUTH_API}/csrf`, {
         method: 'GET',
         credentials: 'include',
     })
@@ -57,7 +57,7 @@ export const registerRequest = (email, password) => {
         new Notify('Нет соединения');
     }
 
-    return fetch(`${NETFLIX_API}/auth/register`, {
+    return fetch(`${NETFLIX_AUTH_API}/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -81,7 +81,7 @@ export const logoutRequest = () => {
         new Notify('Нет соединения');
     }
 
-    return fetch(`${NETFLIX_API}/auth/logout`, {
+    return fetch(`${NETFLIX_AUTH_API}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -99,7 +99,7 @@ export const logoutRequest = () => {
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const checkAccess = () => {
-    return fetch(`${NETFLIX_API}/auth/check`, {
+    return fetch(`${NETFLIX_AUTH_API}/auth/check`, {
         method: 'POST',
         credentials: 'include',
         headers: {

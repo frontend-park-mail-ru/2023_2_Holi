@@ -1,1 +1,30 @@
 @import url(./components/player.css);
+
+.heart-button {
+    font-size: 24px;
+    /* Размер шрифта и, следовательно, размер сердечка */
+    color: red;
+    /* Цвет сердечка */
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: all .3s;
+}
+
+/* Дополнительные стили по желанию */
+.heart-button:hover {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    /* Эффект тени при наведении */
+    transform: scale(1.3);
+}
+
+.content__like {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    /* justify-content: center; */
+    font-family: 'Netflix';
+    align-items: center;
+    padding: 10px;
+}

@@ -5,7 +5,7 @@ import { navigate } from '../../services/router/Router.js';
 //import { validatePassword } from '../../services/validate.js';
 import profile from './profile-page.hbs';
 import store from '../../../index.js';
-import { $sentUserInfoRequest } from '../../services/flux/actions/user-info.js';
+import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
 
 export class ProfilePage {
     #parent;
@@ -31,7 +31,7 @@ export class ProfilePage {
         /**
          * Подписка сраюотает при изменении стора
          */
-        store.subscribe(() => {
+        store.subscribe(USER_REDUCER, () => {
             const stateUser = store.getState().user.userInfo;
             if (stateUser) {
                 if (stateUser.user.email) {

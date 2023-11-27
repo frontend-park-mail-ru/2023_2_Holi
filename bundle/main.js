@@ -10,7 +10,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */   ZP: () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* unused harmony exports rootElement, isAuth */
-/* harmony import */ var _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(815);
+/* harmony import */ var _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(815);
 /* harmony import */ var _src_services_api_auth_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3232);
 /* harmony import */ var _src_pages_main_main_page_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6623);
 /* harmony import */ var _src_pages_login_login_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4735);
@@ -21,12 +21,14 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _src_pages_content_content_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(9201);
 /* harmony import */ var _src_pages_profile_profile_page_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(5920);
 /* harmony import */ var _src_pages_cast_cast_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(836);
-/* harmony import */ var _src_services_flux_redux_lite_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(8130);
+/* harmony import */ var _src_services_flux_redux_lite_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(8130);
 /* harmony import */ var _src_services_flux_reducers_root_reducer_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(7041);
 /* harmony import */ var _src_pages_admin_admin_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(9378);
 /* harmony import */ var _src_pages_genre_genre_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(1016);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_src_pages_login_login_js__WEBPACK_IMPORTED_MODULE_2__, _src_pages_feed_feed_js__WEBPACK_IMPORTED_MODULE_5__, _src_pages_profile_profile_page_js__WEBPACK_IMPORTED_MODULE_8__, _src_services_flux_reducers_root_reducer_js__WEBPACK_IMPORTED_MODULE_10__, _src_pages_genre_genre_js__WEBPACK_IMPORTED_MODULE_12__]);
-([_src_pages_login_login_js__WEBPACK_IMPORTED_MODULE_2__, _src_pages_feed_feed_js__WEBPACK_IMPORTED_MODULE_5__, _src_pages_profile_profile_page_js__WEBPACK_IMPORTED_MODULE_8__, _src_services_flux_reducers_root_reducer_js__WEBPACK_IMPORTED_MODULE_10__, _src_pages_genre_genre_js__WEBPACK_IMPORTED_MODULE_12__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _src_pages_like_like_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(1969);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_src_pages_login_login_js__WEBPACK_IMPORTED_MODULE_2__, _src_pages_feed_feed_js__WEBPACK_IMPORTED_MODULE_5__, _src_pages_profile_profile_page_js__WEBPACK_IMPORTED_MODULE_8__, _src_services_flux_reducers_root_reducer_js__WEBPACK_IMPORTED_MODULE_10__, _src_pages_genre_genre_js__WEBPACK_IMPORTED_MODULE_12__, _src_pages_like_like_js__WEBPACK_IMPORTED_MODULE_13__]);
+([_src_pages_login_login_js__WEBPACK_IMPORTED_MODULE_2__, _src_pages_feed_feed_js__WEBPACK_IMPORTED_MODULE_5__, _src_pages_profile_profile_page_js__WEBPACK_IMPORTED_MODULE_8__, _src_services_flux_reducers_root_reducer_js__WEBPACK_IMPORTED_MODULE_10__, _src_pages_genre_genre_js__WEBPACK_IMPORTED_MODULE_12__, _src_pages_like_like_js__WEBPACK_IMPORTED_MODULE_13__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -46,7 +48,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_src
 
 
 // Создание стора
-const store = (0,_src_services_flux_redux_lite_js__WEBPACK_IMPORTED_MODULE_13__/* .createStore */ .M)(_src_services_flux_reducers_root_reducer_js__WEBPACK_IMPORTED_MODULE_10__/* .rootReducer */ .Q);
+const store = (0,_src_services_flux_redux_lite_js__WEBPACK_IMPORTED_MODULE_14__/* .createStore */ .M)(_src_services_flux_reducers_root_reducer_js__WEBPACK_IMPORTED_MODULE_10__/* .rootReducer */ .Q);
 
 // Экспорт стора, чтобы он был доступен в других частях приложения
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
@@ -64,20 +66,21 @@ const rootElement = document.getElementById('root');
 (0,_src_services_api_auth_js__WEBPACK_IMPORTED_MODULE_0__/* .csrfInit */ .CU)();
 
 const routes = [
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1('/', new _src_pages_main_main_page_js__WEBPACK_IMPORTED_MODULE_1__/* .MainPage */ .h(rootElement), 'guest'),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1('/login', new _src_pages_login_login_js__WEBPACK_IMPORTED_MODULE_2__/* .LoginPage */ .X(rootElement), 'guest'),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1('/start-register', new _src_pages_register_start_register_js__WEBPACK_IMPORTED_MODULE_3__/* .StartRegister */ .a(rootElement), 'guest'),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1('/register', new _src_pages_register_main_register_js__WEBPACK_IMPORTED_MODULE_4__/* .MainRegister */ .t(rootElement), 'guest'),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1('/feed', new _src_pages_feed_feed_js__WEBPACK_IMPORTED_MODULE_5__/* .FeedPage */ .t(rootElement)),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1('/admin', new _src_pages_admin_admin_js__WEBPACK_IMPORTED_MODULE_11__/* .Admin */ .w(rootElement)),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1(/^\/movies\/\d+$/, new _src_pages_content_content_js__WEBPACK_IMPORTED_MODULE_7__/* .ContentPage */ .L(rootElement)),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1('/profile', new _src_pages_profile_profile_page_js__WEBPACK_IMPORTED_MODULE_8__/* .ProfilePage */ .G(rootElement)),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1(/^\/cast\/\d+$/, new _src_pages_cast_cast_js__WEBPACK_IMPORTED_MODULE_9__/* .CastPage */ .M(rootElement)),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .ProtectedRoute */ .i1(/^\/genre\/\w+$/, new _src_pages_genre_genre_js__WEBPACK_IMPORTED_MODULE_12__/* .GenrePage */ .a(rootElement)),
-    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .Route */ .AW('*', new _src_pages_404_404_js__WEBPACK_IMPORTED_MODULE_6__/* .Page404 */ .l(rootElement)),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1('/', new _src_pages_main_main_page_js__WEBPACK_IMPORTED_MODULE_1__/* .MainPage */ .h(rootElement), 'guest'),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1('/login', new _src_pages_login_login_js__WEBPACK_IMPORTED_MODULE_2__/* .LoginPage */ .X(rootElement), 'guest'),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1('/start-register', new _src_pages_register_start_register_js__WEBPACK_IMPORTED_MODULE_3__/* .StartRegister */ .a(rootElement), 'guest'),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1('/register', new _src_pages_register_main_register_js__WEBPACK_IMPORTED_MODULE_4__/* .MainRegister */ .t(rootElement), 'guest'),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1('/feed', new _src_pages_feed_feed_js__WEBPACK_IMPORTED_MODULE_5__/* .FeedPage */ .t(rootElement)),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1('/admin', new _src_pages_admin_admin_js__WEBPACK_IMPORTED_MODULE_11__/* .Admin */ .w(rootElement)),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1(/^\/movies\/\d+$/, new _src_pages_content_content_js__WEBPACK_IMPORTED_MODULE_7__/* .ContentPage */ .L(rootElement)),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1('/profile', new _src_pages_profile_profile_page_js__WEBPACK_IMPORTED_MODULE_8__/* .ProfilePage */ .G(rootElement)),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1(/^\/cast\/\d+$/, new _src_pages_cast_cast_js__WEBPACK_IMPORTED_MODULE_9__/* .CastPage */ .M(rootElement)),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1(/^\/genre\/\w+$/, new _src_pages_genre_genre_js__WEBPACK_IMPORTED_MODULE_12__/* .GenrePage */ .a(rootElement)),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .ProtectedRoute */ .i1('/list', new _src_pages_like_like_js__WEBPACK_IMPORTED_MODULE_13__/* .FavouritesPage */ .L(rootElement)),
+    new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .Route */ .AW('*', new _src_pages_404_404_js__WEBPACK_IMPORTED_MODULE_6__/* .Page404 */ .l(rootElement)),
 ];
 
-new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_14__/* .Router */ .F0(routes, '/login', '/feed', '[spa-link]', 'toasts');
+new _src_services_router_Router_js__WEBPACK_IMPORTED_MODULE_15__/* .Router */ .F0(routes, '/login', '/feed', '[spa-link]', 'toasts');
 
 const isAuth = await (0,_src_services_api_auth_js__WEBPACK_IMPORTED_MODULE_0__/* .checkAccess */ .WD)();
 if (isAuth.ok) {
@@ -85,8 +88,6 @@ if (isAuth.ok) {
 } else {
     localStorage.setItem('authData', false);
 }
-
-
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
@@ -241,9 +242,9 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
         return undefined
     };
 
-  return "                    <a class=\"content-container__advanced-info__genres-link\"\r\n                        href=\"/cast/"
+  return "                    <a class=\"content-container__advanced-info__genres-link\" href=\"/cast/"
     + alias2(alias1((depth0 != null ? lookupProperty(depth0,"id") : depth0), depth0))
-    + "\" spa-link>"
+    + "\"\r\n                        spa-link>"
     + alias2(alias1((depth0 != null ? lookupProperty(depth0,"name") : depth0), depth0))
     + "\r\n                    </a>\r\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -257,19 +258,19 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
   return ((stack1 = container.invokePartial(__webpack_require__(1895),depth0,{"name":"partial/header/partial-header","hash":{"feedPage":true,"kind":"feed-page"},"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\r\n\r\n<div class=\"content-container\">\r\n\r\n    <h1 class=\"content-container__title\">"
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"film") : depth0)) != null ? lookupProperty(stack1,"film") : stack1)) != null ? lookupProperty(stack1,"name") : stack1), depth0))
-    + "</h1>\r\n    <video controls\r\n        controlslist=\"nodownload noremoteplayback\"\r\n        class=\"content-container__player\">\r\n        <source\r\n            src=\""
+    + "</h1>\r\n    <video controls controlslist=\"nodownload noremoteplayback\" class=\"content-container__player\">\r\n        <source src=\""
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"film") : depth0)) != null ? lookupProperty(stack1,"film") : stack1)) != null ? lookupProperty(stack1,"mediaPath") : stack1), depth0))
-    + "\"\r\n            type=\"video/mp4\" />\r\n    </video>\r\n    <div class=\"content-container__player__actions\">\r\n"
+    + "\" type=\"video/mp4\" />\r\n    </video>\r\n    <div class=\"content-container__player__actions\">\r\n"
     + ((stack1 = container.invokePartial(__webpack_require__(872),depth0,{"name":"partial/button/btn-action","hash":{"kind":"prev","id":"prev-button"},"data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + ((stack1 = container.invokePartial(__webpack_require__(872),depth0,{"name":"partial/button/btn-action","hash":{"kind":"next","id":"next-button"},"data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "    </div>\r\n    <div class=\"content-container__advanced-info\">\r\n        <div class=\"content-container__advanced-info__meta\">\r\n            <div class=\"content-container__advanced-info__meta-year\"><b>Год\r\n                    выхода:</b>\r\n                "
+    + "    </div>\r\n    <div class=\"content-container__advanced-info\">\r\n        <div class=\"content__like\">Добавить в избранное <button class=\"heart-button\">&#x2665;</button></div>\r\n        <div class=\"content-container__advanced-info__meta\">\r\n            <div class=\"content-container__advanced-info__meta-year\"><b>Год\r\n                    выхода:</b>\r\n                "
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"film") : depth0)) != null ? lookupProperty(stack1,"film") : stack1)) != null ? lookupProperty(stack1,"releaseYear") : stack1), depth0))
     + "</div>\r\n            <div class=\"content-container__advanced-info__meta-age\"><b>Возрастное\r\n                    ограничение:</b> "
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"film") : depth0)) != null ? lookupProperty(stack1,"film") : stack1)) != null ? lookupProperty(stack1,"ageRestriction") : stack1), depth0))
-    + "+</div>\r\n            <div class=\"content-container__advanced-info__meta-rating\"><b>Рейтинг:</b>\r\n                <span id=\"rating\"></span></div>\r\n            <div class=\"content-container__advanced-info__meta-time\"><b>Длительность:</b>\r\n                <span id=\"duration\"></span></div>\r\n        </div>\r\n        <div class=\"content-container__advanced-info__about\">\r\n            <div class=\"content-container__advanced-info__description\">\r\n                "
+    + "+</div>\r\n            <div class=\"content-container__advanced-info__meta-rating\"><b>Рейтинг:</b>\r\n                <span id=\"rating\"></span>\r\n            </div>\r\n            <div class=\"content-container__advanced-info__meta-time\"><b>Длительность:</b>\r\n                <span id=\"duration\"></span>\r\n            </div>\r\n        </div>\r\n        <div class=\"content-container__advanced-info__about\">\r\n            <div class=\"content-container__advanced-info__description\">\r\n                "
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"film") : depth0)) != null ? lookupProperty(stack1,"film") : stack1)) != null ? lookupProperty(stack1,"description") : stack1), depth0))
     + "\r\n            </div>\r\n\r\n            <div class=\"content-container__advanced-info__genres\">\r\n                <div class=\"content-container__advanced-info__genres-title\">\r\n                    <b>Актеры</b>\r\n                </div>\r\n                <div class=\"content-container__advanced-info__genres-list\">\r\n"
-    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"film") : depth0)) != null ? lookupProperty(stack1,"artists") : stack1),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":40,"column":20},"end":{"line":44,"column":29}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"film") : depth0)) != null ? lookupProperty(stack1,"artists") : stack1),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":39,"column":20},"end":{"line":43,"column":29}}})) != null ? stack1 : "")
     + "                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n"
     + ((stack1 = container.invokePartial(__webpack_require__(4582),depth0,{"name":"partial/footer/partial-footer","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"usePartial":true,"useData":true});
@@ -416,6 +417,68 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     var stack1;
 
   return ((stack1 = container.invokePartial(__webpack_require__(698),depth0,{"name":"genre-item","hash":{"content":depth0},"data":data,"indent":"    ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return ((stack1 = container.invokePartial(__webpack_require__(1895),depth0,{"name":"partial/header/partial-header","hash":{"kind":"feed-page","feedPage":true},"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "\r\n<div class=\"glow-title\">"
+    + container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"title") : depth0), depth0))
+    + "</div>\r\n<div class=\"genre-container\">\r\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"content") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":4},"end":{"line":7,"column":13}}})) != null ? stack1 : "")
+    + "</div>\r\n\r\n"
+    + ((stack1 = container.invokePartial(__webpack_require__(4582),depth0,{"name":"partial/footer/partial-footer","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+},"usePartial":true,"useData":true});
+
+/***/ }),
+
+/***/ 1982:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var Handlebars = __webpack_require__(202);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"feed-collection__container-card\" title=\""
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"name") : depth0), depth0))
+    + "\">\r\n    <video height=\"400\" width=\"350\" class=\"feed-collection__container-card__video\" playsinline muted preload=\"none\"\r\n        poster=\""
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"previewPath") : depth0), depth0))
+    + "\">\r\n        <source src=\""
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"previewVideoPath") : depth0), depth0))
+    + "\" type='video/mp4'>\r\n    </video>\r\n    <div class=\"feed-collection__advanced-info\">\r\n        <a href=\"/movies/"
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"id") : depth0), depth0))
+    + "\" class=\"feed-collection__advanced-info__link\" spa-link>\r\n            <div class=\"feed-collection__advanced-info__name\">"
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"name") : depth0), depth0))
+    + "</div>\r\n        </a>\r\n        <div class=\"feed-collection__advanced-info__rating\" data-rating=\""
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"rating") : depth0), depth0))
+    + "\">"
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"rating") : depth0), depth0))
+    + "\r\n        </div>\r\n        <button class=\"heart-button\" id=\""
+    + alias2(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"id","hash":{},"data":data,"loc":{"start":{"line":12,"column":41},"end":{"line":12,"column":47}}}) : helper)))
+    + "\">&#128148;</button>\r\n    </div>\r\n</div>";
+},"useData":true});
+
+/***/ }),
+
+/***/ 7894:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var Handlebars = __webpack_require__(202);
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = container.invokePartial(__webpack_require__(1982),depth0,{"name":"like-item","hash":{"content":depth0},"data":data,"indent":"    ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -814,7 +877,7 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 var Handlebars = __webpack_require__(202);
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"header-content__links\">\r\n            <a href=\"/\" spa-link>Начало</a>\r\n            <a href=\"/admin\" spa-link>Статистика</a>\r\n            <a href=\"#serials\" disable=\"true\">Сериалы</a>\r\n            <a href=\"#films\" disable=\"true\">Фильмы</a>\r\n            <a href=\"#list\" disable=\"true\">Избранное</a>\r\n        </div>\r\n";
+    return "        <div class=\"header-content__links\">\r\n            <a href=\"/\" spa-link>Начало</a>\r\n            <a href=\"/admin\" spa-link>Статистика</a>\r\n            <a href=\"#serials\" disable=\"true\">Сериалы</a>\r\n            <a href=\"/list\" spa-link>Избранное</a>\r\n        </div>\r\n        <div style=\"display: flex; flex-direction: column\">\r\n            <div class=\"search-box\">\r\n                <button class=\"btn-search\"><i class=\"search-icon\"></i></button>\r\n                <input type=\"text\" class=\"input-search\" placeholder=\"Поищем?)\">\r\n            </div>\r\n            <div id=\"search-list\" class=\"dropdown hover\">\r\n                <ul id=\"dropdown-list\"></ul>\r\n            </div>\r\n        </div>\r\n";
 },"3":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -848,14 +911,14 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + "\">\r\n    <div class=\"header-content__row\">\r\n        <!-- Колонка логотипа {Существует всегда} -->\r\n        <div class=\"header-content__column\">\r\n"
     + ((stack1 = container.invokePartial(__webpack_require__(8221),depth0,{"name":"partial/netflix-logo/netflix-logo","data":data,"indent":"            ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "        </div>\r\n\r\n        <!-- Колонка ссылок {Только у подборок} -->\r\n"
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"feedPage") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":9,"column":8},"end":{"line":17,"column":15}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"feedPage") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":9,"column":8},"end":{"line":25,"column":15}}})) != null ? stack1 : "")
     + "\r\n        <!-- Колонка действие {\r\n                                    Существует вариативно:\r\n                                    -main: Ссылка входа\r\n                                    -login: отстуствует\r\n                                    -register: Ссылка входа\r\n                                    -feed: DropdownList с аватаркой пользователя и меню действий\r\n                                    } \r\n            -->\r\n        <div class=\"col d-flex justify-content-end\">\r\n\r\n"
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"mainPage") : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":29,"column":12},"end":{"line":32,"column":19}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"mainPage") : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":37,"column":12},"end":{"line":40,"column":19}}})) != null ? stack1 : "")
     + "\r\n"
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"regPage") : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":34,"column":12},"end":{"line":37,"column":19}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"regPage") : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":42,"column":12},"end":{"line":45,"column":19}}})) != null ? stack1 : "")
     + "\r\n"
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"profilePage") : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":39,"column":12},"end":{"line":51,"column":19}}})) != null ? stack1 : "")
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"feedPage") : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":52,"column":12},"end":{"line":73,"column":19}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"profilePage") : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":47,"column":12},"end":{"line":59,"column":19}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"feedPage") : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":60,"column":12},"end":{"line":81,"column":19}}})) != null ? stack1 : "")
     + "\r\n        </div>\r\n    </div>\r\n</div>";
 },"usePartial":true,"useData":true});
 
@@ -2537,7 +2600,7 @@ __webpack_require__.d(__webpack_exports__, {
 
 
 const getStateSurvey = () => {
-    return fetch(`${NETFLIX_API}/survey/stat`, {
+    return fetch(`${SURVEY_API}/stat`, {
         method: 'GET', headers: {
             'Content-Type': 'application/json;charset=utf-8',
         }, credentials: 'include',
@@ -2598,7 +2661,7 @@ const getStateSurveyMock = () => {
 };
 
 const getCheckSurvey = (key) => {
-    return fetch(`${NETFLIX_API}/survey/check/${key}`, {
+    return fetch(`${SURVEY_API}/check/${key}`, {
         method: 'GET', headers: {
             'Content-Type': 'application/json;charset=utf-8',
         }, credentials: 'include',
@@ -2610,6 +2673,7 @@ const getCheckSurvey = (key) => {
         return response.json();
     })
         .then(data => {
+            console.log(data)
             return data;
         })
         .catch(error => {
@@ -2829,6 +2893,8 @@ var content_content = __webpack_require__(1771);
 var content_default = /*#__PURE__*/__webpack_require__.n(content_content);
 // EXTERNAL MODULE: ./src/services/api/user.js + 1 modules
 var user = __webpack_require__(8515);
+// EXTERNAL MODULE: ./src/services/api/like.js
+var like = __webpack_require__(3006);
 ;// CONCATENATED MODULE: ./src/pages/content/content.js
 
 
@@ -2853,7 +2919,7 @@ class ContentPage {
         this.#parent.innerHTML = content_default()({ film: film.body });
 
         const video = document.querySelector('video');
-        video.addEventListener('loadedmetadata', function () {
+        video.addEventListener('loadedmetadata', function() {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -2865,7 +2931,7 @@ class ContentPage {
 
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
 
-        document.getElementById('logout').addEventListener('click', async function () {
+        document.getElementById('logout').addEventListener('click', async function() {
             const response = await (0,auth/* logoutRequest */.Tz)();
             if (response.ok) {
                 (0,Router/* navigate */.c4)('/login');
@@ -2888,21 +2954,21 @@ class ContentPage {
         const { previous, next } = getAdjacentElements(idsArray, Number(id));
         prevLink.href = previous ? `/movies/${previous}` : `/movies/${id}`;
         nextLink.href = next ? `/movies/${next}` : `/movies/${id}`;
-
+        document.querySelector('.heart-button').addEventListener('click', () => {
+            (0,like/* setLike */.AB)(id);
+        });
         videoController();
 
        /* if (document.querySelector('iframe')) {
             document.querySelector('iframe').remove();
         }
-        const access = await getCheckSurvey('nps');
-        if (access.body.passed === 'false') {
-            const frame = document.createElement('iframe');
-            frame.width = '889';
-            frame.height = '500';
-            frame.src = 'http://localhost:4510/nps';
-            frame.frameBorder = '0';
-            frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-            frame.allowFullscreen = true;
+        const frame = document.createElement('iframe');
+        frame.width = '889';
+        frame.height = '500';
+        frame.src = 'http://localhost:81/nps';
+        frame.frameBorder = '0';
+        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        frame.allowFullscreen = true;
 
             document.body.appendChild(frame);
         }*/
@@ -3080,14 +3146,20 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */   t: () => (/* binding */ FeedPage)
 /* harmony export */ });
 /* harmony import */ var _services_api_auth_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3232);
-/* harmony import */ var _services_router_Router_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(815);
+/* harmony import */ var _services_router_Router_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(815);
 /* harmony import */ var _components_feed_collection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5904);
 /* harmony import */ var _feed_page_hbs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1182);
 /* harmony import */ var _feed_page_hbs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_feed_page_hbs__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6010);
 /* harmony import */ var _services_flux_actions_collections_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5386);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([___WEBPACK_IMPORTED_MODULE_3__, _services_flux_actions_collections_js__WEBPACK_IMPORTED_MODULE_4__]);
-([___WEBPACK_IMPORTED_MODULE_3__, _services_flux_actions_collections_js__WEBPACK_IMPORTED_MODULE_4__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _services_flux_actions_user_info_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9429);
+/* harmony import */ var _services_debounce_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2945);
+/* harmony import */ var _services_api_search_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(4677);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([___WEBPACK_IMPORTED_MODULE_3__, _services_flux_actions_collections_js__WEBPACK_IMPORTED_MODULE_4__, _services_flux_actions_user_info_js__WEBPACK_IMPORTED_MODULE_5__]);
+([___WEBPACK_IMPORTED_MODULE_3__, _services_flux_actions_collections_js__WEBPACK_IMPORTED_MODULE_4__, _services_flux_actions_user_info_js__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
 
 
 
@@ -3127,7 +3199,7 @@ class FeedPage {
 
         ___WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .ZP.dispatch((0,_services_flux_actions_collections_js__WEBPACK_IMPORTED_MODULE_4__/* .$sendCollectionAliasRequest */ .zU)());
         console.info(___WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .ZP.getState());
-        ___WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .ZP.subscribe(() => {
+        ___WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .ZP.subscribe(_services_flux_actions_collections_js__WEBPACK_IMPORTED_MODULE_4__/* .COLLECTION_REDUCER */ .rr, () => {
 
             const state = ___WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .ZP.getState().collections;
             this.#parent.innerHTML = _feed_page_hbs__WEBPACK_IMPORTED_MODULE_2___default()({ 'preview': state.preview, 'id': 'playButton' });
@@ -3135,7 +3207,7 @@ class FeedPage {
             document.getElementById('logout').addEventListener('click', async function () {
                 const response = await (0,_services_api_auth_js__WEBPACK_IMPORTED_MODULE_0__/* .logoutRequest */ .Tz)();
                 if (response.ok) {
-                    (0,_services_router_Router_js__WEBPACK_IMPORTED_MODULE_5__/* .navigate */ .c4)('/login');
+                    (0,_services_router_Router_js__WEBPACK_IMPORTED_MODULE_6__/* .navigate */ .c4)('/login');
                 }
             });
 
@@ -3143,7 +3215,59 @@ class FeedPage {
             btn.addEventListener('click', () => {
                 btn.href = '/movies/' + state.preview.id;
             });
+
+            const inputSearch = document.querySelector('.input-search');
+
+            // Добавляем обработчик события oninput с использованием debounce
+            inputSearch.addEventListener('input', (0,_services_debounce_js__WEBPACK_IMPORTED_MODULE_7__/* .debounce */ .D)(function (event) {
+                const query = event.target.value;
+                fetchData(query);
+            }, 1000));
+
         });
+
+        ___WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .ZP.dispatch((0,_services_flux_actions_user_info_js__WEBPACK_IMPORTED_MODULE_5__/* .$sentUserInfoRequest */ .dl)());
+
+        ___WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .ZP.subscribe(_services_flux_actions_user_info_js__WEBPACK_IMPORTED_MODULE_5__/* .USER_REDUCER */ .$_, () => {
+            const stateUser = ___WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .ZP.getState().user.userInfo;
+            if (stateUser) {
+                if (stateUser.user.imagePath.length > 0) {
+                    console.info(document.querySelectorAll('img[data-avatar]'));
+                    /**
+                     * Тут сделать подстановку аватарки
+                     */
+                }
+            }
+
+        });
+
+        // Функция для выполнения запроса на сервер
+        function fetchData(query) {
+            // Здесь вы можете выполнить запрос на сервер с использованием fetch или других средств
+            // В данном примере используем console.log вместо реального запроса
+            console.log('Fetching data for query:', query);
+            (0,_services_api_search_js__WEBPACK_IMPORTED_MODULE_8__/* .searchRequest */ .i)(query)
+                .then(response => {
+                    console.log(response);
+                });
+            // Здесь можно обновить выпадающий список с результатами
+            updateDropdownList(['Result 1', 'Result 2', 'Result 3']);
+        }
+
+        // Функция для обновления выпадающего списка
+        function updateDropdownList(results) {
+            const dropdownList = document.getElementById('dropdown-list');
+            document.getElementById('search-list').classList.add('visible');
+            dropdownList.innerHTML = '';
+            results.forEach(result => {
+                const listItem = document.createElement('li');
+                listItem.className = 'dropdown-item';
+                listItem.textContent = result;
+                dropdownList.appendChild(listItem);
+            });
+        }
+
+        // Получаем поле ввода
 
         /*if (document.querySelector('iframe')) {
             document.querySelector('iframe').remove();
@@ -3155,7 +3279,7 @@ class FeedPage {
         const frame = document.createElement('iframe');
         frame.width = '889';
         frame.height = '500';
-        frame.src = 'http://localhost:4510/csi_feed';
+        frame.src = 'http://localhost:81/csi/feed';
         frame.frameBorder = '0';
         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
         frame.allowFullscreen = true;
@@ -3271,6 +3395,104 @@ class GenrePage {
             });
             this.ratingFillColor();
         }
+
+    }
+}
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 1969:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   L: () => (/* binding */ FavouritesPage)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6010);
+/* harmony import */ var _services_api_like__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3006);
+/* harmony import */ var _services_flux_actions_like__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9528);
+/* harmony import */ var _like_hbs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7894);
+/* harmony import */ var _like_hbs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_like_hbs__WEBPACK_IMPORTED_MODULE_2__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([___WEBPACK_IMPORTED_MODULE_0__, _services_flux_actions_like__WEBPACK_IMPORTED_MODULE_1__]);
+([___WEBPACK_IMPORTED_MODULE_0__, _services_flux_actions_like__WEBPACK_IMPORTED_MODULE_1__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+
+
+/**
+ * Класс, представляющий страницу члена съёмочной группы.
+ */
+class FavouritesPage {
+    #parent;
+
+    /**
+     * Создает новый экземпляр класса CastPage.
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
+     */
+    constructor(parent = document.getElementById('root')) {
+        this.#parent = parent;
+    }
+
+    ratingFillColor() {
+        // Получите все элементы с рейтингом
+        const ratingElements = document.querySelectorAll('.feed-collection__advanced-info__rating');
+        // Переберите элементы и добавьте классы в зависимости от значения рейтинга
+        ratingElements.forEach(element => {
+            const rating = parseInt(element.getAttribute('data-rating'), 10);
+
+            if (rating >= 7) {
+                element.classList.add('rating-high');
+            } else if (rating >= 4) {
+                element.classList.add('rating-medium');
+            } else {
+                element.classList.add('rating-low');
+            }
+        });
+    }
+
+    /**
+     * Рендерит страницу.
+     */
+    async render() {
+        this.#parent.innerHTML = '';
+
+        ___WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP.dispatch((0,_services_flux_actions_like__WEBPACK_IMPORTED_MODULE_1__/* .$sendGetFavourites */ .xB)());
+        ___WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP.subscribe('FAVOURITES_REDUCER', () => {
+            console.info(___WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP.getState());
+
+            const startContent = ___WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP.getState().favourites.favourites.videos;
+
+            const roundedMovies = startContent.map(movie => {
+                // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
+                const roundedRating = parseFloat(movie.rating.toFixed(1));
+                // Создайте новый объект с округленным значением rating
+
+                return { ...movie, rating: roundedRating };
+            });
+            console.info(startContent);
+
+            this.#parent.innerHTML = _like_hbs__WEBPACK_IMPORTED_MODULE_2___default()({
+                title: 'Избранное',
+                content: roundedMovies,
+            });
+            this.ratingFillColor();
+
+            document.querySelectorAll('.heart-button').forEach(button => {
+                console.log(button)
+                button.addEventListener('click', (event) => {
+                    console.log('event');
+                    (0,_services_api_like__WEBPACK_IMPORTED_MODULE_3__/* .deleteLike */ .Nk)(button.id)
+                        .then(res => {
+                            button.style.display = 'none';
+                        })
+                });
+            });
+        });
 
     }
 }
@@ -3472,7 +3694,7 @@ class ProfilePage {
         /**
          * Подписка сраюотает при изменении стора
          */
-        _index_js__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .ZP.subscribe(() => {
+        _index_js__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .ZP.subscribe(_services_flux_actions_user_info_js__WEBPACK_IMPORTED_MODULE_5__/* .USER_REDUCER */ .$_, () => {
             const stateUser = _index_js__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .ZP.getState().user.userInfo;
             if (stateUser) {
                 if (stateUser.user.email) {
@@ -3567,7 +3789,9 @@ class ProfilePage {
                         document.querySelector('iframe').remove();
                     }
                     const access = await getCheckSurvey('csi_profile');
-                    if (access.body.passed == 'false') {
+                    console.info(access.body.passed)
+                    if (access.body.passed == false) {
+                        console.info("test")
                         const frame = document.createElement('iframe');
                         frame.width = '889';
                         frame.height = '500';
@@ -3781,7 +4005,7 @@ const loginRequest = (email, password) => {
         new _components_notify_notify_js__WEBPACK_IMPORTED_MODULE_0__/* .Notify */ .g('Нет соединения');
     }
 
-    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_API */ .D}/auth/login`, {
+    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_AUTH_API */ .J}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -3804,7 +4028,7 @@ const loginRequest = (email, password) => {
 };
 
 const csrfInit = () => {
-    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_API */ .D}/csrf`, {
+    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_AUTH_API */ .J}/csrf`, {
         method: 'GET',
         credentials: 'include',
     })
@@ -3825,7 +4049,7 @@ const registerRequest = (email, password) => {
         new _components_notify_notify_js__WEBPACK_IMPORTED_MODULE_0__/* .Notify */ .g('Нет соединения');
     }
 
-    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_API */ .D}/auth/register`, {
+    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_AUTH_API */ .J}/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -3849,7 +4073,7 @@ const logoutRequest = () => {
         new _components_notify_notify_js__WEBPACK_IMPORTED_MODULE_0__/* .Notify */ .g('Нет соединения');
     }
 
-    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_API */ .D}/auth/logout`, {
+    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_AUTH_API */ .J}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -3867,7 +4091,7 @@ const logoutRequest = () => {
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 const checkAccess = () => {
-    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_API */ .D}/auth/check`, {
+    return fetch(`${_const_js__WEBPACK_IMPORTED_MODULE_1__/* .NETFLIX_AUTH_API */ .J}/auth/check`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -3888,9 +4112,11 @@ const checkAccess = () => {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   D: () => (/* binding */ NETFLIX_API)
+/* harmony export */   D: () => (/* binding */ NETFLIX_API),
+/* harmony export */   J: () => (/* binding */ NETFLIX_AUTH_API)
 /* harmony export */ });
-const NETFLIX_API = 'http://localhost:8080/api/v1';
+const NETFLIX_AUTH_API = 'http://localhost:3001/api/v1';
+const NETFLIX_API = 'http://localhost:3002/api/v1';
 
 
 /***/ }),
@@ -4032,6 +4258,111 @@ const getTopRated = () => {
 
 /***/ }),
 
+/***/ 3006:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AB: () => (/* binding */ setLike),
+/* harmony export */   Nk: () => (/* binding */ deleteLike),
+/* harmony export */   UE: () => (/* binding */ getLike)
+/* harmony export */ });
+/* harmony import */ var _getCookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6439);
+/* harmony import */ var _const__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8395);
+
+
+
+const setLike = (id) => {
+    return fetch(`${_const__WEBPACK_IMPORTED_MODULE_0__/* .NETFLIX_API */ .D}/video/favourites/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRF-TOKEN': (0,_getCookie__WEBPACK_IMPORTED_MODULE_1__/* .getCookie */ .e)('csrf-token'),
+        },
+        credentials: 'include',
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+    })
+        .then(data => {
+            return data;
+        });
+};
+
+const getLike = () => {
+    return fetch(`${_const__WEBPACK_IMPORTED_MODULE_0__/* .NETFLIX_API */ .D}/video/favourites`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRF-TOKEN': (0,_getCookie__WEBPACK_IMPORTED_MODULE_1__/* .getCookie */ .e)('csrf-token'),
+        },
+        credentials: 'include',
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+    })
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            throw (error);
+        });
+};
+
+const deleteLike = (id) => {
+    return fetch(`${_const__WEBPACK_IMPORTED_MODULE_0__/* .NETFLIX_API */ .D}/video/favourites/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRF-TOKEN': (0,_getCookie__WEBPACK_IMPORTED_MODULE_1__/* .getCookie */ .e)('csrf-token'),
+        },
+        credentials: 'include',
+    }).then(response => {
+        return response;
+    });
+};
+
+
+/***/ }),
+
+/***/ 4677:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   i: () => (/* binding */ searchRequest)
+/* harmony export */ });
+/* harmony import */ var _getCookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6439);
+/* harmony import */ var _const__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8395);
+
+
+
+const searchRequest = (value) => {
+    return fetch(`${_const__WEBPACK_IMPORTED_MODULE_0__/* .NETFLIX_API */ .D}/search/${value}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRF-TOKEN': (0,_getCookie__WEBPACK_IMPORTED_MODULE_1__/* .getCookie */ .e)('csrf-token'),
+        },
+        credentials: 'include',
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+    })
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            throw (error);
+        });
+};
+
+
+/***/ }),
+
 /***/ 8515:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4135,6 +4466,27 @@ const setUserInfo = (data) => {
 
 /***/ }),
 
+/***/ 2945:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   D: () => (/* binding */ debounce)
+/* harmony export */ });
+function debounce(func, delay) {
+    let timeoutId;
+
+    return function(...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func(...args);
+        }, delay);
+    };
+}
+
+
+/***/ }),
+
 /***/ 7290:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -4198,6 +4550,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */   OU: () => (/* binding */ COLLECTION_SUCCESS),
 /* harmony export */   bv: () => (/* binding */ COLLECTION_REQUEST),
 /* harmony export */   dc: () => (/* binding */ COLLECTION_PREVIEW),
+/* harmony export */   rr: () => (/* binding */ COLLECTION_REDUCER),
 /* harmony export */   zU: () => (/* binding */ $sendCollectionAliasRequest)
 /* harmony export */ });
 /* unused harmony exports $collectionRequest, $collectionSuccess, $collectionError, $collectionPreview */
@@ -4215,13 +4568,16 @@ const COLLECTION_PREVIEW = 'COLLECTION_PREVIEW';
 /**
  * Генераторы экшенов
  */
-const $collectionRequest = () => ({ type: COLLECTION_REQUEST });
 
-const $collectionSuccess = (data) => ({ type: COLLECTION_SUCCESS, payload: data });
+const COLLECTION_REDUCER = 'COLLECTION_REDUCER'; // Задайте имя вашего редьюсера
 
-const $collectionError = (error) => ({ type: COLLECTION_ERROR, payload: { isError: true, error: error } });
+const $collectionRequest = () => ({ type: COLLECTION_REQUEST, reducerName: COLLECTION_REDUCER });
 
-const $collectionPreview = (preview) => ({ type: COLLECTION_PREVIEW, payload: preview });
+const $collectionSuccess = (data) => ({ type: COLLECTION_SUCCESS, payload: data, reducerName: COLLECTION_REDUCER });
+
+const $collectionError = (error) => ({ type: COLLECTION_ERROR, payload: { isError: true, error: error }, reducerName: COLLECTION_REDUCER });
+
+const $collectionPreview = (preview) => ({ type: COLLECTION_PREVIEW, payload: preview, reducerName: COLLECTION_REDUCER });
 
 const $sendCollectionAliasRequest = () => {
     ___WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP.dispatch($collectionRequest());
@@ -4256,6 +4612,40 @@ const $sendCollectionAliasRequest = () => {
         });
 
 };
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 9528:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   iG: () => (/* binding */ GET_FAVOURITES),
+/* harmony export */   xB: () => (/* binding */ $sendGetFavourites)
+/* harmony export */ });
+/* unused harmony export $getFavourites */
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6010);
+/* harmony import */ var _api_like__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3006);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([___WEBPACK_IMPORTED_MODULE_0__]);
+___WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
+const GET_FAVOURITES = 'GET_FAVOURITES';
+
+const $getFavourites = (data) => ({ type: GET_FAVOURITES, payload: data, reducerName: 'FAVOURITES_REDUCER' });
+
+const $sendGetFavourites = () => {
+    (0,_api_like__WEBPACK_IMPORTED_MODULE_1__/* .getLike */ .UE)()
+        .then(response => {
+            ___WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP.dispatch($getFavourites(response.body));
+        });
+};
+
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
 
@@ -4267,6 +4657,7 @@ __webpack_async_result__();
 "use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   $_: () => (/* binding */ USER_REDUCER),
 /* harmony export */   II: () => (/* binding */ USER_INFO_SUCCESS),
 /* harmony export */   dl: () => (/* binding */ $sentUserInfoRequest),
 /* harmony export */   gm: () => (/* binding */ USER_INFO_REQUEST),
@@ -4286,11 +4677,14 @@ const USER_INFO_ERROR = 'USER_INFO_ERROR';
 /**
  * Генераторы экшенов
  */
-const $userInfoRequest = () => ({ type: USER_INFO_REQUEST });
 
-const $userInfoSuccess = (info) => ({ type: USER_INFO_SUCCESS, payload:  info });
+const USER_REDUCER = 'USER_REDUCER';
 
-const $userInfoError = (error) => ({ type: USER_INFO_ERROR, payload: { isError: true, error: error } });
+const $userInfoRequest = () => ({ type: USER_INFO_REQUEST, reducerName: USER_REDUCER });
+
+const $userInfoSuccess = (info) => ({ type: USER_INFO_SUCCESS, payload: info, reducerName: USER_REDUCER });
+
+const $userInfoError = (error) => ({ type: USER_INFO_ERROR, payload: { isError: true, error: error }, reducerName: USER_REDUCER });
 
 const $sentUserInfoRequest = () => {
     ___WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP.dispatch($userInfoRequest());
@@ -4394,6 +4788,38 @@ __webpack_async_result__();
 
 /***/ }),
 
+/***/ 9874:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   H: () => (/* binding */ favouritesReducer)
+/* harmony export */ });
+/* harmony import */ var _actions_like__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9528);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_actions_like__WEBPACK_IMPORTED_MODULE_0__]);
+_actions_like__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+const initialState = {
+    favourites: null,
+};
+
+const favouritesReducer = (state = initialState, action) => {
+    console.log(action);
+    switch (action.type) {
+        case _actions_like__WEBPACK_IMPORTED_MODULE_0__/* .GET_FAVOURITES */ .iG:
+            return { ...state, favourites: action.payload };
+        default:
+            return state;
+    }
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
 /***/ 7041:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -4402,22 +4828,25 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Q: () => (/* binding */ rootReducer)
 /* harmony export */ });
-/* harmony import */ var _redux_lite__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8130);
+/* harmony import */ var _redux_lite__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8130);
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6355);
 /* harmony import */ var _collections__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5470);
-/* harmony import */ var _user_info__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4412);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_auth__WEBPACK_IMPORTED_MODULE_0__, _collections__WEBPACK_IMPORTED_MODULE_1__, _user_info__WEBPACK_IMPORTED_MODULE_2__]);
-([_auth__WEBPACK_IMPORTED_MODULE_0__, _collections__WEBPACK_IMPORTED_MODULE_1__, _user_info__WEBPACK_IMPORTED_MODULE_2__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _like__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9874);
+/* harmony import */ var _user_info__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4412);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_auth__WEBPACK_IMPORTED_MODULE_0__, _collections__WEBPACK_IMPORTED_MODULE_1__, _like__WEBPACK_IMPORTED_MODULE_2__, _user_info__WEBPACK_IMPORTED_MODULE_3__]);
+([_auth__WEBPACK_IMPORTED_MODULE_0__, _collections__WEBPACK_IMPORTED_MODULE_1__, _like__WEBPACK_IMPORTED_MODULE_2__, _user_info__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
 
 
 // Создаем стор с использованием combineReducers
-const rootReducer = (0,_redux_lite__WEBPACK_IMPORTED_MODULE_3__/* .combineReducers */ .U)({
+const rootReducer = (0,_redux_lite__WEBPACK_IMPORTED_MODULE_4__/* .combineReducers */ .U)({
     auth: _auth__WEBPACK_IMPORTED_MODULE_0__/* .authReducer */ .d,
-    user: _user_info__WEBPACK_IMPORTED_MODULE_2__/* .userReducer */ .M,
+    user: _user_info__WEBPACK_IMPORTED_MODULE_3__/* .userReducer */ .M,
     collections: _collections__WEBPACK_IMPORTED_MODULE_1__/* .collectionsReducer */ .x,
+    favourites: _like__WEBPACK_IMPORTED_MODULE_2__/* .favouritesReducer */ .H,
     // Добавьте другие редьюсеры при необходимости
 });
 
@@ -4473,28 +4902,27 @@ __webpack_async_result__();
 /* harmony export */   M: () => (/* binding */ createStore),
 /* harmony export */   U: () => (/* binding */ combineReducers)
 /* harmony export */ });
-/* eslint-disable no-undef */
 const createStore = (reducer, initialState) => {
   let state = initialState;
-  let subscribers = [];
+  const subscribers = {};
 
   return {
     dispatch(action) {
-      if (action) {
-        if (Object.prototype.hasOwnProperty.call(action, 'type')) {
-          state = reducer(state, action);
-          subscribers.forEach((cb) => cb());
-          console.log(state);
-          return action;
-        }
-        else {
-          action(this.dispatch, this.getState);
-        }
+      if (action && Object.prototype.hasOwnProperty.call(action, 'type')) {
+        state = reducer(state, action);
+        const reducerName = action.reducerName || 'default';
+        subscribers[reducerName]?.forEach((cb) => cb());
+
+        return action;
+      } else if (action) {
+        action(this.dispatch, this.getState);
       }
     },
-    subscribe(cb) {
-      // eslint-disable-next-line no-const-assign
-      subscribers = [...subscribers, cb];
+    subscribe(reducerName, cb) {
+      if (!subscribers[reducerName]) {
+        subscribers[reducerName] = [];
+      }
+      subscribers[reducerName].push(cb);
     },
     getState() {
       return state;

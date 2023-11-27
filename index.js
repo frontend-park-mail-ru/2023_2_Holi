@@ -15,6 +15,8 @@ import { createStore } from './src/services/flux/redux-lite.js';
 import { rootReducer } from './src/services/flux/reducers/root-reducer.js';
 import { Admin } from './src/pages/admin/admin.js';
 import { GenrePage } from './src/pages/genre/genre.js';
+import { FavouritesPage } from './src/pages/like/like.js';
+import { seachHandler } from './src/services/search-utils.js';
 
 // Создание стора
 const store = createStore(rootReducer);
@@ -45,10 +47,13 @@ const routes = [
     new ProtectedRoute('/profile', new ProfilePage(rootElement)),
     new ProtectedRoute(/^\/cast\/\d+$/, new CastPage(rootElement)),
     new ProtectedRoute(/^\/genre\/\w+$/, new GenrePage(rootElement)),
+    new ProtectedRoute('/list', new FavouritesPage(rootElement)),
     new Route('*', new Page404(rootElement)),
 ];
 
 new Router(routes, '/login', '/feed', '[spa-link]', 'toasts');
+
+seachHandler();
 
 export const isAuth = await checkAccess();
 if (isAuth.ok) {
@@ -56,5 +61,3 @@ if (isAuth.ok) {
 } else {
     localStorage.setItem('authData', false);
 }
-
-

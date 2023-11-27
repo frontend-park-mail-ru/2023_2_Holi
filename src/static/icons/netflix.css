@@ -1,5 +1,5 @@
 @import url(./header-icons.css);
-
+@import url(./search.css);
 @font-face {
   font-family: 'netflix';
   src: url('netflix.woff?g5zjyq') format('woff');

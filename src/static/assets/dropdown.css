@@ -6,12 +6,7 @@
     font-family: Netflix;
 }
 
-.dropdown.toggle>input {
-    display: none;
-}
-
-.dropdown>a,
-.dropdown.toggle>label {
+.dropdown>a {
     border-radius: 2px;
     box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.3);
 }
@@ -79,16 +74,13 @@
     margin: -10px 0 0 60px;
 }
 
-.dropdown a:hover,
-.dropdown.toggle>label:hover,
-.dropdown.toggle>input:checked~label {
+.dropdown-item:hover,
+.dropdown a:hover {
     background-color: #EEE;
     color: #666;
 }
 
-.dropdown>a:hover::after,
-.dropdown.toggle>label:hover::after,
-.dropdown.toggle>input:checked~label::after {
+.dropdown>a:hover::after {
     border-top-color: #AAA;
 }
 
@@ -96,12 +88,12 @@
     border-bottom-color: #EEE;
 }
 
-.dropdown.hover:hover li,
-.dropdown.toggle>input:checked~ul li {
+.dropdown.hover.visible li,
+.dropdown.hover:hover li {
     height: 40px;
 }
 
-.dropdown.hover:hover li:first-child,
-.dropdown.toggle>input:checked~ul li:first-child {
+.dropdown.hover.visible li:first-child,
+.dropdown.hover:hover li:first-child {
     padding-top: 15px;
 }

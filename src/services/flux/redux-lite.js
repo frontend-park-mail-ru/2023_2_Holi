@@ -1,25 +1,24 @@
-/* eslint-disable no-undef */
 export const createStore = (reducer, initialState) => {
   let state = initialState;
-  let subscribers = [];
+  const subscribers = {};
 
   return {
     dispatch(action) {
-      if (action) {
-        if (Object.prototype.hasOwnProperty.call(action, 'type')) {
-          state = reducer(state, action);
-          subscribers.forEach((cb) => cb());
-          console.log(state);
-          return action;
-        }
-        else {
-          action(this.dispatch, this.getState);
-        }
+      if (action && Object.prototype.hasOwnProperty.call(action, 'type')) {
+        state = reducer(state, action);
+        const reducerName = action.reducerName || 'default';
+        subscribers[reducerName]?.forEach((cb) => cb());
+
+        return action;
+      } else if (action) {
+        action(this.dispatch, this.getState);
       }
     },
-    subscribe(cb) {
-      // eslint-disable-next-line no-const-assign
-      subscribers = [...subscribers, cb];
+    subscribe(reducerName, cb) {
+      if (!subscribers[reducerName]) {
+        subscribers[reducerName] = [];
+      }
+      subscribers[reducerName].push(cb);
     },
     getState() {
       return state;
