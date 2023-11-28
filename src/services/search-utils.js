@@ -5,7 +5,7 @@ import { debounce } from './debounce';
 export function fetchData(query) {
     // Здесь вы можете выполнить запрос на сервер с использованием fetch или других средств
     // В данном примере используем console.log вместо реального запроса
-    if (query) {
+    if (query && query.length > 1) {
         searchRequest(query)
             .then(response => {
                 updateDropdownList(response);
@@ -29,11 +29,11 @@ export function updateDropdownList(results) {
     const data = results.body;
 
     if (data.cast) {
+        const ladel = document.createElement('li');
+        ladel.className = 'dropdown-item';
+        ladel.textContent = 'Актеры';
+        dropdownList.appendChild(ladel);
         data.cast.forEach(result => {
-            const ladel = document.createElement('li');
-            ladel.className = 'dropdown-item';
-            ladel.textContent = 'Актеры';
-            dropdownList.appendChild(ladel);
             const listItem = document.createElement('li');
             listItem.className = 'dropdown-item';
             const a = document.createElement('a');
@@ -45,11 +45,11 @@ export function updateDropdownList(results) {
         });
     }
     if (data.films) {
+        const ladel = document.createElement('li');
+        ladel.className = 'dropdown-item';
+        ladel.textContent = 'Фильмы/Сериалы';
+        dropdownList.appendChild(ladel);
         data.films.forEach(result => {
-            const ladel = document.createElement('li');
-            ladel.className = 'dropdown-item';
-            ladel.textContent = 'Фильмы';
-            dropdownList.appendChild(ladel);
             const listItem = document.createElement('li');
             listItem.className = 'dropdown-item';
             const a = document.createElement('a');
