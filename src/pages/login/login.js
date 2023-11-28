@@ -6,6 +6,8 @@ import { navigate } from '../../services/router/Router.js';
 import store from '../../../index.js';
 import login from './login-page.hbs';
 import { $sentAuthRequest } from '../../services/flux/actions/auth.js';
+import { validatePassword } from '../../services/validate.js';
+import { Notify } from '../../components/notify/notify.js';
 
 /**
  * Класс, представляющий страницу входа.
@@ -41,14 +43,16 @@ const loginContoller = () => {
     const emailInput = loginForm.elements['email'];
     const passwordInput = loginForm.elements['password'];
 
-    loginForm.addEventListener('submit', async function(event) {
+    loginForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const email = emailInput.value;
         const password = Array.from(new TextEncoder().encode(passwordInput.value));
 
-        if (email && password) {
+        if (email && password && validatePassword(passwordInput.value) === '') {
             store.dispatch($sentAuthRequest(email, password, () => navigate('/feed')));
+        } else {
+            new Notify(validatePassword(passwordInput.value));
         }
     });
 
