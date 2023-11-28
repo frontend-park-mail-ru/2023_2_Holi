@@ -61,13 +61,19 @@ export class ProfilePage {
                 const allowedExtensions = ['jpg', 'jpeg', 'png'];
                 const fileName = file.name.toLowerCase();
                 const fileExtension = fileName.split('.').pop();
-
+                const ava = document.querySelector('.avatar-preview');
                 if (allowedExtensions.includes(fileExtension)) {
                     document.querySelector('.input-control__file-text').innerHTML = event.target.files[0].name;
                     const reader = new FileReader();
 
+                    const nowAva = new FileReader();
+                    nowAva.readAsDataURL(file);
+                    nowAva.onload = (e) => {
+                        ava.src = e.target.result;
+                    };
                     reader.onload = (e) => {
                         const arrayBuffer = e.target.result; // Получаем массив байт (ArrayBuffer)
+
                         // eslint-disable-next-line no-undef
                         const uint8Array = new Uint8Array(arrayBuffer); // Преобразуем его в Uint8Array
                         formData.imageData = Array.from(uint8Array);
