@@ -16,6 +16,7 @@
     height: 50px;
     /* Задайте нужную высоту */
     object-fit: cover;
+    animation: show 0.5s ease-in-out;
 }
 
 .avatar-preview {

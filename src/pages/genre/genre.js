@@ -1,6 +1,6 @@
 import store from '../../..';
+import { avatarUpdate } from '../../services/avatar-update';
 import { $sendCollectionAliasRequest, COLLECTION_REDUCER } from '../../services/flux/actions/collections';
-import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info';
 import { getLastNumber } from '../../services/getParams';
 import { seachHandler } from '../../services/search-utils';
 import genre from './genre.hbs';
@@ -62,25 +62,7 @@ export class GenrePage {
                 });
                 this.ratingFillColor();
 
-                /**/
-                /**
-                * Узнаю о пользователе
-                */
-                store.dispatch($sentUserInfoRequest());
-
-                /**
-                 * Подписка сраюотает при изменении стора
-                 */
-                store.subscribe(USER_REDUCER, () => {
-                    const stateUser = store.getState().user.userInfo;
-                    if (stateUser) {
-                        if (stateUser.user.imagePath) {
-                            document.querySelector('.avatar').src = stateUser.user.imagePath;
-                        }
-
-                    }
-
-                });
+                avatarUpdate();
             });
         } else {
             const startContent = state.collections.collections.find(obj => obj.id === Number(id));
@@ -101,25 +83,7 @@ export class GenrePage {
             });
             this.ratingFillColor();
 
-            /**/
-            /**
-            * Узнаю о пользователе
-            */
-            store.dispatch($sentUserInfoRequest());
-
-            /**
-             * Подписка сраюотает при изменении стора
-             */
-            store.subscribe(USER_REDUCER, () => {
-                const stateUser = store.getState().user.userInfo;
-                if (stateUser) {
-                    if (stateUser.user.imagePath) {
-                        document.querySelector('.avatar').src = stateUser.user.imagePath;
-                    }
-
-                }
-
-            });
+            avatarUpdate();
         }
         seachHandler();
 

@@ -6,7 +6,7 @@ import { setLike } from '../../../services/api/like.js';
 import { seachHandler } from '../../../services/search-utils.js';
 import store from '../../../../index.js';
 import { $sendSerialsContentRequest, SERIALS_CONTENT_REDUCER } from '../../../services/flux/actions/serial-content.js';
-import { $sentUserInfoRequest, USER_REDUCER } from '../../../services/flux/actions/user-info.js';
+import { avatarUpdate } from '../../../services/avatar-update.js';
 
 export class SerialContentPage {
     #parent;
@@ -99,25 +99,7 @@ export class SerialContentPage {
             });
             videoController();
 
-            /**/
-            /**
-            * Узнаю о пользователе
-            */
-            store.dispatch($sentUserInfoRequest());
-
-            /**
-             * Подписка сраюотает при изменении стора
-             */
-            store.subscribe(USER_REDUCER, () => {
-                const stateUser = store.getState().user.userInfo;
-                if (stateUser) {
-                    if (stateUser.user.imagePath) {
-                        document.querySelector('.avatar').src = stateUser.user.imagePath;
-                    }
-
-                }
-
-            });
+            avatarUpdate();
 
         });
 

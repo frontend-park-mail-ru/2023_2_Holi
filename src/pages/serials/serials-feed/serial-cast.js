@@ -1,14 +1,15 @@
-import { VideoItem } from './components/video-item.js';
-import { getLastNumber } from '../../services/getParams.js';
-import { getContentByCastId } from '../../services/api/content.js';
-import cast from './cast.hbs';
-import { seachHandler } from '../../services/search-utils.js';
-import { avatarUpdate } from '../../services/avatar-update.js';
+import { getLastNumber } from '../../../services/getParams.js';
+import cast from './serial-cast.hbs';
+import { seachHandler } from '../../../services/search-utils.js';
+import store from '../../../../index.js';
+import { $sentUserInfoRequest, USER_REDUCER } from '../../../services/flux/actions/user-info.js';
+import { getSerialByCastId } from '../../../services/api/serials.js';
+import { avatarUpdate } from '../../../services/avatar-update.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
  */
-export class CastPage {
+export class SerialCastPage {
     #parent;
 
     /**
@@ -18,16 +19,6 @@ export class CastPage {
     constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
-
-    addVideoCard(content) {
-        const root = document.getElementById('cast-page');
-        root.innerHTML = '';
-        content.forEach((data) => {
-            new VideoItem(root, data);
-        });
-
-    }
-
     ratingFillColor() {
         // Получите все элементы с рейтингом
         const ratingElements = document.querySelectorAll('.feed-collection__advanced-info__rating');
@@ -44,16 +35,15 @@ export class CastPage {
             }
         });
     }
-
     /**
      * Рендерит страницу.
      */
     async render() {
         const id = getLastNumber(location.href);
         this.#parent.style.background = '';
-        const filmsByCast = await getContentByCastId(id);
+        const filmsByCast = await getSerialByCastId(id);
 
-        let content = filmsByCast.body.films;
+        let content = filmsByCast.body.series;
         const castName = filmsByCast.body.cast.name;
 
         content = content.map(movie => {
@@ -66,20 +56,19 @@ export class CastPage {
 
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = cast({
-            name: castName,
+            title: castName,
+            content: content,
         });
 
         avatarUpdate();
 
         seachHandler();
 
-        this.addVideoCard(content);
+        this.ratingFillColor();
 
         document.getElementById('dropdown').addEventListener('click', function () {
             this.parentNode.parentNode.classList.toggle('closed');
         }, false);
-
-        this.ratingFillColor();
 
     }
 }

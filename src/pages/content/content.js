@@ -5,8 +5,7 @@ import { navigate } from '../../services/router/Router.js';
 import content from './content.hbs';
 import { setLike } from '../../services/api/like.js';
 import { seachHandler } from '../../services/search-utils.js';
-import store from '../../../index.js';
-import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
+import { avatarUpdate } from '../../services/avatar-update.js';
 export class ContentPage {
     #parent;
     constructor(parent = document.getElementById('root')) {
@@ -41,25 +40,7 @@ export class ContentPage {
             }
         });
 
-        /**/
-        /**
-        * Узнаю о пользователе
-        */
-        store.dispatch($sentUserInfoRequest());
-
-        /**
-         * Подписка сраюотает при изменении стора
-         */
-        store.subscribe(USER_REDUCER, () => {
-            const stateUser = store.getState().user.userInfo;
-            if (stateUser) {
-                if (stateUser.user.imagePath) {
-                    document.querySelector('.avatar').src = stateUser.user.imagePath;
-                }
-
-            }
-
-        });
+        avatarUpdate();
 
         document.querySelector('.heart-button').addEventListener('click', () => {
             setLike(id);

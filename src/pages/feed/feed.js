@@ -4,8 +4,8 @@ import { FeedCollection } from './components/feed-collection.js';
 import feed from './feed-page.hbs';
 import store from '../../..';
 import { $sendCollectionAliasRequest, COLLECTION_REDUCER } from '../../services/flux/actions/collections.js';
-import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
 import { seachHandler } from '../../services/search-utils.js';
+import { avatarUpdate } from '../../services/avatar-update.js';
 
 /**
  * Класс, представляющий страницу ленты.
@@ -55,25 +55,7 @@ export class FeedPage {
             });
             seachHandler();
 
-            /**/
-            /**
-            * Узнаю о пользователе
-            */
-            store.dispatch($sentUserInfoRequest());
-
-            /**
-             * Подписка сраюотает при изменении стора
-             */
-            store.subscribe(USER_REDUCER, () => {
-                const stateUser = store.getState().user.userInfo;
-                if (stateUser) {
-                    if (stateUser.user.imagePath) {
-                        document.querySelector('.avatar').src = stateUser.user.imagePath;
-                    }
-
-                }
-
-            });
+            avatarUpdate();
         });
 
         // Получаем поле ввода

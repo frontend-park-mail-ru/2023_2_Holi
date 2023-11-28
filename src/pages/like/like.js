@@ -1,7 +1,7 @@
 import store from '../../..';
 import { deleteLike } from '../../services/api/like';
+import { avatarUpdate } from '../../services/avatar-update';
 import { $sendGetFavourites } from '../../services/flux/actions/like';
-import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info';
 import { seachHandler } from '../../services/search-utils';
 import like from './like.hbs';
 
@@ -55,8 +55,11 @@ export class FavouritesPage {
                     // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
                     const roundedRating = parseFloat(movie.rating.toFixed(1));
                     // Создайте новый объект с округленным значением rating
-
-                    return { ...movie, rating: roundedRating };
+                    if (movie.seasonsCount > 0) {
+                        return { ...movie, rating: roundedRating, url: `/serial/${movie.id}` };
+                    } else if (movie.seasonsCount === 0) {
+                        return { ...movie, rating: roundedRating, url: `/movies/${movie.id}` };
+                    }
                 });
 
                 this.#parent.innerHTML = like({
@@ -84,25 +87,7 @@ export class FavouritesPage {
 
             seachHandler();
 
-            /**/
-            /**
-            * Узнаю о пользователе
-            */
-            store.dispatch($sentUserInfoRequest());
-
-            /**
-             * Подписка сраюотает при изменении стора
-             */
-            store.subscribe(USER_REDUCER, () => {
-                const stateUser = store.getState().user.userInfo;
-                if (stateUser) {
-                    if (stateUser.user.imagePath) {
-                        document.querySelector('.avatar').src = stateUser.user.imagePath;
-                    }
-
-                }
-
-            });
+            avatarUpdate();
         });
 
     }

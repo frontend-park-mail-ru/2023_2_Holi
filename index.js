@@ -13,12 +13,13 @@ import { ProfilePage } from './src/pages/profile/profile-page.js';
 import { CastPage } from './src/pages/cast/cast.js';
 import { createStore } from './src/services/flux/redux-lite.js';
 import { rootReducer } from './src/services/flux/reducers/root-reducer.js';
-import { Admin } from './src/pages/admin/admin.js';
 import { GenrePage } from './src/pages/genre/genre.js';
 import { FavouritesPage } from './src/pages/like/like.js';
 import { seachHandler } from './src/services/search-utils.js';
 import { SerialFeedPage } from './src/pages/serials/serials-feed/serials-feed.js';
 import { SerialContentPage } from './src/pages/serials/serials-feed/serial-content.js';
+import { SerialGenrePage } from './src/pages/serials/serials-feed/serial-genre.js';
+import { SerialCastPage } from './src/pages/serials/serials-feed/serial-cast.js';
 
 // Создание стора
 const store = createStore(rootReducer);
@@ -44,7 +45,6 @@ const routes = [
     new ProtectedRoute('/start-register', new StartRegister(rootElement), 'guest'),
     new ProtectedRoute('/register', new MainRegister(rootElement), 'guest'),
     new ProtectedRoute('/feed', new FeedPage(rootElement)),
-    new ProtectedRoute('/admin', new Admin(rootElement)),
     new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
     new ProtectedRoute('/profile', new ProfilePage(rootElement)),
     new ProtectedRoute(/^\/cast\/\d+$/, new CastPage(rootElement)),
@@ -52,6 +52,8 @@ const routes = [
     new ProtectedRoute('/list', new FavouritesPage(rootElement)),
     new ProtectedRoute('/serials', new SerialFeedPage(rootElement)),
     new ProtectedRoute(/^\/serial\/\d+$/, new SerialContentPage(rootElement)),
+    new ProtectedRoute(/^\/serial-genre\/\d+$/, new SerialGenrePage(rootElement)),
+    new ProtectedRoute(/^\/serial-cast\/\d+$/, new SerialCastPage(rootElement)),
     new Route('*', new Page404(rootElement)),
 ];
 

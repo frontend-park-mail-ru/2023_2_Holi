@@ -4,11 +4,13 @@ export class SerialsFeedCollection {
     #title;
     #content;
     #parent;
+    #id;
 
-    constructor(parent, title, content) {
+    constructor(parent, title, content, id) {
         this.#content = content;
         this.#title = title;
         this.#parent = parent;
+        this.#id = id;
 
         this.render();
     }
@@ -63,6 +65,7 @@ export class SerialsFeedCollection {
             carousel: carouselUUID,
             container: containerUUID,
             title: this.#title,
+            id: this.#id,
             content: this.getTopRatedObjects(roundedMovies, contentCount),
         });
 
