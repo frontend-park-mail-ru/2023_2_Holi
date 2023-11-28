@@ -20,6 +20,7 @@ export class SerialContentPage {
         document.getElementById('serialDescription').innerText = serialDescription;
 
         const video = document.querySelector('video');
+        video.load();
         video.setAttribute('data-count', i);
         video.addEventListener('loadedmetadata', function () {
             const durationInSeconds = video.duration;

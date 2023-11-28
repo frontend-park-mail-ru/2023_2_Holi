@@ -32,7 +32,6 @@ export class ProfilePage {
          * Подписка сраюотает при изменении стора
          */
         store.subscribe(USER_REDUCER, () => {
-            console.log('update')
             const stateUser = store.getState().user.userInfo;
             if (stateUser) {
                 if (stateUser.user.email) {
