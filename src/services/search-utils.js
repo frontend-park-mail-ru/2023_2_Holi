@@ -73,7 +73,7 @@ export function seachHandler() {
         inputSearch.addEventListener('input', debounce(function (event) {
             const query = event.target.value;
             fetchData(query);
-        }, 1000));
+        }, 300));
 
         inputSearch.addEventListener('blur', () => {
             const dropdownList = document.getElementById('dropdown-list');
