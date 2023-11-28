@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export const favouritesReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case GET_FAVOURITES:
             return { ...state, favourites: action.payload };

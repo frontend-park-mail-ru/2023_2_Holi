@@ -24,13 +24,13 @@ export const $sendCollectionAliasRequest = () => {
     getGenreAlias()
         .then(response => {
             const genres = response.body.genres;
-            console.info(genres);
             const genrePromises = genres.map(genre => {
                 return getGenreFilms(genre.name)
                     .then(result => {
                         if (result.body.films) {
                             return ({
                                 name: genre.name,
+                                id: genre.id,
                                 content: result.body.films,
                             });
                         }
@@ -43,7 +43,6 @@ export const $sendCollectionAliasRequest = () => {
             return Promise.all(genrePromises);
         })
         .then(data => {
-            console.info(data);
             store.dispatch($collectionSuccess(data));
             getTopRated()
                 .then(retult => {

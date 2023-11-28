@@ -1,5 +1,6 @@
 import store from '../../..';
-import { $sendCollectionAliasRequest } from '../../services/flux/actions/collections';
+import { $sendCollectionAliasRequest, COLLECTION_REDUCER } from '../../services/flux/actions/collections';
+import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info';
 import { getLastNumber } from '../../services/getParams';
 import { seachHandler } from '../../services/search-utils';
 import genre from './genre.hbs';
@@ -39,17 +40,12 @@ export class GenrePage {
      * Рендерит страницу.
      */
     async render() {
-        const currentPath = window.location.pathname;
-        const pathParts = currentPath.split('/');
-
-        // Получаем последнюю часть адреса
-        const lastPart = pathParts[pathParts.length - 1];
+        const id = getLastNumber(location.href);
         const state = store.getState();
         if (!state) {
             store.dispatch($sendCollectionAliasRequest());
-            store.subscribe(() => {
-                const startContent = store.getState().collections.collections.find(obj => obj.name === lastPart);
-
+            store.subscribe(COLLECTION_REDUCER, () => {
+                const startContent = store.getState().collections.collections.find(obj => obj.id === Number(id));
                 const roundedMovies = startContent.content.map(movie => {
                     // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
                     const roundedRating = parseFloat(movie.rating.toFixed(1));
@@ -65,9 +61,29 @@ export class GenrePage {
                     content: roundedMovies,
                 });
                 this.ratingFillColor();
+
+                /**/
+                /**
+                * Узнаю о пользователе
+                */
+                store.dispatch($sentUserInfoRequest());
+
+                /**
+                 * Подписка сраюотает при изменении стора
+                 */
+                store.subscribe(USER_REDUCER, () => {
+                    const stateUser = store.getState().user.userInfo;
+                    if (stateUser) {
+                        if (stateUser.user.imagePath) {
+                            document.querySelector('.avatar').src = stateUser.user.imagePath;
+                        }
+
+                    }
+
+                });
             });
         } else {
-            const startContent = state.collections.collections.find(obj => obj.name === lastPart);
+            const startContent = state.collections.collections.find(obj => obj.id === Number(id));
 
             const roundedMovies = startContent.content.map(movie => {
                 // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
@@ -84,6 +100,26 @@ export class GenrePage {
                 content: roundedMovies,
             });
             this.ratingFillColor();
+
+            /**/
+            /**
+            * Узнаю о пользователе
+            */
+            store.dispatch($sentUserInfoRequest());
+
+            /**
+             * Подписка сраюотает при изменении стора
+             */
+            store.subscribe(USER_REDUCER, () => {
+                const stateUser = store.getState().user.userInfo;
+                if (stateUser) {
+                    if (stateUser.user.imagePath) {
+                        document.querySelector('.avatar').src = stateUser.user.imagePath;
+                    }
+
+                }
+
+            });
         }
         seachHandler();
 

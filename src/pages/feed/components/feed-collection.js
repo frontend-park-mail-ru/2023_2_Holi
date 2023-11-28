@@ -4,11 +4,13 @@ export class FeedCollection {
     #title;
     #content;
     #parent;
+    #id;
 
-    constructor(parent, title, content) {
+    constructor(parent, title, content, id) {
         this.#content = content;
         this.#title = title;
         this.#parent = parent;
+        this.#id = id;
 
         this.render();
     }
@@ -62,6 +64,7 @@ export class FeedCollection {
         collection.innerHTML = collectionTemplate({
             carousel: carouselUUID,
             container: containerUUID,
+            id: this.#id,
             title: this.#title,
             content: this.getTopRatedObjects(roundedMovies, contentCount),
         });

@@ -32,25 +32,28 @@ export class ProfilePage {
          * Подписка сраюотает при изменении стора
          */
         store.subscribe(USER_REDUCER, () => {
+            console.log('update')
             const stateUser = store.getState().user.userInfo;
             if (stateUser) {
                 if (stateUser.user.email) {
                     emailInput.value = stateUser.user.email;
                 }
-                if (stateUser.user.imagePath.length > 0) {
-                    console.info(document.querySelectorAll('img[data-avatar]'));
+                if (stateUser) {
+                    if (stateUser.user.imagePath) {
+                        document.querySelectorAll('.avatar').forEach(avatar => {
+                            // Генерация случайного параметра для обхода кеша
+                            const cacheBuster = Math.random().toString(36).substring(7);
+
+                            // Формирование URL с cache-busting параметром
+                            const updatedImageUrl = stateUser.user.imagePath.includes('?')
+                                ? `${stateUser.user.imagePath}&cache=${cacheBuster}`
+                                : `${stateUser.user.imagePath}?cache=${cacheBuster}`;
+                            avatar.src = updatedImageUrl;
+                        });
+                    }
                 }
-
             }
-
         });
-        if (userInfo.body.user.imagePath) {
-            setTimeout(() => {
-                profileForm.reset();
-                emailInput.value = userInfo.body.user.email;
-                document.querySelector('.avatar').src = userInfo.body.user.imagePath;
-            }, 0);
-        }
 
         let file = null;
         fileInput.addEventListener('change', (event) => {
@@ -121,6 +124,7 @@ export class ProfilePage {
                     // Обработка успешного ответаArray.from(uint8Array)
                     // Обработка ошибки
                     new Notify('Профиль успешно обновлен');
+                    store.dispatch($sentUserInfoRequest());
 
                     /*if (document.querySelector('iframe')) {
                         document.querySelector('iframe').remove();
@@ -139,8 +143,6 @@ export class ProfilePage {
 
                         document.body.appendChild(frame);
                     }*/
-
-                    await getUserInfo(Number(localStorage.getItem('userId')));
                 }
             } catch (error) {
                 new Notify('Произошла ошибка при отправке запроса');

@@ -1,0 +1,52 @@
+{{> partial/header/partial-header kind="feed-page" feedPage=true}}
+
+
+<div class="content-container">
+
+    <h1 class="content-container__title">{{film.name}}</h1>
+    <p class="content-container__advanced-info__description" id="episodeName"></p>
+        <video controls controlslist="nodownload noremoteplayback" class="content-container__player">
+            <source type="video/mp4" />
+        </video>
+    <div class="content-container__player__actions">
+        <div class="episodeLabel" id="prevEpisode"></div>
+        {{>partial/button/btn-action id="prev-button" kind="prev"}}
+        {{>partial/button/btn-action id="next-button" kind="next"}}
+         <div class="episodeLabel" id="nextEpisode"></div>
+    </div>
+    <div class="content-container__advanced-info">
+        <div class="content__like">Добавить в избранное <button class="heart-button">&#x2665;</button></div>
+        <div class="content-container__advanced-info__meta">
+            <div class="content-container__advanced-info__meta-year"><b>Год
+                    выхода:</b>
+                {{film.releaseYear}}</div>
+            <div class="content-container__advanced-info__meta-age"><b>Возрастное
+                    ограничение:</b> {{film.ageRestriction}}+</div>
+            <div class="content-container__advanced-info__meta-rating"><b>Рейтинг:</b>
+                <span id="rating"></span>
+            </div>
+            <div class="content-container__advanced-info__meta-time"><b>Длительность:</b>
+                <span id="duration"></span>
+            </div>
+        </div>
+        <div class="content-container__advanced-info__about">
+            <div class="content-container__advanced-info__description" id="serialDescription">
+            </div>
+
+            <div class="content-container__advanced-info__genres">
+                <div class="content-container__advanced-info__genres-title">
+                    <b>Актеры</b>
+                </div>
+                <div class="content-container__advanced-info__genres-list">
+                    {{#each artists}}
+                    <a class="content-container__advanced-info__genres-link" href="/cast/{{this.id}}"
+                        spa-link>{{this.name}}
+                    </a>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> partial/footer/partial-footer}}

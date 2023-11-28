@@ -10,7 +10,6 @@ const initialState = {
 };
 
 export const collectionsReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case COLLECTION_REQUEST:
             return { ...state, collectionsRequest: true };

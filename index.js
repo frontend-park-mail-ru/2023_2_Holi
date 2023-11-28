@@ -17,6 +17,8 @@ import { Admin } from './src/pages/admin/admin.js';
 import { GenrePage } from './src/pages/genre/genre.js';
 import { FavouritesPage } from './src/pages/like/like.js';
 import { seachHandler } from './src/services/search-utils.js';
+import { SerialFeedPage } from './src/pages/serials/serials-feed/serials-feed.js';
+import { SerialContentPage } from './src/pages/serials/serials-feed/serial-content.js';
 
 // Создание стора
 const store = createStore(rootReducer);
@@ -46,8 +48,10 @@ const routes = [
     new ProtectedRoute(/^\/movies\/\d+$/, new ContentPage(rootElement)),
     new ProtectedRoute('/profile', new ProfilePage(rootElement)),
     new ProtectedRoute(/^\/cast\/\d+$/, new CastPage(rootElement)),
-    new ProtectedRoute(/^\/genre\/\w+$/, new GenrePage(rootElement)),
+    new ProtectedRoute(/^\/genre\/\d+$/, new GenrePage(rootElement)),
     new ProtectedRoute('/list', new FavouritesPage(rootElement)),
+    new ProtectedRoute('/serials', new SerialFeedPage(rootElement)),
+    new ProtectedRoute(/^\/serial\/\d+$/, new SerialContentPage(rootElement)),
     new Route('*', new Page404(rootElement)),
 ];
 

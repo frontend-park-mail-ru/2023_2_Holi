@@ -2,8 +2,9 @@ import { VideoItem } from './components/video-item.js';
 import { getLastNumber } from '../../services/getParams.js';
 import { getContentByCastId } from '../../services/api/content.js';
 import cast from './cast.hbs';
-import { getUserInfo } from '../../services/api/user.js';
 import { seachHandler } from '../../services/search-utils.js';
+import store from '../../../index.js';
+import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -35,12 +36,10 @@ export class CastPage {
         const id = getLastNumber(location.href);
         this.#parent.style.background = '';
         const filmsByCast = await getContentByCastId(id);
-        let content = [];
-        let castName;
-        // if (filmsByCast.status === 200) {
-        content = filmsByCast.body.films;
-        castName = filmsByCast.body.cast.name;
-        // }
+
+        let content = filmsByCast.body.films;
+        const castName = filmsByCast.body.cast.name;
+
         content = content.map(movie => {
             // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
             const roundedRating = parseFloat(movie.rating.toFixed(1));
@@ -49,20 +48,29 @@ export class CastPage {
             return { ...movie, rating: roundedRating };
         });
 
-        const userInfo = await getUserInfo(localStorage.getItem('userId'));
-
-        if (userInfo.body.user.imagePath.length) {
-            setTimeout(() => {
-                document.querySelector('.avatar').src = userInfo.body.user.imagePath;
-            }, 0);
-        } else {
-            setTimeout(() => {
-                document.querySelector('.avatar').src = 'https://static_holi.hb.ru-msk.vkcs.cloud/Preview_Film/HOW_TO_BUILD_A_GIRL.jpg';
-            }, 0);
-        }
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = cast({
             name: castName,
+        });
+
+        /**/
+        /**
+        * Узнаю о пользователе
+        */
+        store.dispatch($sentUserInfoRequest());
+
+        /**
+         * Подписка сраюотает при изменении стора
+         */
+        store.subscribe(USER_REDUCER, () => {
+            const stateUser = store.getState().user.userInfo;
+            if (stateUser) {
+                if (stateUser.user.imagePath) {
+                    document.querySelector('.avatar').src = stateUser.user.imagePath;
+                }
+
+            }
+
         });
 
         seachHandler();

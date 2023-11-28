@@ -74,7 +74,6 @@ export const getCheckSurvey = (key) => {
         return response.json();
     })
         .then(data => {
-            console.log(data)
             return data;
         })
         .catch(error => {

@@ -15,7 +15,7 @@
 @import url(./dropdown.css);
 @import url(../icons/netflix.css);
 @import url(../../pages/genre/genre.css);
-
+@import url(../../pages/serials/serials-feed/serial-constnt.css);
 @font-face {
     font-family: Netflix;
     src: url(../fonts/NetflixSansMedium.ttf);

@@ -5,8 +5,6 @@ import feed from './feed-page.hbs';
 import store from '../../..';
 import { $sendCollectionAliasRequest, COLLECTION_REDUCER } from '../../services/flux/actions/collections.js';
 import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
-import { debounce } from '../../services/debounce.js';
-import { searchRequest } from '../../services/api/search.js';
 import { seachHandler } from '../../services/search-utils.js';
 
 /**
@@ -27,9 +25,8 @@ export class FeedPage {
         const root = document.getElementById('feed-collections');
         root.innerHTML = '';
         content.forEach((data) => {
-            new FeedCollection(root, data.name, data.content);
+            new FeedCollection(root, data.name, data.content, data.id);
         });
-
     }
 
     /**
@@ -40,7 +37,6 @@ export class FeedPage {
         this.#parent.innerHTML = '';
 
         store.dispatch($sendCollectionAliasRequest());
-        console.info(store.getState());
         store.subscribe(COLLECTION_REDUCER, () => {
 
             const state = store.getState().collections;
@@ -58,20 +54,26 @@ export class FeedPage {
                 btn.href = '/movies/' + state.preview.id;
             });
             seachHandler();
-        });
 
-        store.dispatch($sentUserInfoRequest());
+            /**/
+            /**
+            * Узнаю о пользователе
+            */
+            store.dispatch($sentUserInfoRequest());
 
-        store.subscribe(USER_REDUCER, () => {
-            const stateUser = store.getState().user.userInfo;
-            if (stateUser) {
-                if (stateUser.user.imagePath.length > 0) {
-                    console.info(document.querySelectorAll('img[data-avatar]'));
-                    /**
-                     * Тут сделать подстановку аватарки
-                     */
+            /**
+             * Подписка сраюотает при изменении стора
+             */
+            store.subscribe(USER_REDUCER, () => {
+                const stateUser = store.getState().user.userInfo;
+                if (stateUser) {
+                    if (stateUser.user.imagePath) {
+                        document.querySelector('.avatar').src = stateUser.user.imagePath;
+                    }
+
                 }
-            }
+
+            });
         });
 
         // Получаем поле ввода

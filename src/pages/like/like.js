@@ -1,6 +1,7 @@
 import store from '../../..';
 import { deleteLike } from '../../services/api/like';
 import { $sendGetFavourites } from '../../services/flux/actions/like';
+import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info';
 import { seachHandler } from '../../services/search-utils';
 import like from './like.hbs';
 
@@ -43,7 +44,6 @@ export class FavouritesPage {
 
         store.dispatch($sendGetFavourites());
         store.subscribe('FAVOURITES_REDUCER', () => {
-            console.info(store.getState());
 
             const startContent = store.getState().favourites.favourites.videos;
             if (!startContent) {
@@ -58,7 +58,6 @@ export class FavouritesPage {
 
                     return { ...movie, rating: roundedRating };
                 });
-                console.info(startContent);
 
                 this.#parent.innerHTML = like({
                     notEmpty: true,
@@ -84,6 +83,26 @@ export class FavouritesPage {
             }
 
             seachHandler();
+
+            /**/
+            /**
+            * Узнаю о пользователе
+            */
+            store.dispatch($sentUserInfoRequest());
+
+            /**
+             * Подписка сраюотает при изменении стора
+             */
+            store.subscribe(USER_REDUCER, () => {
+                const stateUser = store.getState().user.userInfo;
+                if (stateUser) {
+                    if (stateUser.user.imagePath) {
+                        document.querySelector('.avatar').src = stateUser.user.imagePath;
+                    }
+
+                }
+
+            });
         });
 
     }
