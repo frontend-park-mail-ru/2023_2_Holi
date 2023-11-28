@@ -1,4 +1,5 @@
-/* global Handlebars */
+import videoTemplate from './video-item.hbs';
+
 export class VideoItem {
     #title;
     #content;
@@ -30,7 +31,6 @@ export class VideoItem {
     }
 
     render() {
-        const template = Handlebars.templates['video-item.hbs'];
 
         const videoItem = document.createElement('div');
         // videoItem.id = collectionUUID;
@@ -38,7 +38,7 @@ export class VideoItem {
         this.#parent.appendChild(videoItem);
 
         // Отобразите все элементы контента
-        videoItem.innerHTML = template({
+        videoItem.innerHTML = videoTemplate({
             content: this.#content,
         });
 

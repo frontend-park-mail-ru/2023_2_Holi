@@ -7,18 +7,5 @@
     "display": "standalone", 
     "theme_color": "#0072bc", 
     "orientation": "portrait",
-    "scope": "/", 
-    "icons": [
-        {
-            "src": "/static/The-Witcher-3-season-2022.jpg",
-            "sizes": "192x192", 
-            "type": "image/jpg"
-        },
-        {
-            "src": "icon/netflix.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        }
-    ],
-    "start_url": "/index.html"
+    "scope": "/"
 }

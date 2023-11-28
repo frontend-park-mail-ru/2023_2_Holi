@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'header-netflix';
+    src: url('header-icons.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+.logout-icon:before {
+    font-family: 'header-netflix';
+    content: "\e900";
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+}
+
+.profile-icon:before {
+    font-family: 'header-netflix';
+    content: "\e901";
+    font-size:  1.2rem;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+}

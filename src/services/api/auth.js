@@ -1,5 +1,6 @@
 import { getCookie } from '../getCookie.js';
-import { NETFLIX_API } from './const.js';
+import { NETFLIX_API, NETFLIX_AUTH_API } from './const.js';
+import { Notify } from '../../components/notify/notify.js';
 
 /**
  * Выполняет запрос на вход пользователя.
@@ -8,25 +9,42 @@ import { NETFLIX_API } from './const.js';
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const loginRequest = (email, password) => {
-    return fetch(`${NETFLIX_API}/auth/login`, {
+    if (!navigator.onLine) {
+        new Notify('Нет соединения');
+    }
+
+    return fetch(`${NETFLIX_AUTH_API}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
-            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'), // CSRF-токен из кук
+            'X-CSRF-TOKEN': getCookie('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
     }).then(response => {
-        return response;
-    });
+
+        if (response.ok) {
+            localStorage.setItem('authData', true);
+
+            return response.json();
+        }
+
+    })
+        .then(data => {
+            return data;
+        });
 };
 
 export const csrfInit = () => {
-    return fetch(`${NETFLIX_API}/csrf`, {
-         method: 'GET',
+    return fetch(`${NETFLIX_AUTH_API}/csrf`, {
+        method: 'GET',
         credentials: 'include',
     })
-        .then(response => {})
+
+        .then(response => {
+
+            return response;
+        });
 };
 
 /**
@@ -36,15 +54,21 @@ export const csrfInit = () => {
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const registerRequest = (email, password) => {
-    return fetch(`${NETFLIX_API}/auth/register`, {
+    if (!navigator.onLine) {
+        new Notify('Нет соединения');
+    }
+
+    return fetch(`${NETFLIX_AUTH_API}/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
-            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
+            'X-CSRF-TOKEN': getCookie('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify({ email: email, password: password }),
     }).then(response => {
+        localStorage.setItem('authData', true);
+
         return response;
     });
 };
@@ -54,13 +78,19 @@ export const registerRequest = (email, password) => {
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const logoutRequest = () => {
-    return fetch(`${NETFLIX_API}/auth/logout`, {
+    if (!navigator.onLine) {
+        new Notify('Нет соединения');
+    }
+
+    return fetch(`${NETFLIX_AUTH_API}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
         headers: {
-            'X-CSRF-TOKEN': getCookie('_gorilla_csrf'),
+            'X-CSRF-TOKEN': getCookie('csrf-token'),
         },
     }).then(response => {
+        localStorage.setItem('authData', false);
+
         return response;
     });
 };
@@ -70,21 +100,16 @@ export const logoutRequest = () => {
  * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
  */
 export const checkAccess = () => {
-    return fetch(`${NETFLIX_API}/auth/check`, {
+    return fetch(`${NETFLIX_AUTH_API}/auth/check`, {
         method: 'POST',
         credentials: 'include',
-        // headers: {
-        //     'X-CSRF-TOKEN': getCookie('csrf'),
-        // },
+
+        headers: {
+            'X-CSRF-TOKEN': getCookie('csrf-token'),
+        },
     })
         .then(response => {
-            if (response.ok) {
-                return response;
-            } else {
-                console.error('Ошибка проверки авторизации');
-
-                return response;
-            }
+            return response;
         });
 };
 

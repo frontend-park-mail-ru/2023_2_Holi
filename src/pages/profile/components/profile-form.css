@@ -5,18 +5,53 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    max-width: 600px;
     background-color: rgba(218, 216, 216, 0.3);
+    padding: 5vh;
     max-height: 500px;
-    padding: 50px;
     border-radius: 0.45rem;
-    margin: 50px auto;
+    margin: 10vh auto;
+    color: #fff;
 }
 
-.profile-form div {
-   display: flex;
-   flex-direction: column;
-   font-family: Netflix;
-   font-weight: 600;
+.profile-form__row {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
 
+.profile-form__row__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-form__row__form_col {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-form__row__avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width:900px) {
+    .profile-form {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .profile-form__row {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .input-control[kind="register-page"] {
+        width: 100%;
+        padding: 0;
+    }
 }

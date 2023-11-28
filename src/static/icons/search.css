@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'seach-font';
+    src: url('search.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+.search-icon::before{
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    font-family:'seach-font';
+    content: '\e900';
+}

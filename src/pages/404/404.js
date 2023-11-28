@@ -1,19 +1,15 @@
-import { rootElement } from '../../../index.js';
-
-/* global Handlebars */
- class Page404 {
+import notFound from './404.hbs';
+export class Page404 {
     #parent;
 
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
     render() {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
-        const template = Handlebars.templates['404.hbs'];
-        this.#parent.innerHTML = template();
+        this.#parent.innerHTML = notFound();
     }
 }
 
-export default new Page404(rootElement);

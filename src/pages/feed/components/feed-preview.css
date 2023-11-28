@@ -15,7 +15,7 @@
     background: linear-gradient(336deg, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2) 50%);
 }
 
-.feed-content__info>p {
+.feed-content__info p {
     line-height: 1.6;
     font-family: NetflixLight;
     overflow: hidden;
@@ -36,4 +36,21 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
+}
+
+@media screen and (max-width: 900px) {
+    .feed-content__info {
+        background: none;
+        padding: 0;
+        margin: 10px;
+
+    }
+
+    .feed-content__info p {
+        display: none;
+    }
+
+    .feed-content__info h1 {
+        display: none;
+    }
 }

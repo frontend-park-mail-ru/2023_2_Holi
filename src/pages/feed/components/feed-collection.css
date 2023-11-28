@@ -8,35 +8,40 @@
     margin-bottom: 60px;
 }
 
-.collection{
+.collection {
     padding-top: 3rem;
 }
+
 .feed-collection__title {
+    text-decoration: none;
+    font-size: 2rem;
     color: white;
     margin-left: 2rem;
+    transition: all .3s;
 }
 
 .feed-collection__container {
     width: 100%;
     display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
     padding-bottom: 60px;
-    gap: 20px;
+    padding-top: 30px;
+    gap: 10px;
     padding-left: 20px;
-    transition: transform 0.2s linear;
+    transition: transform .3s linear;
 }
 
 .feed-collection__container-card {
-    min-height: 350px;
+    transition: all .3s linear;
+}
+
+.feed-collection__container-card__video {
+    object-fit: none;
 }
 
 .feed-collection__container-card:hover {
-    margin-left: 16px;
-    margin-right: 16px;
     transform: scale(1.1);
     transform-origin: center center;
-    transition: all .2s linear;
+    transition: all .3s linear;
 }
 
 .feed-collection__container-card>div>img {
@@ -64,20 +69,29 @@
     height: 40px;
     width: -webkit-fill-available;
     padding: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
     position: absolute;
     margin-top: -50px;
     opacity: 0;
 }
 
-.feed-collection__container-card:hover div .feed-collection__advanced-info {
+.feed-collection__container-card:hover .feed-collection__advanced-info {
     opacity: 1;
-    animation: show .2s linear;
+    animation: show .3s;
 }
 
 .feed-collection__advanced-info__name {
     color: white;
+    text-decoration: none;
+    font-family: Netflix;
 }
 
+.feed-collection__advanced-info__link{
+    text-decoration: none;
+    font-family: Netflix;
+    margin-left: 1rem;
+}
 .feed-collection__advanced-info__rating {
     font-weight: bold;
     /* По умолчанию, сделаем жирный текст */

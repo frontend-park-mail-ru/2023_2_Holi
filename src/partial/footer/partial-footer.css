@@ -6,6 +6,8 @@
 .footer {
     margin-top: auto;
     border-top: 8px solid #454545;
+    background: #000;
+    height: 200px;
 
 }
 
@@ -85,4 +87,32 @@
 .footer__element-border[kind="reg-page"],
 .footer__element-border[kind="reg-page-main"] {
     border-right: 2px solid #c5c3c3;
+}
+
+@media screen and (max-width: 900px) {
+    .footer__row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer__element-border {
+        border-right: none;
+    }
+
+    .footer__element {
+        flex: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer__row>* {
+        padding: 0;
+    }
+
+    .footer__container {
+        padding: 0;
+    }
 }

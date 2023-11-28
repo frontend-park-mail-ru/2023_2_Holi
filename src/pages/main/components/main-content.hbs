@@ -1,29 +1,13 @@
  <div class="main-content">
-    {{#if firstMode}}
-    <div class="row container">
-        <div class="col">
+    <div class="main-content_container">
+        <div class="main-content_container__block">
             <h2 style="font-size: 48px;">{{Title}}</h2>
             <p>{{Description}}</p>
         </div>
         <div class="col">
-            <div style="position: relative;">
+            <div class="content-block">
                 {{{content}}}
             </div>
         </div>
     </div>
-    {{/if}}
-
-    {{#if secondMode}}
-    <div class="row container">
-        <div class="col">
-            <div style="position: relative;">
-                {{{content}}}
-            </div>
-        </div>
-        <div class="col">
-            <h2 style="font-size: 48px;">{{Title}}</h2>
-            <p>{{Description}}</p>
-        </div>
-    </div>
-    {{/if}}
 </div>

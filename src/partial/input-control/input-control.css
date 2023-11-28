@@ -3,11 +3,12 @@
     border: 1px solid #8c8c8c;
     border-radius: 0.25rem;
     line-height: normal;
-    padding: 0.5rem 0.5rem 0.5rem;
+    padding: 0;
     color: #000;
-    font-family: Netflix Sans;
+    font-family: Netflix;
     font: inherit;
     width: 100%;
+    padding: 0.5rem;
     min-width: 12.5rem;
     font-size: 16px;
     font-weight: 100;
@@ -25,11 +26,8 @@
 }
 
 .input-control[kind="register-page"] {
-    width: 422px;
-    height: 42px;
-
-
-
+    width: auto;
+    height: 30px;
 }
 
 .input-control__file {
@@ -38,7 +36,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    width: 442px;
+    width: 100%;
 }
 
 .input-control__file .partial-btn {

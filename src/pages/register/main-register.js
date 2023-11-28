@@ -1,20 +1,19 @@
-/*global Handlebars*/
-
 import { registerRequest } from '../../services/api/auth.js';
 import { Notify } from '../../components/notify/notify.js';
-import { rootElement } from '../../../index.js';
 import { getUserInfo } from '../../services/api/user.js';
+import { validatePassword } from '../../services/validate.js';
+import register from './main-register.hbs';
 /**
  * Класс, представляющий начало регистрации.
  */
-class MainRegister {
+export class MainRegister {
     #parent;
 
     /**
      * Создает новый экземпляр класса MainRegister.
      * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница регистрации.
      */
-    constructor(parent) {
+    constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
 
@@ -23,9 +22,7 @@ class MainRegister {
      */
     render() {
         this.#parent.innerHTML = '';
-        document.body.style.background = '#fff';
-        const template = Handlebars.templates['main-register.hbs'];
-        this.#parent.innerHTML = template();
+        this.#parent.innerHTML = register();
 
         const registerForm = document.forms['createPassword'];
         const emailInput = registerForm.elements['email'];
@@ -57,7 +54,6 @@ class MainRegister {
                     } else {
                         localStorage.removeItem('userNewEmail');
                         new Notify('Ошибка регистрации: ' + response.statusText);
-                        console.error('Ошибка регистрации:', response.statusText);
                     }
                 } else {
                     new Notify('Не ввели логин и/или пароль');
@@ -65,39 +61,7 @@ class MainRegister {
 
             } catch (error) {
                 new Notify('Ошибка регистрации');
-                console.error('Ошибка аутентификации: ' + error);
             }
         });
     }
 }
-
-/**
- *
- * @param {string} password
- * @returns {string}
- */
-function validatePassword(password) {
-    // Проверка длины пароля (минимальная длина 8 символов)
-    if (password.length < 8) {
-        return 'Пароль должен содержать минимум 8 символов';
-    }
-
-    // Проверка наличия хотя бы одной заглавной буквы
-    if (!/[A-Z]/.test(password)) {
-        return 'Пароль должен содержать хотя бы одну заглавную букву';
-    }
-
-    // Проверка наличия хотя бы одной строчной буквы
-    if (!/[a-z]/.test(password)) {
-        return 'Пароль должен содержать хотя бы одну строчную букву';
-    }
-
-    // Проверка наличия хотя бы одной цифры
-    if (!/[0-9]/.test(password)) {
-        return 'Пароль должен содержать хотя бы одну цифру';
-    }
-
-    return '';
-}
-
-export default new MainRegister(rootElement);

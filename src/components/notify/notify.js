@@ -1,7 +1,7 @@
-/* global Handlebars */
 /**
  * Класс для создания уведомлений в веб-приложении.
  */
+import notify from './notify.hbs';
 export class Notify {
 
     /**
@@ -17,9 +17,8 @@ export class Notify {
     }
 
     render(message) {
-        const template = Handlebars.templates['notify.hbs'];
         const toast = document.getElementById('toasts');
-        toast.innerHTML = template({ message: message });
+        toast.innerHTML = notify({ message: message });
 
         setTimeout(() => {
             toast.innerHTML = '';

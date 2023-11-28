@@ -1,0 +1,10 @@
+{{> partial/header/partial-header feedPage=true kind="feed-page"}}
+
+<div class="glow-title">{{title}}</div>
+<div class="genre-container">
+    {{#each content}}
+    {{> genre-item content=this}}
+    {{/each}}
+</div>
+
+{{> partial/footer/partial-footer}}

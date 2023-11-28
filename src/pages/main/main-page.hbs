@@ -1,60 +1,54 @@
 <div class="main">
-    {{> partial-header kind="main-page" mainPage=true}}
+   {{> partial/header/partial-header kind="main-page" mainPage=true}}
 
-    {{> main-background}}
+    {{> components/main-background}}
 
-    {{> main-form}}
-
-    {{> main-banner}}
-
-    {{> main-content
-    firstMode=true
+    {{> components/main-banner}}
+    {{> components/main-content
     Title="Наслаждайтесь на своем телевизоре"
     Description="Смотрите на телевизорах Smart TV, Playstation, Xbox,
     Chromecast, Apple TV, Blu-ray плеерах и многом
     другом."
-    content='<img src="src/static/img/tv.webp" alt>
+    content='<div class="video-panel"><img src="img/tv.webp" alt>
     <div class="main-content__video-container">
         <video autoplay playsinline muted loop>
-            <source src="src/static/video/tv-main.m4v" type="video/mp4">
+            <source src="video/tv-main.m4v" type="video/mp4">
         </video>
-    </div>'
+    </div></div>'
     }}
 
-    {{> main-content
-    secondMode=true
+    {{> components/main-content
     Title="Смотрите везде"
     Description="Смотрите потоки неограниченных
     фильмов и телепередач на своем телефоне, планшете,
     ноутбуке и телевизоре."
-    content='<img src="src/static/img/device-pile.webp" alt="imac">
+    content='
+    <div class="video-panel"><img src="img/device-pile.webp" alt="imac">
     <div class="main-content__video-container imac">
         <video autoplay playsinline muted loop>
-            <source src="src/static/video/video-devices.m4v"
+            <source src="video/video-devices.m4v"
                 type="video/mp4">
         </video>
-    </div>'
+    </div></div>'
     }}
 
-    {{> main-content
-    firstMode=true
+    {{> components/main-content
     Title="Создавайте профили для
     детей"
     Description="Отправляйте детей в приключения с их любимыми
     персонажами в пространстве, созданном специально для
     них — бесплатно с вашим членством."
-    content='<img src="src/static/img/kids.webp" alt="kids">'
+    content='<img src="img/kids.webp" alt="kids">'
     }}
 
-    {{> main-content
-    secondMode=true
+    {{> components/main-content
     Title="Загружайте свои шоу для
     просмотра в автономном режиме"
     Description="Доступно только в тарифных планах без рекламы."
-    content='<img src="src/static/img/mobile-0819.jpg" alt="mobile">
+    content='<img src="img/mobile-0819.jpg" alt="mobile">
     <div class="phone-background-content">
         <div class="phone-background-content__col-poster">
-            <img alt="poster" src="src/static/img/boxshot.jpg"
+            <img alt="poster" src="img/boxshot.jpg"
                 class="phone-background-content__image">
         </div>
         <div class="phone-background-content__col-text">
@@ -64,9 +58,9 @@
             <div class="phone-background-content__subtitle">Загрузка...
             </div>
         </div>
-        <div class="phone-background-content__col-spinner"></div>
+        <div style="background: url(/img/download-icon.gif) center center no-repeat;" class="phone-background-content__col-spinner"></div>
     </div>'
     }}
 
-    {{> partial-footer}}
+    {{> partial/footer/partial-footer}}
 </div>

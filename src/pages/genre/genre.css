@@ -1,0 +1,7 @@
+.genre-container {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 50px;
+}

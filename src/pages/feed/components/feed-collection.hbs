@@ -1,34 +1,22 @@
-
 <div class="feed-collection__container-offset">
-    <h1 class="feed-collection__title">{{title}}</h1>
+    <a class="feed-collection__title" href="/genre/{{id}}" spa-link>{{title}}</a>
 </div>
 <div class="feed-collection__carousel" id="{{carousel}}">
     <div class="feed-collection__container" id="{{container}}">
         {{#each content}}
-
-        <div class="feed-collection__container-card"
-            title="{{this.name}}">
-            <div>
-                <video height="400" playsinline muted preload="none"
-                    poster="{{this.previewPath}}">
-                    <source src="{{this.previewVideoPath}}"
-                        type='video/mp4'>
-                </video>
-
-                <div class="feed-collection__advanced-info">
-                    <a href="/movies/{{this.id}}"
-                        style="margin-left: 1rem;"
-                        spa-link>
-                        <div class="feed-collection__advanced-info__name">{{this.name}}</div>
-                    </a>
-                    <div class="feed-collection__advanced-info__rating"
-                        data-rating="{{this.rating}}">{{this.rating}}</div>
+        <div class="feed-collection__container-card" title="{{this.name}}">
+            <video height="400" width="350" class="feed-collection__container-card__video" playsinline muted
+                preload="none" poster="{{this.previewPath}}">
+                <source src="{{this.previewVideoPath}}" type='video/mp4'>
+            </video>
+            <div class="feed-collection__advanced-info">
+                <a href="/movies/{{this.id}}" class="feed-collection__advanced-info__link" spa-link>
+                    <div class="feed-collection__advanced-info__name">{{this.name}}</div>
+                </a>
+                <div class="feed-collection__advanced-info__rating" data-rating="{{this.rating}}">{{this.rating}}
                 </div>
-
             </div>
-
         </div>
-
         {{/each}}
     </div>
 </div>

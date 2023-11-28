@@ -1,5 +1,10 @@
-{{> partial-header regPage=true}}
+<div class="main-register-page">
+  <div class="login-page__login-background" style="background-image: url('/img/main.jpg');"></div>
+  <div class="main-register-page__container">
+    {{> partial/header/partial-header kind="main-page" mainPage=true}}
 
-{{> start-register-form }}
+    {{> components/start-register-form }}
 
-{{> partial-footer kind="reg-page"}}
+    {{> partial/footer/partial-footer}}
+  </div>
+</div>

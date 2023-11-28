@@ -1,3 +1,5 @@
+@import url(./header-icons.css);
+@import url(./search.css);
 @font-face {
   font-family: 'netflix';
   src: url('netflix.woff?g5zjyq') format('woff');
@@ -6,6 +8,8 @@
   font-display: block;
 
 }
+
+
 
 .netflix {
   /* use !important to prevent issues with browser extensions that change fonts */
@@ -31,6 +35,14 @@
 
 .netflix[kind="play"]:before {
   content: "\e901";
+}
+
+.netflix[kind="prev"]:before {
+  content: "\e906";
+}
+
+.netflix[kind="next"]:before {
+  content: "\e905";
 }
 
 .netflix[kind="play-card"]:before {

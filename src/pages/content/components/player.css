@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     max-width: 70%;
+    width: 70%;
     margin: auto;
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -78,4 +79,40 @@
 .content-container__advanced-info__genres-list {
     display: flex;
     flex-direction: column;
+}
+
+.content-container__player__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.content-container__player__actions a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: none;
+    padding: 0;
+    cursor: pointer;
+    color: #fff;
+}
+
+.content-container__player__actions a:hover {
+    color: gainsboro;
+}
+
+
+@media screen and (max-width: 900px) {
+    .content-container__advanced-info__meta {
+        flex-direction: column;
+    }
+    .content-container__advanced-info__about{
+        flex-direction: column;
+    }
+    .content-container__advanced-info__genres{
+        margin: 0;
+    }
 }

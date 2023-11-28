@@ -1,0 +1,99 @@
+.dropdown {
+    width: 150px;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+    font-family: Netflix;
+}
+
+.dropdown>a {
+    border-radius: 2px;
+    box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown ul {
+    list-style-type: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.dropdown-logo {
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 0 10px;
+    text-decoration: none;
+    line-height: 40px;
+    font-size: 13px;
+    color: #999;
+    background-color: #000;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0 0 0 10px;
+    text-decoration: none;
+    line-height: 40px;
+    font-size: 13px;
+    color: #999;
+    background-color: #fff;
+}
+
+.dropdown li {
+    height: 0;
+    overflow: hidden;
+    transition: all 500ms;
+}
+
+.dropdown.hover li {
+    transition-delay: 300ms;
+}
+
+.dropdown li:first-child a {
+    border-radius: 2px 2px 0 0;
+}
+
+.dropdown li:last-child a {
+    border-radius: 0 0 2px 2px;
+}
+
+.dropdown li:first-child a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #FFF;
+    margin: -10px 0 0 60px;
+}
+
+.dropdown-item:hover,
+.dropdown a:hover {
+    background-color: #EEE;
+    color: #666;
+}
+
+.dropdown>a:hover::after {
+    border-top-color: #AAA;
+}
+
+.dropdown li:first-child a:hover::before {
+    border-bottom-color: #EEE;
+}
+
+.dropdown.hover.visible li,
+.dropdown.hover:hover li {
+    height: 40px;
+}
+
+.dropdown.hover.visible li:first-child,
+.dropdown.hover:hover li:first-child {
+    padding-top: 15px;
+}
