@@ -5,7 +5,6 @@ import { SerialsFeedCollection } from './serials-feed-collections';
 import { logoutRequest } from '../../../services/api/auth';
 import { navigate } from '../../../services/router/Router';
 import { seachHandler } from '../../../services/search-utils';
-import { $sentUserInfoRequest, USER_REDUCER } from '../../../services/flux/actions/user-info';
 import { avatarUpdate } from '../../../services/avatar-update';
 
 export class SerialFeedPage {
@@ -15,7 +14,7 @@ export class SerialFeedPage {
     * Создает новый экземпляр класса FeedPage.
     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
     */
-    constructor(parent = document.getElementById('root')) {
+    constructor(parent) {
         this.#parent = parent;
     }
 
@@ -32,19 +31,24 @@ export class SerialFeedPage {
     render() {
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = serial();
+        const state = store.getState();
+        console.log(state);
+        if (!state || state.serials.serials === null) {
+            store.dispatch($sendSerialsCollectionAliasRequest());
 
-        store.dispatch($sendSerialsCollectionAliasRequest());
+            store.subscribe(SERIALS_COLLECTION_REDUCER, () => {
+                this.addCollections(store.getState().serials.serials);
+            });
 
-        store.subscribe(SERIALS_COLLECTION_REDUCER, () => {
-            this.addCollections(store.getState().serials.serials);
-        });
-
-        document.getElementById('logout').addEventListener('click', async function () {
-            const response = await logoutRequest();
-            if (response.ok) {
-                navigate('/login');
-            }
-        });
+            document.getElementById('logout').addEventListener('click', async function () {
+                const response = await logoutRequest();
+                if (response.ok) {
+                    navigate('/login');
+                }
+            });
+        } else if (state.serials.serials) {
+            this.addCollections(state.serials.serials);
+        }
 
         avatarUpdate();
 

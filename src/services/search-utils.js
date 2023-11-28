@@ -38,6 +38,7 @@ export function updateDropdownList(results) {
             listItem.className = 'dropdown-item';
             const a = document.createElement('a');
             a.textContent = result.name;
+            a.setAttribute('spa-link', '');
             a.href = `/cast/${result.id}`;
             listItem.appendChild(a);
             dropdownList.appendChild(listItem);

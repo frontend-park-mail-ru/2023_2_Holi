@@ -55,10 +55,11 @@ export class SerialGenrePage {
 
                             return { ...movie, rating: roundedRating };
                         });
+
                         this.#parent.innerHTML = '';
 
                         this.#parent.innerHTML = genre({
-                            title: roundedMovies.name,
+                            title: serial.name,
                             content: roundedMovies,
                         });
                         this.ratingFillColor();
@@ -81,7 +82,7 @@ export class SerialGenrePage {
                     this.#parent.innerHTML = '';
 
                     this.#parent.innerHTML = genre({
-                        title: roundedMovies.name,
+                        title: serial.name,
                         content: roundedMovies,
                     });
                     this.ratingFillColor();

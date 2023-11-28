@@ -14,7 +14,7 @@ export class SerialContentPage {
         this.#parent = parent;
     }
 
-    setEpisodeData(season, serialNumber, serialName, serialUrl, serialDescription, i, length, array) {
+    setEpisodeData(id, season, serialNumber, serialName, serialUrl, serialDescription, i, length, array) {
         document.getElementById('episodeName').innerText = `${season} сезон, ${serialNumber} серия, ${serialName}`;
         document.querySelector('source').src = serialUrl;
         document.getElementById('serialDescription').innerText = serialDescription;
@@ -30,6 +30,9 @@ export class SerialContentPage {
 
             document.getElementById('duration').innerText = (`${hours} часов ${minutes} минут`);
         });
+
+        localStorage.setItem('lastSerial_' + id, i);
+
         const prevButton = document.getElementById('prev-button');
         const prevLabel = document.getElementById('prevEpisode');
         const nextButton = document.getElementById('next-button');
@@ -62,12 +65,10 @@ export class SerialContentPage {
         store.subscribe(SERIALS_CONTENT_REDUCER, () => {
             const state = store.getState().currentSerial.serials;
             this.#parent.innerHTML = serial({ film: state.film, artists: state.artists });
-            const episode = state.episodes[0];
-            this.setEpisodeData(episode.season, episode.number, episode.name, episode.mediaPath, episode.description, 0, state.episodes.length, state.episodes);
+            const episode = state.episodes[Number(localStorage.getItem('lastSerial_' + id))];
+            this.setEpisodeData(id, episode.season, episode.number, episode.name, episode.mediaPath, episode.description, Number(localStorage.getItem('lastSerial_' + id)), state.episodes.length, state.episodes);
             document.getElementById('rating').innerText = parseFloat(state.film.rating.toFixed(1));
             seachHandler();
-
-            const video = document.querySelector('video');
 
             const prevButton = document.getElementById('prev-button');
             prevButton.removeAttribute('spa-link');
@@ -75,16 +76,15 @@ export class SerialContentPage {
             nextButton.removeAttribute('spa-link');
 
             prevButton.addEventListener('click', (e) => {
-                const currentEpisode = Number(video.getAttribute('data-count'));
+                const currentEpisode = Number(localStorage.getItem('lastSerial_' + id));
                 e.preventDefault();
-                this.setEpisodeData(state.episodes[currentEpisode - 1].season, state.episodes[currentEpisode - 1].number, state.episodes[currentEpisode - 1].name, state.episodes[currentEpisode - 1].mediaPath, state.episodes[currentEpisode - 1].description, currentEpisode - 1, state.episodes.length, state.episodes);
+                this.setEpisodeData(id, state.episodes[currentEpisode - 1].season, state.episodes[currentEpisode - 1].number, state.episodes[currentEpisode - 1].name, state.episodes[currentEpisode - 1].mediaPath, state.episodes[currentEpisode - 1].description, currentEpisode - 1, state.episodes.length, state.episodes);
             });
 
             nextButton.addEventListener('click', (e) => {
-                const currentEpisode = Number(video.getAttribute('data-count'));
+                const currentEpisode = Number(localStorage.getItem('lastSerial_' + id));
                 e.preventDefault();
-                console.info(state.episodes[currentEpisode + 1]);
-                this.setEpisodeData(state.episodes[currentEpisode + 1].season, state.episodes[currentEpisode + 1].number, state.episodes[currentEpisode + 1].name, state.episodes[currentEpisode + 1].mediaPath, state.episodes[currentEpisode + 1].description, currentEpisode + 1, state.episodes.length, state.episodes);
+                this.setEpisodeData(id, state.episodes[currentEpisode + 1].season, state.episodes[currentEpisode + 1].number, state.episodes[currentEpisode + 1].name, state.episodes[currentEpisode + 1].mediaPath, state.episodes[currentEpisode + 1].description, currentEpisode + 1, state.episodes.length, state.episodes);
             });
 
             document.getElementById('logout').addEventListener('click', async function () {
@@ -140,8 +140,8 @@ export const videoController = () => {
     }
 
     // Сохраняем текущее время воспроизведения при его изменении
-    /* video.addEventListener('timeupdate', () => {
-         localStorage.setItem(location.href, video.currentTime);
-     });*/
+    video.addEventListener('timeupdate', () => {
+        localStorage.setItem(location.href, video.currentTime);
+    });
 };
 
