@@ -77,9 +77,10 @@ export function seachHandler() {
 
         inputSearch.addEventListener('blur', () => {
             const dropdownList = document.getElementById('dropdown-list');
+            inputSearch.value = '';
             setTimeout(() => {
                 dropdownList.innerHTML = '';
-            }, 500);
+            }, 800);
 
         });
     }
