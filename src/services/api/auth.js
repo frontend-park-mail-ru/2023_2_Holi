@@ -40,6 +40,7 @@ export const csrfInit = () => {
         method: 'GET',
         credentials: 'include',
     })
+
         .then(response => {
 
             return response;
@@ -102,6 +103,7 @@ export const checkAccess = () => {
     return fetch(`${NETFLIX_AUTH_API}/auth/check`, {
         method: 'POST',
         credentials: 'include',
+
         headers: {
             'X-CSRF-TOKEN': getCookie('csrf-token'),
         },
