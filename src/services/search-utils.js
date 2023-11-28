@@ -75,7 +75,7 @@ export function seachHandler() {
             fetchData(query);
         }, 300));
 
-        inputSearch.addEventListener('mouseleave', () => {
+        inputSearch.addEventListener('blur', () => {
             const dropdownList = document.getElementById('dropdown-list');
             inputSearch.value = '';
             setTimeout(() => {

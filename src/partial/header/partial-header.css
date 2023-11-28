@@ -123,7 +123,7 @@
     width: 50px;
 }
 
-.btn-search:hover~.input-search {
+.btn-search:focus~.input-search {
     width: 300px;
     border-radius: 0px;
     background-color: transparent;
@@ -131,7 +131,7 @@
     transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
 }
 
-.input-search:hover {
+.input-search:focus {
     width: 300px;
     border-radius: 0px;
     background-color: transparent;
