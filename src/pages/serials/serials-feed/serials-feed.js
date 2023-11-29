@@ -6,6 +6,7 @@ import { logoutRequest } from '../../../services/api/auth';
 import { navigate } from '../../../services/router/Router';
 import { seachHandler } from '../../../services/search-utils';
 import { avatarUpdate } from '../../../services/avatar-update';
+import { videoHelper } from '../../../services/video-helper';
 
 export class SerialFeedPage {
     #parent;
@@ -29,29 +30,42 @@ export class SerialFeedPage {
     }
 
     render() {
+        store.clearSubscribes();
         this.#parent.innerHTML = '';
-        this.#parent.innerHTML = serial();
         const state = store.getState();
-        console.log(state);
         if (!state || state.serials.serials === null) {
             store.dispatch($sendSerialsCollectionAliasRequest());
 
             store.subscribe(SERIALS_COLLECTION_REDUCER, () => {
+                this.#parent.innerHTML = serial({ 'preview': store.getState().serials.serials[2].content[0], href: `/serial/${store.getState().serials.serials[2].content[0].id}` });
                 this.addCollections(store.getState().serials.serials);
+
+                document.getElementById('logout').addEventListener('click', async function () {
+                    const response = await logoutRequest();
+                    if (response.ok) {
+                        navigate('/login');
+                    }
+                });
+
+                avatarUpdate();
+                videoHelper();
+                seachHandler();
             });
 
+        } else if (state.serials.serials) {
+            this.#parent.innerHTML = serial({ 'preview': state.serials.serials[2].content[0], href: `/serial/${store.getState().serials.serials[2].content[0].id}` });
+            this.addCollections(state.serials.serials);
             document.getElementById('logout').addEventListener('click', async function () {
                 const response = await logoutRequest();
                 if (response.ok) {
                     navigate('/login');
                 }
             });
-        } else if (state.serials.serials) {
-            this.addCollections(state.serials.serials);
+
+            avatarUpdate();
+            videoHelper();
+            seachHandler();
         }
 
-        avatarUpdate();
-
-        seachHandler();
     }
 }

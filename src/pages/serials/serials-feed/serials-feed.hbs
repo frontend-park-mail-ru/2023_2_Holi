@@ -1,5 +1,24 @@
 {{> partial/header/partial-header kind="feed-page" feedPage=true}}
 
+<div class="feed-page__preview-container">
+    <video autoplay playsinline muted loop class="feed-page__preview">
+        <source src="{{preview.previewVideoPath}}" type="video/webm" />
+    </video>
+    <div class="feed-content__info">
+        <div class="feed-content__info-sticky">
+            <h1>
+                {{preview.name}}
+            </h1>
+            <p>
+                {{description}}
+            </p>
+            <div class="feed-page__content-actions">
+                {{> partial/button/btn-action label="Смотреть" kind="play" href=href id=id}}
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="feed-collections"></div>
 
 {{> partial/footer/partial-footer}}

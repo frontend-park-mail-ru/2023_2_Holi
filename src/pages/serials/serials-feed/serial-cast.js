@@ -2,9 +2,9 @@ import { getLastNumber } from '../../../services/getParams.js';
 import cast from './serial-cast.hbs';
 import { seachHandler } from '../../../services/search-utils.js';
 import store from '../../../../index.js';
-import { $sentUserInfoRequest, USER_REDUCER } from '../../../services/flux/actions/user-info.js';
 import { getSerialByCastId } from '../../../services/api/serials.js';
 import { avatarUpdate } from '../../../services/avatar-update.js';
+import { videoHelper } from '../../../services/video-helper.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -39,6 +39,7 @@ export class SerialCastPage {
      * Рендерит страницу.
      */
     async render() {
+        store.clearSubscribes();
         const id = getLastNumber(location.href);
         this.#parent.style.background = '';
         const filmsByCast = await getSerialByCastId(id);
@@ -61,14 +62,10 @@ export class SerialCastPage {
         });
 
         avatarUpdate();
-
+        videoHelper();
         seachHandler();
 
         this.ratingFillColor();
-
-        document.getElementById('dropdown').addEventListener('click', function () {
-            this.parentNode.parentNode.classList.toggle('closed');
-        }, false);
 
     }
 }

@@ -57,6 +57,7 @@ export class SerialContentPage {
     }
 
     async render() {
+        store.clearSubscribes();
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const id = getLastNumber(location.href);

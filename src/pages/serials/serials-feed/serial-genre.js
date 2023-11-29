@@ -4,6 +4,7 @@ import { $sendSerialsCollectionAliasRequest, SERIALS_COLLECTION_REDUCER } from '
 import { $sentUserInfoRequest, USER_REDUCER } from '../../../services/flux/actions/user-info';
 import { getLastNumber } from '../../../services/getParams';
 import { seachHandler } from '../../../services/search-utils';
+import { videoHelper } from '../../../services/video-helper';
 import genre from './serial-genre.hbs';
 
 /**
@@ -41,6 +42,7 @@ export class SerialGenrePage {
      * Рендерит страницу.
      */
     async render() {
+        store.clearSubscribes();
         const id = getLastNumber(location.href);
         const state = store.getState();
         if (!state) {
@@ -63,7 +65,7 @@ export class SerialGenrePage {
                             content: roundedMovies,
                         });
                         this.ratingFillColor();
-
+                        videoHelper();
                         avatarUpdate();
                     }
                 });
@@ -86,7 +88,7 @@ export class SerialGenrePage {
                         content: roundedMovies,
                     });
                     this.ratingFillColor();
-
+                    videoHelper();
                     avatarUpdate();
 
                 }

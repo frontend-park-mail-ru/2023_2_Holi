@@ -3,7 +3,7 @@
 <div class="glow-title">{{title}}</div>
 <div class="genre-container">
     {{#each content}}
-    {{> serial-cast-item content=this}}
+   {{> partial/preview-card baseUrl="serial" this=this}}
     {{/each}}
 </div>
 

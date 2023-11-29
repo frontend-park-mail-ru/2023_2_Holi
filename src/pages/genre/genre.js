@@ -3,6 +3,7 @@ import { avatarUpdate } from '../../services/avatar-update';
 import { $sendCollectionAliasRequest, COLLECTION_REDUCER } from '../../services/flux/actions/collections';
 import { getLastNumber } from '../../services/getParams';
 import { seachHandler } from '../../services/search-utils';
+import { videoHelper } from '../../services/video-helper';
 import genre from './genre.hbs';
 
 /**
@@ -40,6 +41,7 @@ export class GenrePage {
      * Рендерит страницу.
      */
     async render() {
+        store.clearSubscribes();
         const id = getLastNumber(location.href);
         const state = store.getState();
         if (!state) {
@@ -61,7 +63,7 @@ export class GenrePage {
                     content: roundedMovies,
                 });
                 this.ratingFillColor();
-
+                videoHelper();
                 avatarUpdate();
             });
         } else {
@@ -82,7 +84,7 @@ export class GenrePage {
                 content: roundedMovies,
             });
             this.ratingFillColor();
-
+            videoHelper();
             avatarUpdate();
         }
         seachHandler();

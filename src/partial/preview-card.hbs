@@ -1,0 +1,13 @@
+<div class="feed-collection__container-card" title="{{this.name}}">
+    <video height="400" class="feed-collection__container-card__video" playsinline muted preload="none"
+        poster="{{this.previewPath}}">
+        <source src="{{this.previewVideoPath}}" type='video/mp4'>
+    </video>
+    <div class="feed-collection__advanced-info">
+        <a href="/{{baseUrl}}/{{this.id}}" class="feed-collection__advanced-info__link" spa-link>
+            {{this.name}}
+        </a>
+        <div class="feed-collection__advanced-info__rating" data-rating="{{this.rating}}">{{this.rating}}
+        </div>
+    </div>
+</div>

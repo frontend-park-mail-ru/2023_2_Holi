@@ -14,6 +14,7 @@ export class ProfilePage {
     }
 
     async render() {
+        store.clearSubscribes();
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = profile();
         const profileForm = document.forms['profile-form'];
@@ -135,22 +136,6 @@ export class ProfilePage {
                         new Notify('Профиль успешно обновлен');
                         store.dispatch($sentUserInfoRequest());
 
-                        /*if (document.querySelector('iframe')) {
-                            document.querySelector('iframe').remove();
-                        }
-                        const access = await getCheckSurvey('csi_profile');
-                        console.info(access.body.passed)
-                        if (access.body.passed == false) {
-                            console.info("test")
-                            const frame = document.createElement('iframe');
-                            frame.width = '889';
-                            frame.height = '500';
-                            frame.src = 'http://localhost:81/csi_profile';
-                            frame.frameBorder = '0';
-                            frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-                            frame.allowFullscreen = true;
-                            document.body.appendChild(frame);
-                        }*/
                     }
                 }else{
                     new Notify('Что то вы вводите не так:)');

@@ -1,6 +1,9 @@
 {{> partial/header/partial-header feedPage=true kind="feed-page"}}
 
 <div class="glow-title">{{name}}</div>
-<div id="cast-page"></div>
-
+<div class="genre-container">
+    {{#each content}}
+    {{> partial/preview-card baseUrl="movies" this=content}}
+    {{/each}}
+</div>
 {{> partial/footer/partial-footer}}

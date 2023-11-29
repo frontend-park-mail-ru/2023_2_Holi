@@ -1,8 +1,12 @@
 export const createStore = (reducer, initialState) => {
   let state = initialState;
-  const subscribers = {};
+  let subscribers = {};
 
   return {
+    clearSubscribes() {
+      subscribers = {};
+    },
+
     dispatch(action) {
       if (action && Object.prototype.hasOwnProperty.call(action, 'type')) {
         state = reducer(state, action);

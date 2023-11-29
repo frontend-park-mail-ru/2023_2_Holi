@@ -13,13 +13,14 @@ export class ContentPage {
     }
 
     async render() {
+
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const id = getLastNumber(location.href);
         const film = await getContentById(id);
 
         this.#parent.innerHTML = content({ film: film.body });
-
+        avatarUpdate();
         const video = document.querySelector('video');
         video.addEventListener('loadedmetadata', function () {
             const durationInSeconds = video.duration;
@@ -40,27 +41,13 @@ export class ContentPage {
             }
         });
 
-        avatarUpdate();
+
 
         document.querySelector('.heart-button').addEventListener('click', () => {
             setLike(id);
         });
         videoController();
         seachHandler();
-
-        /* if (document.querySelector('iframe')) {
-             document.querySelector('iframe').remove();
-         }
-         const frame = document.createElement('iframe');
-         frame.width = '889';
-         frame.height = '500';
-         frame.src = 'http://localhost:81/nps';
-         frame.frameBorder = '0';
-         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-         frame.allowFullscreen = true;
- 
-             document.body.appendChild(frame);
-         }*/
 
     }
 }

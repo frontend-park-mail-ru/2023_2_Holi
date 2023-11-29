@@ -1,5 +1,3 @@
-@import url(components/video-item.css);
-
 #cast-page {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
