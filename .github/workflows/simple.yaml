@@ -42,7 +42,7 @@
          with:
            host: 212.233.122.175
            username: ubuntu
-           key: ../../../2023-2-Holi-DivDpZ5F.pem
+           key: ./2023-2-Holi-DivDpZ5F.pem
            source: "bundle/*"
            target: "/home/ubuntu/frontend"
            strip_components: 1
