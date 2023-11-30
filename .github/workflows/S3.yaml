@@ -26,8 +26,8 @@ jobs:
       - name: Upload build result
         uses: actions/upload-artifact@v1
         with:
-          name: build
-          path: ./build
+          name: bundle
+          path: ./bundle
 
   deploy:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
         with:
           args: --endpoint-url https://hb.bizmrg.com --acl public-read --follow-symlinks
         env:
-          AWS_S3_BUCKET: 2023_2_Holi-deploy
+          AWS_S3_BUCKET: frontend-deploy
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           SOURCE_DIR: "build"
