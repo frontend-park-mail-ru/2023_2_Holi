@@ -14,6 +14,25 @@
     margin-bottom: 5rem;
 }
 
+@media screen and (min-width: 1980px) {
+    .login-page__login-content {
+       transform: scale(1.5);
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .login-page__login-content {
+       transform: scale(2);
+    }
+}
+
+@media screen and (min-width: 3440px) {
+    .login-page__login-content {
+       transform: scale(3);
+    }
+}
+
+
 .login-page__form {
     color: #fff;
     padding: 60px 68px 40px;
