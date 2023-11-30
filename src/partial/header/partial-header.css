@@ -48,6 +48,7 @@
         flex-direction: column;
         padding-left: 0;
         padding-right: 0;
+        WIDTH: 100%;
     }
 
     .header-content {
