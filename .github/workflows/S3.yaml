@@ -41,9 +41,9 @@ jobs:
       - name: Upload to hotbox
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --endpoint-url https://msk.cloud.vk.com --acl public-read --follow-symlinks
+          args: --endpoint-url https://hb.bizmrg.com --acl public-read --follow-symlinks
         env:
-          AWS_S3_BUCKET: frontend-deploy
+          AWS_S3_BUCKET: 2023_2_Holi-deploy
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           SOURCE_DIR: "build"
