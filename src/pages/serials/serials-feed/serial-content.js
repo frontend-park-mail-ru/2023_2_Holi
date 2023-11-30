@@ -104,31 +104,6 @@ export class SerialContentPage {
             avatarUpdate();
 
         });
-
-        /* const prevLink = document.getElementById('prev-button');
-         const nextLink = document.getElementById('next-button');
-         const { previous, next } = getAdjacentElements(idsArray, Number(id));
-         prevLink.href = previous ? `/movies/${previous}` : `/movies/${id}`;
-         nextLink.href = next ? `/movies/${next}` : `/movies/${id}`;*/
-        //document.querySelector('.heart-button').addEventListener('click', () => {
-        //     setLike(id);
-        // });
-        //videoController();
-
-        /* if (document.querySelector('iframe')) {
-             document.querySelector('iframe').remove();
-         }
-         const frame = document.createElement('iframe');
-         frame.width = '889';
-         frame.height = '500';
-         frame.src = 'http://localhost:81/nps';
-         frame.frameBorder = '0';
-         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-         frame.allowFullscreen = true;
-
-             document.body.appendChild(frame);
-         }*/
-
     }
 }
 

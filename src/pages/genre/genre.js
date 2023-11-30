@@ -55,7 +55,6 @@ export class GenrePage {
 
                     return { ...movie, rating: roundedRating };
                 });
-                console.info(startContent);
                 this.#parent.innerHTML = '';
 
                 this.#parent.innerHTML = genre({
@@ -76,7 +75,6 @@ export class GenrePage {
 
                 return { ...movie, rating: roundedRating };
             });
-            console.info(startContent);
             this.#parent.innerHTML = '';
 
             this.#parent.innerHTML = genre({

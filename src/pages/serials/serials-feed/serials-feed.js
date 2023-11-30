@@ -37,7 +37,7 @@ export class SerialFeedPage {
             store.dispatch($sendSerialsCollectionAliasRequest());
 
             store.subscribe(SERIALS_COLLECTION_REDUCER, () => {
-                this.#parent.innerHTML = serial({ 'preview': store.getState().serials.preview, href: `/serial/${store.getState().serials.serials[2].content[0].id}` });
+                this.#parent.innerHTML = serial({ 'preview': store.getState().serials.preview });
                 this.addCollections(store.getState().serials.serials);
 
                 document.getElementById('logout').addEventListener('click', async function () {
@@ -46,14 +46,17 @@ export class SerialFeedPage {
                         navigate('/login');
                     }
                 });
-
+                const btn = document.querySelector('.btn-action');
+                btn.addEventListener('click', () => {
+                    btn.href = '/serial/' + store.getState().serials.preview.id;
+                });
                 avatarUpdate();
                 videoHelper();
                 seachHandler();
             });
 
         } else if (state.serials.serials) {
-            this.#parent.innerHTML = serial({ 'preview': state.serials.serials[2].content[0], href: `/serial/${store.getState().serials.serials[2].content[0].id}` });
+            this.#parent.innerHTML = serial({ 'preview':  store.getState().serials.preview });
             this.addCollections(state.serials.serials);
             document.getElementById('logout').addEventListener('click', async function () {
                 const response = await logoutRequest();
@@ -61,7 +64,10 @@ export class SerialFeedPage {
                     navigate('/login');
                 }
             });
-
+            const btn = document.querySelector('.btn-action');
+            btn.addEventListener('click', () => {
+                btn.href = '/serial/' + store.getState().serials.preview.id;
+            });
             avatarUpdate();
             videoHelper();
             seachHandler();
