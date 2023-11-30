@@ -2,7 +2,6 @@ import store from '../..';
 import { $sentUserInfoRequest, USER_REDUCER } from './flux/actions/user-info';
 
 export const avatarUpdate = () => {
-    console.log(store.getState());
 
     if (store.getState() && store.getState().user.userInfo && store.getState().user.userInfo.user.imagePath) {
 

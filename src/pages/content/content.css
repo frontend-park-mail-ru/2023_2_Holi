@@ -102,6 +102,7 @@
 .content-container__advanced-info__genres-link {
     font-family: Netflix;
     display: block;
+    font-weight: bold;
     color: white;
 }
 

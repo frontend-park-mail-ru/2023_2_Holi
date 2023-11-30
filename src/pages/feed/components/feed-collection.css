@@ -2,7 +2,7 @@
     margin-top: 2rem;
 }
 
-#feed-collections{
+#feed-collections {
     margin-bottom: 30px;
 }
 
@@ -47,6 +47,12 @@
     object-fit: none;
     border-radius: 1rem;
     transition: all .3s;
+}
+
+@media screen and (max-width: 900px) {
+    .feed-collection__container-card__video {
+        max-width: 400px;
+    }
 }
 
 .feed-collection__container-card:hover {
