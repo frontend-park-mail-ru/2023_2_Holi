@@ -38,6 +38,7 @@ export function updateDropdownList(results) {
             listItem.className = 'dropdown-item';
             const a = document.createElement('a');
             a.textContent = result.name;
+            a.className = 'dropdown-item';
             a.setAttribute('spa-link', '');
             a.href = `/cast/${result.id}`;
             listItem.appendChild(a);
@@ -53,6 +54,7 @@ export function updateDropdownList(results) {
             const listItem = document.createElement('li');
             listItem.className = 'dropdown-item';
             const a = document.createElement('a');
+            a.className = 'dropdown-item';
             a.textContent = result.name;
             if (result.seasonsCount === 0) {
                 a.href = `/movies/${result.id}`;

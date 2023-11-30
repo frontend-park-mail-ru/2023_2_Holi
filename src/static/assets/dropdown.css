@@ -30,9 +30,10 @@
     height: 50px;
     text-decoration: none;
     line-height: 40px;
-    font-size: 13px;
-    color: #999;
-    background-color: #000;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
 }
 
 .dropdown-item {
@@ -40,19 +41,21 @@
     padding: 0 0 0 10px;
     text-decoration: none;
     line-height: 40px;
-    font-size: 13px;
-    color: #999;
-    background-color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: dimgray;
 }
 
 .dropdown li {
+    list-style-type: none;
     height: 0;
     overflow: hidden;
-    transition: all 500ms;
+    transition: all .3s;
 }
 
 .dropdown.hover li {
-    transition-delay: 300ms;
+    transition: all .3s;
 }
 
 .dropdown li:first-child a {
@@ -77,8 +80,9 @@
 
 .dropdown-item:hover,
 .dropdown a:hover {
-    background-color: #EEE;
-    color: #666;
+    list-style-type: none;
+    background-color: var(--dark-hover);
+    color: white;
 }
 
 .dropdown>a:hover::after {
