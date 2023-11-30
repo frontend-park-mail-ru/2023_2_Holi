@@ -27,7 +27,7 @@
          uses: actions/upload-artifact@v1
          with:
            name: bundle
-           path: ./build
+           path: ./bundle
 
    deploy:
      runs-on: ubuntu-latest
