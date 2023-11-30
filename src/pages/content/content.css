@@ -1,4 +1,5 @@
-.heart-button {
+.heart-button,
+.heart-button-dislike {
     font-size: 24px;
     /* Размер шрифта и, следовательно, размер сердечка */
     color: red;
@@ -10,11 +11,51 @@
     transition: all .3s;
 }
 
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 /* Дополнительные стили по желанию */
 .heart-button:hover {
     text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
     /* Эффект тени при наведении */
-    transform: scale(1.3);
+    animation: pulse .5s ease-in-out infinite;
+}
+
+/* Дополнительные стили по желанию */
+.heart-button-dislike:hover {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    /* Эффект тени при наведении */
+    animation: wiggle 1s ease-in-out;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(10deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(20deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 .content__like {

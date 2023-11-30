@@ -117,9 +117,3 @@
 .rating-low {
     background: red;
 }
-
-.feed-collection__container-card:hover .feed-collection__advanced-info .feed-collection__advanced-info__link {
-    animation: neon 3s infinite;
-    animation-timing-function: linear;
-    text-shadow: 0 0 10px hsla(0, 0%, 100%, .8), 0 0 20px hsla(0, 0%, 100%, .8), 0 0 22px hsla(0, 0%, 100%, .8), 0 0 40px rgba(219, 66, 217, .8), 0 0 60px rgba(219, 66, 217, .8), 0 0 80px rgba(219, 66, 217, .8), 0 0 100px rgba(219, 66, 217, .5), 0 0 140px rgba(219, 66, 217, .5), 0 0 200px rgba(219, 66, 217, .5);
-}
