@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
     entry: {
         'app': './index.js',
         'sw': "/sw.js",
@@ -14,6 +15,7 @@ module.exports = {
         filename: '[name].js',
         path: path.resolve(__dirname, 'bundle'),
     },
+    devtool: 'inline-source-map',
     module: {
         rules: [
             /*{
@@ -118,4 +120,14 @@ module.exports = {
             filename: '[name].css',
         }),
     ],
+
+    // devServer: {
+    //     port: 80,
+    //     hot: true,
+    //     compress: true,
+    //     static: {
+    //         directory: path.join(__dirname, 'dist'),
+    //     },
+    //     historyApiFallback: true,
+    // },
 };

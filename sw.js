@@ -1,19 +1,19 @@
 
 const CACHE = 'offline-v1';
 
-// self.addEventListener('activate', function(event) {
-//     event.waitUntil(
-//       caches.keys().then((cacheNames) => {
-//         return Promise.all(
-//           cacheNames.map((currentCache) => {
-//             if (currentCache !== CACHE) {
-//               return caches.delete(currentCache);
-//             }
-//           })
-//         );
-//       })
-//     );
-//   });
+self.addEventListener('activate', function(event) {
+    event.waitUntil(
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((currentCache) => {
+            if (currentCache !== CACHE) {
+              return caches.delete(currentCache);
+            }
+          })
+        );
+      })
+    );
+  });
 
 self.addEventListener('fetch', (event) => {
     if (event.request.headers.get('range')) {

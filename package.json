@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode development",
     "start": "npm run build && node server/server.mjs",
     "serve": "webpack serve",
     "lint": "eslint ."
