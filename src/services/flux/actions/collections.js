@@ -25,7 +25,7 @@ export const $sendCollectionAliasRequest = () => {
         .then(response => {
             const genres = response.body.genres;
             const genrePromises = genres.map(genre => {
-                return getGenreFilms(genre.name)
+                return getGenreFilms(genre.id)
                     .then(result => {
                         if (result.body.films) {
                             return ({

@@ -1,7 +1,7 @@
 import { NETFLIX_API } from './const';
 
-export const getGenreSerials = (genre) => {
-    return fetch(`${NETFLIX_API}/series/genre/${genre}`, {
+export const getGenreSerials = (id) => {
+    return fetch(`${NETFLIX_API}/series/genre/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -69,8 +69,8 @@ export const getSerialByCastId = (id) => {
         });
 };
 
-export const getGenreAlias = () => {
-    return fetch(`${NETFLIX_API}/genres`, {
+export const getGenreSerialAlias = () => {
+    return fetch(`${NETFLIX_API}/genres/series`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -83,6 +83,29 @@ export const getGenreAlias = () => {
 
         return response.json();
     })
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            throw new Error(error);
+        });
+};
+
+export const getTopRatedSeries = () => {
+    return fetch(`${NETFLIX_API}/series/top/rate`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+        },
+        credentials: 'include',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ответ сервера не 200');
+            }
+
+            return response.json();
+        })
         .then(data => {
             return data;
         })

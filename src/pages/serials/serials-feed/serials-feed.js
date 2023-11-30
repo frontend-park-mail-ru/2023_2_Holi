@@ -37,7 +37,7 @@ export class SerialFeedPage {
             store.dispatch($sendSerialsCollectionAliasRequest());
 
             store.subscribe(SERIALS_COLLECTION_REDUCER, () => {
-                this.#parent.innerHTML = serial({ 'preview': store.getState().serials.serials[2].content[0], href: `/serial/${store.getState().serials.serials[2].content[0].id}` });
+                this.#parent.innerHTML = serial({ 'preview': store.getState().serials.preview, href: `/serial/${store.getState().serials.serials[2].content[0].id}` });
                 this.addCollections(store.getState().serials.serials);
 
                 document.getElementById('logout').addEventListener('click', async function () {

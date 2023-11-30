@@ -76,7 +76,7 @@ export const getContentByCastId = (id) => {
 };
 
 export const getGenreAlias = () => {
-    return fetch(`${NETFLIX_API}/genres`, {
+    return fetch(`${NETFLIX_API}/genres/films`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
