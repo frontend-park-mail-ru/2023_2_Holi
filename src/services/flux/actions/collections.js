@@ -35,9 +35,9 @@ export const $sendCollectionAliasRequest = () => {
                             });
                         }
                     })
-                    .catch(error => {
-                        $collectionError(error);
-                    });
+                    // .catch(error => {
+                    //     $collectionError(error);
+                    // });
             });
 
             return Promise.all(genrePromises);

@@ -1,6 +1,15 @@
 
 const CACHE = 'offline-v1';
 
+self.addEventListener('install', (event) => {
+    // кэшируем изображение, которое используется для уведомления
+    // об отсутствии сети
+    event.waitUntil(caches.open(CACHE).then((cache) => {
+        return cache.add('img/netflix.svg');
+    }));
+});
+
+
 self.addEventListener('activate', function(event) {
     event.waitUntil(
       caches.keys().then((cacheNames) => {
