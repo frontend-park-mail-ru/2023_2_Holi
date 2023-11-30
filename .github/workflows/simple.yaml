@@ -2,7 +2,7 @@
 
  on:
    push:
-     branches: [master]
+     branches: [new_stable]
 
  jobs:
    build:
