@@ -1,5 +1,6 @@
 import { searchRequest } from './api/search';
 import { debounce } from './debounce';
+import {Notify} from "../components/notify/notify";
 
 // Функция для выполнения запроса на сервер
 export function fetchData(query) {
@@ -73,6 +74,9 @@ export function seachHandler() {
     if (inputSearch) {
         // Добавляем обработчик события oninput с использованием debounce
         inputSearch.addEventListener('input', debounce(function (event) {
+            if (!navigator.onLine) {
+                new Notify('Нет соединения');
+            }
             const query = event.target.value;
             fetchData(query);
         }, 300));

@@ -1,7 +1,12 @@
 import { getCookie } from '../getCookie';
 import { NETFLIX_API } from './const';
+import {Page404} from "../../pages/404/404";
+import {Notify} from "../../components/notify/notify";
 
 export const setLike = (id) => {
+    if (!navigator.onLine) {
+        new Notify('Нет соединения');
+    }
     return fetch(`${NETFLIX_API}/video/favourites/${id}`, {
         method: 'POST',
         headers: {
@@ -55,11 +60,15 @@ export const getLikeState = (id) => {
             return data;
         })
         .catch(error => {
+            (new Page404(document.getElementById('root'))).render()
             throw (error);
         });
 };
 
 export const deleteLike = (id) => {
+    if (!navigator.onLine) {
+        new Notify('Нет соединения');
+    }
     return fetch(`${NETFLIX_API}/video/favourites/${id}`, {
         method: 'DELETE',
         headers: {

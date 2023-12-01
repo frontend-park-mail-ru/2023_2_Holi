@@ -1,4 +1,5 @@
 import { NETFLIX_API } from './const.js';
+import {Page404} from "../../pages/404/404";
 
 /**
  * Выполняет запрос на получение фильмов по указанному жанру.
@@ -25,6 +26,9 @@ export const getGenreFilms = (id) => {
             return data;
         })
         .catch(error => {
+            if (!navigator.onLine) {
+                (new Page404(document.getElementById('root'))).render()
+            }
             throw new Error(error);
         });
 };
@@ -48,6 +52,7 @@ export const getContentById = (id) => {
             return data;
         })
         .catch(error => {
+            (new Page404(document.getElementById('root'))).render()
             throw new Error(error);
         });
 };
@@ -71,6 +76,9 @@ export const getContentByCastId = (id) => {
             return data;
         })
         .catch(error => {
+            if (!navigator.onLine) {
+                (new Page404(document.getElementById('root'))).render()
+            }
             throw new Error(error);
         });
 };
@@ -93,6 +101,9 @@ export const getGenreAlias = () => {
             return data;
         })
         .catch(error => {
+            if (!navigator.onLine) {
+                (new Page404(document.getElementById('root'))).render()
+            }
             throw new Error(error);
         });
 };
