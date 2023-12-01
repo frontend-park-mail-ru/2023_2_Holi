@@ -2,9 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    min-height: calc(100vh);
-    transform: scale(1.5) translateY(-42px);
+    min-height: 100%;
+
     opacity: 0.5;
     background-size: cover;
     background-repeat: no-repeat;

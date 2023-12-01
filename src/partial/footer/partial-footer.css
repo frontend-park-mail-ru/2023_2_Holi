@@ -116,4 +116,8 @@
     .footer__container {
         padding: 0;
     }
+
+    .footer {
+        height: auto;
+    }
 }

@@ -31,3 +31,9 @@
 .register-form__description {
     font-weight: bold;
 }
+
+@media screen and (max-width: 900px) {
+    .register-form__title {
+        font-size: 1.5rem;
+    }
+}
