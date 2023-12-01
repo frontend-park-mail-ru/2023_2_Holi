@@ -11,16 +11,35 @@ export const setLike = (id) => {
         credentials: 'include',
     }).then(response => {
         if (response.ok) {
+            return response;
+        }
+    });
+
+};
+
+export const getLike = () => {
+    return fetch(`${NETFLIX_API}/video/favourites`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRF-TOKEN': getCookie('csrf-token'),
+        },
+        credentials: 'include',
+    }).then(response => {
+        if (response.ok) {
             return response.json();
         }
     })
         .then(data => {
             return data;
+        })
+        .catch(error => {
+            throw (error);
         });
 };
 
-export const getLike = () => {
-    return fetch(`${NETFLIX_API}/video/favourites`, {
+export const getLikeState = (id) => {
+    return fetch(`${NETFLIX_API}/video/favourites/check/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',

@@ -17,6 +17,17 @@
     line-height: 1;
 }
 
+.empty-like:before {
+    font-family: 'heart-netflix';
+    content: "\e902";
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+}
+
 .dislike:before {
     font-family: 'heart-netflix';
     content: "\e901";
