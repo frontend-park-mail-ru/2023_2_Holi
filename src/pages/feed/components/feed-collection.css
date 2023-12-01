@@ -51,7 +51,7 @@
 
 @media screen and (max-width: 900px) {
     .feed-collection__container-card__video {
-        max-width: 400px;
+        max-width: 300px;
     }
 }
 

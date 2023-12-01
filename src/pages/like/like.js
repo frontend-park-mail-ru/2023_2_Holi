@@ -71,7 +71,7 @@ export class FavouritesPage {
                 });
                 this.ratingFillColor();
 
-                document.querySelectorAll('.heart-button').forEach(button => {
+                document.querySelectorAll('.heart-button-dislike').forEach(button => {
                     button.addEventListener('click', (event) => {
                         deleteLike(button.id)
                             .then(res => {
@@ -86,6 +86,13 @@ export class FavouritesPage {
                     });
                 });
             }
+
+            document.getElementById('logout').addEventListener('click', async function () {
+                const response = await logoutRequest();
+                if (response.ok) {
+                    navigate('/login');
+                }
+            });
 
             seachHandler();
             videoHelper();

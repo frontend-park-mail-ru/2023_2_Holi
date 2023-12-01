@@ -7,8 +7,8 @@ import {Page404} from "../../pages/404/404";
  * @returns {Promise} Промис, который разрешится с данными о фильмах или ошибкой.
  * @throws {Error} Ошибка сети или некорректный ответ сервера.
  */
-export const getGenreFilms = (genre) => {
-    return fetch(`${NETFLIX_API}/films/genre/${genre}`, {
+export const getGenreFilms = (id) => {
+    return fetch(`${NETFLIX_API}/films/genre/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
