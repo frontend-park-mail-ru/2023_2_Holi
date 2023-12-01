@@ -87,6 +87,13 @@ export class FavouritesPage {
                 });
             }
 
+            document.getElementById('logout').addEventListener('click', async function () {
+                const response = await logoutRequest();
+                if (response.ok) {
+                    navigate('/login');
+                }
+            });
+
             seachHandler();
             videoHelper();
             avatarUpdate();
