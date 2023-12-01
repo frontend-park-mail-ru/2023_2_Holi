@@ -83,6 +83,7 @@
 .dropdown-item:hover,
 .dropdown a:hover {
     list-style-type: none;
+    font-weight: bold;
     background-color: var(--dark-hover);
     color: white;
 }
