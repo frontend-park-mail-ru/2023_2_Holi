@@ -1,6 +1,7 @@
 import { getCookie } from '../getCookie';
 import { NETFLIX_API } from './const';
 import {Page404} from "../../pages/404/404";
+import {Notify} from "../../components/notify/notify";
 
 export const setLike = (id) => {
     if (!navigator.onLine) {
