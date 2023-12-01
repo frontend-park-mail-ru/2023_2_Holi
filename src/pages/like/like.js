@@ -71,7 +71,7 @@ export class FavouritesPage {
                 });
                 this.ratingFillColor();
 
-                document.querySelectorAll('.heart-button').forEach(button => {
+                document.querySelectorAll('.heart-button-dislike').forEach(button => {
                     button.addEventListener('click', (event) => {
                         deleteLike(button.id)
                             .then(res => {
