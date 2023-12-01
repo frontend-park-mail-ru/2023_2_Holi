@@ -52,7 +52,7 @@ export const getContentById = (id) => {
             return data;
         })
         .catch(error => {
-            (new Page404(document.getElementById('root'))).render()
+            (new Page404(document.getElementById('root'))).render();
             throw new Error(error);
         });
 };
