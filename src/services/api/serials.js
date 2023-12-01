@@ -1,4 +1,5 @@
 import { NETFLIX_API } from './const';
+import {Page404} from "../../pages/404/404";
 
 export const getGenreSerials = (id) => {
     return fetch(`${NETFLIX_API}/series/genre/${id}`, {
@@ -65,6 +66,9 @@ export const getSerialByCastId = (id) => {
             return data;
         })
         .catch(error => {
+            if (!navigator.onLine) {
+                (new Page404(document.getElementById('root'))).render()
+            }
             throw new Error(error);
         });
 };
@@ -87,6 +91,9 @@ export const getGenreSerialAlias = () => {
             return data;
         })
         .catch(error => {
+            if (!navigator.onLine) {
+                (new Page404(document.getElementById('root'))).render()
+            }
             throw new Error(error);
         });
 };
