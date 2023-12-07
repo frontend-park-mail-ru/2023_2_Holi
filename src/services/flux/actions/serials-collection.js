@@ -1,9 +1,10 @@
 import store from '../../../..';
-import { getGenreAlias } from '../../api/content';
+import { getGenreSerialAlias, getTopRatedSeries } from '../../api/serials';
 import { getGenreSerials } from '../../api/serials';
 export const SERIALS_COLLECTION_REQUEST = 'SERIALS_COLLECTION_REQUEST';
 export const SERIALS_COLLECTION_SUCCESS = 'SERIALS_COLLECTION_SUCCESS';
 export const SERIALS_COLLECTION_ERROR = 'SERIALS_COLLECTION_ERROR';
+export const SERIALS_COLLECTION_PREVIEW = 'SERIALS_COLLECTION_PREVIEW';
 /**
  * Генераторы экшенов
  */
@@ -16,13 +17,14 @@ export const $serialsCollectionSuccess = (data) => ({ type: SERIALS_COLLECTION_S
 
 export const $serialsCollectionError = (error) => ({ type: SERIALS_COLLECTION_ERROR, payload: { isError: true, error: error }, reducerName: SERIALS_COLLECTION_REDUCER });
 
+export const $serialsCollectionPreview = (preview) => ({ type: SERIALS_COLLECTION_PREVIEW, payload: preview, reducerName: SERIALS_COLLECTION_REDUCER });
 export const $sendSerialsCollectionAliasRequest = () => {
     store.dispatch($serialsCollectionRequest());
-    getGenreAlias()
+    getGenreSerialAlias()
         .then(response => {
             const genres = response.body.genres;
             const genrePromises = genres.map(genre => {
-                return getGenreSerials(genre.name)
+                return getGenreSerials(genre.id)
                     .then(result => {
                         if (result.body.films) {
                             return ({
@@ -41,6 +43,10 @@ export const $sendSerialsCollectionAliasRequest = () => {
         })
         .then(data => {
             store.dispatch($serialsCollectionSuccess(data));
+            getTopRatedSeries()
+                .then(retult => {
+                    store.dispatch($serialsCollectionPreview(retult.body.series));
+                });
         });
 
 };

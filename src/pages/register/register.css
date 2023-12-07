@@ -13,8 +13,14 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-}
-.main-register-page__container {
     position: absolute;
     width: 100vw;
 }
+.main-register-page__container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    flex-direction: column;
+    display: flex;
+}
+

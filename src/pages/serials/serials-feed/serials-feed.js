@@ -6,6 +6,7 @@ import { logoutRequest } from '../../../services/api/auth';
 import { navigate } from '../../../services/router/Router';
 import { seachHandler } from '../../../services/search-utils';
 import { avatarUpdate } from '../../../services/avatar-update';
+import { videoHelper } from '../../../services/video-helper';
 
 export class SerialFeedPage {
     #parent;
@@ -29,29 +30,48 @@ export class SerialFeedPage {
     }
 
     render() {
+        store.clearSubscribes();
         this.#parent.innerHTML = '';
-        this.#parent.innerHTML = serial();
         const state = store.getState();
-        console.log(state);
         if (!state || state.serials.serials === null) {
             store.dispatch($sendSerialsCollectionAliasRequest());
 
             store.subscribe(SERIALS_COLLECTION_REDUCER, () => {
+                this.#parent.innerHTML = serial({ 'preview': store.getState().serials.preview });
                 this.addCollections(store.getState().serials.serials);
+
+                document.getElementById('logout').addEventListener('click', async function () {
+                    const response = await logoutRequest();
+                    if (response.ok) {
+                        navigate('/login');
+                    }
+                });
+                const btn = document.querySelector('.btn-action');
+                btn.addEventListener('click', () => {
+                    btn.href = '/serial/' + store.getState().serials.preview.id;
+                });
+                avatarUpdate();
+                videoHelper();
+                seachHandler();
             });
 
+        } else if (state.serials.serials) {
+            this.#parent.innerHTML = serial({ 'preview':  store.getState().serials.preview });
+            this.addCollections(state.serials.serials);
             document.getElementById('logout').addEventListener('click', async function () {
                 const response = await logoutRequest();
                 if (response.ok) {
                     navigate('/login');
                 }
             });
-        } else if (state.serials.serials) {
-            this.addCollections(state.serials.serials);
+            const btn = document.querySelector('.btn-action');
+            btn.addEventListener('click', () => {
+                btn.href = '/serial/' + store.getState().serials.preview.id;
+            });
+            avatarUpdate();
+            videoHelper();
+            seachHandler();
         }
 
-        avatarUpdate();
-
-        seachHandler();
     }
 }

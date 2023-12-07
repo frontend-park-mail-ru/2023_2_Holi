@@ -46,6 +46,16 @@ button.partial-btn[kind="primary-xl"] {
     box-sizing: border-box;
 }
 
+@media screen and (max-width: 900px) {
+    .partial-btn[kind="primary-xl"] {
+        min-height: 48px !important;
+    }
+
+    .button.partial-btn[kind="primary-xl"] {
+        min-height: 48px !important;
+    }
+}
+
 .partial-btn[kind="primary-xl"]:hover {
     transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
     background: var(--primary-hover);

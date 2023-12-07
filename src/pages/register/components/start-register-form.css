@@ -12,12 +12,30 @@
     padding: 3rem;
 }
 
+@media screen and (min-width: 1980px) {
+    .start-register__form, .register-form {
+       transform: scale(1.5);
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .start-register__form, .register-form {
+       transform: scale(2);
+    }
+}
+
+@media screen and (min-width: 3440px) {
+    .start-register__form, .register-form {
+       transform: scale(3);
+    }
+}
+
 .start-register__form-logo-container {
     display: inline-block;
 }
 
 .start-register__form-logo {
-    margin: 100px 0 20px;
+    margin: 50px 0 20px;
     width: 260px;
     display: block;
     background: url(../../../static/img/devices.webp) no-repeat 50% 50%;

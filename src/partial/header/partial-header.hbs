@@ -12,7 +12,30 @@
             <a href="/serials" spa-link>Сериалы</a>
             <a href="/list" spa-link>Избранное</a>
         </div>
-        <div style="display: flex; flex-direction: column">
+        <div style="display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;">
+            <div class="search-box">
+                <button class="btn-search"><i class="search-icon"></i></button>
+                <input type="text" class="input-search" placeholder="Поищем?)">
+            </div>
+            <div id="search-list" class="dropdown hover">
+                <ul id="dropdown-list"></ul>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if profilePage}}
+        <div class="header-content__links">
+            <a href="/feed" spa-link>Фильмы</a>
+            <a href="/serials" spa-link>Сериалы</a>
+            <a href="/list" spa-link>Избранное</a>
+        </div>
+        <div style="display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;">
             <div class="search-box">
                 <button class="btn-search"><i class="search-icon"></i></button>
                 <input type="text" class="input-search" placeholder="Поищем?)">

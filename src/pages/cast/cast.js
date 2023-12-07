@@ -1,9 +1,10 @@
-import { VideoItem } from './components/video-item.js';
 import { getLastNumber } from '../../services/getParams.js';
 import { getContentByCastId } from '../../services/api/content.js';
 import cast from './cast.hbs';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
+import { videoHelper } from '../../services/video-helper.js';
+import store from '../../services/store.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -17,15 +18,6 @@ export class CastPage {
      */
     constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
-    }
-
-    addVideoCard(content) {
-        const root = document.getElementById('cast-page');
-        root.innerHTML = '';
-        content.forEach((data) => {
-            new VideoItem(root, data);
-        });
-
     }
 
     ratingFillColor() {
@@ -67,17 +59,12 @@ export class CastPage {
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = cast({
             name: castName,
+            content: content,
         });
 
         avatarUpdate();
-
+        videoHelper();
         seachHandler();
-
-        this.addVideoCard(content);
-
-        document.getElementById('dropdown').addEventListener('click', function () {
-            this.parentNode.parentNode.classList.toggle('closed');
-        }, false);
 
         this.ratingFillColor();
 

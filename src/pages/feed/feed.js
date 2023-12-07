@@ -6,6 +6,7 @@ import store from '../../..';
 import { $sendCollectionAliasRequest, COLLECTION_REDUCER } from '../../services/flux/actions/collections.js';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
+import { videoHelper } from '../../services/video-helper.js';
 
 /**
  * Класс, представляющий страницу ленты.
@@ -33,7 +34,7 @@ export class FeedPage {
      * Рендерит страницу ленты.
      */
     async render() {
-
+        store.clearSubscribes();
         this.#parent.innerHTML = '';
 
         store.dispatch($sendCollectionAliasRequest());
@@ -42,7 +43,7 @@ export class FeedPage {
             const state = store.getState().collections;
             this.#parent.innerHTML = feed({ 'preview': state.preview, 'id': 'playButton' });
             this.addCollections(state.collections);
-            document.getElementById('logout').addEventListener('click', async function () {
+            document.getElementById('logout').addEventListener('click', async function() {
                 const response = await logoutRequest();
                 if (response.ok) {
                     navigate('/login');
@@ -54,28 +55,9 @@ export class FeedPage {
                 btn.href = '/movies/' + state.preview.id;
             });
             seachHandler();
-
+            videoHelper();
             avatarUpdate();
         });
-
-        // Получаем поле ввода
-
-        /*if (document.querySelector('iframe')) {
-            document.querySelector('iframe').remove();
-        }
-        if (document.querySelector('iframe')) {
-            document.querySelector('iframe').remove();
-        }
-
-        const frame = document.createElement('iframe');
-        frame.width = '889';
-        frame.height = '500';
-        frame.src = 'http://localhost:81/csi/feed';
-        frame.frameBorder = '0';
-        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-        frame.allowFullscreen = true;
-
-        document.body.appendChild(frame);*/
 
     }
 }

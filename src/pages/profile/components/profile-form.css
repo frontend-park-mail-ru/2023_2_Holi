@@ -49,9 +49,4 @@
         flex-direction: column;
         gap: 30px;
     }
-
-    .input-control[kind="register-page"] {
-        width: 100%;
-        padding: 0;
-    }
 }

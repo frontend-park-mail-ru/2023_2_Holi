@@ -4,9 +4,9 @@ export const validatePassword = (password) => {
         return 'Пароль должен содержать минимум 8 символов';
     }
 
-    // Проверка наличия только латинских букв и цифр
-    if (!/^[a-zA-Z0-9]+$/.test(password)) {
-        return 'Пароль должен содержать только латинские буквы и цифры';
+    // eslint-disable-next-line no-constant-condition
+    if(/[\uD800-\uDFFF]/.test(password)){
+        return 'Без emoji пожалуйста';
     }
     // Проверка наличия хотя бы одной заглавной буквы
     if (!/[A-Z]/.test(password)) {

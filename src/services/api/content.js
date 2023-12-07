@@ -1,4 +1,5 @@
 import { NETFLIX_API } from './const.js';
+import {Page404} from "../../pages/404/404";
 
 /**
  * Выполняет запрос на получение фильмов по указанному жанру.
@@ -6,8 +7,8 @@ import { NETFLIX_API } from './const.js';
  * @returns {Promise} Промис, который разрешится с данными о фильмах или ошибкой.
  * @throws {Error} Ошибка сети или некорректный ответ сервера.
  */
-export const getGenreFilms = (genre) => {
-    return fetch(`${NETFLIX_API}/films/genre/${genre}`, {
+export const getGenreFilms = (id) => {
+    return fetch(`${NETFLIX_API}/films/genre/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -25,6 +26,9 @@ export const getGenreFilms = (genre) => {
             return data;
         })
         .catch(error => {
+            if (!navigator.onLine) {
+                (new Page404(document.getElementById('root'))).render()
+            }
             throw new Error(error);
         });
 };
@@ -48,6 +52,7 @@ export const getContentById = (id) => {
             return data;
         })
         .catch(error => {
+            (new Page404(document.getElementById('root'))).render();
             throw new Error(error);
         });
 };
@@ -71,12 +76,15 @@ export const getContentByCastId = (id) => {
             return data;
         })
         .catch(error => {
+            if (!navigator.onLine) {
+                (new Page404(document.getElementById('root'))).render()
+            }
             throw new Error(error);
         });
 };
 
 export const getGenreAlias = () => {
-    return fetch(`${NETFLIX_API}/genres`, {
+    return fetch(`${NETFLIX_API}/genres/films`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -93,6 +101,9 @@ export const getGenreAlias = () => {
             return data;
         })
         .catch(error => {
+            if (!navigator.onLine) {
+                (new Page404(document.getElementById('root'))).render()
+            }
             throw new Error(error);
         });
 };

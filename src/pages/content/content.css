@@ -1,6 +1,5 @@
-@import url(./components/player.css);
-
-.heart-button {
+.heart-button,
+.heart-button-dislike {
     font-size: 24px;
     /* Размер шрифта и, следовательно, размер сердечка */
     color: red;
@@ -12,11 +11,51 @@
     transition: all .3s;
 }
 
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 /* Дополнительные стили по желанию */
 .heart-button:hover {
     text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
     /* Эффект тени при наведении */
-    transform: scale(1.3);
+    animation: pulse .5s ease-in-out infinite;
+}
+
+/* Дополнительные стили по желанию */
+.heart-button-dislike:hover {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    /* Эффект тени при наведении */
+    animation: wiggle 1s ease-in-out;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(10deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(20deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 .content__like {
@@ -27,4 +66,127 @@
     font-family: 'Netflix';
     align-items: center;
     padding: 10px;
+}
+
+.content-container {
+    padding: 16px;
+    background-color: #181818;
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    width: 70%;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.25rem;
+}
+
+.content-container__title {
+    color: white;
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+.content-container__player {
+    display: block;
+    width: 100%;
+    margin: auto;
+    border: 1px solid #454545;
+    border-radius: 0.25rem;
+}
+
+.content-container__advanced-info__meta {
+    display: flex;
+    color: aliceblue;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+}
+
+.content-container__advanced-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2rem;
+    font-size: 14px;
+}
+
+.content-container__advanced-info__about {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 10px;
+}
+
+.content-container__advanced-info__description {
+    display: flex;
+    font-family: Netflix;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.content-container__advanced-info__genres {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    margin-left: auto;
+    gap: 10px;
+}
+
+.content-container__advanced-info__genres-title {
+    font-family: Netflix;
+    color: #777777;
+    display: flex;
+}
+
+.content-container__advanced-info__genres-link {
+    font-family: Netflix;
+    display: block;
+    font-weight: bold;
+    color: white;
+}
+
+.content-container__advanced-info__genres-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.content-container__player__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.content-container__player__actions a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: none;
+    padding: 0;
+    cursor: pointer;
+    color: #fff;
+}
+
+.content-container__player__actions a:hover {
+    color: gainsboro;
+}
+
+
+@media screen and (max-width: 900px) {
+    .content-container__advanced-info__meta {
+        flex-direction: column;
+    }
+
+    .content-container__advanced-info__about {
+        flex-direction: column;
+    }
+
+    .content-container__advanced-info__genres {
+        margin: 0;
+    }
 }

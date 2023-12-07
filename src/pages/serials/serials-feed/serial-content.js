@@ -2,7 +2,7 @@ import { logoutRequest } from '../../../services/api/auth.js';
 import { getLastNumber } from '../../../services/getParams.js';
 import { navigate } from '../../../services/router/Router.js';
 import serial from './serials-content.hbs';
-import { setLike } from '../../../services/api/like.js';
+import { deleteLike, getLikeState, setLike } from '../../../services/api/like.js';
 import { seachHandler } from '../../../services/search-utils.js';
 import store from '../../../../index.js';
 import { $sendSerialsContentRequest, SERIALS_CONTENT_REDUCER } from '../../../services/flux/actions/serial-content.js';
@@ -29,7 +29,13 @@ export class SerialContentPage {
             const hours = Math.floor(durationInSeconds / 3600);
             const minutes = Math.floor((durationInSeconds % 3600) / 60);
 
-            document.getElementById('duration').innerText = (`${hours} часов ${minutes} минут`);
+            if (hours > 0 && minutes > 0) {
+                document.getElementById('duration').innerText = (`${hours} ч ${minutes} м`);
+            } else if (minutes === 0) {
+                document.getElementById('duration').innerText = (`${hours} ч`);
+            } else if (hours === 0) {
+                document.getElementById('duration').innerText = (` ${minutes} м`);
+            }
         });
 
         localStorage.setItem('lastSerial_' + id, i);
@@ -57,6 +63,7 @@ export class SerialContentPage {
     }
 
     async render() {
+        store.clearSubscribes();
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const id = getLastNumber(location.href);
@@ -88,6 +95,33 @@ export class SerialContentPage {
                 this.setEpisodeData(id, state.episodes[currentEpisode + 1].season, state.episodes[currentEpisode + 1].number, state.episodes[currentEpisode + 1].name, state.episodes[currentEpisode + 1].mediaPath, state.episodes[currentEpisode + 1].description, currentEpisode + 1, state.episodes.length, state.episodes);
             });
 
+            const like = document.querySelector('.heart-button');
+
+            getLikeState(id).then(response => {
+                if (response.body.isFavourite === true) {
+                    like.querySelector('i').className = 'like';
+                } else {
+                    like.querySelector('i').className = 'empty-like';
+                }
+            });
+
+            like.addEventListener('click', () => {
+                if (like.querySelector('i').className === 'like') {
+                    deleteLike(id).then(() => {
+                        setTimeout(() => {
+                            like.querySelector('i').className = 'empty-like';
+                        }, 0);
+
+                    });
+                } else if (like.querySelector('i').className === 'empty-like') {
+                    setLike(id).then(() => {
+                        setTimeout(() => {
+                            like.querySelector('i').className = 'like';
+                        }, 0);
+                    });
+                }
+            });
+
             document.getElementById('logout').addEventListener('click', async function () {
                 const response = await logoutRequest();
                 if (response.ok) {
@@ -95,39 +129,11 @@ export class SerialContentPage {
                 }
             });
 
-            document.querySelector('.heart-button').addEventListener('click', () => {
-                setLike(id);
-            });
             videoController();
 
             avatarUpdate();
 
         });
-
-        /* const prevLink = document.getElementById('prev-button');
-         const nextLink = document.getElementById('next-button');
-         const { previous, next } = getAdjacentElements(idsArray, Number(id));
-         prevLink.href = previous ? `/movies/${previous}` : `/movies/${id}`;
-         nextLink.href = next ? `/movies/${next}` : `/movies/${id}`;*/
-        //document.querySelector('.heart-button').addEventListener('click', () => {
-        //     setLike(id);
-        // });
-        //videoController();
-
-        /* if (document.querySelector('iframe')) {
-             document.querySelector('iframe').remove();
-         }
-         const frame = document.createElement('iframe');
-         frame.width = '889';
-         frame.height = '500';
-         frame.src = 'http://localhost:81/nps';
-         frame.frameBorder = '0';
-         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-         frame.allowFullscreen = true;
-
-             document.body.appendChild(frame);
-         }*/
-
     }
 }
 

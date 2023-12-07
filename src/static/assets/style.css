@@ -28,6 +28,8 @@ body {
     margin: 0;
     padding: 0;
     background: black;
+	overflow-x: hidden;
+    position: relative;
 }
 
 html {
@@ -65,7 +67,7 @@ iframe {
     justify-content: center;
     align-items: center;
     height: 200px;
-    font-size: 3rem;
+    font-size: 2rem;
     padding: 0 6%;
     text-align: center;
     animation: fadeInText 3s ease-in 3.5s forwards, flicker4 5s linear 7.5s infinite, hueRotate 6s ease-in-out 3s infinite;

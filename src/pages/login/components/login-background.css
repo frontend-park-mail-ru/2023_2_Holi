@@ -2,12 +2,41 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    min-height: calc(100vh - 200px);
-    transform: scale(1.25) translateY(-42px);
+    min-height: 100%;
+
     opacity: 0.5;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
+}
+
+@media screen and (max-width: 900px) {
+    .login-page__login-background {
+        transform: none;
+    }
+
+    .input-control {
+        min-width: 0;
+    }
+
+    .login-page__login-content {
+        max-width: 100vw !important;
+    }
+
+    .start-register__form-logo {
+        margin: 0 !important;
+    }
+
+    .start-register__form {
+        margin: 0 !important;
+        max-width: 100vw !important;
+        padding-top: 0 !important;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .login-page__login-background {
+        background: #000 !important;
+    }
 }

@@ -3,6 +3,7 @@ import { deleteLike } from '../../services/api/like';
 import { avatarUpdate } from '../../services/avatar-update';
 import { $sendGetFavourites } from '../../services/flux/actions/like';
 import { seachHandler } from '../../services/search-utils';
+import { videoHelper } from '../../services/video-helper';
 import like from './like.hbs';
 
 /**
@@ -40,6 +41,7 @@ export class FavouritesPage {
      * Рендерит страницу.
      */
     async render() {
+        store.clearSubscribes();
         this.#parent.innerHTML = '';
 
         store.dispatch($sendGetFavourites());
@@ -69,7 +71,7 @@ export class FavouritesPage {
                 });
                 this.ratingFillColor();
 
-                document.querySelectorAll('.heart-button').forEach(button => {
+                document.querySelectorAll('.heart-button-dislike').forEach(button => {
                     button.addEventListener('click', (event) => {
                         deleteLike(button.id)
                             .then(res => {
@@ -85,8 +87,15 @@ export class FavouritesPage {
                 });
             }
 
-            seachHandler();
+            document.getElementById('logout').addEventListener('click', async function () {
+                const response = await logoutRequest();
+                if (response.ok) {
+                    navigate('/login');
+                }
+            });
 
+            seachHandler();
+            videoHelper();
             avatarUpdate();
         });
 

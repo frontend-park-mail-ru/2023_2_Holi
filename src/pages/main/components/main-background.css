@@ -25,7 +25,7 @@
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1280px) {
     .main-form {
         transform: scale(.7);
         text-align: center;

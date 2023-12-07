@@ -4,10 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const WorkBoxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
-    entry: './index.js',
+    entry: {
+        'app': './index.js',
+        'sw': "/sw.js",
+    },
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'bundle'),
@@ -114,10 +116,6 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css',
-        }),
-        new WorkBoxWebpackPlugin.InjectManifest({
-            swSrc: '/sw.js',
-            swDest: 'sw.js',
         }),
     ],
 };

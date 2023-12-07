@@ -3,7 +3,7 @@ import { getContentById } from '../../services/api/content.js';
 import { getLastNumber } from '../../services/getParams.js';
 import { navigate } from '../../services/router/Router.js';
 import content from './content.hbs';
-import { setLike } from '../../services/api/like.js';
+import { deleteLike, getLikeState, setLike } from '../../services/api/like.js';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
 export class ContentPage {
@@ -13,13 +13,23 @@ export class ContentPage {
     }
 
     async render() {
+
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const id = getLastNumber(location.href);
         const film = await getContentById(id);
 
         this.#parent.innerHTML = content({ film: film.body });
+        avatarUpdate();
+        const like = document.querySelector('.heart-button');
 
+        getLikeState(id).then(response => {
+            if (response.body.isFavourite === true) {
+                like.querySelector('i').className = 'like';
+            } else {
+                like.querySelector('i').className = 'empty-like';
+            }
+        });
         const video = document.querySelector('video');
         video.addEventListener('loadedmetadata', function () {
             const durationInSeconds = video.duration;
@@ -27,8 +37,13 @@ export class ContentPage {
             // Преобразуем длительность из секунд в часы и минуты
             const hours = Math.floor(durationInSeconds / 3600);
             const minutes = Math.floor((durationInSeconds % 3600) / 60);
-
-            document.getElementById('duration').innerText = (`${hours} часов ${minutes} минут`);
+            if (hours > 0 && minutes > 0) {
+                document.getElementById('duration').innerText = (`${hours} ч ${minutes} м`);
+            } else if (minutes === 0) {
+                document.getElementById('duration').innerText = (`${hours} ч`);
+            } else if (hours === 0) {
+                document.getElementById('duration').innerText = (` ${minutes} м`);
+            }
         });
 
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
@@ -40,27 +55,24 @@ export class ContentPage {
             }
         });
 
-        avatarUpdate();
+        like.addEventListener('click', () => {
+            if (like.querySelector('i').className === 'like') {
+                deleteLike(id).then(() => {
+                    setTimeout(() => {
+                        like.querySelector('i').className = 'empty-like';
+                    }, 0);
 
-        document.querySelector('.heart-button').addEventListener('click', () => {
-            setLike(id);
+                });
+            } else if (like.querySelector('i').className === 'empty-like') {
+                setLike(id).then(() => {
+                    setTimeout(() => {
+                        like.querySelector('i').className = 'like';
+                    }, 0);
+                });
+            }
         });
         videoController();
         seachHandler();
-
-        /* if (document.querySelector('iframe')) {
-             document.querySelector('iframe').remove();
-         }
-         const frame = document.createElement('iframe');
-         frame.width = '889';
-         frame.height = '500';
-         frame.src = 'http://localhost:81/nps';
-         frame.frameBorder = '0';
-         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-         frame.allowFullscreen = true;
- 
-             document.body.appendChild(frame);
-         }*/
 
     }
 }

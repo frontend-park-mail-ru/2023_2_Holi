@@ -1,5 +1,6 @@
 @import url(./header-icons.css);
 @import url(./search.css);
+@import url(./heart.css);
 @font-face {
   font-family: 'netflix';
   src: url('netflix.woff?g5zjyq') format('woff');
@@ -56,6 +57,7 @@
 
 .netflix[kind="close"]:before {
   content: "\e902";
+  color: white;
 }
 
 .netflix[kind="upload"]:before {

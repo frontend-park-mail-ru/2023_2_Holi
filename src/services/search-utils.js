@@ -1,5 +1,6 @@
 import { searchRequest } from './api/search';
 import { debounce } from './debounce';
+import {Notify} from "../components/notify/notify";
 
 // Функция для выполнения запроса на сервер
 export function fetchData(query) {
@@ -38,6 +39,7 @@ export function updateDropdownList(results) {
             listItem.className = 'dropdown-item';
             const a = document.createElement('a');
             a.textContent = result.name;
+            a.className = 'dropdown-item';
             a.setAttribute('spa-link', '');
             a.href = `/cast/${result.id}`;
             listItem.appendChild(a);
@@ -53,6 +55,7 @@ export function updateDropdownList(results) {
             const listItem = document.createElement('li');
             listItem.className = 'dropdown-item';
             const a = document.createElement('a');
+            a.className = 'dropdown-item';
             a.textContent = result.name;
             if (result.seasonsCount === 0) {
                 a.href = `/movies/${result.id}`;
@@ -71,6 +74,9 @@ export function seachHandler() {
     if (inputSearch) {
         // Добавляем обработчик события oninput с использованием debounce
         inputSearch.addEventListener('input', debounce(function (event) {
+            if (!navigator.onLine) {
+                new Notify('Нет соединения');
+            }
             const query = event.target.value;
             fetchData(query);
         }, 300));

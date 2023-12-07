@@ -26,7 +26,8 @@ const store = createStore(rootReducer);
 
 // Экспорт стора, чтобы он был доступен в других частях приложения
 export default store;
-/*if ('serviceWorker' in navigator) {
+
+if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
         .then((reg) => {
             console.info('sw registered', reg);
@@ -34,7 +35,8 @@ export default store;
         .catch((e) => {
             console.error(e);
         });
-}*/
+}
+
 export const rootElement = document.getElementById('root');
 
 csrfInit();

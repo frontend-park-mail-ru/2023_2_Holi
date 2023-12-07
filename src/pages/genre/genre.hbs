@@ -3,7 +3,7 @@
 <div class="glow-title">{{title}}</div>
 <div class="genre-container">
     {{#each content}}
-    {{> genre-item content=this}}
+     {{> partial/preview-card baseUrl="movies" this=this}}
     {{/each}}
 </div>
 
