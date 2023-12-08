@@ -41,7 +41,7 @@ jobs:
       - name: Upload to hotbox
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --endpoint-url https://msk.vkcs.cloud --acl public-read --follow-symlinks
+          args: --endpoint-url https://hb.vkcs.cloud --acl public-read --follow-symlinks
         env:
           AWS_S3_BUCKET: frontend-deploy
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
