@@ -12,27 +12,6 @@
         </select>
         <select id="episode">
         </select>
-        <style>
-            select {
-                position: relative;
-                width: 250px;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                background: #111;
-                color: #999;
-                border: none;
-                outline: none;
-                font-size: 14px;
-                padding: 10px 9px;
-                margin: 0;
-                -webkit-border-radius: 3px;
-                -moz-border-radius: 3px;
-                border-radius: 3px;
-                cursor: pointer;
-                height: 38px;
-            }
-        </style>
     </div>
     <video controls controlslist="nodownload noremoteplayback" class="content-container__player">
         <source type="video/mp4" />
@@ -58,15 +37,15 @@
                 <span id="duration"></span>
             </div>
         </div>
-        <div class="content-container__advanced-info__about">
+        <div class="serial-content-container__advanced-info__about">
             <div class="content-container__advanced-info__description" id="serialDescription">
             </div>
 
-            <div class="content-container__advanced-info__genres">
+            <div class="serial-content-container__advanced-info__cast">
                 <div class="content-container__advanced-info__genres-title">
                     <b>Актеры</b>
                 </div>
-                <div class="content-container__advanced-info__genres-list">
+                <div class="serial-content-container__advanced-info__cast-list">
                     {{#each artists}}
                     <a class="content-container__advanced-info__genres-link" href="/serial-cast/{{this.id}}"
                         spa-link>{{this.name}}
@@ -74,7 +53,12 @@
                     {{/each}}
                 </div>
             </div>
+
         </div>
+
+        <div id="seasons-carousel" class="serial-content-container__advanced-info__seasons">
+        </div>
+
     </div>
 </div>
 

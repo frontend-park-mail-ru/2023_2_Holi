@@ -8,7 +8,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 module.exports = {
     entry: {
         'app': './index.js',
-        'sw': "/sw.js",
+        'sw': '/sw.js',
     },
     output: {
         filename: '[name].js',
@@ -16,7 +16,7 @@ module.exports = {
     },
     module: {
         rules: [
-            /*{
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
@@ -30,7 +30,7 @@ module.exports = {
                         ],
                     },
                 },
-            },*/
+            },
             {
                 test: /\.(m4v)$/,
                 use: [

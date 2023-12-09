@@ -7,6 +7,7 @@ import { seachHandler } from '../../../services/search-utils.js';
 import store from '../../../../index.js';
 import { $sendSerialsContentRequest, SERIALS_CONTENT_REDUCER } from '../../../services/flux/actions/serial-content.js';
 import { avatarUpdate } from '../../../services/avatar-update.js';
+import { SerialsSeason } from './serial-season.js';
 
 // Функция для группировки массива по полю "season" в двумерный массив
 function groupBySeason(episodes) {
@@ -29,7 +30,7 @@ export class SerialContentPage {
 
     setEpisodeData(id, episode, serials) {
         document.getElementById('episodeName').innerText = `${episode.season} сезон, ${episode.number} серия, ${episode.name}`;
-        document.querySelector('source').src = episode.mediaPath;
+        document.querySelector('source').src = `${episode.mediaPath}#t=3`;
         document.getElementById('serialDescription').innerText = episode.description;
 
         const video = document.querySelector('video');
@@ -96,17 +97,24 @@ export class SerialContentPage {
         store.subscribe(SERIALS_CONTENT_REDUCER, () => {
             const state = store.getState().currentSerial.serials;
             this.#parent.innerHTML = serial({ film: state.film, artists: state.artists });
-            const episode = state.episodes[Number(localStorage.getItem('lastSerial_' + id))];
+            let episode;
+            if (localStorage.getItem('lastSerial_' + id)) {
+                const idx = state.episodes.findIndex(elem => elem.id === Number(localStorage.getItem('lastSerial_' + id)));
+                episode = state.episodes[idx];
+            } else {
+                episode = state.episodes[0];
+            }
 
             // Вызываем функцию группировки
             const groupedEpisodesArray = groupBySeason(state.episodes);
 
-            // Выводим результат в консоль
-            console.info(groupedEpisodesArray);
-
             const seasonSelect = document.getElementById('season');
             const episodeSelect = document.getElementById('episode');
-
+            const seasons = document.getElementById('seasons-carousel');
+            console.info(seasons);
+            groupedEpisodesArray.forEach((season, i) => {
+                new SerialsSeason(seasons, `${i + 1} Сезон`, groupedEpisodesArray[i]);
+            });
             const totalSeason = groupedEpisodesArray.length;
 
             for (let i = 0; i < totalSeason; i++) {

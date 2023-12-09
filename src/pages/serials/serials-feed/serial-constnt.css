@@ -3,3 +3,39 @@
     color: #fff;
     font-family: Netflix;
 }
+
+select {
+    position: relative;
+    width: 250px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #111;
+    color: #999;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 10px 9px;
+    margin: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 38px;
+}
+
+.serial-content-container__advanced-info__cast{
+    display: flex;
+    flex-direction: column;
+}
+
+.serial-content-container__advanced-info__cast-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.serial-content-container__advanced-info__about{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}

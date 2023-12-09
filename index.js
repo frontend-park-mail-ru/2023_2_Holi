@@ -41,7 +41,6 @@ export const rootElement = document.getElementById('root');
 
 csrfInit();
 
-
 const routes = [
     new ProtectedRoute('/', new MainPage(rootElement), 'guest'),
     new ProtectedRoute('/login', new LoginPage(rootElement), 'guest'),

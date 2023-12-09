@@ -1,0 +1,10 @@
+<div class="feed-collection__container-card" title="{{this.name}}">
+    <video height="200" class="feed-collection__container-card__video" playsinline muted preload="metadata">
+        <source src="{{this.mediaPath}}#t=150" type='video/mp4'>
+    </video>
+    <div class="feed-collection__advanced-info">
+        <a href="/{{baseUrl}}/{{this.id}}" class="feed-collection__advanced-info__link" spa-link>
+            {{this.name}}
+        </a>
+    </div>
+</div>
