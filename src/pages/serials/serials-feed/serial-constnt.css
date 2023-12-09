@@ -1,4 +1,4 @@
-.episodeLabel{
+.episodeLabel {
     width: 100%;
     color: #fff;
     font-family: Netflix;
@@ -24,18 +24,45 @@ select {
     height: 38px;
 }
 
-.serial-content-container__advanced-info__cast{
+.serial-content-container__advanced-info__cast {
     display: flex;
     flex-direction: column;
 }
 
-.serial-content-container__advanced-info__cast-list{
+.serial-content-container__advanced-info__cast-list {
     display: flex;
     flex-direction: column;
 }
 
-.serial-content-container__advanced-info__about{
+.serial-content-container__advanced-info__about {
     display: flex;
     flex-direction: column;
     gap: 10px
+}
+
+.serial-feed-collection__container-card:hover {
+    transform: scale(1.1);
+    transform-origin: center center;
+    transition: all .3s linear;
+}
+
+.serial-feed-collection__container-card {
+    margin-right: 16px;
+    transition: all .3s linear;
+}
+
+.serial-feed-collection__carousel {}
+
+.serial-feed-collection__container {
+    display: flex;
+    gap: 20px;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px;
+    transition: transform .3s linear;
+}
+
+.serial-feed-collection__container-offset{
+    margin-bottom: 2rem;
 }

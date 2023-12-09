@@ -1,8 +1,8 @@
-<div class="feed-collection__container-offset">
+<div class="serial-feed-collection__container-offset">
     <div class="feed-collection__title">{{title}}</div>
 </div>
-<div class="feed-collection__carousel" id="{{carousel}}">
-    <div class="feed-collection__container" id="{{container}}">
+<div class="serial-feed-collection__carousel" id="{{carousel}}">
+    <div class="serial-feed-collection__container" id="{{container}}">
         {{#each content}}
         {{> serial-preview-card baseUrl="serial" this=this}}
         {{/each}}

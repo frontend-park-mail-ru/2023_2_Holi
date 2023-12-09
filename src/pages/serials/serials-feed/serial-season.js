@@ -71,5 +71,6 @@ export class SerialsSeason {
         });
 
         this.scrolling(carouselUUID, containerUUID);
+
     }
 }

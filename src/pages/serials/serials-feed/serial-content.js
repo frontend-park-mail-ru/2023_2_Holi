@@ -136,6 +136,30 @@ export class SerialContentPage {
                     targetEpisode,
                     state.episodes);
             });
+            // Определяем функцию для плавного прокручивания вверх
+            function scrollToTop() {
+                // Получаем текущую позицию прокрутки
+                const currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+                // Если текущая позиция не равна 0, то прокручиваем страницу вверх
+                if (currentPosition > 0) {
+                    window.requestAnimationFrame(scrollToTop);
+                    window.scrollTo(0, currentPosition - currentPosition / 20);
+                }
+            }
+
+            const elementsWithEpisodeAttribute = document.querySelectorAll('[episode]');
+            elementsWithEpisodeAttribute.forEach(episode => {
+                episode.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const targetEpisode = state.episodes.find((ep) => ep.id == event.target.id);
+                    this.setEpisodeData(id,
+                        targetEpisode,
+                        state.episodes);
+                    // Вызываем функцию для плавного прокручивания вверх
+                    scrollToTop();
+                });
+            });
 
             this.setEpisodeData(id,
                 episode,
