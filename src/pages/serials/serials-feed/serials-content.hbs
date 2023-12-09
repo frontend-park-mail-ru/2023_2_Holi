@@ -4,15 +4,44 @@
 <div class="content-container">
 
     <h1 class="content-container__title">{{film.name}}</h1>
+
     <p class="content-container__advanced-info__description" id="episodeName"></p>
-        <video controls controlslist="nodownload noremoteplayback" class="content-container__player">
-            <source type="video/mp4" />
-        </video>
+    <div>
+        <select id="season">
+
+        </select>
+        <select id="episode">
+        </select>
+        <style>
+            select {
+                position: relative;
+                width: 250px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                background: #111;
+                color: #999;
+                border: none;
+                outline: none;
+                font-size: 14px;
+                padding: 10px 9px;
+                margin: 0;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                cursor: pointer;
+                height: 38px;
+            }
+        </style>
+    </div>
+    <video controls controlslist="nodownload noremoteplayback" class="content-container__player">
+        <source type="video/mp4" />
+    </video>
     <div class="content-container__player__actions">
         <div class="episodeLabel" style="text-align: end;" id="prevEpisode"></div>
         {{>partial/button/btn-action id="prev-button" kind="prev"}}
         {{>partial/button/btn-action id="next-button" kind="next"}}
-         <div class="episodeLabel" id="nextEpisode"></div>
+        <div class="episodeLabel" id="nextEpisode"></div>
     </div>
     <div class="content-container__advanced-info">
         <div class="content__like">Добавить в избранное <button class="heart-button"><i class="like"></i></button></div>
