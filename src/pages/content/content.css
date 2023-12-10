@@ -89,6 +89,7 @@
     margin: auto;
     border: 1px solid #454545;
     border-radius: 0.25rem;
+    height: 50vw;
 }
 
 .content-container__advanced-info__meta {

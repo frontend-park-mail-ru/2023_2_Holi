@@ -4,7 +4,7 @@
 <div class="content-container">
 
     <h1 class="content-container__title">{{film.film.name}}</h1>
-    <video controls controlslist="nodownload noremoteplayback" class="content-container__player">
+    <video controls controlslist="nodownload noremoteplayback" class="content-container__player" poster="{{film.film.previewPath}}">
         <source src="{{film.film.mediaPath}}" type="video/mp4" />
     </video>
     <div class="content-container__advanced-info">
