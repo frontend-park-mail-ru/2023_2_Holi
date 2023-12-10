@@ -8,7 +8,7 @@
 
 .logout-icon:before {
     font-family: 'header-netflix';
-    content: "\e900";
+    content: "\e901";
     font-size: 1.2rem;
     font-style: normal;
     font-weight: normal;
@@ -19,7 +19,7 @@
 
 .profile-icon:before {
     font-family: 'header-netflix';
-    content: "\e901";
+    content: "\e900";
     font-size:  1.2rem;
     font-style: normal;
     font-weight: normal;
