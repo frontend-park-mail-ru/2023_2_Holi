@@ -6,6 +6,7 @@
             name="file" placeholder="Загрузите аватар" type="file"}}
         </div>
         <div class="profile-form__row__form">
+
             <div>
                 <b>
                     <h3>Редактировать профиль</h1>
@@ -29,6 +30,17 @@
             </div>
 
             {{> partial/button/button type="submit" kind="login" label="Применить" id="submit"}}
+        </div>
+
+
+
+    </div>
+
+    <div>
+        <h3>Подписка</h3>
+        <div style="display: flex; flex-direction: row; gap: 16px">
+            {{> subscription-card header="Стандартная" title_price="1руб/мес" description="Полный доступ к коллекциям
+            фильмов и сериалов"}}
         </div>
     </div>
 

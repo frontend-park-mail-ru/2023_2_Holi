@@ -1,28 +1,73 @@
 <div class="header-content" kind="{{kind}}">
-    <div class="header-content__row">
+    <div class="header-content__row ">
         <!-- Колонка логотипа {Существует всегда} -->
-        <div class="header-content__column">
+        <div class="header-content__column large-menu">
             {{> partial/netflix-logo/netflix-logo}}
         </div>
 
         <!-- Колонка ссылок {Только у подборок} -->
         {{#if feedPage}}
-        <div class="header-content__links">
-            <a href="/feed" spa-link>Фильмы</a>
-            <a href="/serials" spa-link>Сериалы</a>
-            <a href="/list" spa-link>Избранное</a>
-        </div>
-        <div style="display: flex;
+        <div class="large-menu">
+            <div class="header-content__links">
+                <a href="/feed" spa-link>Фильмы</a>
+                <a href="/serials" spa-link>Сериалы</a>
+                <a href="/list" spa-link>Избранное</a>
+            </div>
+            <div style="display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;">
-            <div class="search-box">
-                <button class="btn-search"><i class="search-icon"></i></button>
-                <input type="text" class="input-search" placeholder="Поищем?)">
+                <div class="search-box">
+                    <button class="btn-search"><i class="search-icon"></i></button>
+                    <input type="text" class="input-search" placeholder="Поищем?)">
+                </div>
+                <div id="search-list" class="dropdown hover">
+                    <ul id="dropdown-list"></ul>
+                </div>
             </div>
-            <div id="search-list" class="dropdown hover">
-                <ul id="dropdown-list"></ul>
+        </div>
+
+        <div class="small-menu">
+            <div style="display: inline-block;    margin-right: calc(80vw/2);">
+                {{> partial/netflix-logo/netflix-logo}}
             </div>
+            <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
+            <label for="burger-checkbox" class="burger"></label>
+            <ul class="menu-list">
+                <li>
+                    <div style="display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;">
+                        <div class="search-box">
+                            <button class="btn-search"><i class="search-icon"></i></button>
+                            <input type="text" class="input-search" placeholder="Поищем?)">
+                        </div>
+                        <div id="search-list" class="dropdown hover">
+                            <ul id="dropdown-list"></ul>
+                        </div>
+                    </div>
+                <li>
+                <li><a href="/feed" class="menu-item" spa-link>Фильмы</a>
+                <li>
+                <li><a href="/serials" class="menu-item" spa-link>Сериалы</a>
+                <li>
+                <li><a href="/list" class="menu-item" spa-link>Избранное</a>
+                <li>
+
+                <li>
+                <li><a class="menu-item" href="/profile" spa-link>
+                        <i class="profile-icon"></i>
+                        Профиль
+                    </a>
+                <li>
+                <li> <a class="menu-item" id="logout">
+                        <i class="logout-icon"></i>
+                        Выйти
+                    </a>
+                <li>
+
+            </ul>
         </div>
         {{/if}}
 
@@ -67,7 +112,7 @@
             {{/if}}
 
             {{#if profilePage}}
-            <div class="dropdown hover">
+            <div class="dropdown hover large-menu">
                 <a class="dropdown-logo">
                     {{> partial/avatar/avatar
                     avatarUrl="/img/camera_50.png"}}
@@ -80,7 +125,7 @@
             </div>
             {{/if}}
             {{#if feedPage}}
-            <div class="dropdown hover">
+            <div class="dropdown hover large-menu">
                 <a class="dropdown-logo">
                     {{> partial/avatar/avatar
                     avatarUrl="/img/camera_50.png"}}
