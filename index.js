@@ -61,7 +61,7 @@ const routes = [
 
 new Router(routes, '/login', '/feed', '[spa-link]', 'toasts');
 
-seachHandler();
+//seachHandler();
 
 export const isAuth = await checkAccess();
 if (isAuth.ok) {
