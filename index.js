@@ -69,4 +69,3 @@ if (isAuth.ok) {
 } else {
     localStorage.setItem('authData', false);
 }
-
