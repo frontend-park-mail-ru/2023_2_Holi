@@ -2,7 +2,7 @@
 
  on:
    push:
-     branches: [new_stable]
+     branches: [deploy]
 
  jobs:
    build:
