@@ -2,7 +2,7 @@ name: Simple Build
 
 on:
   push:
-    branches: [deploy]
+    branches: [main_deploy]
 
 jobs:
   build:
