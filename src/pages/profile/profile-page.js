@@ -17,12 +17,10 @@ export class ProfilePage {
         store.clearSubscribes();
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = profile();
-        const profileForm = document.forms['profile-form'];
-        const emailInput = profileForm.elements['email'];
-        const passwordInput = profileForm.elements['password'];
-        const fileInput = profileForm.elements['file'];
 
-        let confirm = false;
+        const emailInput = document.querySelector('#emailInput');
+        const passwordInput = document.querySelector('#passwordInput');
+        const fileInput = document.querySelector('#fileInput');
 
         /**
          * Узнаю о пользователе
@@ -77,8 +75,15 @@ export class ProfilePage {
 
                         // eslint-disable-next-line no-undef
                         const uint8Array = new Uint8Array(arrayBuffer); // Преобразуем его в Uint8Array
-                        formData.imageData = Array.from(uint8Array);
-
+                        setUserInfo({
+                            id: Number(localStorage.getItem('userId')),
+                            imageData: Array.from(uint8Array),
+                        }).then(res => {
+                            if (res.ok) {
+                                new Notify('Профиль успешно обновлен');
+                                store.dispatch($sentUserInfoRequest());
+                            }
+                        });
                     };
 
                     reader.readAsArrayBuffer(file); // Считываем файл как ArrayBuffer
@@ -88,61 +93,38 @@ export class ProfilePage {
                 }
             }
         });
-        const formData = {
-            id: Number(localStorage.getItem('userId')),
-        };
 
         // Добавьте обработчики событий на соответствующие инпуты
-
-        emailInput.addEventListener('input', () => {
-            if (emailInput.value) {
-                formData.email = emailInput.value;
-                confirm = true;
-            }
+        const emailSubmit = document.querySelector('#submitEmail');
+        emailSubmit.addEventListener('click', (e) => {
+            e.preventDefault();
+            setUserInfo({
+                id: Number(localStorage.getItem('userId')),
+                email: emailInput.value,
+            }).then(res => {
+                if (res.ok) {
+                    new Notify('Профиль успешно обновлен');
+                    store.dispatch($sentUserInfoRequest());
+                }
+            });
         });
-        passwordInput.addEventListener('input', () => {
+
+        const passwordSubmit = document.querySelector('#submitPassword');
+        passwordSubmit.addEventListener('click', (e) => {
+            e.preventDefault();
             if (passwordInput.value && validatePassword(passwordInput.value) === '') {
-                formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
-                confirm = true;
-            } else {
-                new Notify(validatePassword(passwordInput.value));
-                confirm = false;
-            }
-        });
-        // fileInput.addEventListener('change', () => { formData.imageData = file; });
-        profileForm.addEventListener('submit', async function (event) {
-            event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
-
-            try {
-                if (confirm) {
-                    const response = await setUserInfo(formData);
-                    profileForm.reset();
-                    emailInput.addEventListener('input', () => {
-                        if (emailInput.value) {
-                            formData.email = emailInput.value;
-                        }
-                    });
-                    passwordInput.addEventListener('input', () => {
-                        if (passwordInput.value && validatePassword(passwordInput.value) === '') {
-                            formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
-                        } else {
-                            new Notify(validatePassword(passwordInput.value));
-                        }
-                    });
-
-                    if (response.ok) {
-                        // Обработка успешного ответаArray.from(uint8Array)
-                        // Обработка ошибки
+                setUserInfo({
+                    id: Number(localStorage.getItem('userId')),
+                    password: Array.from(new TextEncoder().encode(passwordInput.value)),
+                }).then(res => {
+                    if (res.ok) {
                         new Notify('Профиль успешно обновлен');
                         store.dispatch($sentUserInfoRequest());
-
                     }
-                }else{
-                    new Notify('Что то вы вводите не так:)');
-                }
-
-            } catch (error) {
-                new Notify('Произошла ошибка при отправке запроса');
+                });
+            }
+            else {
+                new Notify(validatePassword(passwordInput.value));
             }
         });
 
