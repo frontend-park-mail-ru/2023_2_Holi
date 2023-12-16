@@ -1,6 +1,4 @@
-import { logoutRequest } from '../../../services/api/auth.js';
 import { getLastNumber } from '../../../services/getParams.js';
-import { navigate } from '../../../services/router/Router.js';
 import serial from './serials-content.hbs';
 import { deleteLike, getLikeState, setLike } from '../../../services/api/like.js';
 import { seachHandler } from '../../../services/search-utils.js';
@@ -8,6 +6,7 @@ import store from '../../../../index.js';
 import { $sendSerialsContentRequest, SERIALS_CONTENT_REDUCER } from '../../../services/flux/actions/serial-content.js';
 import { avatarUpdate } from '../../../services/avatar-update.js';
 import { SerialsSeason } from './serial-season.js';
+import { logoutHandle } from '../../../services/logoutHandle.js';
 
 // Функция для группировки массива по полю "season" в двумерный массив
 function groupBySeason(episodes) {
@@ -35,7 +34,7 @@ export class SerialContentPage {
 
         const video = document.querySelector('video');
         video.load();
-        video.addEventListener('loadedmetadata', function () {
+        video.addEventListener('loadedmetadata', function() {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -217,12 +216,7 @@ export class SerialContentPage {
                 }
             });
 
-            document.getElementById('logout').addEventListener('click', async function () {
-                const response = await logoutRequest();
-                if (response.ok) {
-                    navigate('/login');
-                }
-            });
+            logoutHandle();
 
             videoController();
 

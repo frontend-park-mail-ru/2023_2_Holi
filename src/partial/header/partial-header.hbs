@@ -21,7 +21,7 @@
 
         <!-- Колонка ссылок {Только у подборок} -->
         {{#if feedPage}}
-        <div class="header-content__column large-menu">
+        <div class="header-content__column large-menu_el">
             {{> partial/netflix-logo/netflix-logo}}
         </div>
         <div class="large-menu">
@@ -36,7 +36,9 @@
     align-items: center;">
                 <div class="search-box">
                     <button class="btn-search"><i class="search-icon"></i></button>
+
                     <input type="text" class="input-search" placeholder="Поищем?)">
+
                 </div>
                 <div id="search-list" class="dropdown hover">
                     <ul id="dropdown-list"></ul>
@@ -58,7 +60,9 @@
     align-items: center;">
                         <div class="search-box">
                             <button class="btn-search"><i class="search-icon"></i></button>
+
                             <input type="text" class="input-search" placeholder="Поищем?)">
+
                         </div>
                         <div id="search-list" class="dropdown hover">
                             <ul id="dropdown-list"></ul>
@@ -78,7 +82,7 @@
                         Профиль
                     </a>
                 <li>
-                <li> <a class="menu-item" id="logout">
+                <li> <a class="menu-item logout" id="logout">
                         <i class="logout-icon"></i>
                         Выйти
                     </a>
@@ -89,7 +93,7 @@
         {{/if}}
 
         {{#if profilePage}}
-        <div class="header-content__column large-menu">
+        <div class="header-content__column large-menu_el">
             {{> partial/netflix-logo/netflix-logo}}
         </div>
         <div class="large-menu">
@@ -104,7 +108,9 @@
     align-items: center;">
                 <div class="search-box">
                     <button class="btn-search"><i class="search-icon"></i></button>
+
                     <input type="text" class="input-search" placeholder="Поищем?)">
+
                 </div>
                 <div id="search-list" class="dropdown hover">
                     <ul id="dropdown-list"></ul>
@@ -126,7 +132,9 @@
     align-items: center;">
                         <div class="search-box">
                             <button class="btn-search"><i class="search-icon"></i></button>
+
                             <input type="text" class="input-search" placeholder="Поищем?)">
+
                         </div>
                         <div id="search-list" class="dropdown hover">
                             <ul id="dropdown-list"></ul>
@@ -141,7 +149,7 @@
                 <li>
 
                 <li>
-                <li> <a class="menu-item" id="logout">
+                <li> <a class="menu-item logout" id="logout">
                         <i class="logout-icon"></i>
                         Выйти
                     </a>
@@ -168,14 +176,14 @@
         {{/if}}
 
         {{#if profilePage}}
-        <div class="col d-flex justify-content-end large-menu">
+        <div class="col d-flex justify-content-end large-menu_el">
             <div class="dropdown hover">
                 <a class="dropdown-logo">
                     {{> partial/avatar/avatar
                     avatarUrl="/img/camera_50.png"}}
                 </a>
                 <ul>
-                    <li> <a class="dropdown-item" id="logout">
+                    <li> <a class="dropdown-item logout" id="logout">
                             <i class="logout-icon"></i>
                             Выйти</a> </li>
                 </ul>
@@ -183,7 +191,7 @@
         </div>
         {{/if}}
         {{#if feedPage}}
-        <div class="col d-flex justify-content-end large-menu">
+        <div class="col d-flex justify-content-end large-menu_el">
             <div class="dropdown hover">
                 <a class="dropdown-logo">
                     {{> partial/avatar/avatar
@@ -197,7 +205,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" id="logout">
+                        <a class="dropdown-item logout" id="logout">
                             <i class="logout-icon"></i>
                             Выйти
                         </a>

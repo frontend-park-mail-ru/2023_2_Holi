@@ -1,6 +1,7 @@
 import { searchRequest } from './api/search';
 import { debounce } from './debounce';
 import { Notify } from '../components/notify/notify';
+import { navigate } from './router/Router';
 
 // Функция для выполнения запроса на сервер
 export function fetchData(query) {
@@ -87,6 +88,7 @@ export function seachHandler() {
     } else {
         container = document.querySelector('.small-menu');
     }
+
     const btnSearch = container.querySelector('.btn-search');
     const inputSearch = container.querySelector('.input-search');
     if (inputSearch) {
@@ -96,6 +98,7 @@ export function seachHandler() {
                 new Notify('Нет соединения');
             }
             const query = event.target.value;
+            localStorage.setItem('lastSearchInput', query);
             fetchData(query);
         }, 300));
 
@@ -111,8 +114,11 @@ export function seachHandler() {
     if (btnSearch) {
         btnSearch.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log('etgrgrgefgdsf');
-        })
-    }
+            if (localStorage.getItem('lastSearchInput')) {
+                navigate(`search/${localStorage.getItem('lastSearchInput')}`);
+                console.log(localStorage.getItem('lastSearchInput'));
+            }
 
+        });
+    }
 }

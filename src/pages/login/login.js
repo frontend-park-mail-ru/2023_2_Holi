@@ -43,7 +43,7 @@ const loginContoller = () => {
     const emailInput = loginForm.elements['email'];
     const passwordInput = loginForm.elements['password'];
 
-    loginForm.addEventListener('submit', async function (event) {
+    loginForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
         const email = emailInput.value;

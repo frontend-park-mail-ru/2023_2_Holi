@@ -1,11 +1,10 @@
 import { Notify } from '../../components/notify/notify.js';
-import { logoutRequest } from '../../services/api/auth.js';
 import { setUserInfo } from '../../services/api/user.js';
-import { navigate } from '../../services/router/Router.js';
 import { validatePassword } from '../../services/validate.js';
 import profile from './profile-page.hbs';
 import store from '../../../index.js';
 import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
+import { logoutHandle } from '../../services/logoutHandle.js';
 
 export class ProfilePage {
     #parent;
@@ -110,7 +109,7 @@ export class ProfilePage {
             }
         });
         // fileInput.addEventListener('change', () => { formData.imageData = file; });
-        profileForm.addEventListener('submit', async function (event) {
+        profileForm.addEventListener('submit', async function(event) {
             event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
 
             try {
@@ -146,11 +145,6 @@ export class ProfilePage {
             }
         });
 
-        document.getElementById('logout').addEventListener('click', async function () {
-            const response = await logoutRequest();
-            if (response.ok) {
-                navigate('/login');
-            }
-        });
+        logoutHandle();
     }
 }

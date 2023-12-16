@@ -1,7 +1,6 @@
 import store from '../../../..';
 import { avatarUpdate } from '../../../services/avatar-update';
 import { $sendSerialsCollectionAliasRequest, SERIALS_COLLECTION_REDUCER } from '../../../services/flux/actions/serials-collection';
-import { $sentUserInfoRequest, USER_REDUCER } from '../../../services/flux/actions/user-info';
 import { getLastNumber } from '../../../services/getParams';
 import { seachHandler } from '../../../services/search-utils';
 import { videoHelper } from '../../../services/video-helper';
