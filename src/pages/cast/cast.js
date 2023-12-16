@@ -4,7 +4,6 @@ import cast from './cast.hbs';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
 import { videoHelper } from '../../services/video-helper.js';
-import store from '../../services/store.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.

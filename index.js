@@ -27,7 +27,7 @@ const store = createStore(rootReducer);
 // Экспорт стора, чтобы он был доступен в других частях приложения
 export default store;
 
-if ('serviceWorker' in navigator) {
+/*if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
         .then((reg) => {
             console.info('sw registered', reg);
@@ -35,7 +35,7 @@ if ('serviceWorker' in navigator) {
         .catch((e) => {
             console.error(e);
         });
-}
+}*/
 
 export const rootElement = document.getElementById('root');
 
@@ -61,11 +61,9 @@ const routes = [
 
 new Router(routes, '/login', '/feed', '[spa-link]', 'toasts');
 
-//seachHandler();
-
+seachHandler();
+localStorage.setItem('authData', false);
 export const isAuth = await checkAccess();
 if (isAuth.ok) {
     localStorage.setItem('authData', true);
-} else {
-    localStorage.setItem('authData', false);
 }
