@@ -20,7 +20,7 @@ import { SerialFeedPage } from './src/pages/serials/serials-feed/serials-feed.js
 import { SerialContentPage } from './src/pages/serials/serials-feed/serial-content.js';
 import { SerialGenrePage } from './src/pages/serials/serials-feed/serial-genre.js';
 import { SerialCastPage } from './src/pages/serials/serials-feed/serial-cast.js';
-
+localStorage.setItem('authData', false);
 // Создание стора
 const store = createStore(rootReducer);
 
@@ -62,7 +62,6 @@ const routes = [
 new Router(routes, '/login', '/feed', '[spa-link]', 'toasts');
 
 seachHandler();
-localStorage.setItem('authData', false);
 export const isAuth = await checkAccess();
 if (isAuth.ok) {
     localStorage.setItem('authData', true);
