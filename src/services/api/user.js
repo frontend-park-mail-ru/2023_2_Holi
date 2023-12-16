@@ -1,5 +1,4 @@
 import { NETFLIX_API } from './const.js';
-import EventEmitter from '../store.js';
 import { getCookie } from '../getCookie.js';
 import { Notify } from '../../components/notify/notify.js';
 
@@ -16,8 +15,6 @@ export const getUserInfo = (id) => {
         return response.json();
     })
         .then(data => {
-            EventEmitter.emit('getUserData', data);
-            EventEmitter.setState('getUserData', data);
 
             return data;
         })

@@ -56,5 +56,12 @@ const loginContoller = () => {
         }
     });
 
+    store.subscribe('LOGIN_REDUCER', () => {
+        const state = store.getState();
+        if(state.auth.authError){
+            new Notify('Ошибка при авторизации');
+        }
+    });
+
 };
 

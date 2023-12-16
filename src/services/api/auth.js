@@ -1,5 +1,5 @@
 import { getCookie } from '../getCookie.js';
-import { NETFLIX_API, NETFLIX_AUTH_API } from './const.js';
+import { NETFLIX_AUTH_API } from './const.js';
 import { Notify } from '../../components/notify/notify.js';
 
 /**
@@ -27,11 +27,19 @@ export const loginRequest = (email, password) => {
             localStorage.setItem('authData', true);
 
             return response.json();
+        } else {
+            // Если статус не успешен, выбросьте ошибку с текстом ответа
+            return response.text().then(errorText => {
+                throw new Error(`Ошибка запроса: ${errorText}`);
+            });
         }
 
     })
         .then(data => {
             return data;
+        })
+        .catch(error => {
+            throw error;
         });
 };
 

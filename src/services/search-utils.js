@@ -87,6 +87,7 @@ export function seachHandler() {
     } else {
         container = document.querySelector('.small-menu');
     }
+    const btnSearch = container.querySelector('.btn-search');
     const inputSearch = container.querySelector('.input-search');
     if (inputSearch) {
         // Добавляем обработчик события oninput с использованием debounce
@@ -107,4 +108,11 @@ export function seachHandler() {
 
         });
     }
+    if (btnSearch) {
+        btnSearch.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('etgrgrgefgdsf');
+        })
+    }
+
 }
