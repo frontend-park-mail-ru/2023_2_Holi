@@ -1,12 +1,29 @@
 <div class="header-content" kind="{{kind}}">
     <div class="header-content__row ">
         <!-- Колонка логотипа {Существует всегда} -->
-        <div class="header-content__column large-menu">
+        {{#if mainPage}}
+        <div class="header-content__column">
             {{> partial/netflix-logo/netflix-logo}}
         </div>
+        {{/if}}
+
+        {{#if regPage}}
+        <div class="header-content__column">
+            {{> partial/netflix-logo/netflix-logo}}
+        </div>
+        {{/if}}
+
+        {{#if loginPage}}
+        <div class="header-content__column">
+            {{> partial/netflix-logo/netflix-logo}}
+        </div>
+        {{/if}}
 
         <!-- Колонка ссылок {Только у подборок} -->
         {{#if feedPage}}
+        <div class="header-content__column large-menu">
+            {{> partial/netflix-logo/netflix-logo}}
+        </div>
         <div class="large-menu">
             <div class="header-content__links">
                 <a href="/feed" spa-link>Фильмы</a>
@@ -72,6 +89,9 @@
         {{/if}}
 
         {{#if profilePage}}
+        <div class="header-content__column large-menu">
+            {{> partial/netflix-logo/netflix-logo}}
+        </div>
         <div class="large-menu">
             <div class="header-content__links">
                 <a href="/feed" spa-link>Фильмы</a>
