@@ -2,6 +2,7 @@ import store from '../../..';
 import { deleteLike } from '../../services/api/like';
 import { avatarUpdate } from '../../services/avatar-update';
 import { $sendGetFavourites } from '../../services/flux/actions/like';
+import { logoutHandle } from '../../services/logoutHandle';
 import { seachHandler } from '../../services/search-utils';
 import { videoHelper } from '../../services/video-helper';
 import like from './like.hbs';
@@ -72,9 +73,9 @@ export class FavouritesPage {
                 this.ratingFillColor();
 
                 document.querySelectorAll('.heart-button-dislike').forEach(button => {
-                    button.addEventListener('click', (event) => {
+                    button.addEventListener('click', () => {
                         deleteLike(button.id)
-                            .then(res => {
+                            .then(() => {
                                 // Находим родительский элемент с классом feed-collection__container-card
                                 const containerCard = button.closest('.feed-collection__container-card');
 
@@ -87,13 +88,7 @@ export class FavouritesPage {
                 });
             }
 
-            document.getElementById('logout').addEventListener('click', async function () {
-                const response = await logoutRequest();
-                if (response.ok) {
-                    navigate('/login');
-                }
-            });
-
+            logoutHandle();
             seachHandler();
             videoHelper();
             avatarUpdate();

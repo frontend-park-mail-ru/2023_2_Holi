@@ -249,13 +249,17 @@
         display: flex !important;
     }
 
+    .large-menu_el {
+        display: flex !important;
+    }
+
     .small-menu {
         display: none !important;
     }
 }
 
 @media (max-width: 900px) {
-    .large-menu {
+    .large-menu_el {
         display: none !important;
     }
 
