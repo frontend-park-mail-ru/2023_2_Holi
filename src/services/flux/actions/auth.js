@@ -20,6 +20,7 @@ export const $sentAuthRequest = (email, password, goToFeed) => {
     loginRequest(email, password)
         .then(response => {
             if (response) {
+                console.log(response)
                 localStorage.setItem('userId', response.body.id);
                 localStorage.setItem('authData', true);
                 store.dispatch($loginSuccess(response.body.id));
