@@ -28,7 +28,7 @@
         </div>
 
         <div class="small-menu">
-            <div style="display: inline-block;    margin-right: calc(60vw/2);">
+            <div style="display: inline-block;    margin-right: calc(60vw/2);     margin-bottom: 20px;">
                 {{> partial/netflix-logo/netflix-logo}}
             </div>
             <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
@@ -93,7 +93,7 @@
         </div>
 
         <div class="small-menu">
-            <div style="display: inline-block;    margin-right: calc(60vw/2);">
+            <div style="display: inline-block;    margin-right: calc(60vw/2);     margin-bottom: 20px;">
                 {{> partial/netflix-logo/netflix-logo}}
             </div>
             <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
@@ -131,5 +131,61 @@
         </div>
         {{/if}}
 
+
+
+        {{#if mainPage}}
+        <div class="col d-flex justify-content-end">
+            {{> partial/button/btn-link href="/login" kind="primary"
+            label="Войти"}}
+        </div>
+        {{/if}}
+
+        {{#if regPage}}
+        <div class="col d-flex justify-content-end">
+            {{> partial/button/btn-link href="/login" kind="secondary"
+            label="Войти"}}
+        </div>
+        {{/if}}
+
+        {{#if profilePage}}
+        <div class="col d-flex justify-content-end large-menu">
+            <div class="dropdown hover">
+                <a class="dropdown-logo">
+                    {{> partial/avatar/avatar
+                    avatarUrl="/img/camera_50.png"}}
+                </a>
+                <ul>
+                    <li> <a class="dropdown-item" id="logout">
+                            <i class="logout-icon"></i>
+                            Выйти</a> </li>
+                </ul>
+            </div>
+        </div>
+        {{/if}}
+        {{#if feedPage}}
+        <div class="col d-flex justify-content-end large-menu">
+            <div class="dropdown hover">
+                <a class="dropdown-logo">
+                    {{> partial/avatar/avatar
+                    avatarUrl="/img/camera_50.png"}}
+                </a>
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="/profile" spa-link>
+                            <i class="profile-icon"></i>
+                            Профиль
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" id="logout">
+                            <i class="logout-icon"></i>
+                            Выйти
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {{/if}}
     </div>
+
 </div>

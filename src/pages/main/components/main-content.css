@@ -142,7 +142,7 @@
     .video-panel {
         display: none;
     }
-    .main-content {
+    .main-content_container{
         transform: scale(.7);
     }
 }
