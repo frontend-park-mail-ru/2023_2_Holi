@@ -16,6 +16,29 @@ export function fetchData(query) {
 
 }
 
+function simulateAndRemoveLink(href) {
+    // Создать элемент
+    const link = document.createElement('a');
+    link.href = href;
+    link.setAttribute('spa-link', '');
+    link.textContent = 'Нажмите меня';
+
+    // Добавить обработчик события
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        console.log('Ссылка была нажата!');
+        // Дополнительный код обработки клика
+    });
+
+    // Добавить элемент в DOM
+    document.body.appendChild(link);
+
+    // Имитировать клик
+    link.click();
+
+    // Удалить элемент после имитации клика
+    link.parentNode.removeChild(link);
+}
 // Функция для обновления выпадающего списка
 export function updateDropdownList(results) {
     const width = window.innerWidth;
@@ -36,6 +59,7 @@ export function updateDropdownList(results) {
         dropdownList.appendChild(ladel);
     }
     else {
+        simulateAndRemoveLink('/search');
         const data = results.body;
 
         if (data.cast) {
@@ -100,7 +124,7 @@ export function seachHandler() {
             const query = event.target.value;
             localStorage.setItem('lastSearchInput', query);
             fetchData(query);
-        }, 300));
+        }, 500));
 
         inputSearch.addEventListener('blur', () => {
             const dropdownList = container.querySelector('#dropdown-list');
@@ -111,13 +135,14 @@ export function seachHandler() {
 
         });
     }
-    if (btnSearch) {
+    if (btnSearch && inputSearch ) {
         btnSearch.addEventListener('click', (e) => {
             e.preventDefault();
-            if (localStorage.getItem('lastSearchInput')) {
-                navigate(`search/${localStorage.getItem('lastSearchInput')}`);
-                console.log(localStorage.getItem('lastSearchInput'));
-            }
+            console.log(12)
+
+            console.log(133)
+            // Инпут находится в фокусе, выполняйте ваш код
+            navigate('/search');
 
         });
     }
