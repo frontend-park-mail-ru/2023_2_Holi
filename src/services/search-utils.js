@@ -124,7 +124,7 @@ export function seachHandler() {
             const query = event.target.value;
             localStorage.setItem('lastSearchInput', query);
             fetchData(query);
-        }, 500));
+        }, 700));
 
         inputSearch.addEventListener('blur', () => {
             const dropdownList = container.querySelector('#dropdown-list');
