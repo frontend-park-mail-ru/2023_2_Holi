@@ -7,6 +7,7 @@ import { $sendSerialsContentRequest, SERIALS_CONTENT_REDUCER } from '../../../se
 import { avatarUpdate } from '../../../services/avatar-update.js';
 import { SerialsSeason } from './serial-season.js';
 import { logoutHandle } from '../../../services/logoutHandle.js';
+import { setRating } from '../../../services/set-rating.js';
 
 // Функция для группировки массива по полю "season" в двумерный массив
 function groupBySeason(episodes) {
@@ -222,7 +223,7 @@ export class SerialContentPage {
             videoController();
 
             avatarUpdate();
-
+            setRating();
         });
     }
 }
