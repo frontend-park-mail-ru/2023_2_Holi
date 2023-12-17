@@ -4,7 +4,7 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
-    background-color: rgba(218, 216, 216, 0.3);
+    width: 100vw;
     padding: 5vh;
     border-radius: 0.45rem;
     margin: 10vh auto;

@@ -30,12 +30,11 @@
                 {{film.releaseYear}}</div>
             <div class="content-container__advanced-info__meta-age"><b>Возрастное
                     ограничение:</b> {{film.ageRestriction}}+</div>
-            <div class="content-container__advanced-info__meta-rating"><b>Рейтинг:</b>
-                <span id="rating"></span>
-            </div>
+
             <div class="content-container__advanced-info__meta-time"><b>Длительность:</b>
                 <span id="duration"></span>
             </div>
+            {{> partial/rating/rating}}
         </div>
         <div class="serial-content-container__advanced-info__about">
             <div class="content-container__advanced-info__description" id="serialDescription">

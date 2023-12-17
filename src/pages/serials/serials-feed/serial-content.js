@@ -91,6 +91,7 @@ export class SerialContentPage {
         this.#parent.style.background = '';
         const id = getLastNumber(location.href);
 
+        localStorage.setItem('LastContentId', id);
         store.dispatch($sendSerialsContentRequest(id));
 
         store.subscribe(SERIALS_CONTENT_REDUCER, () => {

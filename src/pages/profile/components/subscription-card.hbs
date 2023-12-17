@@ -7,12 +7,19 @@
                         border-bottom: 1px solid  rgba(255, 255, 255, 0.15)">
             {{header}}
         </div>
-        <div style="flex: 1 1 auto;
-    padding: 1rem;">
+        <div style="flex: 1 1 auto;    padding: 1rem;">
             <h2>{{title_price}}</h2>
             <p>{{description}}</p>
-            <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=LruFSAIHq0U.231210&" width="330"
-                height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+            <!--<iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=LruFSAIHq0U.231210&" width="330"
+                height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>-->
+            <form method="POST" action="https://yoomoney.ru/quickpay/confirm">
+                <input type="hidden" name="receiver" value="4100118475856202" />
+                <input type="hidden" name="label" value="$order_id" />
+                <input type="hidden" name="quickpay-form" value="button" />
+                <input type="hidden" name="sum" value="2" data-type="number" />
+                <input type="hidden" name="referer" value="http://localhost">
+                <input type="submit" value="Перевести" />
+            </form>
         </div>
     </div>
 </div>

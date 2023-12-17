@@ -1,5 +1,5 @@
-<form name="profile-form" class="profile-form">
-    <div class="profile-form__row">
+<div class="profile-form">
+    <form name="profile-form" class="profile-form__row">
         <div class="profile-form__row__avatar">
             <img class="avatar avatar-preview" data-avatar="" src="/img/camera_50.png">
             {{> partial/input-control/input-control kind="register-page" file=true id="file"
@@ -31,10 +31,9 @@
 
             {{> partial/button/button type="submit" kind="login" label="Применить" id="submit"}}
         </div>
+    </form>
 
 
-
-    </div>
 
     <div>
         <h3>Подписка</h3>
@@ -44,4 +43,4 @@
         </div>
     </div>
 
-</form>
+</div>

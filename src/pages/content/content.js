@@ -5,6 +5,7 @@ import { deleteLike, getLikeState, setLike } from '../../services/api/like.js';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
 import { logoutHandle } from '../../services/logoutHandle.js';
+import { setRating } from '../../services/set-rating.js';
 export class ContentPage {
     #parent;
     constructor(parent = document.getElementById('root')) {
@@ -16,6 +17,7 @@ export class ContentPage {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const id = getLastNumber(location.href);
+        localStorage.setItem('LastContentId', id);
         const film = await getContentById(id);
 
         this.#parent.innerHTML = content({ film: film.body });
@@ -48,7 +50,7 @@ export class ContentPage {
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
 
         logoutHandle();
-
+        setRating();
         like.addEventListener('click', () => {
             if (like.querySelector('i').className === 'like') {
                 deleteLike(id).then(() => {
