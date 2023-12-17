@@ -1,3 +1,5 @@
+@import url(../modal/modal.css);
+
 @keyframes show {
     0% {
         opacity: 0;
