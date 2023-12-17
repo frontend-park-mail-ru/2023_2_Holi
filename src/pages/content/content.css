@@ -85,11 +85,10 @@
 
 .content-container__player {
     display: block;
-    width: calc(100vw - 32px);
     margin: auto;
     border: 1px solid #454545;
     border-radius: 0.25rem;
-    height: 50vw;
+    width: calc(100vw - 32px);
 }
 
 .content-container__advanced-info__meta {
