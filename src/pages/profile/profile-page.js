@@ -5,17 +5,18 @@ import profile from './profile-page.hbs';
 import store from '../../../index.js';
 import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
 import { logoutHandle } from '../../services/logoutHandle.js';
+import { checkPaymentLink, getPaymentLink } from '../../services/api/payment.js';
 /**
  * Класс для отображения страницы профиля пользователя.
  */
 export class ProfilePage {
     #parent;
 
-     /**
-     * Создает экземпляр класса ProfilePage.
-     *
-     * @param {HTMLElement} [parent=document.getElementById('root')] - Родительский элемент, в который будет вставлен контент страницы.
-     */
+    /**
+    * Создает экземпляр класса ProfilePage.
+    *
+    * @param {HTMLElement} [parent=document.getElementById('root')] - Родительский элемент, в который будет вставлен контент страницы.
+    */
     constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
@@ -30,6 +31,21 @@ export class ProfilePage {
         const fileInput = profileForm.elements['file'];
 
         let confirm = false;
+        checkPaymentLink()
+            .then(res => {
+                if (res.ok) {
+                    const label = res.body.subUpTo;
+                    document.getElementById('payment').href = '#';
+                    document.getElementById('payment').textContent = label;
+                } else {
+                    getPaymentLink()
+                        .then(response => {
+                            document.getElementById('payment').href = response.body.payment;
+                            document.getElementById('payment').textContent = 'Оплатить';
+                        });
+                }
+
+            });
 
         /**
          * Узнаю о пользователе
@@ -117,7 +133,7 @@ export class ProfilePage {
             }
         });
         // fileInput.addEventListener('change', () => { formData.imageData = file; });
-        profileForm.addEventListener('submit', async function(event) {
+        profileForm.addEventListener('submit', async function (event) {
             event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
 
             try {
@@ -144,7 +160,7 @@ export class ProfilePage {
                         store.dispatch($sentUserInfoRequest());
 
                     }
-                }else{
+                } else {
                     new Notify('Что то вы вводите не так:)');
                 }
 
