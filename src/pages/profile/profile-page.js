@@ -33,7 +33,7 @@ export class ProfilePage {
         let confirm = false;
         checkPaymentLink()
             .then(res => {
-                if (res.ok) {
+                if (res.status) {
                     const label = res.body.subUpTo;
                     document.getElementById('payment').href = '#';
                     document.getElementById('payment').textContent = label;
