@@ -2,7 +2,13 @@ import { getCookie } from '../getCookie';
 import { NETFLIX_API } from './const';
 import { Page404 } from '../../pages/404/404';
 import { Notify } from '../../components/notify/notify';
-
+/**
+ * Выполняет запрос на установку рейтинга для видео.
+ * @param {number} rate - Оценка видео.
+ * @param {string} id - Идентификатор видео.
+ * @returns {Promise} Промис, который разрешится с ответом от сервера или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const setRatingRequest = (rate, id) => {
     if (!navigator.onLine) {
         new Notify('Нет соединения');
@@ -23,7 +29,12 @@ export const setRatingRequest = (rate, id) => {
     });
 
 };
-
+/**
+ * Выполняет запрос на получение рейтинга для конкретного видео.
+ * @param {string} id - Идентификатор видео.
+ * @returns {Promise} Промис, который разрешится с данными о рейтинге или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const getRating = (id) => {
     return fetch(`${NETFLIX_API}/video/rating/check/${id}`, {
         method: 'GET',
@@ -45,7 +56,12 @@ export const getRating = (id) => {
             throw (error);
         });
 };
-
+/**
+ * Выполняет запрос на удаление рейтинга для видео.
+ * @param {string} id - Идентификатор видео.
+ * @returns {Promise} Промис, который разрешится с ответом от сервера или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const deleteRating = (id) => {
     if (!navigator.onLine) {
         new Notify('Нет соединения');

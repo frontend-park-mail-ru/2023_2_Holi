@@ -21,13 +21,27 @@ function groupBySeason(episodes) {
         return acc;
     }, []);
 }
-
+/**
+ * Класс для отображения страницы контента сериала.
+ */
 export class SerialContentPage {
     #parent;
+    /**
+     * Создает экземпляр класса SerialContentPage.
+     *
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлен контент страницы.
+     */
     constructor(parent) {
         this.#parent = parent;
     }
 
+    /**
+     * Устанавливает данные эпизода и обновляет интерфейс.
+     *
+     * @param {number} id - Идентификатор сериала.
+     * @param {object} episode - Объект с данными эпизода.
+     * @param {Array} serials - Массив серий сериала.
+     */
     setEpisodeData(id, episode, serials) {
         document.getElementById('episodeName').innerText = `${episode.season} сезон, ${episode.number} серия, ${episode.name}`;
         document.querySelector('source').src = `${episode.mediaPath}#t=3`;
@@ -75,6 +89,13 @@ export class SerialContentPage {
 
     }
 
+    /**
+     * Обработчик выбора сезона и обновления списка эпизодов.
+     *
+     * @param {HTMLElement} seasonSelect - Выпадающий список сезонов.
+     * @param {HTMLElement} episodeSelect - Выпадающий список эпизодов.
+     * @param {Array} groupedEpisodesArray - Массив, сгруппированный по сезонам.
+     */
     selectHandler(seasonSelect, episodeSelect, groupedEpisodesArray) {
         const currentSeason = seasonSelect.value;
         episodeSelect.innerHTML = '';
@@ -86,6 +107,9 @@ export class SerialContentPage {
         });
     }
 
+    /**
+     * Рендерит страницу контента сериала.
+     */
     async render() {
         store.clearSubscribes();
         this.#parent.innerHTML = '';

@@ -2,13 +2,18 @@ import { getCookie } from '../getCookie';
 import { NETFLIX_API } from './const';
 import { Page404 } from '../../pages/404/404';
 import { Notify } from '../../components/notify/notify';
-
+/**
+ * Выполняет запрос на установку лайка для видео.
+ * @param {string} id - Идентификатор видео.
+ * @returns {Promise} Промис, который разрешится с ответом от сервера или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const setLike = (id) => {
     if (!navigator.onLine) {
         new Notify('Нет соединения');
     }
 
-return fetch(`${NETFLIX_API}/video/favourites/${id}`, {
+    return fetch(`${NETFLIX_API}/video/favourites/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -22,7 +27,11 @@ return fetch(`${NETFLIX_API}/video/favourites/${id}`, {
     });
 
 };
-
+/**
+ * Выполняет запрос на получение списка лайкнутых видео.
+ * @returns {Promise} Промис, который разрешится с данными о лайкнутых видео или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const getLike = () => {
     return fetch(`${NETFLIX_API}/video/favourites`, {
         method: 'GET',
@@ -44,7 +53,12 @@ export const getLike = () => {
             throw (error);
         });
 };
-
+/**
+ * Выполняет запрос на получение состояния лайка для конкретного видео.
+ * @param {string} id - Идентификатор видео.
+ * @returns {Promise} Промис, который разрешится с данными о состоянии лайка или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const getLikeState = (id) => {
     return fetch(`${NETFLIX_API}/video/favourites/check/${id}`, {
         method: 'GET',
@@ -66,13 +80,18 @@ export const getLikeState = (id) => {
             throw (error);
         });
 };
-
+/**
+ * Выполняет запрос на удаление лайка для видео.
+ * @param {string} id - Идентификатор видео.
+ * @returns {Promise} Промис, который разрешится с ответом от сервера или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const deleteLike = (id) => {
     if (!navigator.onLine) {
         new Notify('Нет соединения');
     }
 
-return fetch(`${NETFLIX_API}/video/favourites/${id}`, {
+    return fetch(`${NETFLIX_API}/video/favourites/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',

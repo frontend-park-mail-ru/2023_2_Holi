@@ -5,9 +5,17 @@ import profile from './profile-page.hbs';
 import store from '../../../index.js';
 import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
 import { logoutHandle } from '../../services/logoutHandle.js';
-
+/**
+ * Класс для отображения страницы профиля пользователя.
+ */
 export class ProfilePage {
     #parent;
+
+     /**
+     * Создает экземпляр класса ProfilePage.
+     *
+     * @param {HTMLElement} [parent=document.getElementById('root')] - Родительский элемент, в который будет вставлен контент страницы.
+     */
     constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }

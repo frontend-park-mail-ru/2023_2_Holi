@@ -6,9 +6,24 @@ import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
 import { logoutHandle } from '../../services/logoutHandle.js';
 import { setRating } from '../../services/set-rating.js';
+
+/**
+ * Класс для отображения страницы контента.
+ */
 export class ContentPage {
     #parent;
+
+    /**
+     * Создает экземпляр класса ContentPage.
+     *
+     * @param {HTMLElement} [parent=document.getElementById('root')] - Родительский элемент, в который будет вставлен контент страницы.
+     */
     constructor(parent = document.getElementById('root')) {
+        /**
+          * Родительский элемент, в который будет вставлен контент страницы.
+          * @type {HTMLElement}
+          * @private
+          */
         this.#parent = parent;
     }
 
@@ -51,6 +66,11 @@ export class ContentPage {
 
         logoutHandle();
         setRating();
+
+        /**
+         * Обработчик клика по кнопке "Like".
+         * @param {MouseEvent} event - Событие клика.
+         */
         like.addEventListener('click', () => {
             if (like.querySelector('i').className === 'like') {
                 deleteLike(id).then(() => {

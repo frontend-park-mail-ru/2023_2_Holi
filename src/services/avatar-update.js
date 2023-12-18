@@ -1,6 +1,10 @@
 import store from '../..';
 import { $sentUserInfoRequest, USER_REDUCER } from './flux/actions/user-info';
-
+/**
+ * Обновляет аватар с учетом "cache-busting".
+ * Если у пользователя есть изображение, оно будет обновлено с использованием случайного параметра cache-busting.
+ * Если изображение отсутствует, выполняется запрос для получения информации о пользователе.
+ */
 export const avatarUpdate = () => {
 
     if (store.getState() && store.getState().user.userInfo && store.getState().user.userInfo.user.imagePath) {
@@ -33,10 +37,7 @@ export const avatarUpdate = () => {
 
                     document.querySelector('.avatar').src = updatedImageUrl;
                 }
-
             }
-
         });
     }
-
 };

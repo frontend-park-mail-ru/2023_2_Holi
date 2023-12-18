@@ -6,7 +6,11 @@ import { serialReducer } from './serial-content';
 import { serialsReducer } from './serials-collection';
 import { userReducer } from './user-info';
 
-// Создаем стор с использованием combineReducers
+/**
+ * Объединенный редюсер для управления состоянием всего приложения.
+ * @constant
+ * @type {Function}
+ */
 export const rootReducer = combineReducers({
     auth: authReducer,
     user: userReducer,

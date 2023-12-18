@@ -1,3 +1,10 @@
+/**
+ * Возвращает предыдущий и следующий элементы в массиве относительно заданного значения.
+ *
+ * @param {Array} arr - Массив элементов.
+ * @param {*} value - Значение, относительно которого нужно найти соседей.
+ * @returns {{previous: *, next: *}} - Объект с предыдущим и следующим элементами.
+ */
 export const getAdjacentElements = (arr, value) => {
     const index = arr.indexOf(value);
 

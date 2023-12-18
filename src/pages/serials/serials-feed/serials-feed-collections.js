@@ -1,11 +1,23 @@
 import collectionTemplate from './serials-feed-collections.hbs';
 import { uuid } from '../../../services/uuid-time';
+
+/**
+ * Класс для отображения коллекции сериалов.
+ */
 export class SerialsFeedCollection {
     #title;
     #content;
     #parent;
     #id;
 
+    /**
+     * Создает экземпляр класса SerialsFeedCollection.
+     *
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена коллекция сериалов.
+     * @param {string} title - Заголовок коллекции.
+     * @param {Array} content - Массив объектов сериалов.
+     * @param {number} id - Идентификатор коллекции.
+     */
     constructor(parent, title, content, id) {
         this.#content = content;
         this.#title = title;
@@ -14,7 +26,9 @@ export class SerialsFeedCollection {
 
         this.render();
     }
-
+    /**
+        * Заполняет цветом рейтинговых элементов в коллекции.
+        */
     ratingFillColor() {
         // Получите все элементы с рейтингом
         const ratingElements = document.querySelectorAll('.feed-collection__advanced-info__rating');
@@ -31,11 +45,18 @@ export class SerialsFeedCollection {
             }
         });
     }
-
+    /**
+         * Возвращает массив объектов, отсортированный по убыванию рейтинга.
+         *
+         * @param {Array} arr - Массив объектов сериалов.
+         * @returns {Array} - Отсортированный массив объектов.
+         */
     getTopRatedObjects(arr) {
         return arr.sort((a, b) => b.rating - a.rating);
     }
-
+    /**
+        * Рендерит коллекцию сериалов.
+        */
     render() {
         const carouselUUID = uuid();
         const containerUUID = uuid();

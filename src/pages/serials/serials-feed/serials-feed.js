@@ -6,18 +6,23 @@ import { seachHandler } from '../../../services/search-utils';
 import { avatarUpdate } from '../../../services/avatar-update';
 import { videoHelper } from '../../../services/video-helper';
 import { logoutHandle } from '../../../services/logoutHandle';
-
+/**
+ * Класс для отображения страницы ленты сериалов.
+ */
 export class SerialFeedPage {
     #parent;
 
     /**
-    * Создает новый экземпляр класса FeedPage.
-    * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
-    */
+     * Создает новый экземпляр класса SerialFeedPage.
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена страница.
+     */
     constructor(parent) {
         this.#parent = parent;
     }
-
+/**
+     * Добавляет коллекции на страницу.
+     * @param {Array} content - Массив данных о коллекциях.
+     */
     addCollections(content) {
         const root = document.getElementById('feed-collections');
         root.innerHTML = '';
@@ -27,7 +32,9 @@ export class SerialFeedPage {
             }
         });
     }
-
+/**
+     * Рендерит страницу ленты сериалов.
+     */
     render() {
         store.clearSubscribes();
         this.#parent.innerHTML = '';

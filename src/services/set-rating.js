@@ -1,10 +1,13 @@
 import { deleteRating, getRating, setRatingRequest } from './api/rating';
 
+/**
+ * Устанавливает обработчики событий для кнопок рейтинга.
+ */
 export const setRating = () => {
     checkUserRating();
     const ratingButtons = document.querySelectorAll('[data-rating]');
 
-    // Навешиваем обработчик клика на каждый элемент с аттрибутом data-rating
+    // Навешиваем обработчик клика на каждый элемент с атрибутом data-rating
     ratingButtons.forEach(button => {
         button.addEventListener('click', handleRatingClick);
     });
@@ -15,6 +18,11 @@ export const setRating = () => {
     removeRatingButton.addEventListener('click', handleRemoveRatingClick);
 };
 
+/**
+ * Обработчик события клика по кнопке рейтинга.
+ *
+ * @param {Event} event - Объект события.
+ */
 function handleRatingClick(event) {
     // Получаем значение рейтинга из аттрибута data-rating
     const ratingValue = event.currentTarget.dataset.rating;
@@ -32,7 +40,7 @@ function handleRatingClick(event) {
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
             if (response.ok) {
-                console.log(`Рейтинг ${ratingValue} успешно установлен.`);
+                return response;
             } else {
                 console.error('Ошибка при установке рейтинга.');
             }
@@ -42,7 +50,9 @@ function handleRatingClick(event) {
         });
 }
 
-// Функция для обработки клика
+/**
+ * Обработчик события клика по кнопке удаления рейтинга.
+ */
 function handleRemoveRatingClick() {
     const id = localStorage.getItem('LastContentId');
     // Отправляем запрос на удаление рейтинга (замените URL на свой)
@@ -50,7 +60,7 @@ function handleRemoveRatingClick() {
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
             if (response.ok) {
-                console.log('Рейтинг успешно удален.');
+                return response;
             } else {
                 console.error('Ошибка при удалении рейтинга.');
             }
@@ -60,7 +70,9 @@ function handleRemoveRatingClick() {
         });
 }
 
-// Функция для проверки текущего рейтинга пользователя
+/**
+ * Проверяет текущий рейтинг пользователя и обновляет интерфейс.
+ */
 function checkUserRating() {
     const ratingButtons = document.querySelectorAll('[data-rating]');
     const id = localStorage.getItem('LastContentId');

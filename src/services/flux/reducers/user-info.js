@@ -1,5 +1,13 @@
 import { USER_INFO_REQUEST, USER_INFO_SUCCESS, USER_INFO_ERROR } from '../actions/user-info';
-
+/**
+ * Начальное состояние редюсера пользователя.
+ * @typedef {Object} initialState
+ * @property {boolean} userRequest - Флаг, указывающий на выполнение запроса информации о пользователе.
+ * @property {boolean} userSuccess - Флаг успешного выполнения запроса информации о пользователе.
+ * @property {boolean} userError - Флаг ошибки при выполнении запроса информации о пользователе.
+ * @property {null|Object} error - Объект ошибки при выполнении запроса информации о пользователе.
+ * @property {null|Object} userInfo - Информация о пользователе.
+ */
 const initialState = {
     userRequest: false,
     userSuccess: false,
