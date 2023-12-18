@@ -4,10 +4,8 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    background-color: rgba(218, 216, 216, 0.3);
+    width: 100vw;
     padding: 5vh;
-    max-height: 500px;
     border-radius: 0.45rem;
     margin: 10vh auto;
     color: #fff;
@@ -41,7 +39,6 @@
 @media screen and (max-width:900px) {
     .profile-form {
         max-width: 100%;
-        max-height: 100%;
     }
 
     .profile-form__row {

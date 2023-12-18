@@ -22,9 +22,9 @@ export class SerialsFeedCollection {
         ratingElements.forEach(element => {
             const rating = parseInt(element.getAttribute('data-rating'), 10);
 
-            if (rating >= 7) {
+            if (rating >= 8) {
                 element.classList.add('rating-high');
-            } else if (rating >= 4) {
+            } else if (rating >= 5) {
                 element.classList.add('rating-medium');
             } else {
                 element.classList.add('rating-low');
@@ -32,12 +32,8 @@ export class SerialsFeedCollection {
         });
     }
 
-    getTopRatedObjects(arr, count) {
-        // Сортируем массив в порядке убывания рейтинга
-        const sortedArr = arr.sort((a, b) => b.rating - a.rating);
-
-        // Возвращаем указанное количество объектов с самыми высокими рейтингами
-        return sortedArr.slice(0, count);
+    getTopRatedObjects(arr) {
+        return arr.sort((a, b) => b.rating - a.rating);
     }
 
     render() {
@@ -58,15 +54,13 @@ export class SerialsFeedCollection {
             return { ...movie, rating: roundedRating };
         });
 
-        const contentCount = window.innerWidth / 350;
-
         // Отобразите все элементы контента
         collection.innerHTML = collectionTemplate({
             carousel: carouselUUID,
             container: containerUUID,
             title: this.#title,
             id: this.#id,
-            content: this.getTopRatedObjects(roundedMovies, contentCount),
+            content: this.getTopRatedObjects(roundedMovies),
         });
 
         this.ratingFillColor();

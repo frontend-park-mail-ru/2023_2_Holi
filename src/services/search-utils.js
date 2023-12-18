@@ -1,6 +1,7 @@
 import { searchRequest } from './api/search';
 import { debounce } from './debounce';
-import {Notify} from "../components/notify/notify";
+import { Notify } from '../components/notify/notify';
+import { navigate } from './router/Router';
 
 // Функция для выполнения запроса на сервер
 export function fetchData(query) {
@@ -15,10 +16,40 @@ export function fetchData(query) {
 
 }
 
+function simulateAndRemoveLink(href) {
+    // Создать элемент
+    const link = document.createElement('a');
+    link.href = href;
+    link.setAttribute('spa-link', '');
+    link.textContent = 'Нажмите меня';
+
+    // Добавить обработчик события
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        console.log('Ссылка была нажата!');
+        // Дополнительный код обработки клика
+    });
+
+    // Добавить элемент в DOM
+    document.body.appendChild(link);
+
+    // Имитировать клик
+    link.click();
+
+    // Удалить элемент после имитации клика
+    link.parentNode.removeChild(link);
+}
 // Функция для обновления выпадающего списка
 export function updateDropdownList(results) {
-    const dropdownList = document.getElementById('dropdown-list');
-    document.getElementById('search-list').classList.add('visible');
+    const width = window.innerWidth;
+    let container;
+    if (width > 900) {
+        container = document.querySelector('.large-menu');
+    } else {
+        container = document.querySelector('.small-menu');
+    }
+    const dropdownList = container.querySelector('#dropdown-list');
+    container.querySelector('#search-list').classList.add('visible');
     dropdownList.innerHTML = '';
 
     if (!results) {
@@ -27,50 +58,63 @@ export function updateDropdownList(results) {
         ladel.textContent = 'Ничего не нашлось:(';
         dropdownList.appendChild(ladel);
     }
-    const data = results.body;
+    else {
+        simulateAndRemoveLink('/search');
+        const data = results.body;
 
-    if (data.cast) {
-        const ladel = document.createElement('li');
-        ladel.className = 'dropdown-item';
-        ladel.textContent = 'Актеры';
-        dropdownList.appendChild(ladel);
-        data.cast.forEach(result => {
-            const listItem = document.createElement('li');
-            listItem.className = 'dropdown-item';
-            const a = document.createElement('a');
-            a.textContent = result.name;
-            a.className = 'dropdown-item';
-            a.setAttribute('spa-link', '');
-            a.href = `/cast/${result.id}`;
-            listItem.appendChild(a);
-            dropdownList.appendChild(listItem);
-        });
-    }
-    if (data.films) {
-        const ladel = document.createElement('li');
-        ladel.className = 'dropdown-item';
-        ladel.textContent = 'Фильмы/Сериалы';
-        dropdownList.appendChild(ladel);
-        data.films.forEach(result => {
-            const listItem = document.createElement('li');
-            listItem.className = 'dropdown-item';
-            const a = document.createElement('a');
-            a.className = 'dropdown-item';
-            a.textContent = result.name;
-            if (result.seasonsCount === 0) {
-                a.href = `/movies/${result.id}`;
-            } else {
-                a.href = `/serial/${result.id}`;
-            }
+        if (data.cast) {
+            const ladel = document.createElement('li');
+            ladel.className = 'dropdown-item';
+            ladel.textContent = 'Актеры';
+            dropdownList.appendChild(ladel);
+            data.cast.forEach(result => {
+                const listItem = document.createElement('li');
+                listItem.className = 'dropdown-item';
+                const a = document.createElement('a');
+                a.textContent = result.name;
+                a.className = 'dropdown-item';
+                a.setAttribute('spa-link', '');
+                a.href = `/cast/${result.id}`;
+                listItem.appendChild(a);
+                dropdownList.appendChild(listItem);
+            });
+        }
+        if (data.films) {
+            const ladel = document.createElement('li');
+            ladel.className = 'dropdown-item';
+            ladel.textContent = 'Фильмы/Сериалы';
+            dropdownList.appendChild(ladel);
+            data.films.forEach(result => {
+                const listItem = document.createElement('li');
+                listItem.className = 'dropdown-item';
+                const a = document.createElement('a');
+                a.className = 'dropdown-item';
+                a.textContent = result.name;
+                if (result.seasonsCount === 0) {
+                    a.href = `/movies/${result.id}`;
+                } else {
+                    a.href = `/serial/${result.id}`;
+                }
 
-            listItem.appendChild(a);
-            dropdownList.appendChild(listItem);
-        });
+                listItem.appendChild(a);
+                dropdownList.appendChild(listItem);
+            });
+        }
     }
+
 }
 
 export function seachHandler() {
-    const inputSearch = document.querySelector('.input-search');
+    const width = window.innerWidth;
+    let container;
+    if (width > 900) {
+        container = document.querySelector('.large-menu');
+    } else {
+        container = document.querySelector('.small-menu');
+    }
+
+    const btnSearch = container.querySelector('.btn-search');
+    const inputSearch = container.querySelector('.input-search');
     if (inputSearch) {
         // Добавляем обработчик события oninput с использованием debounce
         inputSearch.addEventListener('input', debounce(function (event) {
@@ -78,15 +122,27 @@ export function seachHandler() {
                 new Notify('Нет соединения');
             }
             const query = event.target.value;
+            localStorage.setItem('lastSearchInput', query);
             fetchData(query);
-        }, 300));
+        }, 700));
 
         inputSearch.addEventListener('blur', () => {
-            const dropdownList = document.getElementById('dropdown-list');
+            const dropdownList = container.querySelector('#dropdown-list');
             inputSearch.value = '';
             setTimeout(() => {
                 dropdownList.innerHTML = '';
             }, 800);
+
+        });
+    }
+    if (btnSearch && inputSearch ) {
+        btnSearch.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log(12)
+
+            console.log(133)
+            // Инпут находится в фокусе, выполняйте ваш код
+            navigate('/search');
 
         });
     }

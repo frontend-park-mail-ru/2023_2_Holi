@@ -1,5 +1,3 @@
-import { logoutRequest } from '../../services/api/auth.js';
-import { navigate } from '../../services/router/Router.js';
 import { FeedCollection } from './components/feed-collection.js';
 import feed from './feed-page.hbs';
 import store from '../../..';
@@ -7,6 +5,7 @@ import { $sendCollectionAliasRequest, COLLECTION_REDUCER } from '../../services/
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
 import { videoHelper } from '../../services/video-helper.js';
+import { logoutHandle } from '../../services/logoutHandle.js';
 
 /**
  * Класс, представляющий страницу ленты.
@@ -43,12 +42,7 @@ export class FeedPage {
             const state = store.getState().collections;
             this.#parent.innerHTML = feed({ 'preview': state.preview, 'id': 'playButton' });
             this.addCollections(state.collections);
-            document.getElementById('logout').addEventListener('click', async function() {
-                const response = await logoutRequest();
-                if (response.ok) {
-                    navigate('/login');
-                }
-            });
+            logoutHandle();
 
             const btn = document.getElementById('playButton');
             btn.addEventListener('click', () => {

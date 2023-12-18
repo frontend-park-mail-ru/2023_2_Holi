@@ -1,12 +1,26 @@
-import { logoutRequest } from '../../../services/api/auth.js';
 import { getLastNumber } from '../../../services/getParams.js';
-import { navigate } from '../../../services/router/Router.js';
 import serial from './serials-content.hbs';
 import { deleteLike, getLikeState, setLike } from '../../../services/api/like.js';
 import { seachHandler } from '../../../services/search-utils.js';
 import store from '../../../../index.js';
 import { $sendSerialsContentRequest, SERIALS_CONTENT_REDUCER } from '../../../services/flux/actions/serial-content.js';
 import { avatarUpdate } from '../../../services/avatar-update.js';
+import { SerialsSeason } from './serial-season.js';
+import { logoutHandle } from '../../../services/logoutHandle.js';
+import { setRating } from '../../../services/set-rating.js';
+
+// Функция для группировки массива по полю "season" в двумерный массив
+function groupBySeason(episodes) {
+    return episodes.reduce((acc, episode) => {
+        const season = episode.season;
+        if (!acc[season - 1]) {
+            acc[season - 1] = [];
+        }
+        acc[season - 1].push(episode);
+
+        return acc;
+    }, []);
+}
 
 export class SerialContentPage {
     #parent;
@@ -14,15 +28,14 @@ export class SerialContentPage {
         this.#parent = parent;
     }
 
-    setEpisodeData(id, season, serialNumber, serialName, serialUrl, serialDescription, i, length, array) {
-        document.getElementById('episodeName').innerText = `${season} сезон, ${serialNumber} серия, ${serialName}`;
-        document.querySelector('source').src = serialUrl;
-        document.getElementById('serialDescription').innerText = serialDescription;
+    setEpisodeData(id, episode, serials) {
+        document.getElementById('episodeName').innerText = `${episode.season} сезон, ${episode.number} серия, ${episode.name}`;
+        document.querySelector('source').src = `${episode.mediaPath}#t=3`;
+        document.getElementById('serialDescription').innerText = episode.description;
 
         const video = document.querySelector('video');
         video.load();
-        video.setAttribute('data-count', i);
-        video.addEventListener('loadedmetadata', function () {
+        video.addEventListener('loadedmetadata', function() {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -38,28 +51,39 @@ export class SerialContentPage {
             }
         });
 
-        localStorage.setItem('lastSerial_' + id, i);
+        localStorage.setItem('lastSerial_' + id, episode.id);
 
         const prevButton = document.getElementById('prev-button');
         const prevLabel = document.getElementById('prevEpisode');
         const nextButton = document.getElementById('next-button');
         const nextLabel = document.getElementById('nextEpisode');
-
-        if (i === 0) {
+        const idx = serials.findIndex(elem => elem.id === episode.id);
+        if (idx === 0) {
             prevButton.classList.add('btn-action__disabled');
             prevLabel.innerText = '';
-            nextLabel.innerText = `${array[i + 1].season} сезон, ${array[i + 1].number} серия, ${array[i + 1].name}`;
-        } else if (i === length - 1) {
+            nextLabel.innerText = `${serials[idx + 1].season} сезон, ${serials[idx + 1].number} серия, ${serials[idx + 1].name}`;
+        } else if (idx === length - 1) {
             nextButton.classList.add('btn-action__disabled');
-            prevLabel.innerText = `${array[i - 1].season} сезон, ${array[i - 1].number} серия, ${array[i - 1].name}`;
+            prevLabel.innerText = `${serials[idx - 1].season} сезон, ${serials[idx - 1].number} серия, ${serials[idx - 1].name}`;
             nextLabel.innerText = '';
         } else {
             prevButton.classList.remove('btn-action__disabled');
             nextButton.classList.remove('btn-action__disabled');
-            prevLabel.innerText = `${array[i - 1].season} сезон, ${array[i - 1].number} серия, ${array[i - 1].name}`;
-            nextLabel.innerText = `${array[i + 1].season} сезон, ${array[i + 1].number} серия, ${array[i + 1].name}`;
+            prevLabel.innerText = `${serials[idx - 1].season} сезон, ${serials[idx - 1].number} серия, ${serials[idx - 1].name}`;
+            nextLabel.innerText = `${serials[idx + 1].season} сезон, ${serials[idx + 1].number} серия, ${serials[idx + 1].name}`;
         }
 
+    }
+
+    selectHandler(seasonSelect, episodeSelect, groupedEpisodesArray) {
+        const currentSeason = seasonSelect.value;
+        episodeSelect.innerHTML = '';
+        groupedEpisodesArray[currentSeason - 1].forEach((episode, i) => {
+            const opt = document.createElement('option');
+            opt.value = episode.id;
+            opt.textContent = `${i + 1} серия ${episode.name}`;
+            episodeSelect.appendChild(opt);
+        });
     }
 
     async render() {
@@ -68,13 +92,79 @@ export class SerialContentPage {
         this.#parent.style.background = '';
         const id = getLastNumber(location.href);
 
+        localStorage.setItem('LastContentId', id);
         store.dispatch($sendSerialsContentRequest(id));
 
         store.subscribe(SERIALS_CONTENT_REDUCER, () => {
             const state = store.getState().currentSerial.serials;
             this.#parent.innerHTML = serial({ film: state.film, artists: state.artists });
-            const episode = state.episodes[Number(localStorage.getItem('lastSerial_' + id))];
-            this.setEpisodeData(id, episode.season, episode.number, episode.name, episode.mediaPath, episode.description, Number(localStorage.getItem('lastSerial_' + id)), state.episodes.length, state.episodes);
+            let episode;
+            if (localStorage.getItem('lastSerial_' + id)) {
+                const idx = state.episodes.findIndex(elem => elem.id === Number(localStorage.getItem('lastSerial_' + id)));
+                episode = state.episodes[idx];
+            } else {
+                episode = state.episodes[0];
+            }
+
+            // Вызываем функцию группировки
+            const groupedEpisodesArray = groupBySeason(state.episodes);
+
+            const seasonSelect = document.getElementById('season');
+            const episodeSelect = document.getElementById('episode');
+            const seasons = document.getElementById('seasons-carousel');
+            console.info(seasons);
+            groupedEpisodesArray.forEach((season, i) => {
+                new SerialsSeason(seasons, `${i + 1} Сезон`, groupedEpisodesArray[i]);
+            });
+            const totalSeason = groupedEpisodesArray.length;
+
+            for (let i = 0; i < totalSeason; i++) {
+                const opt = document.createElement('option');
+                opt.value = i + 1;
+                opt.textContent = `${i + 1} сезон`;
+                seasonSelect.appendChild(opt);
+            }
+
+            this.selectHandler(seasonSelect, episodeSelect, groupedEpisodesArray);
+            seasonSelect.addEventListener('change', () => {
+                this.selectHandler(seasonSelect, episodeSelect, groupedEpisodesArray);
+            });
+
+            episodeSelect.addEventListener('change', (e) => {
+                const targetEpisode = state.episodes.find((ep) => ep.id == e.target.value);
+                console.info(targetEpisode);
+                this.setEpisodeData(id,
+                    targetEpisode,
+                    state.episodes);
+            });
+            // Определяем функцию для плавного прокручивания вверх
+            function scrollToTop() {
+                // Получаем текущую позицию прокрутки
+                const currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+                // Если текущая позиция не равна 0, то прокручиваем страницу вверх
+                if (currentPosition > 0) {
+                    window.requestAnimationFrame(scrollToTop);
+                    window.scrollTo(0, currentPosition - currentPosition / 20);
+                }
+            }
+
+            const elementsWithEpisodeAttribute = document.querySelectorAll('[episode]');
+            elementsWithEpisodeAttribute.forEach(episode => {
+                episode.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const targetEpisode = state.episodes.find((ep) => ep.id == event.target.id);
+                    this.setEpisodeData(id,
+                        targetEpisode,
+                        state.episodes);
+                    // Вызываем функцию для плавного прокручивания вверх
+                    scrollToTop();
+                });
+            });
+
+            this.setEpisodeData(id,
+                episode,
+                state.episodes);
             document.getElementById('rating').innerText = parseFloat(state.film.rating.toFixed(1));
             seachHandler();
 
@@ -84,15 +174,21 @@ export class SerialContentPage {
             nextButton.removeAttribute('spa-link');
 
             prevButton.addEventListener('click', (e) => {
-                const currentEpisode = Number(localStorage.getItem('lastSerial_' + id));
+                const currentEpisodeId = Number(localStorage.getItem('lastSerial_' + id));
+                const idx = state.episodes.findIndex(elem => elem.id === currentEpisodeId);
                 e.preventDefault();
-                this.setEpisodeData(id, state.episodes[currentEpisode - 1].season, state.episodes[currentEpisode - 1].number, state.episodes[currentEpisode - 1].name, state.episodes[currentEpisode - 1].mediaPath, state.episodes[currentEpisode - 1].description, currentEpisode - 1, state.episodes.length, state.episodes);
+                this.setEpisodeData(id,
+                    state.episodes[idx - 1],
+                    state.episodes);
             });
 
             nextButton.addEventListener('click', (e) => {
-                const currentEpisode = Number(localStorage.getItem('lastSerial_' + id));
+                const currentEpisodeId = Number(localStorage.getItem('lastSerial_' + id));
+                const idx = state.episodes.findIndex(elem => elem.id === currentEpisodeId);
                 e.preventDefault();
-                this.setEpisodeData(id, state.episodes[currentEpisode + 1].season, state.episodes[currentEpisode + 1].number, state.episodes[currentEpisode + 1].name, state.episodes[currentEpisode + 1].mediaPath, state.episodes[currentEpisode + 1].description, currentEpisode + 1, state.episodes.length, state.episodes);
+                this.setEpisodeData(id,
+                    state.episodes[idx + 1],
+                    state.episodes);
             });
 
             const like = document.querySelector('.heart-button');
@@ -122,17 +218,12 @@ export class SerialContentPage {
                 }
             });
 
-            document.getElementById('logout').addEventListener('click', async function () {
-                const response = await logoutRequest();
-                if (response.ok) {
-                    navigate('/login');
-                }
-            });
+            logoutHandle();
 
             videoController();
 
             avatarUpdate();
-
+            setRating();
         });
     }
 }

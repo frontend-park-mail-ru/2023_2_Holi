@@ -43,7 +43,7 @@ const loginContoller = () => {
     const emailInput = loginForm.elements['email'];
     const passwordInput = loginForm.elements['password'];
 
-    loginForm.addEventListener('submit', async function (event) {
+    loginForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
         const email = emailInput.value;
@@ -53,6 +53,13 @@ const loginContoller = () => {
             store.dispatch($sentAuthRequest(email, password, () => navigate('/feed')));
         } else {
             new Notify(validatePassword(passwordInput.value));
+        }
+    });
+
+    store.subscribe('LOGIN_REDUCER', () => {
+        const state = store.getState();
+        if(state.auth.authError){
+            new Notify('Ошибка при авторизации');
         }
     });
 

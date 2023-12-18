@@ -57,9 +57,9 @@ export class FeedCollection {
         ratingElements.forEach(element => {
             const rating = parseInt(element.getAttribute('data-rating'), 10);
 
-            if (rating >= 4) {
+            if (rating >= 8) {
                 element.classList.add('rating-high');
-            } else if (rating >= 2) {
+            } else if (rating >= 5) {
                 element.classList.add('rating-medium');
             } else {
                 element.classList.add('rating-low');
@@ -90,55 +90,55 @@ export class FeedCollection {
             container: containerUUID,
             id: this.#id,
             title: this.#title,
-            content: roundedMovies,
+            content: roundedMovies.sort((a, b) => b.rating - a.rating),
         });
 
         this.scrolling(carouselUUID, containerUUID);
-        this.ratingFillColor();
+this.ratingFillColor();
 
-        // Получите все элементы <video> на странице
-        const videoElements = document.querySelectorAll('.feed-collection__container-card');
+// Получите все элементы <video> на странице
+const videoElements = document.querySelectorAll('.feed-collection__container-card');
 
-        let isDragging = false;
-        let prevDrag = false;
+let isDragging = false;
+let prevDrag = false;
 
-        collection.addEventListener('click', () => {
-            localStorage.setItem('lastCollection', JSON.stringify(this.#content));
-        });
+collection.addEventListener('click', () => {
+    localStorage.setItem('lastCollection', JSON.stringify(this.#content));
+});
 
-        videoElements.forEach((container) => {
-            const video = container.querySelector('video');
+videoElements.forEach((container) => {
+    const video = container.querySelector('video');
 
-            container.addEventListener('mousedown', () => {
-                isDragging = true;
-            });
+    container.addEventListener('mousedown', () => {
+        isDragging = true;
+    });
 
-            container.addEventListener('mouseup', () => {
-                isDragging = false;
-            });
+    container.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
 
-            container.addEventListener('click', () => {
-                if (!isDragging && !prevDrag) {
-                    // Остановка всех видео
-                    videoElements.forEach((otherContainer) => {
-                        const otherVideo = otherContainer.querySelector('video');
-                        if (otherVideo !== video && !otherVideo.paused) {
-                            otherVideo.pause();
-                            otherVideo.setAttribute('autoplay', 'false');
-                            otherVideo.preload = 'none';
-                        }
-                    });
-
-                    video.preload = 'auto'; // Запустить загрузку видео
-                    video.setAttribute('autoplay', '');
-                    video.play();
-
+    container.addEventListener('click', () => {
+        if (!isDragging && !prevDrag) {
+            // Остановка всех видео
+            videoElements.forEach((otherContainer) => {
+                const otherVideo = otherContainer.querySelector('video');
+                if (otherVideo !== video && !otherVideo.paused) {
+                    otherVideo.pause();
+                    otherVideo.setAttribute('autoplay', 'false');
+                    otherVideo.preload = 'none';
                 }
             });
 
-            container.addEventListener('mousemove', () => {
-                prevDrag = isDragging;
-            });
-        });
+            video.preload = 'auto'; // Запустить загрузку видео
+            video.setAttribute('autoplay', '');
+            video.play();
+
+        }
+    });
+
+    container.addEventListener('mousemove', () => {
+        prevDrag = isDragging;
+    });
+});
     }
 }

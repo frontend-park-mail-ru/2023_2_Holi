@@ -2,11 +2,10 @@ import serial from './serials-feed.hbs';
 import store from '../../../..';
 import { $sendSerialsCollectionAliasRequest, SERIALS_COLLECTION_REDUCER } from '../../../services/flux/actions/serials-collection';
 import { SerialsFeedCollection } from './serials-feed-collections';
-import { logoutRequest } from '../../../services/api/auth';
-import { navigate } from '../../../services/router/Router';
 import { seachHandler } from '../../../services/search-utils';
 import { avatarUpdate } from '../../../services/avatar-update';
 import { videoHelper } from '../../../services/video-helper';
+import { logoutHandle } from '../../../services/logoutHandle';
 
 export class SerialFeedPage {
     #parent;
@@ -40,12 +39,7 @@ export class SerialFeedPage {
                 this.#parent.innerHTML = serial({ 'preview': store.getState().serials.preview });
                 this.addCollections(store.getState().serials.serials);
 
-                document.getElementById('logout').addEventListener('click', async function () {
-                    const response = await logoutRequest();
-                    if (response.ok) {
-                        navigate('/login');
-                    }
-                });
+                logoutHandle();
                 const btn = document.querySelector('.btn-action');
                 btn.addEventListener('click', () => {
                     btn.href = '/serial/' + store.getState().serials.preview.id;
@@ -58,12 +52,7 @@ export class SerialFeedPage {
         } else if (state.serials.serials) {
             this.#parent.innerHTML = serial({ 'preview':  store.getState().serials.preview });
             this.addCollections(state.serials.serials);
-            document.getElementById('logout').addEventListener('click', async function () {
-                const response = await logoutRequest();
-                if (response.ok) {
-                    navigate('/login');
-                }
-            });
+            logoutHandle();
             const btn = document.querySelector('.btn-action');
             btn.addEventListener('click', () => {
                 btn.href = '/serial/' + store.getState().serials.preview.id;

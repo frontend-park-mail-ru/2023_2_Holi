@@ -1,0 +1,16 @@
+{{> partial/header/partial-header feedPage=true kind="feed-page"}}
+
+<div class="glow-title">{{title}}</div>
+<div class="genre-container" id="cast">
+    {{#each cast}}
+    {{> partial/preview-card baseUrl="cast" this=this}}
+    {{/each}}
+</div>
+
+<div class="genre-container" id="films">
+    {{#each films}}
+    {{> partial/preview-card baseUrl="serial" this=this}}
+    {{/each}}
+</div>
+
+{{> partial/footer/partial-footer}}

@@ -1,11 +1,11 @@
-import { logoutRequest } from '../../services/api/auth.js';
 import { getContentById } from '../../services/api/content.js';
 import { getLastNumber } from '../../services/getParams.js';
-import { navigate } from '../../services/router/Router.js';
 import content from './content.hbs';
 import { deleteLike, getLikeState, setLike } from '../../services/api/like.js';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
+import { logoutHandle } from '../../services/logoutHandle.js';
+import { setRating } from '../../services/set-rating.js';
 export class ContentPage {
     #parent;
     constructor(parent = document.getElementById('root')) {
@@ -17,6 +17,7 @@ export class ContentPage {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const id = getLastNumber(location.href);
+        localStorage.setItem('LastContentId', id);
         const film = await getContentById(id);
 
         this.#parent.innerHTML = content({ film: film.body });
@@ -31,7 +32,7 @@ export class ContentPage {
             }
         });
         const video = document.querySelector('video');
-        video.addEventListener('loadedmetadata', function () {
+        video.addEventListener('loadedmetadata', function() {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -48,13 +49,8 @@ export class ContentPage {
 
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
 
-        document.getElementById('logout').addEventListener('click', async function () {
-            const response = await logoutRequest();
-            if (response.ok) {
-                navigate('/login');
-            }
-        });
-
+        logoutHandle();
+        setRating();
         like.addEventListener('click', () => {
             if (like.querySelector('i').className === 'like') {
                 deleteLike(id).then(() => {

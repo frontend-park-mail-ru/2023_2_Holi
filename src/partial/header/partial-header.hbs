@@ -1,85 +1,197 @@
 <div class="header-content" kind="{{kind}}">
-    <div class="header-content__row">
+    <div class="header-content__row ">
         <!-- Колонка логотипа {Существует всегда} -->
+        {{#if mainPage}}
         <div class="header-content__column">
             {{> partial/netflix-logo/netflix-logo}}
         </div>
+        {{/if}}
+
+        {{#if regPage}}
+        <div class="header-content__column">
+            {{> partial/netflix-logo/netflix-logo}}
+        </div>
+        {{/if}}
+
+        {{#if loginPage}}
+        <div class="header-content__column">
+            {{> partial/netflix-logo/netflix-logo}}
+        </div>
+        {{/if}}
 
         <!-- Колонка ссылок {Только у подборок} -->
         {{#if feedPage}}
-        <div class="header-content__links">
-            <a href="/feed" spa-link>Фильмы</a>
-            <a href="/serials" spa-link>Сериалы</a>
-            <a href="/list" spa-link>Избранное</a>
+        <div class="header-content__column large-menu_el">
+            {{> partial/netflix-logo/netflix-logo}}
         </div>
-        <div style="display: flex;
+        <div class="large-menu">
+            <div class="header-content__links">
+                <a href="/feed" spa-link>Фильмы</a>
+                <a href="/serials" spa-link>Сериалы</a>
+                <a href="/list" spa-link>Избранное</a>
+            </div>
+            <div style="display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;">
-            <div class="search-box">
-                <button class="btn-search"><i class="search-icon"></i></button>
-                <input type="text" class="input-search" placeholder="Поищем?)">
+                <div class="search-box">
+                    <button class="btn-search"><i class="search-icon"></i></button>
+
+                    <input type="text" class="input-search" placeholder="Поищем?)">
+
+                </div>
+                <div id="search-list" class="dropdown hover">
+                    <ul id="dropdown-list"></ul>
+                </div>
             </div>
-            <div id="search-list" class="dropdown hover">
-                <ul id="dropdown-list"></ul>
+        </div>
+
+        <div class="small-menu">
+            <div style="display: inline-block;    margin-right: calc(60vw/2);     margin-bottom: 20px;">
+                {{> partial/netflix-logo/netflix-logo}}
             </div>
+            <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
+            <label for="burger-checkbox" class="burger"></label>
+            <ul class="menu-list">
+                <li>
+                    <div style="display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;">
+                        <div class="search-box">
+                            <button class="btn-search"><i class="search-icon"></i></button>
+
+                            <input type="text" class="input-search" placeholder="Поищем?)">
+
+                        </div>
+                        <div id="search-list" class="dropdown hover">
+                            <ul id="dropdown-list"></ul>
+                        </div>
+                    </div>
+                <li>
+                <li><a href="/feed" class="menu-item" spa-link>Фильмы</a>
+                <li>
+                <li><a href="/serials" class="menu-item" spa-link>Сериалы</a>
+                <li>
+                <li><a href="/list" class="menu-item" spa-link>Избранное</a>
+                <li>
+
+                <li>
+                <li><a class="menu-item" href="/profile" spa-link>
+                        <i class="profile-icon"></i>
+                        Профиль
+                    </a>
+                <li>
+                <li> <a class="menu-item logout" id="logout">
+                        <i class="logout-icon"></i>
+                        Выйти
+                    </a>
+                <li>
+
+            </ul>
         </div>
         {{/if}}
 
         {{#if profilePage}}
-        <div class="header-content__links">
-            <a href="/feed" spa-link>Фильмы</a>
-            <a href="/serials" spa-link>Сериалы</a>
-            <a href="/list" spa-link>Избранное</a>
+        <div class="header-content__column large-menu_el">
+            {{> partial/netflix-logo/netflix-logo}}
         </div>
-        <div style="display: flex;
+        <div class="large-menu">
+            <div class="header-content__links">
+                <a href="/feed" spa-link>Фильмы</a>
+                <a href="/serials" spa-link>Сериалы</a>
+                <a href="/list" spa-link>Избранное</a>
+            </div>
+            <div style="display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;">
-            <div class="search-box">
-                <button class="btn-search"><i class="search-icon"></i></button>
-                <input type="text" class="input-search" placeholder="Поищем?)">
+                <div class="search-box">
+                    <button class="btn-search"><i class="search-icon"></i></button>
+
+                    <input type="text" class="input-search" placeholder="Поищем?)">
+
+                </div>
+                <div id="search-list" class="dropdown hover">
+                    <ul id="dropdown-list"></ul>
+                </div>
             </div>
-            <div id="search-list" class="dropdown hover">
-                <ul id="dropdown-list"></ul>
+        </div>
+
+        <div class="small-menu">
+            <div style="display: inline-block;    margin-right: calc(60vw/2);     margin-bottom: 20px;">
+                {{> partial/netflix-logo/netflix-logo}}
             </div>
+            <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
+            <label for="burger-checkbox" class="burger"></label>
+            <ul class="menu-list">
+                <li>
+                    <div style="display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;">
+                        <div class="search-box">
+                            <button class="btn-search"><i class="search-icon"></i></button>
+
+                            <input type="text" class="input-search" placeholder="Поищем?)">
+
+                        </div>
+                        <div id="search-list" class="dropdown hover">
+                            <ul id="dropdown-list"></ul>
+                        </div>
+                    </div>
+                <li>
+                <li><a href="/feed" class="menu-item" spa-link>Фильмы</a>
+                <li>
+                <li><a href="/serials" class="menu-item" spa-link>Сериалы</a>
+                <li>
+                <li><a href="/list" class="menu-item" spa-link>Избранное</a>
+                <li>
+
+                <li>
+                <li> <a class="menu-item logout" id="logout">
+                        <i class="logout-icon"></i>
+                        Выйти
+                    </a>
+                <li>
+
+            </ul>
         </div>
         {{/if}}
 
-        <!-- Колонка действие {
-                                    Существует вариативно:
-                                    -main: Ссылка входа
-                                    -login: отстуствует
-                                    -register: Ссылка входа
-                                    -feed: DropdownList с аватаркой пользователя и меню действий
-                                    } 
-            -->
-        <div class="col d-flex justify-content-end">
 
-            {{#if mainPage}}
+
+        {{#if mainPage}}
+        <div class="col d-flex justify-content-end">
             {{> partial/button/btn-link href="/login" kind="primary"
             label="Войти"}}
-            {{/if}}
+        </div>
+        {{/if}}
 
-            {{#if regPage}}
+        {{#if regPage}}
+        <div class="col d-flex justify-content-end">
             {{> partial/button/btn-link href="/login" kind="secondary"
             label="Войти"}}
-            {{/if}}
+        </div>
+        {{/if}}
 
-            {{#if profilePage}}
+        {{#if profilePage}}
+        <div class="col d-flex justify-content-end large-menu_el">
             <div class="dropdown hover">
                 <a class="dropdown-logo">
                     {{> partial/avatar/avatar
                     avatarUrl="/img/camera_50.png"}}
                 </a>
                 <ul>
-                    <li> <a class="dropdown-item" id="logout">
+                    <li> <a class="dropdown-item logout" id="logout">
                             <i class="logout-icon"></i>
                             Выйти</a> </li>
                 </ul>
             </div>
-            {{/if}}
-            {{#if feedPage}}
+        </div>
+        {{/if}}
+        {{#if feedPage}}
+        <div class="col d-flex justify-content-end large-menu_el">
             <div class="dropdown hover">
                 <a class="dropdown-logo">
                     {{> partial/avatar/avatar
@@ -93,15 +205,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" id="logout">
+                        <a class="dropdown-item logout" id="logout">
                             <i class="logout-icon"></i>
                             Выйти
                         </a>
                     </li>
                 </ul>
             </div>
-            {{/if}}
-
         </div>
+        {{/if}}
     </div>
+
 </div>

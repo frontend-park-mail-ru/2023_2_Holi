@@ -1,14 +1,14 @@
-import { getLastNumber } from '../../services/getParams.js';
-import { getContentByCastId } from '../../services/api/content.js';
-import cast from './cast.hbs';
+import searchPage from './search-page.hbs';
 import { seachHandler } from '../../services/search-utils.js';
+import store from '../../../index.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
 import { videoHelper } from '../../services/video-helper.js';
+import { searchRequest } from '../../services/api/search.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
  */
-export class CastPage {
+export class SearchPage {
     #parent;
 
     /**
@@ -18,7 +18,6 @@ export class CastPage {
     constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
     }
-
     ratingFillColor() {
         // Получите все элементы с рейтингом
         const ratingElements = document.querySelectorAll('.feed-collection__advanced-info__rating');
@@ -35,19 +34,20 @@ export class CastPage {
             }
         });
     }
-
     /**
      * Рендерит страницу.
      */
     async render() {
-        const id = getLastNumber(location.href);
+        store.clearSubscribes();
         this.#parent.style.background = '';
-        const filmsByCast = await getContentByCastId(id);
 
-        let content = filmsByCast.body.films;
-        const castName = filmsByCast.body.cast.name;
+        const lastWord = localStorage.getItem('lastSearchInput');
+        const content = await searchRequest(lastWord);
 
-        content = content.map(movie => {
+        const films = content.body.films;
+        const cast = content.body.cast;
+
+        const rFilms = films.map(movie => {
             // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
             const roundedRating = parseFloat(movie.rating.toFixed(1));
             // Создайте новый объект с округленным значением rating
@@ -56,9 +56,10 @@ export class CastPage {
         });
 
         this.#parent.innerHTML = '';
-        this.#parent.innerHTML = cast({
-            name: castName,
-            content: content,
+        this.#parent.innerHTML = searchPage({
+            title: lastWord,
+            cast: cast,
+            films: rFilms,
         });
 
         avatarUpdate();

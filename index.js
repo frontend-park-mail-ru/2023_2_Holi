@@ -15,19 +15,18 @@ import { createStore } from './src/services/flux/redux-lite.js';
 import { rootReducer } from './src/services/flux/reducers/root-reducer.js';
 import { GenrePage } from './src/pages/genre/genre.js';
 import { FavouritesPage } from './src/pages/like/like.js';
-import { seachHandler } from './src/services/search-utils.js';
 import { SerialFeedPage } from './src/pages/serials/serials-feed/serials-feed.js';
 import { SerialContentPage } from './src/pages/serials/serials-feed/serial-content.js';
 import { SerialGenrePage } from './src/pages/serials/serials-feed/serial-genre.js';
 import { SerialCastPage } from './src/pages/serials/serials-feed/serial-cast.js';
-
+import { SearchPage } from './src/pages/search/search-page.js';
 // Создание стора
 const store = createStore(rootReducer);
 
 // Экспорт стора, чтобы он был доступен в других частях приложения
 export default store;
 
-if ('serviceWorker' in navigator) {
+/*if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
         .then((reg) => {
             console.info('sw registered', reg);
@@ -35,12 +34,11 @@ if ('serviceWorker' in navigator) {
         .catch((e) => {
             console.error(e);
         });
-}
+}*/
 
 export const rootElement = document.getElementById('root');
 
 csrfInit();
-
 
 const routes = [
     new ProtectedRoute('/', new MainPage(rootElement), 'guest'),
@@ -54,6 +52,7 @@ const routes = [
     new ProtectedRoute(/^\/genre\/\d+$/, new GenrePage(rootElement)),
     new ProtectedRoute('/list', new FavouritesPage(rootElement)),
     new ProtectedRoute('/serials', new SerialFeedPage(rootElement)),
+    new ProtectedRoute('/search', new SearchPage(rootElement)),
     new ProtectedRoute(/^\/serial\/\d+$/, new SerialContentPage(rootElement)),
     new ProtectedRoute(/^\/serial-genre\/\d+$/, new SerialGenrePage(rootElement)),
     new ProtectedRoute(/^\/serial-cast\/\d+$/, new SerialCastPage(rootElement)),
@@ -61,12 +60,25 @@ const routes = [
 ];
 
 new Router(routes, '/login', '/feed', '[spa-link]', 'toasts');
+let isAuthChecked = false; // Флаг, чтобы проверить, была ли уже выполнена аутентификация
 
-seachHandler();
+function authenticateUser() {
+    if (!isAuthChecked) {
+        checkAccess()
+            .then(isAuth => {
+                if (isAuth.ok) {
+                    localStorage.setItem('authData', true);
+                } else {
+                    localStorage.setItem('authData', false);
+                }
 
-export const isAuth = await checkAccess();
-if (isAuth.ok) {
-    localStorage.setItem('authData', true);
-} else {
-    localStorage.setItem('authData', false);
+                isAuthChecked = true; // Устанавливаем флаг после завершения проверки
+            });
+    }
 }
+
+// Вызывайте функцию authenticateUser() по необходимости, например, при загрузке страницы
+authenticateUser();
+
+//seachHandler();
+

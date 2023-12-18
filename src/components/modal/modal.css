@@ -1,0 +1,94 @@
+:root {
+    --vs-primary: 29 92 255;
+}
+
+/*Dialog Styles*/
+dialog {
+    padding: 1rem 3rem;
+    background: black;
+    padding-top: 2rem;
+    border-radius: 20px;
+    border: 0;
+    box-shadow: 0 5px 30px 0 #000;
+    animation: fadeIn 1s ease both;
+}
+
+dialog::backdrop {
+    animation: fadeIn 1s ease both;
+    z-index: 2;
+    backdrop-filter: blur(20px);
+}
+
+dialog .x {
+    filter: grayscale(1);
+    border: none;
+    background: none;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    transition: ease filter, transform 0.3s;
+    cursor: pointer;
+    transform-origin: center;
+}
+
+dialog .x:hover {
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+dialog h2 {
+    font-weight: 600;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+}
+
+dialog p {
+    font-size: 1rem;
+    line-height: 1.3rem;
+    padding: 0.5rem 0;
+}
+
+dialog p a:visited {
+    color: #000;
+}
+
+/*General Styles*/
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins, sans-serif;
+    background: url(https://images.unsplash.com/photo-1574169208507-84376144848b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=879&q=80) no-repeat center center;
+    background-size: cover;
+}
+
+button.primary__modal {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #fff !important;
+    background: #e50914;
+    border-radius: 17px;
+    transition: background-color 0.1s ease;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+    padding: 5px;
+    border: 0;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -10px #e50914;
+}
+
+button.primary__modal:hover {
+    box-shadow: 0 20px 20px -10px #c11119;
+    transform: translateY(-3px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
