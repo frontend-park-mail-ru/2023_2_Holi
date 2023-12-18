@@ -61,7 +61,7 @@ iframe {
 	justify-content: center;
 	align-items: center;
 	height: 200px;
-	font-size: 5rem;
+	font-size: 4rem;
 	text-align: center;
 	color: #fff;
 	display: block;
@@ -69,4 +69,5 @@ iframe {
 	text-shadow: 0 0 4px #12000a;
 	text-transform: uppercase;
 	font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+	width: 100vw;
 }
