@@ -82,7 +82,7 @@ export class ProfilePage {
         fileInput.addEventListener('change', (event) => {
             if (event.target.files[0]) {
                 file = event.target.files[0];
-                const allowedExtensions = ['jpg', 'jpeg', 'png'];
+                const allowedExtensions = ['jpg', 'jpeg', 'png', 'webm'];
                 const fileName = file.name.toLowerCase();
                 const fileExtension = fileName.split('.').pop();
                 const ava = document.querySelector('.avatar-preview');
