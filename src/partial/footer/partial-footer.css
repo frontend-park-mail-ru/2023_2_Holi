@@ -96,6 +96,11 @@
         justify-content: center;
     }
 
+    .footer__element-border[kind="reg-page"],
+    .footer__element-border[kind="reg-page-main"] {
+        border-right: none;
+    }
+
     .footer__element-border {
         border-right: none;
     }

@@ -31,7 +31,7 @@ select {
 
 .serial-content-container__advanced-info__cast-list {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
 
 .serial-content-container__advanced-info__about {
@@ -63,6 +63,6 @@ select {
     transition: transform .3s linear;
 }
 
-.serial-feed-collection__container-offset{
+.serial-feed-collection__container-offset {
     margin-bottom: 2rem;
 }

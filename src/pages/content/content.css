@@ -13,15 +13,18 @@
 
 @keyframes pulse {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
+
     50% {
-      transform: scale(1.2);
+        transform: scale(1.2);
     }
+
     100% {
-      transform: scale(1);
+        transform: scale(1);
     }
-  }
+}
+
 /* Дополнительные стили по желанию */
 .heart-button:hover {
     text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
@@ -88,7 +91,8 @@
     margin: auto;
     border: 1px solid #454545;
     border-radius: 0.25rem;
-    width: calc(100vw - 32px);
+    width: 100%;
+    max-height: 70vh;
 }
 
 .content-container__advanced-info__meta {
@@ -109,7 +113,7 @@
 
 .content-container__advanced-info__about {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 30px;
 }
 
