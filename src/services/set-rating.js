@@ -40,6 +40,8 @@ function handleRatingClick(event) {
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
             if (response.ok) {
+                window.dialog.close();
+
                 return response;
             } else {
                 console.error('Ошибка при установке рейтинга.');
@@ -60,7 +62,10 @@ function handleRemoveRatingClick() {
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
             if (response.ok) {
+                window.dialog.close();
+
                 return response;
+
             } else {
                 console.error('Ошибка при удалении рейтинга.');
             }
