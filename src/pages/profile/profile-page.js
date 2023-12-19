@@ -76,12 +76,24 @@ export class ProfilePage {
     configurePaymentLink() {
         const paymentLinkElement = document.getElementById('payment');
 
-        /*checkPaymentLink()
+        checkPaymentLink()
             .then(res => {
-                const label = res.status ? res.body.subUpTo : 'Оплатить';
-                paymentLinkElement.href = res.status ? '#' : response.body.payment;
-                paymentLinkElement.textContent = label;
-            });*/
+                if (res.ok && res.body.status) {
+                    const label = res.body.subUpTo;
+                    paymentLinkElement.href = '#';
+                    paymentLinkElement.textContent = label;
+                } else {
+                    getPaymentLink()
+                        .then(res => {
+                            if (res.ok) {
+                                const label = 'Оплатить';
+                                paymentLinkElement.href = res.body.payment;
+                                paymentLinkElement.textContent = label;
+                            }
+                        });
+                }
+
+            });
     }
 
     setupFormSubmission(profileForm) {
