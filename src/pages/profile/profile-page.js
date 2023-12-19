@@ -73,27 +73,28 @@ export class ProfilePage {
         this.#parent.innerHTML = profile();
     }
 
-    configurePaymentLink() {
+    async configurePaymentLink() {
         const paymentLinkElement = document.getElementById('payment');
 
-        checkPaymentLink()
-            .then(res => {
-                if (res.ok && res.body.status) {
-                    const label = res.body.subUpTo;
-                    paymentLinkElement.href = '#';
-                    paymentLinkElement.textContent = label;
-                } else {
-                    getPaymentLink()
-                        .then(res => {
-                            if (res.ok) {
-                                const label = 'Оплатить';
-                                paymentLinkElement.href = res.body.payment;
-                                paymentLinkElement.textContent = label;
-                            }
-                        });
-                }
+        try {
+            const linkResponse = await checkPaymentLink();
 
-            });
+            if (linkResponse.body.status) {
+                const label = linkResponse.body.subUpTo;
+                paymentLinkElement.href = '#';
+                paymentLinkElement.textContent = label;
+            } else {
+                const paymentResponse = await getPaymentLink();
+                const label = 'Оплатить';
+                paymentLinkElement.href = paymentResponse.body.payment;
+                paymentLinkElement.textContent = label;
+
+            }
+
+        } catch (error) {
+            // Обработка ошибок при запросах
+            console.error(error);
+        }
     }
 
     setupFormSubmission(profileForm) {
