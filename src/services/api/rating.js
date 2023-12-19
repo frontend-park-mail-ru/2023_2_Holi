@@ -24,10 +24,16 @@ export const setRatingRequest = (rate, id) => {
         credentials: 'include',
     }).then(response => {
         if (response.ok) {
-            return response;
+            return response.json();
         }
-    });
-
+    })
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            (new Page404(document.getElementById('root'))).render();
+            throw (error);
+        });
 };
 /**
  * Выполняет запрос на получение рейтинга для конкретного видео.
@@ -75,6 +81,15 @@ export const deleteRating = (id) => {
         },
         credentials: 'include',
     }).then(response => {
-        return response;
-    });
+        if (response.ok) {
+            return response.json();
+        }
+    })
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            (new Page404(document.getElementById('root'))).render();
+            throw (error);
+        });
 };
