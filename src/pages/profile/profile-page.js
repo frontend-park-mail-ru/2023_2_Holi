@@ -31,7 +31,7 @@ export class ProfilePage {
         store.clearSubscribes();
         this.clearParentHtml();
         this.renderProfileTemplate();
-
+        this.configurePaymentLink();
         const profileForm = document.forms['profile-form'];
         const emailInput = profileForm.elements['email'];
         const passwordInput = profileForm.elements['password'];
