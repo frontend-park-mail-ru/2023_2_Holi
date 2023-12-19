@@ -39,12 +39,12 @@ export class ContentPage {
         this.#parent.innerHTML = content({ film: film.body });
         avatarUpdate();
         const like = document.querySelector('.heart-button');
-        /*const linkResponse = await checkPaymentLink();
+        const linkResponse = await checkPaymentLink();
 
         if (!linkResponse.body.status) {
             const dialog = document.querySelector('#subs');
             dialog.showModal();
-        }*/
+        }
         getLikeState(id).then(response => {
             if (response.body.isFavourite === true) {
                 like.querySelector('i').className = 'like';
