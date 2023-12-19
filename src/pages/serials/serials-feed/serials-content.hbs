@@ -40,15 +40,13 @@
             <div class="content-container__advanced-info__description" id="serialDescription">
             </div>
 
+            <div class="content-container__advanced-info__genres-title">
+                <b>Актеры</b>
+            </div>
             <div class="serial-content-container__advanced-info__cast">
-                <div class="content-container__advanced-info__genres-title">
-                    <b>Актеры</b>
-                </div>
                 <div class="serial-content-container__advanced-info__cast-list">
                     {{#each artists}}
-                    <a class="content-container__advanced-info__genres-link" href="/serial-cast/{{this.id}}"
-                        spa-link>{{this.name}}
-                    </a>
+                    {{> partial/cast-card baseUrl="serial-cast" this=this}}
                     {{/each}}
                 </div>
             </div>

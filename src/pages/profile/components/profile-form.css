@@ -1,13 +1,12 @@
 .profile-form {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    gap: 100px;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    padding: 5vh;
+    padding-bottom: 5vh;
     border-radius: 0.45rem;
-    margin: 10vh auto;
+    margin: auto;
     color: #fff;
 }
 
@@ -39,6 +38,9 @@
 @media screen and (max-width:900px) {
     .profile-form {
         max-width: 100%;
+        flex-direction: column;
+        gap: 30px;
+
     }
 
     .profile-form__row {

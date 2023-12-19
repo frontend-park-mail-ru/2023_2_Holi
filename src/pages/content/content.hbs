@@ -4,9 +4,8 @@
 <div class="content-container">
 
     <h1 class="content-container__title">{{film.film.name}}</h1>
-    <video controls controlslist="nodownload noremoteplayback" class="content-container__player"
-        poster="{{film.film.previewPath}}">
-        <source src="{{film.film.mediaPath}}" type="video/mp4" />
+    <video controls controlslist="nodownload noremoteplayback" class="content-container__player">
+        <source src="{{film.film.mediaPath}}#t=10" type="video/mp4" />
     </video>
     <div class="content-container__advanced-info">
         <div class="content__like">Добавить в избранное <button class="heart-button"><i class="like"></i></button></div>
@@ -27,15 +26,13 @@
             <div class="content-container__advanced-info__description">
                 {{film.film.description}}
             </div>
+            <div class="content-container__advanced-info__genres-title">
+                <b>Актеры</b>
+            </div>
             <div class="serial-content-container__advanced-info__cast">
-                <div class="content-container__advanced-info__genres-title">
-                    <b>Актеры</b>
-                </div>
                 <div class="serial-content-container__advanced-info__cast-list">
                     {{#each film.artists}}
-                    <a class="content-container__advanced-info__genres-link" href="/cast/{{this.id}}"
-                        spa-link>{{this.name}}
-                    </a>
+                    {{> partial/cast-card baseUrl="cast" this=this}}
                     {{/each}}
                 </div>
             </div>

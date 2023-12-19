@@ -11,6 +11,8 @@ import { checkPaymentLink, getPaymentLink } from '../../services/api/payment.js'
  */
 export class ProfilePage {
     #parent;
+    formData;
+    changedFields;
 
     /**
     * Создает экземпляр класса ProfilePage.
@@ -19,156 +21,206 @@ export class ProfilePage {
     */
     constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
+        this.formData = {
+            id: Number(localStorage.getItem('userId')),
+        };
+        this.changedFields = {};
     }
 
     async render() {
         store.clearSubscribes();
-        this.#parent.innerHTML = '';
-        this.#parent.innerHTML = profile();
+        this.clearParentHtml();
+        this.renderProfileTemplate();
+        this.configurePaymentLink();
         const profileForm = document.forms['profile-form'];
         const emailInput = profileForm.elements['email'];
         const passwordInput = profileForm.elements['password'];
         const fileInput = profileForm.elements['file'];
 
-        let confirm = false;
-        checkPaymentLink()
-            .then(res => {
-                if (res.status) {
-                    const label = res.body.subUpTo;
-                    document.getElementById('payment').href = '#';
-                    document.getElementById('payment').textContent = label;
-                } else {
-                    getPaymentLink()
-                        .then(response => {
-                            document.getElementById('payment').href = response.body.payment;
-                            document.getElementById('payment').textContent = 'Оплатить';
-                        });
-                }
-
-            });
-
-        /**
-         * Узнаю о пользователе
-         */
         store.dispatch($sentUserInfoRequest());
 
-        /**
-         * Подписка сраюотает при изменении стора
-         */
         store.subscribe(USER_REDUCER, () => {
             const stateUser = store.getState().user.userInfo;
+
             if (stateUser) {
+                const emailInput = document.forms['profile-form'].elements['email'];
+                const avatarElements = document.querySelectorAll('.avatar');
+
                 if (stateUser.user.email) {
                     emailInput.value = stateUser.user.email;
                 }
-                if (stateUser) {
-                    if (stateUser.user.imagePath) {
-                        document.querySelectorAll('.avatar').forEach(avatar => {
-                            // Генерация случайного параметра для обхода кеша
-                            const cacheBuster = Math.random().toString(36).substring(7);
 
-                            // Формирование URL с cache-busting параметром
-                            const updatedImageUrl = stateUser.user.imagePath.includes('?')
-                                ? `${stateUser.user.imagePath}&cache=${cacheBuster}`
-                                : `${stateUser.user.imagePath}?cache=${cacheBuster}`;
-                            avatar.src = updatedImageUrl;
-                        });
-                    }
+                if (stateUser.user.imagePath) {
+                    this.updateAvatars(avatarElements, stateUser.user.imagePath);
                 }
             }
         });
 
-        let file = null;
-        fileInput.addEventListener('change', (event) => {
-            if (event.target.files[0]) {
-                file = event.target.files[0];
-                const allowedExtensions = ['jpg', 'jpeg', 'png'];
-                const fileName = file.name.toLowerCase();
-                const fileExtension = fileName.split('.').pop();
-                const ava = document.querySelector('.avatar-preview');
-                if (allowedExtensions.includes(fileExtension)) {
-                    document.querySelector('.input-control__file-text').innerHTML = event.target.files[0].name;
-                    const reader = new FileReader();
+        this.setupFileInput(fileInput);
+        this.setupEmailInput(emailInput);
+        this.setupPasswordInput(passwordInput);
 
-                    const nowAva = new FileReader();
-                    nowAva.readAsDataURL(file);
-                    nowAva.onload = (e) => {
-                        ava.src = e.target.result;
-                    };
-                    reader.onload = (e) => {
-                        const arrayBuffer = e.target.result; // Получаем массив байт (ArrayBuffer)
-
-                        // eslint-disable-next-line no-undef
-                        const uint8Array = new Uint8Array(arrayBuffer); // Преобразуем его в Uint8Array
-                        formData.imageData = Array.from(uint8Array);
-
-                    };
-
-                    reader.readAsArrayBuffer(file); // Считываем файл как ArrayBuffer
-                }
-                else {
-                    new Notify('Выберите файл с расширением jpg, jpeg или png');
-                }
-            }
-        });
-        const formData = {
-            id: Number(localStorage.getItem('userId')),
-        };
-
-        // Добавьте обработчики событий на соответствующие инпуты
-
-        emailInput.addEventListener('input', () => {
-            if (emailInput.value) {
-                formData.email = emailInput.value;
-                confirm = true;
-            }
-        });
-        passwordInput.addEventListener('input', () => {
-            if (passwordInput.value && validatePassword(passwordInput.value) === '') {
-                formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
-                confirm = true;
-            } else {
-                new Notify(validatePassword(passwordInput.value));
-                confirm = false;
-            }
-        });
-        // fileInput.addEventListener('change', () => { formData.imageData = file; });
-        profileForm.addEventListener('submit', async function (event) {
-            event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
-
-            try {
-                if (confirm) {
-                    const response = await setUserInfo(formData);
-                    profileForm.reset();
-                    emailInput.addEventListener('input', () => {
-                        if (emailInput.value) {
-                            formData.email = emailInput.value;
-                        }
-                    });
-                    passwordInput.addEventListener('input', () => {
-                        if (passwordInput.value && validatePassword(passwordInput.value) === '') {
-                            formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
-                        } else {
-                            new Notify(validatePassword(passwordInput.value));
-                        }
-                    });
-
-                    if (response.ok) {
-                        // Обработка успешного ответаArray.from(uint8Array)
-                        // Обработка ошибки
-                        new Notify('Профиль успешно обновлен');
-                        store.dispatch($sentUserInfoRequest());
-
-                    }
-                } else {
-                    new Notify('Что то вы вводите не так:)');
-                }
-
-            } catch (error) {
-                new Notify('Произошла ошибка при отправке запроса');
-            }
-        });
+        this.setupFormSubmission(profileForm);
 
         logoutHandle();
+    }
+
+    clearParentHtml() {
+        this.#parent.innerHTML = '';
+    }
+
+    renderProfileTemplate() {
+        this.#parent.innerHTML = profile();
+    }
+
+    async configurePaymentLink() {
+        const paymentLinkElement = document.getElementById('payment');
+
+        try {
+            const linkResponse = await checkPaymentLink();
+
+            if (linkResponse.body.status) {
+                const label = linkResponse.body.subUpTo;
+                paymentLinkElement.href = '#';
+                paymentLinkElement.textContent = label;
+            } else {
+                const paymentResponse = await getPaymentLink();
+                const label = 'Оплатить';
+                paymentLinkElement.href = paymentResponse.body.payment;
+                paymentLinkElement.textContent = label;
+
+            }
+
+        } catch (error) {
+            // Обработка ошибок при запросах
+            console.error(error);
+        }
+    }
+
+    setupFormSubmission(profileForm) {
+        profileForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            await this.handleFormSubmission(profileForm);
+        });
+    }
+
+    updateAvatars(avatarElements, imagePath) {
+        avatarElements.forEach(avatar => {
+            const cacheBuster = Math.random().toString(36).substring(7);
+            const updatedImageUrl = imagePath.includes('?')
+                ? `${imagePath}&cache=${cacheBuster}`
+                : `${imagePath}?cache=${cacheBuster}`;
+            avatar.src = updatedImageUrl;
+        });
+    }
+
+    setupFileInput(fileInput) {
+        let file = null;
+        fileInput.addEventListener('input', (event) => {
+            if (event.target.files[0]) {
+                file = event.target.files[0];
+                this.processSelectedFile(file, fileInput);
+            }
+        });
+    }
+
+    processSelectedFile(file) {
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'webm'];
+        const fileName = file.name.toLowerCase();
+        const fileExtension = fileName.split('.').pop();
+        const ava = document.querySelector('.avatar-preview');
+
+        if (allowedExtensions.includes(fileExtension)) {
+            document.querySelector('.input-control__file-text').innerHTML = file.name;
+
+            const reader = new FileReader();
+
+            const nowAva = new FileReader();
+            nowAva.readAsDataURL(file);
+            nowAva.onload = (e) => {
+                ava.src = e.target.result;
+            };
+
+            reader.onload = (e) => {
+                const arrayBuffer = e.target.result;
+                // eslint-disable-next-line no-undef
+                const uint8Array = new Uint8Array(arrayBuffer);
+                this.changedFields.imageData = true;
+                this.formData.imageData = Array.from(uint8Array);
+            };
+
+            reader.readAsArrayBuffer(file);
+        } else {
+            new Notify('Выберите файл с расширением jpg, jpeg или png');
+            delete this.formData.imageData;
+            delete this.changedFields.imageData;
+        }
+    }
+
+    setupEmailInput(emailInput) {
+        emailInput.addEventListener('input', () => {
+            this.handleEmailInput(emailInput);
+        });
+    }
+
+    handleEmailInput(emailInput) {
+        if (emailInput.value && this.formData.email !== emailInput.value) {
+            this.formData.email = emailInput.value;
+            this.changedFields.email = true;
+        } else {
+            delete this.formData.email;
+            delete this.changedFields.email;
+        }
+    }
+
+    setupPasswordInput(passwordInput) {
+        passwordInput.addEventListener('input', () => {
+            this.handlePasswordInput(passwordInput);
+        });
+    }
+
+    handlePasswordInput(passwordInput) {
+        if (passwordInput.value && validatePassword(passwordInput.value) === '') {
+            const newPassword = Array.from(new TextEncoder().encode(passwordInput.value));
+            if (this.formData.password !== newPassword) {
+                this.formData.password = newPassword;
+                this.changedFields.password = true;
+            } else {
+                delete this.formData.password;
+                delete this.changedFields.password;
+            }
+        } else {
+            new Notify(validatePassword(passwordInput.value));
+            delete this.formData.password;
+            delete this.changedFields.password;
+        }
+    }
+
+    async handleFormSubmission(profileForm) {
+        try {
+            if (Object.keys(this.changedFields).length > 0) {
+                const response = await setUserInfo(this.formData);
+                this.handleProfileUpdateResponse(response, profileForm);
+                profileForm.reset(); // Сброс формы после успешной отправки
+                this.changedFields = {}; // Очистка измененных полей
+                this.formData = {
+                    id: Number(localStorage.getItem('userId')),
+                };
+            } else {
+                new Notify('Нет изменений для сохранения');
+            }
+        } catch (error) {
+            new Notify('Произошла ошибка при отправке запроса');
+        }
+    }
+
+    handleProfileUpdateResponse(response, profileForm) {
+        if (response.ok) {
+            new Notify('Профиль успешно обновлен');
+            store.dispatch($sentUserInfoRequest());
+            profileForm.reset();
+        } else {
+            // Handle error response
+        }
     }
 }

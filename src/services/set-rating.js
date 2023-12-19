@@ -40,6 +40,8 @@ function handleRatingClick(event) {
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
             if (response.ok) {
+                window.dialog.close();
+
                 return response;
             } else {
                 console.error('Ошибка при установке рейтинга.');
@@ -55,12 +57,20 @@ function handleRatingClick(event) {
  */
 function handleRemoveRatingClick() {
     const id = localStorage.getItem('LastContentId');
+    const ratingButtons = document.querySelectorAll('[data-rating]');
+    // Удаляем класс active со всех кнопок
+    ratingButtons.forEach(button => {
+        button.classList.remove('styles_activeRating');
+    });
     // Отправляем запрос на удаление рейтинга (замените URL на свой)
     deleteRating(id)
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
             if (response.ok) {
+                window.dialog.close();
+
                 return response;
+
             } else {
                 console.error('Ошибка при удалении рейтинга.');
             }
