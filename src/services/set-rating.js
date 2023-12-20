@@ -68,7 +68,7 @@ function handleRemoveRatingClick() {
     deleteRating(id)
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
-            if (response.ok) {
+            if (response) {
                 window.dialog.close();
                 document.getElementById('rating').textContent = Number(response.body.rating).toFixed(1);
 
