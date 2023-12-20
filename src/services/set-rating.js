@@ -49,7 +49,7 @@ function handleRatingClick(event) {
                 new Notify('Ошибка при установке рейтинга');
             }
         })
-        .catch(error => {
+        .catch(() => {
             new Notify('Произошла ошибка');
         });
 }
@@ -78,7 +78,7 @@ function handleRemoveRatingClick() {
                 new Notify('Произошла ошибка при удалении');
             }
         })
-        .catch(error => {
+        .catch(() => {
             new Notify('Произошла ошибка');
         });
 }
@@ -104,7 +104,7 @@ function checkUserRating() {
                 }
             }
         })
-        .catch(error => {
+        .catch(() => {
             new Notify('Произошла ошибка при проверке рейтинга');
         });
 }

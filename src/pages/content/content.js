@@ -53,7 +53,7 @@ export class ContentPage {
             }
         });
         const video = document.querySelector('video');
-        video.addEventListener('loadedmetadata', function () {
+        video.addEventListener('loadedmetadata', function() {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
