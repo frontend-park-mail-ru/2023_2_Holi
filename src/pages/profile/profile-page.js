@@ -81,7 +81,17 @@ export class ProfilePage {
         if (linkResponse.body.status) {
             const label = linkResponse.body.subUpTo;
             paymentLinkElement.href = '#';
-            paymentLinkElement.textContent = label;
+
+            const dateObject = new Date(label);
+
+            // Получение компонентов даты
+            const day = dateObject.getDate();
+            const month = dateObject.getMonth() + 1;
+            const year = dateObject.getFullYear();
+
+            // Формирование текста для кнопки
+            const buttonText = `Оплата до ${day}.${month}.${year}`;
+            paymentLinkElement.textContent = buttonText;
         } else {
             const paymentResponse = await getPaymentLink();
             const label = 'Оплатить';
