@@ -4,9 +4,11 @@ import { Notify } from '../../components/notify/notify.js';
 
 /**
  * Выполняет запрос на вход пользователя.
+ *
  * @param {string} email - Электронная почта пользователя.
  * @param {string} password - Пароль пользователя.
- * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
+ * @returns {Promise<Response>} Promise, который разрешится с ответом от сервера.
+ * @throws {Error} Если запрос не успешен, бросает ошибку с текстом ответа.
  */
 export const loginRequest = (email, password) => {
     if (!navigator.onLine) {
@@ -42,7 +44,11 @@ export const loginRequest = (email, password) => {
             throw error;
         });
 };
-
+/**
+ * Инициализирует CSRF-токен.
+ *
+ * @returns {Promise<Response>} Promise, который разрешится с ответом от сервера.
+ */
 export const csrfInit = () => {
     return fetch(`${NETFLIX_AUTH_API}/csrf`, {
         method: 'GET',
@@ -57,9 +63,11 @@ export const csrfInit = () => {
 
 /**
  * Выполняет запрос на регистрацию пользователя.
+ *
  * @param {string} email - Электронная почта пользователя.
  * @param {string} password - Пароль пользователя.
- * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
+ * @returns {Promise<Response>} Promise, который разрешится с ответом от сервера.
+ * @throws {Error} Если запрос не успешен.
  */
 export const registerRequest = (email, password) => {
     if (!navigator.onLine) {
@@ -82,9 +90,11 @@ export const registerRequest = (email, password) => {
 };
 
 /**
- * Выполняет запрос на выход пользователя.
- * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
- */
+* Выполняет запрос на выход пользователя.
+*
+* @returns {Promise<Response>} Promise, который разрешится с ответом от сервера.
+* @throws {Error} Если запрос не успешен.
+*/
 export const logoutRequest = () => {
     if (!navigator.onLine) {
         new Notify('Нет соединения');
@@ -104,8 +114,9 @@ export const logoutRequest = () => {
 };
 
 /**
- * Выполняет проверку доступа пользователя.
- * @returns {Promise<Response>} Объект Promise, который разрешится с ответом от сервера.
+ * Проверяет доступ пользователя.
+ *
+ * @returns {Promise<Response>} Promise, который разрешится с ответом от сервера.
  */
 export const checkAccess = () => {
     return fetch(`${NETFLIX_AUTH_API}/auth/check`, {

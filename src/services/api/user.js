@@ -1,7 +1,12 @@
 import { NETFLIX_API } from './const.js';
 import { getCookie } from '../getCookie.js';
 import { Notify } from '../../components/notify/notify.js';
-
+/**
+ * Выполняет запрос на получение информации о пользователе.
+ * @param {string} id - Идентификатор пользователя.
+ * @returns {Promise} Промис, который разрешится с данными о пользователе или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const getUserInfo = (id) => {
     return fetch(`${NETFLIX_API}/profile/${id}`, {
         method: 'GET', headers: {
@@ -22,7 +27,12 @@ export const getUserInfo = (id) => {
             throw new Error(error);
         });
 };
-
+/**
+ * Выполняет запрос на обновление информации о пользователе.
+ * @param {object} data - Объект с обновленными данными пользователя.
+ * @returns {Promise} Промис, который разрешится с результатом запроса или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const setUserInfo = (data) => {
     if (!navigator.onLine) {
         new Notify('Нет соединения');

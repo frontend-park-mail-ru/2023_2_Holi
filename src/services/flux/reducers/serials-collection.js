@@ -1,5 +1,14 @@
 import { SERIALS_COLLECTION_REQUEST, SERIALS_COLLECTION_SUCCESS, SERIALS_COLLECTION_ERROR, SERIALS_COLLECTION_PREVIEW } from '../actions/serials-collection';
-
+/**
+ * Начальное состояние редюсера сериалов.
+ * @typedef {Object} initialState
+ * @property {boolean} serialsRequest - Флаг, указывающий на выполнение запроса сериалов.
+ * @property {boolean} serialsSuccess - Флаг успешного выполнения запроса сериалов.
+ * @property {boolean} serialsError - Флаг ошибки при выполнении запроса сериалов.
+ * @property {null|Object} error - Объект ошибки при выполнении запроса сериалов.
+ * @property {null|Object} serials - Данные о сериалах.
+ * @property {null|Object} preview - Превью сериалов.
+ */
 const initialState = {
     serialsRequest: false,
     serialsSuccess: false,

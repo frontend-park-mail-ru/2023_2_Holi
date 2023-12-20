@@ -1,10 +1,14 @@
+import { Notify } from '../components/notify/notify';
 import { deleteRating, getRating, setRatingRequest } from './api/rating';
 
+/**
+ * Устанавливает обработчики событий для кнопок рейтинга.
+ */
 export const setRating = () => {
     checkUserRating();
     const ratingButtons = document.querySelectorAll('[data-rating]');
 
-    // Навешиваем обработчик клика на каждый элемент с аттрибутом data-rating
+    // Навешиваем обработчик клика на каждый элемент с атрибутом data-rating
     ratingButtons.forEach(button => {
         button.addEventListener('click', handleRatingClick);
     });
@@ -15,6 +19,11 @@ export const setRating = () => {
     removeRatingButton.addEventListener('click', handleRemoveRatingClick);
 };
 
+/**
+ * Обработчик события клика по кнопке рейтинга.
+ *
+ * @param {Event} event - Объект события.
+ */
 function handleRatingClick(event) {
     // Получаем значение рейтинга из аттрибута data-rating
     const ratingValue = event.currentTarget.dataset.rating;
@@ -31,36 +40,52 @@ function handleRatingClick(event) {
     setRatingRequest(ratingValue, id)
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
-            if (response.ok) {
-                console.log(`Рейтинг ${ratingValue} успешно установлен.`);
+            if (response) {
+                window.dialog.close();
+                document.getElementById('rating').textContent = Number(response.body.rating).toFixed(1);
+
+                return response;
             } else {
-                console.error('Ошибка при установке рейтинга.');
+                new Notify('Ошибка при установке рейтинга');
             }
         })
-        .catch(error => {
-            console.error('Произошла ошибка:', error);
+        .catch(() => {
+            new Notify('Произошла ошибка');
         });
 }
 
-// Функция для обработки клика
+/**
+ * Обработчик события клика по кнопке удаления рейтинга.
+ */
 function handleRemoveRatingClick() {
     const id = localStorage.getItem('LastContentId');
+    const ratingButtons = document.querySelectorAll('[data-rating]');
+    // Удаляем класс active со всех кнопок
+    ratingButtons.forEach(button => {
+        button.classList.remove('styles_activeRating');
+    });
     // Отправляем запрос на удаление рейтинга (замените URL на свой)
     deleteRating(id)
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
             if (response.ok) {
-                console.log('Рейтинг успешно удален.');
+                window.dialog.close();
+                document.getElementById('rating').textContent = Number(response.body.rating).toFixed(1);
+
+                return response;
+
             } else {
-                console.error('Ошибка при удалении рейтинга.');
+                new Notify('Произошла ошибка при удалении');
             }
         })
-        .catch(error => {
-            console.error('Произошла ошибка:', error);
+        .catch(() => {
+            new Notify('Произошла ошибка');
         });
 }
 
-// Функция для проверки текущего рейтинга пользователя
+/**
+ * Проверяет текущий рейтинг пользователя и обновляет интерфейс.
+ */
 function checkUserRating() {
     const ratingButtons = document.querySelectorAll('[data-rating]');
     const id = localStorage.getItem('LastContentId');
@@ -79,7 +104,7 @@ function checkUserRating() {
                 }
             }
         })
-        .catch(error => {
-            console.error('Произошла ошибка при проверке рейтинга:', error);
+        .catch(() => {
+            new Notify('Произошла ошибка при проверке рейтинга');
         });
 }

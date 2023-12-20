@@ -3,7 +3,11 @@ import { debounce } from './debounce';
 import { Notify } from '../components/notify/notify';
 import { navigate } from './router/Router';
 
-// Функция для выполнения запроса на сервер
+/**
+ * Выполняет запрос на сервер для поиска данных.
+ *
+ * @param {string} query - Строка запроса для поиска.
+ */
 export function fetchData(query) {
     // Здесь вы можете выполнить запрос на сервер с использованием fetch или других средств
     // В данном примере используем console.log вместо реального запроса
@@ -15,7 +19,11 @@ export function fetchData(query) {
     }
 
 }
-
+/**
+ * Имитирует клик по ссылке и удаляет элемент после этого.
+ *
+ * @param {string} href - Адрес ссылки.
+ */
 function simulateAndRemoveLink(href) {
     // Создать элемент
     const link = document.createElement('a');
@@ -26,7 +34,6 @@ function simulateAndRemoveLink(href) {
     // Добавить обработчик события
     link.addEventListener('click', function(event) {
         event.preventDefault();
-        console.log('Ссылка была нажата!');
         // Дополнительный код обработки клика
     });
 
@@ -39,7 +46,11 @@ function simulateAndRemoveLink(href) {
     // Удалить элемент после имитации клика
     link.parentNode.removeChild(link);
 }
-// Функция для обновления выпадающего списка
+/**
+ * Обновляет выпадающий список результатами поиска.
+ *
+ * @param {Object} results - Результаты поиска.
+ */
 export function updateDropdownList(results) {
     const width = window.innerWidth;
     let container;
@@ -103,7 +114,9 @@ export function updateDropdownList(results) {
     }
 
 }
-
+/**
+ * Обработчик события для поля ввода поиска.
+ */
 export function seachHandler() {
     const width = window.innerWidth;
     let container;
@@ -117,7 +130,7 @@ export function seachHandler() {
     const inputSearch = container.querySelector('.input-search');
     if (inputSearch) {
         // Добавляем обработчик события oninput с использованием debounce
-        inputSearch.addEventListener('input', debounce(function (event) {
+        inputSearch.addEventListener('input', debounce(function(event) {
             if (!navigator.onLine) {
                 new Notify('Нет соединения');
             }
@@ -138,9 +151,6 @@ export function seachHandler() {
     if (btnSearch && inputSearch ) {
         btnSearch.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log(12)
-
-            console.log(133)
             // Инпут находится в фокусе, выполняйте ваш код
             navigate('/search');
 

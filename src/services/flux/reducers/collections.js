@@ -1,5 +1,15 @@
 import { COLLECTION_REQUEST, COLLECTION_PREVIEW, COLLECTION_SUCCESS, COLLECTION_ERROR } from '../actions/collections';
-
+/**
+ * Начальное состояние редюсера коллекций.
+ * @constant
+ * @type {Object}
+ * @property {boolean} collectionsRequest - Флаг, указывающий, происходит ли запрос коллекций.
+ * @property {boolean} collectionsSuccess - Флаг успешного получения коллекций.
+ * @property {boolean} collectionsError - Флаг ошибки при получении коллекций.
+ * @property {null|Object} error - Объект ошибки.
+ * @property {null|Object} collections - Коллекции.
+ * @property {null|Object} preview - Превью коллекции.
+ */
 const initialState = {
     collectionsRequest: false,
     collectionsSuccess: false,
@@ -8,7 +18,13 @@ const initialState = {
     collections: null,
     preview: null,
 };
-
+/**
+ * Редюсер коллекций.
+ * @function
+ * @param {Object} state - Текущее состояние редюсера.
+ * @param {Object} action - Действие, которое нужно применить к состоянию.
+ * @returns {Object} Новое состояние редюсера.
+ */
 export const collectionsReducer = (state = initialState, action) => {
     switch (action.type) {
         case COLLECTION_REQUEST:

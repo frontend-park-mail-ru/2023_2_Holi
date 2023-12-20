@@ -8,6 +8,7 @@ import { avatarUpdate } from '../../../services/avatar-update.js';
 import { SerialsSeason } from './serial-season.js';
 import { logoutHandle } from '../../../services/logoutHandle.js';
 import { setRating } from '../../../services/set-rating.js';
+import { checkPaymentLink } from '../../../services/api/payment.js';
 
 // Функция для группировки массива по полю "season" в двумерный массив
 function groupBySeason(episodes) {
@@ -21,13 +22,27 @@ function groupBySeason(episodes) {
         return acc;
     }, []);
 }
-
+/**
+ * Класс для отображения страницы контента сериала.
+ */
 export class SerialContentPage {
     #parent;
+    /**
+     * Создает экземпляр класса SerialContentPage.
+     *
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлен контент страницы.
+     */
     constructor(parent) {
         this.#parent = parent;
     }
 
+    /**
+     * Устанавливает данные эпизода и обновляет интерфейс.
+     *
+     * @param {number} id - Идентификатор сериала.
+     * @param {object} episode - Объект с данными эпизода.
+     * @param {Array} serials - Массив серий сериала.
+     */
     setEpisodeData(id, episode, serials) {
         document.getElementById('episodeName').innerText = `${episode.season} сезон, ${episode.number} серия, ${episode.name}`;
         document.querySelector('source').src = `${episode.mediaPath}#t=3`;
@@ -75,6 +90,13 @@ export class SerialContentPage {
 
     }
 
+    /**
+     * Обработчик выбора сезона и обновления списка эпизодов.
+     *
+     * @param {HTMLElement} seasonSelect - Выпадающий список сезонов.
+     * @param {HTMLElement} episodeSelect - Выпадающий список эпизодов.
+     * @param {Array} groupedEpisodesArray - Массив, сгруппированный по сезонам.
+     */
     selectHandler(seasonSelect, episodeSelect, groupedEpisodesArray) {
         const currentSeason = seasonSelect.value;
         episodeSelect.innerHTML = '';
@@ -86,6 +108,9 @@ export class SerialContentPage {
         });
     }
 
+    /**
+     * Рендерит страницу контента сериала.
+     */
     async render() {
         store.clearSubscribes();
         this.#parent.innerHTML = '';
@@ -98,6 +123,15 @@ export class SerialContentPage {
         store.subscribe(SERIALS_CONTENT_REDUCER, () => {
             const state = store.getState().currentSerial.serials;
             this.#parent.innerHTML = serial({ film: state.film, artists: state.artists });
+
+            checkPaymentLink()
+                .then(linkResponse => {
+                    if (!linkResponse.body.status) {
+                        const dialog = document.querySelector('#subs');
+                        dialog.showModal();
+                    }
+                });
+
             let episode;
             if (localStorage.getItem('lastSerial_' + id)) {
                 const idx = state.episodes.findIndex(elem => elem.id === Number(localStorage.getItem('lastSerial_' + id)));
@@ -112,7 +146,7 @@ export class SerialContentPage {
             const seasonSelect = document.getElementById('season');
             const episodeSelect = document.getElementById('episode');
             const seasons = document.getElementById('seasons-carousel');
-            console.info(seasons);
+
             groupedEpisodesArray.forEach((season, i) => {
                 new SerialsSeason(seasons, `${i + 1} Сезон`, groupedEpisodesArray[i]);
             });
@@ -132,7 +166,6 @@ export class SerialContentPage {
 
             episodeSelect.addEventListener('change', (e) => {
                 const targetEpisode = state.episodes.find((ep) => ep.id == e.target.value);
-                console.info(targetEpisode);
                 this.setEpisodeData(id,
                     targetEpisode,
                     state.episodes);

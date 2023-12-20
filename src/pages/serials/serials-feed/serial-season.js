@@ -1,11 +1,21 @@
 import season from './serial-season.hbs';
 import { uuid } from '../../../services/uuid-time';
+/**
+ * Класс для отображения сезона сериала в виде карусели.
+ */
 export class SerialsSeason {
     #title;
     #content;
     #parent;
     #id;
-
+/**
+     * Создает экземпляр класса SerialsSeason.
+     *
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена карусель сезона.
+     * @param {string} title - Заголовок сезона.
+     * @param {Array} content - Массив элементов сезона.
+     * @param {number} id - Идентификатор сезона.
+     */
     constructor(parent, title, content, id) {
         this.#content = content;
         this.#title = title;
