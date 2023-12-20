@@ -8,6 +8,7 @@ import { avatarUpdate } from '../../../services/avatar-update.js';
 import { SerialsSeason } from './serial-season.js';
 import { logoutHandle } from '../../../services/logoutHandle.js';
 import { setRating } from '../../../services/set-rating.js';
+import { checkPaymentLink } from '../../../services/api/payment.js';
 
 // Функция для группировки массива по полю "season" в двумерный массив
 function groupBySeason(episodes) {
@@ -49,7 +50,7 @@ export class SerialContentPage {
 
         const video = document.querySelector('video');
         video.load();
-        video.addEventListener('loadedmetadata', function() {
+        video.addEventListener('loadedmetadata', function () {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -122,6 +123,15 @@ export class SerialContentPage {
         store.subscribe(SERIALS_CONTENT_REDUCER, () => {
             const state = store.getState().currentSerial.serials;
             this.#parent.innerHTML = serial({ film: state.film, artists: state.artists });
+
+            checkPaymentLink()
+                .then(linkResponse => {
+                    if (!linkResponse.body.status) {
+                        const dialog = document.querySelector('#subs');
+                        dialog.showModal();
+                    }
+                });
+
             let episode;
             if (localStorage.getItem('lastSerial_' + id)) {
                 const idx = state.episodes.findIndex(elem => elem.id === Number(localStorage.getItem('lastSerial_' + id)));
@@ -136,7 +146,7 @@ export class SerialContentPage {
             const seasonSelect = document.getElementById('season');
             const episodeSelect = document.getElementById('episode');
             const seasons = document.getElementById('seasons-carousel');
-            console.info(seasons);
+
             groupedEpisodesArray.forEach((season, i) => {
                 new SerialsSeason(seasons, `${i + 1} Сезон`, groupedEpisodesArray[i]);
             });
@@ -156,7 +166,6 @@ export class SerialContentPage {
 
             episodeSelect.addEventListener('change', (e) => {
                 const targetEpisode = state.episodes.find((ep) => ep.id == e.target.value);
-                console.info(targetEpisode);
                 this.setEpisodeData(id,
                     targetEpisode,
                     state.episodes);

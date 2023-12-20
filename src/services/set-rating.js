@@ -1,3 +1,4 @@
+import { Notify } from '../components/notify/notify';
 import { deleteRating, getRating, setRatingRequest } from './api/rating';
 
 /**
@@ -39,16 +40,17 @@ function handleRatingClick(event) {
     setRatingRequest(ratingValue, id)
         .then(response => {
             // Обработка ответа (например, обновление интерфейса)
-            if (response.ok) {
+            if (response) {
                 window.dialog.close();
+                document.getElementById('rating').textContent = Number(response.body.rating).toFixed(1);
 
                 return response;
             } else {
-                console.error('Ошибка при установке рейтинга.');
+                new Notify('Ошибка при установке рейтинга');
             }
         })
         .catch(error => {
-            console.error('Произошла ошибка:', error);
+            new Notify('Произошла ошибка');
         });
 }
 
@@ -68,15 +70,16 @@ function handleRemoveRatingClick() {
             // Обработка ответа (например, обновление интерфейса)
             if (response.ok) {
                 window.dialog.close();
+                document.getElementById('rating').textContent = Number(response.body.rating).toFixed(1);
 
                 return response;
 
             } else {
-                console.error('Ошибка при удалении рейтинга.');
+                new Notify('Произошла ошибка при удалении');
             }
         })
         .catch(error => {
-            console.error('Произошла ошибка:', error);
+            new Notify('Произошла ошибка');
         });
 }
 
@@ -102,6 +105,6 @@ function checkUserRating() {
             }
         })
         .catch(error => {
-            console.error('Произошла ошибка при проверке рейтинга:', error);
+            new Notify('Произошла ошибка при проверке рейтинга');
         });
 }
