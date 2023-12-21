@@ -27,6 +27,7 @@ select {
 .serial-content-container__advanced-info__cast {
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .serial-content-container__advanced-info__cast-list {
