@@ -229,6 +229,7 @@
     height: 0;
     list-style-type: none;
     transition: .3s;
+    padding: 0;
 }
 
 .menu-item {
