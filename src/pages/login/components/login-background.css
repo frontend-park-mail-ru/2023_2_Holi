@@ -36,7 +36,5 @@
 }
 
 @media screen and (max-width: 1280px) {
-    .login-page__login-background {
-        background: #000 !important;
-    }
+   
 }

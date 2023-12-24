@@ -24,4 +24,5 @@
     position: absolute;
     flex-direction: column;
     display: flex;
+    overflow: auto;
 }

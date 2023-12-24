@@ -37,6 +37,27 @@ export class ProfilePage {
         const passwordInput = profileForm.elements['password'];
         const fileInput = profileForm.elements['file'];
 
+        const buttonConfig = document.getElementById('config_profile_btn');
+        const dialogConfig = document.getElementById('config_profile_dialog');
+        const closeConfig = document.getElementById('config_profile_btn_close');
+
+        buttonConfig.addEventListener('click', () => {
+            dialogConfig.showModal();
+        });
+        closeConfig.addEventListener('click', () => {
+            dialogConfig.close();
+        });
+
+        const buttonPayment = document.getElementById('payment_profile_btn');
+        const dialogPayment = document.getElementById('payment_profile_dialog');
+        const closePayment = document.getElementById('payment_profile_btn_close');
+
+        buttonPayment.addEventListener('click', () => {
+            dialogPayment.showModal();
+        });
+        closePayment.addEventListener('click', () => {
+            dialogPayment.close();
+        });
         store.dispatch($sentUserInfoRequest());
 
         store.subscribe(USER_REDUCER, () => {
@@ -48,6 +69,7 @@ export class ProfilePage {
 
                 if (stateUser.user.email) {
                     emailInput.value = stateUser.user.email;
+                    document.getElementById('email-span-js').textContent = stateUser.user.email;
                 }
 
                 if (stateUser.user.imagePath) {
@@ -103,8 +125,10 @@ export class ProfilePage {
     }
 
     setupFormSubmission(profileForm) {
-        profileForm.addEventListener('submit', async(event) => {
+        profileForm.addEventListener('submit', async (event) => {
             event.preventDefault();
+            const dialogConfig = document.getElementById('config_profile_dialog');
+            dialogConfig.close();
             await this.handleFormSubmission(profileForm);
         });
     }
@@ -133,7 +157,7 @@ export class ProfilePage {
         const allowedExtensions = ['jpg', 'jpeg', 'png', 'webm'];
         const fileName = file.name.toLowerCase();
         const fileExtension = fileName.split('.').pop();
-        const ava = document.querySelector('.avatar-preview');
+        const ava = document.querySelector('.avatar__edit');
 
         if (allowedExtensions.includes(fileExtension)) {
             document.querySelector('.input-control__file-text').innerHTML = file.name;

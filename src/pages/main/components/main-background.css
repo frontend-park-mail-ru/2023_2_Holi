@@ -1,11 +1,11 @@
 .main__background {
-    min-height: 700px;
+    min-height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     transform: scale(1.25) translateY(-10%);
-    background-image: url(../../../static/img/main.jpg);
+    background-image: url(../../../static/img/main_1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -30,4 +30,15 @@
         transform: scale(.7);
         text-align: center;
     }
+}
+
+@media (max-width: 900px) {
+    .main-form__input {
+        flex-direction: column;
+    }
+
+    .main-form__input input {
+        width: auto;
+    }
+
 }

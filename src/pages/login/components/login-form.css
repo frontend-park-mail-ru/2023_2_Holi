@@ -49,6 +49,8 @@
 .login-page__form-action {
     color: #737373;
     margin-top: 1.5rem;
+    font-weight: bold;
+    text-align: center;
 }
 
 .login-page__form-action-link {
