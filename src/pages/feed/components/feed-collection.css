@@ -95,6 +95,7 @@
 
 
 .feed-collection__advanced-info__rating {
+    cursor: default;
     border-radius: 4px;
     color: #fff;
     font-weight: 700;

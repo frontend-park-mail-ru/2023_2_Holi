@@ -14,7 +14,6 @@
 
 .main-form__title {
     font-weight: 900;
-    font-size: large;
 }
 
 .main-form__input {
@@ -32,4 +31,7 @@
 .main-form__email-form__container {
     padding-left: 2rem;
     padding-right: 2rem;
+    width: 60%;
+    margin: auto;
+    text-align: center;
 }
