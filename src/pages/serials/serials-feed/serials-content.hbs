@@ -59,11 +59,16 @@
     </div>
 </div>
 
-<dialog id="subs" style="    padding: 2rem!important; color: WHITE;
-    TEXT-ALIGN: center;">
-    <h2>Для просмотра получите подписку</h2>
-    {{> partial/button/btn-link href="/profile" kind="primary-xl"
-    label="Перейти к профилю"}}
+<dialog id="subs" style="
+    padding: 2rem!important; 
+    color: white;
+    text-align: center;">
+    <div class="dialog__wrapper">
+        <h2>Для просмотра получите подписку</h2>
+        {{> partial/button/btn-link href="/profile" kind="primary-xl"
+        label="Перейти к профилю"}}
+        <button id="subs_btn_close" aria-label="close" class="x">❌</button>
+    </div>
 </dialog>
 
 {{> partial/footer/partial-footer}}

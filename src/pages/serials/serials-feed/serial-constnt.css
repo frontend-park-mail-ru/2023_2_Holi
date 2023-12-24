@@ -32,6 +32,7 @@ select {
 .serial-content-container__advanced-info__cast-list {
     display: flex;
     justify-content: center;
+    padding: 1rem;
 }
 
 .serial-content-container__advanced-info__about {

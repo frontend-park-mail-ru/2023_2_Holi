@@ -6,6 +6,7 @@ import store from '../../../index.js';
 import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
 import { logoutHandle } from '../../services/logoutHandle.js';
 import { checkPaymentLink, getPaymentLink } from '../../services/api/payment.js';
+import { closeOnBackDropClick } from '../../components/modal/modal.js';
 /**
  * Класс для отображения страницы профиля пользователя.
  */
@@ -40,7 +41,7 @@ export class ProfilePage {
         const buttonConfig = document.getElementById('config_profile_btn');
         const dialogConfig = document.getElementById('config_profile_dialog');
         const closeConfig = document.getElementById('config_profile_btn_close');
-
+        dialogConfig.addEventListener('click', closeOnBackDropClick);
         buttonConfig.addEventListener('click', () => {
             dialogConfig.showModal();
         });
@@ -50,6 +51,7 @@ export class ProfilePage {
 
         const buttonPayment = document.getElementById('payment_profile_btn');
         const dialogPayment = document.getElementById('payment_profile_dialog');
+        dialogPayment.addEventListener('click', closeOnBackDropClick);
         const closePayment = document.getElementById('payment_profile_btn_close');
 
         buttonPayment.addEventListener('click', () => {
@@ -125,7 +127,7 @@ export class ProfilePage {
     }
 
     setupFormSubmission(profileForm) {
-        profileForm.addEventListener('submit', async (event) => {
+        profileForm.addEventListener('submit', async(event) => {
             event.preventDefault();
             const dialogConfig = document.getElementById('config_profile_dialog');
             dialogConfig.close();
