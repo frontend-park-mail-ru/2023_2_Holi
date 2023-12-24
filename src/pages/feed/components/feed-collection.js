@@ -123,7 +123,6 @@ export class FeedCollection {
         });
 
         videoElements.forEach((container) => {
-            const video = container.querySelector('video');
 
             container.addEventListener('mousedown', () => {
                 isDragging = true;
@@ -133,22 +132,11 @@ export class FeedCollection {
                 isDragging = false;
             });
 
-            container.addEventListener('click', () => {
-                if (!isDragging && !prevDrag) {
-                    // Остановка всех видео
-                    videoElements.forEach((otherContainer) => {
-                        const otherVideo = otherContainer.querySelector('video');
-                        if (otherVideo !== video && !otherVideo.paused) {
-                            otherVideo.pause();
-                            otherVideo.setAttribute('autoplay', 'false');
-                            otherVideo.preload = 'none';
-                        }
-                    });
-
-                    video.preload = 'auto'; // Запустить загрузку видео
-                    video.setAttribute('autoplay', '');
-                    video.play();
-
+            container.addEventListener('click', (e) => {
+                if (isDragging && prevDrag) {
+                    console.info('rsjf')
+                    e.preventDefault();
+                    e.stopPropagation();
                 }
             });
 
