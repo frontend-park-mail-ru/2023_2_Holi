@@ -9,6 +9,7 @@ import { SerialsSeason } from './serial-season.js';
 import { logoutHandle } from '../../../services/logoutHandle.js';
 import { setRating } from '../../../services/set-rating.js';
 import { checkPaymentLink } from '../../../services/api/payment.js';
+import { closeOnBackDropClick } from '../../../components/modal/modal.js';
 
 // Функция для группировки массива по полю "season" в двумерный массив
 function groupBySeason(episodes) {
@@ -50,7 +51,7 @@ export class SerialContentPage {
 
         const video = document.querySelector('video');
         video.load();
-        video.addEventListener('loadedmetadata', function() {
+        video.addEventListener('loadedmetadata', function () {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -123,12 +124,19 @@ export class SerialContentPage {
         store.subscribe(SERIALS_CONTENT_REDUCER, () => {
             const state = store.getState().currentSerial.serials;
             this.#parent.innerHTML = serial({ film: state.film, artists: state.artists });
-
+            document.getElementById('dialog').addEventListener('click', closeOnBackDropClick);
             checkPaymentLink()
                 .then(linkResponse => {
                     if (!linkResponse.body.status) {
                         const dialog = document.querySelector('#subs');
+                        const dialogClose = document.getElementById('subs_btn_close');
                         dialog.showModal();
+
+                        dialog.addEventListener('click', closeOnBackDropClick);
+
+                        dialogClose.addEventListener('click', () => {
+                            dialog.close();
+                        });
                     }
                 });
 
