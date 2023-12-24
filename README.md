@@ -16,7 +16,7 @@ https://raw.githubusercontent.com/go-park-mail-ru/2023_2_Holi/deploy_dev/docs/sw
 https://www.figma.com/file/PEfIZ5K8ox9OKbxckS0KPo/NetflixHoliProject?type=design&mode=design&t=4cJlsuXjjVJnori5-1
 
 #### Netfix
-http://84.23.54.38
+https://hooli-smotrim.ru/
 
 
 # Документация API для аутентификации в приложении Netflix
