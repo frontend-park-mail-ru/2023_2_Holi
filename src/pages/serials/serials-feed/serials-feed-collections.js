@@ -107,21 +107,21 @@ export class SerialsFeedCollection {
                 isDragging = false;
             });
 
-            container.addEventListener('click', () => {
-                if (!isDragging && !prevDrag) {
+            container.addEventListener('click', (event) => {
+                if (isDragging && prevDrag) {
+                    event.preventDefault();
                     // Остановка всех видео
-                    videoElements.forEach((otherContainer) => {
-                        const otherVideo = otherContainer.querySelector('video');
-                        if (otherVideo !== video && !otherVideo.paused) {
-                            otherVideo.pause();
-                            otherVideo.setAttribute('autoplay', 'false');
-                            otherVideo.preload = 'none';
-                        }
-                    });
-
-                    video.preload = 'auto'; // Запустить загрузку видео
-                    video.setAttribute('autoplay', '');
-                    video.play();
+                    /* videoElements.forEach((otherContainer) => {
+                         const otherVideo = otherContainer.querySelector('video');
+                         if (otherVideo !== video && !otherVideo.paused) {
+                             otherVideo.pause();
+                             otherVideo.setAttribute('autoplay', 'false');
+                             otherVideo.preload = 'none';
+                         }
+                     });
+                     video.preload = 'auto'; // Запустить загрузку видео
+                     video.setAttribute('autoplay', '');
+                     video.play();*/
 
                 }
             });
