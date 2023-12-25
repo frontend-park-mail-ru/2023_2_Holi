@@ -93,6 +93,9 @@
     width: 100%;
 }
 
+.feed-collection__advanced-info__link:hover {
+    text-decoration: underline;
+}
 
 .feed-collection__advanced-info__rating {
     cursor: default;

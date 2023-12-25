@@ -7,6 +7,7 @@ import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/
 import { logoutHandle } from '../../services/logoutHandle.js';
 import { checkPaymentLink, getPaymentLink } from '../../services/api/payment.js';
 import { closeOnBackDropClick } from '../../components/modal/modal.js';
+import { seachHandler } from '../../services/search-utils.js';
 /**
  * Класс для отображения страницы профиля пользователя.
  */
@@ -85,7 +86,7 @@ export class ProfilePage {
         this.setupPasswordInput(passwordInput);
 
         this.setupFormSubmission(profileForm);
-
+        seachHandler();
         logoutHandle();
     }
 
