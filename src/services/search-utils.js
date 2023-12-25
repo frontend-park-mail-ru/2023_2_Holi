@@ -3,7 +3,11 @@ import { debounce } from './debounce';
 import { Notify } from '../components/notify/notify';
 import { navigate } from './router/Router';
 
-// Функция для выполнения запроса на сервер
+/**
+ * Выполняет запрос на сервер для поиска данных.
+ *
+ * @param {string} query - Строка запроса для поиска.
+ */
 export function fetchData(query) {
     // Здесь вы можете выполнить запрос на сервер с использованием fetch или других средств
     // В данном примере используем console.log вместо реального запроса
@@ -15,8 +19,38 @@ export function fetchData(query) {
     }
 
 }
+/**
+ * Имитирует клик по ссылке и удаляет элемент после этого.
+ *
+ * @param {string} href - Адрес ссылки.
+ */
+function simulateAndRemoveLink(href) {
+    // Создать элемент
+    const link = document.createElement('a');
+    link.href = href;
+    link.setAttribute('spa-link', '');
+    link.textContent = 'Нажмите меня';
 
-// Функция для обновления выпадающего списка
+    // Добавить обработчик события
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        // Дополнительный код обработки клика
+    });
+
+    // Добавить элемент в DOM
+    document.body.appendChild(link);
+
+    // Имитировать клик
+    link.click();
+
+    // Удалить элемент после имитации клика
+    link.parentNode.removeChild(link);
+}
+/**
+ * Обновляет выпадающий список результатами поиска.
+ *
+ * @param {Object} results - Результаты поиска.
+ */
 export function updateDropdownList(results) {
     const width = window.innerWidth;
     let container;
@@ -36,6 +70,7 @@ export function updateDropdownList(results) {
         dropdownList.appendChild(ladel);
     }
     else {
+        simulateAndRemoveLink('/search');
         const data = results.body;
 
         if (data.cast) {
@@ -79,7 +114,9 @@ export function updateDropdownList(results) {
     }
 
 }
-
+/**
+ * Обработчик события для поля ввода поиска.
+ */
 export function seachHandler() {
     const width = window.innerWidth;
     let container;
@@ -93,31 +130,29 @@ export function seachHandler() {
     const inputSearch = container.querySelector('.input-search');
     if (inputSearch) {
         // Добавляем обработчик события oninput с использованием debounce
-        inputSearch.addEventListener('input', debounce(function (event) {
+        inputSearch.addEventListener('input', debounce(function(event) {
             if (!navigator.onLine) {
                 new Notify('Нет соединения');
             }
             const query = event.target.value;
             localStorage.setItem('lastSearchInput', query);
             fetchData(query);
-        }, 300));
+        }, 700));
 
         inputSearch.addEventListener('blur', () => {
             const dropdownList = container.querySelector('#dropdown-list');
             inputSearch.value = '';
             setTimeout(() => {
                 dropdownList.innerHTML = '';
-            }, 800);
+            }, 1000);
 
         });
     }
-    if (btnSearch) {
+    if (btnSearch && inputSearch ) {
         btnSearch.addEventListener('click', (e) => {
             e.preventDefault();
-            if (localStorage.getItem('lastSearchInput')) {
-                navigate(`search/${localStorage.getItem('lastSearchInput')}`);
-                console.log(localStorage.getItem('lastSearchInput'));
-            }
+            // Инпут находится в фокусе, выполняйте ваш код
+            navigate('/search');
 
         });
     }

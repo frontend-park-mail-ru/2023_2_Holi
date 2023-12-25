@@ -1,5 +1,5 @@
 .feed-page__preview {
-    width: 100%;
+    width: 100vw;
 }
 
 .feed-content__info {
@@ -36,6 +36,7 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
+    animation: show 2s ease;
 }
 
 @media screen and (max-width: 900px) {

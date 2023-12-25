@@ -1,6 +1,11 @@
 import { getCookie } from '../getCookie';
 import { NETFLIX_API } from './const';
-
+/**
+ * Выполняет запрос на поиск по названию видео.
+ * @param {string} value - Значение для поиска.
+ * @returns {Promise} Промис, который разрешится с данными о результатах поиска или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const searchRequest = (value) => {
     return fetch(`${NETFLIX_API}/search/${value}`, {
         method: 'GET',

@@ -1,11 +1,23 @@
 import collectionTemplate from './serials-feed-collections.hbs';
 import { uuid } from '../../../services/uuid-time';
+
+/**
+ * Класс для отображения коллекции сериалов.
+ */
 export class SerialsFeedCollection {
     #title;
     #content;
     #parent;
     #id;
 
+    /**
+     * Создает экземпляр класса SerialsFeedCollection.
+     *
+     * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена коллекция сериалов.
+     * @param {string} title - Заголовок коллекции.
+     * @param {Array} content - Массив объектов сериалов.
+     * @param {number} id - Идентификатор коллекции.
+     */
     constructor(parent, title, content, id) {
         this.#content = content;
         this.#title = title;
@@ -14,7 +26,9 @@ export class SerialsFeedCollection {
 
         this.render();
     }
-
+    /**
+        * Заполняет цветом рейтинговых элементов в коллекции.
+        */
     ratingFillColor() {
         // Получите все элементы с рейтингом
         const ratingElements = document.querySelectorAll('.feed-collection__advanced-info__rating');
@@ -22,24 +36,27 @@ export class SerialsFeedCollection {
         ratingElements.forEach(element => {
             const rating = parseInt(element.getAttribute('data-rating'), 10);
 
-            if (rating >= 7) {
+            if (rating >= 8) {
                 element.classList.add('rating-high');
-            } else if (rating >= 4) {
+            } else if (rating >= 5) {
                 element.classList.add('rating-medium');
             } else {
                 element.classList.add('rating-low');
             }
         });
     }
-
-    getTopRatedObjects(arr, count) {
-        // Сортируем массив в порядке убывания рейтинга
-        const sortedArr = arr.sort((a, b) => b.rating - a.rating);
-
-        // Возвращаем указанное количество объектов с самыми высокими рейтингами
-        return sortedArr.slice(0, count);
+    /**
+         * Возвращает массив объектов, отсортированный по убыванию рейтинга.
+         *
+         * @param {Array} arr - Массив объектов сериалов.
+         * @returns {Array} - Отсортированный массив объектов.
+         */
+    getTopRatedObjects(arr) {
+        return arr.sort((a, b) => b.rating - a.rating);
     }
-
+    /**
+        * Рендерит коллекцию сериалов.
+        */
     render() {
         const carouselUUID = uuid();
         const containerUUID = uuid();
@@ -58,15 +75,13 @@ export class SerialsFeedCollection {
             return { ...movie, rating: roundedRating };
         });
 
-        const contentCount = window.innerWidth / 350;
-
         // Отобразите все элементы контента
         collection.innerHTML = collectionTemplate({
             carousel: carouselUUID,
             container: containerUUID,
             title: this.#title,
             id: this.#id,
-            content: this.getTopRatedObjects(roundedMovies, contentCount),
+            content: this.getTopRatedObjects(roundedMovies),
         });
 
         this.ratingFillColor();
@@ -92,21 +107,21 @@ export class SerialsFeedCollection {
                 isDragging = false;
             });
 
-            container.addEventListener('click', () => {
-                if (!isDragging && !prevDrag) {
+            container.addEventListener('click', (event) => {
+                if (isDragging && prevDrag) {
+                    event.preventDefault();
                     // Остановка всех видео
-                    videoElements.forEach((otherContainer) => {
-                        const otherVideo = otherContainer.querySelector('video');
-                        if (otherVideo !== video && !otherVideo.paused) {
-                            otherVideo.pause();
-                            otherVideo.setAttribute('autoplay', 'false');
-                            otherVideo.preload = 'none';
-                        }
-                    });
-
-                    video.preload = 'auto'; // Запустить загрузку видео
-                    video.setAttribute('autoplay', '');
-                    video.play();
+                    /* videoElements.forEach((otherContainer) => {
+                         const otherVideo = otherContainer.querySelector('video');
+                         if (otherVideo !== video && !otherVideo.paused) {
+                             otherVideo.pause();
+                             otherVideo.setAttribute('autoplay', 'false');
+                             otherVideo.preload = 'none';
+                         }
+                     });
+                     video.preload = 'auto'; // Запустить загрузку видео
+                     video.setAttribute('autoplay', '');
+                     video.play();*/
 
                 }
             });

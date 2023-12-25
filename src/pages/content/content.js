@@ -5,9 +5,27 @@ import { deleteLike, getLikeState, setLike } from '../../services/api/like.js';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
 import { logoutHandle } from '../../services/logoutHandle.js';
+import { setRating } from '../../services/set-rating.js';
+import { checkPaymentLink } from '../../services/api/payment.js';
+import { closeOnBackDropClick } from '../../components/modal/modal.js';
+
+/**
+ * Класс для отображения страницы контента.
+ */
 export class ContentPage {
     #parent;
+
+    /**
+     * Создает экземпляр класса ContentPage.
+     *
+     * @param {HTMLElement} [parent=document.getElementById('root')] - Родительский элемент, в который будет вставлен контент страницы.
+     */
     constructor(parent = document.getElementById('root')) {
+        /**
+          * Родительский элемент, в который будет вставлен контент страницы.
+          * @type {HTMLElement}
+          * @private
+          */
         this.#parent = parent;
     }
 
@@ -16,12 +34,26 @@ export class ContentPage {
         this.#parent.innerHTML = '';
         this.#parent.style.background = '';
         const id = getLastNumber(location.href);
+        localStorage.setItem('LastContentId', id);
         const film = await getContentById(id);
 
         this.#parent.innerHTML = content({ film: film.body });
         avatarUpdate();
+        document.getElementById('dialog').addEventListener('click', closeOnBackDropClick);
         const like = document.querySelector('.heart-button');
+        const linkResponse = await checkPaymentLink();
 
+        if (!linkResponse.body.status) {
+            const dialog = document.querySelector('#subs');
+            const dialogClose = document.getElementById('subs_btn_close');
+            dialog.showModal();
+
+            dialog.addEventListener('click', closeOnBackDropClick);
+
+            dialogClose.addEventListener('click', () => {
+                dialog.close();
+            });
+        }
         getLikeState(id).then(response => {
             if (response.body.isFavourite === true) {
                 like.querySelector('i').className = 'like';
@@ -48,7 +80,12 @@ export class ContentPage {
         document.getElementById('rating').innerText = parseFloat(film.body.film.rating.toFixed(1));
 
         logoutHandle();
+        setRating();
 
+        /**
+         * Обработчик клика по кнопке "Like".
+         * @param {MouseEvent} event - Событие клика.
+         */
         like.addEventListener('click', () => {
             if (like.querySelector('i').className === 'like') {
                 deleteLike(id).then(() => {

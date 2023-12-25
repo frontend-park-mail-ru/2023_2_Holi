@@ -72,7 +72,7 @@ export class Router {
                     route.page.render();
                 } else {
                     // Заменяем текущее состояние в истории и перенаправляем на страницу по умолчанию для неавторизованных пользователей
-                    history.replaceState(null, null, this.defaultAnAuth);
+                    history.replaceState({ page: this.defaultAnAuth }, null, this.defaultAnAuth);
                     window.location.href = this.defaultAnAuth;
                 }
             } else if (route.accessLevel === 'guest') {
@@ -81,7 +81,7 @@ export class Router {
                     route.page.render();
                 } else {
                     // Заменяем текущее состояние в истории и перенаправляем на страницу по умолчанию для авторизованных пользователей
-                    history.replaceState(null, null, this.defaultAuth);
+                    history.replaceState({ page: this.defaultAuth }, null, this.defaultAuth);
                     window.location.href = this.defaultAuth;
                 }
             }

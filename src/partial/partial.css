@@ -4,3 +4,19 @@
 @import url(./header/partial-header.css);
 @import url(./input-control/input-control.css);
 @import url(./netflix-logo/netflix-logo.css);
+@import url(./rating/rating.css);
+
+.cast-card {
+    /* max-width: 270px; */
+    width: 120px !important;
+    height: 120px !important;
+    border: 3px solid #B17267;
+    color: #B17267;
+    border-radius: 50%;
+    /* Линейный градиент с использованием случайных цветов */
+    background: #D53032;
+}
+
+.cast-container-card {
+    min-height: 0 !important;
+}

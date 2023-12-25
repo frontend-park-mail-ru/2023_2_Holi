@@ -30,26 +30,23 @@
                 {{film.releaseYear}}</div>
             <div class="content-container__advanced-info__meta-age"><b>Возрастное
                     ограничение:</b> {{film.ageRestriction}}+</div>
-            <div class="content-container__advanced-info__meta-rating"><b>Рейтинг:</b>
-                <span id="rating"></span>
-            </div>
+
             <div class="content-container__advanced-info__meta-time"><b>Длительность:</b>
                 <span id="duration"></span>
             </div>
+            {{> partial/rating/rating}}
         </div>
         <div class="serial-content-container__advanced-info__about">
             <div class="content-container__advanced-info__description" id="serialDescription">
             </div>
 
+            <div class="content-container__advanced-info__genres-title">
+                <b>Актеры</b>
+            </div>
             <div class="serial-content-container__advanced-info__cast">
-                <div class="content-container__advanced-info__genres-title">
-                    <b>Актеры</b>
-                </div>
                 <div class="serial-content-container__advanced-info__cast-list">
                     {{#each artists}}
-                    <a class="content-container__advanced-info__genres-link" href="/serial-cast/{{this.id}}"
-                        spa-link>{{this.name}}
-                    </a>
+                    {{> partial/cast-card baseUrl="serial-cast" this=this}}
                     {{/each}}
                 </div>
             </div>
@@ -61,5 +58,17 @@
 
     </div>
 </div>
+
+<dialog id="subs" style="
+    padding: 2rem!important; 
+    color: white;
+    text-align: center;">
+    <div class="dialog__wrapper">
+        <h2>Для просмотра получите подписку</h2>
+        {{> partial/button/btn-link href="/profile" kind="primary-xl"
+        label="Перейти к профилю"}}
+        <button id="subs_btn_close" aria-label="close" class="x">❌</button>
+    </div>
+</dialog>
 
 {{> partial/footer/partial-footer}}

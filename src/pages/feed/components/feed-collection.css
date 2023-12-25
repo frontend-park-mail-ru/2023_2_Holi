@@ -47,6 +47,7 @@
     object-fit: none;
     border-radius: 1rem;
     transition: all .3s;
+    background: #d53032;
 }
 
 @media screen and (max-width: 900px) {
@@ -94,6 +95,7 @@
 
 
 .feed-collection__advanced-info__rating {
+    cursor: default;
     border-radius: 4px;
     color: #fff;
     font-weight: 700;

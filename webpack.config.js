@@ -1,5 +1,5 @@
 const path = require('path');
-//const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -61,7 +61,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpe?g|gif|svg)$/i,
+                test: /\.(png|jpe?g|gif|svg)$/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -84,7 +84,7 @@ module.exports = {
     optimization: {
         minimize: true,
         minimizer: [
-            //new TerserPlugin(),
+            new TerserPlugin(),
             new CssMinimizerPlugin({
                 minimizerOptions: {
 

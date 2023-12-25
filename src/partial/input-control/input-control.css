@@ -53,7 +53,12 @@
 
 .input-control__file-text {
     font-family: Netflix;
-    font-weight: 600;
     font-size: 16px;
+    font-weight: 600;
     width: 100%;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
 }

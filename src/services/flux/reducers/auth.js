@@ -1,5 +1,14 @@
 import { GET_LOGIN_ERROR, GET_LOGIN_SUCCESS, GET_LOGIN_REQUEST } from '../actions/auth';
-
+/**
+ * Начальное состояние редюсера авторизации.
+ * @constant
+ * @type {Object}
+ * @property {boolean} authRequest - Флаг, указывающий, происходит ли запрос авторизации.
+ * @property {boolean} authSuccess - Флаг успешной авторизации.
+ * @property {boolean} authError - Флаг ошибки авторизации.
+ * @property {null|number} userId - Идентификатор пользователя.
+ * @property {null|Object} error - Объект ошибки.
+ */
 const initialState = {
     authRequest: false,
     authSuccess: false,
@@ -7,7 +16,13 @@ const initialState = {
     error: null,
     userId: localStorage.getItem('userId') | null,
 };
-
+/**
+ * Редюсер авторизации.
+ * @function
+ * @param {Object} state - Текущее состояние редюсера.
+ * @param {Object} action - Действие, которое нужно применить к состоянию.
+ * @returns {Object} Новое состояние редюсера.
+ */
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_LOGIN_REQUEST:

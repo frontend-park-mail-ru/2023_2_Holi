@@ -1,3 +1,5 @@
+@import url(../modal/modal.css);
+
 @keyframes show {
     0% {
         opacity: 0;
@@ -13,14 +15,15 @@
 }
 
 #toasts {
-    position: sticky;
-    bottom: 20px;
-    right: 20px;
-    width: 100%;
-    z-index: 100;
-    display: flex;
-    justify-content: end;
     align-items: end;
+    bottom: 20px;
+    /* display: flex; */
+    justify-content: end;
+    position: absolute;
+    right: 20px;
+    /* width: 100%; */
+    z-index: 100;
+    /* height: 80vh;*/
 }
 
 .toast-header {

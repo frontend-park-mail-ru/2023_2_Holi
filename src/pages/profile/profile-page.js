@@ -5,146 +5,254 @@ import profile from './profile-page.hbs';
 import store from '../../../index.js';
 import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
 import { logoutHandle } from '../../services/logoutHandle.js';
-
+import { checkPaymentLink, getPaymentLink } from '../../services/api/payment.js';
+import { closeOnBackDropClick } from '../../components/modal/modal.js';
+import { seachHandler } from '../../services/search-utils.js';
+/**
+ * Класс для отображения страницы профиля пользователя.
+ */
 export class ProfilePage {
     #parent;
+    formData;
+    changedFields;
+
+    /**
+    * Создает экземпляр класса ProfilePage.
+    *
+    * @param {HTMLElement} [parent=document.getElementById('root')] - Родительский элемент, в который будет вставлен контент страницы.
+    */
     constructor(parent = document.getElementById('root')) {
         this.#parent = parent;
+        this.formData = {
+            id: Number(localStorage.getItem('userId')),
+        };
+        this.changedFields = {};
     }
 
     async render() {
         store.clearSubscribes();
-        this.#parent.innerHTML = '';
-        this.#parent.innerHTML = profile();
+        this.clearParentHtml();
+        this.renderProfileTemplate();
+        this.configurePaymentLink();
         const profileForm = document.forms['profile-form'];
         const emailInput = profileForm.elements['email'];
         const passwordInput = profileForm.elements['password'];
         const fileInput = profileForm.elements['file'];
 
-        let confirm = false;
+        const buttonConfig = document.getElementById('config_profile_btn');
+        const dialogConfig = document.getElementById('config_profile_dialog');
+        const closeConfig = document.getElementById('config_profile_btn_close');
+        dialogConfig.addEventListener('click', closeOnBackDropClick);
+        buttonConfig.addEventListener('click', () => {
+            dialogConfig.showModal();
+        });
+        closeConfig.addEventListener('click', () => {
+            dialogConfig.close();
+        });
 
-        /**
-         * Узнаю о пользователе
-         */
+        const buttonPayment = document.getElementById('payment_profile_btn');
+        const dialogPayment = document.getElementById('payment_profile_dialog');
+        dialogPayment.addEventListener('click', closeOnBackDropClick);
+        const closePayment = document.getElementById('payment_profile_btn_close');
+
+        buttonPayment.addEventListener('click', () => {
+            dialogPayment.showModal();
+        });
+        closePayment.addEventListener('click', () => {
+            dialogPayment.close();
+        });
         store.dispatch($sentUserInfoRequest());
 
-        /**
-         * Подписка сраюотает при изменении стора
-         */
         store.subscribe(USER_REDUCER, () => {
             const stateUser = store.getState().user.userInfo;
+
             if (stateUser) {
+                const emailInput = document.forms['profile-form'].elements['email'];
+                const avatarElements = document.querySelectorAll('.avatar');
+
                 if (stateUser.user.email) {
                     emailInput.value = stateUser.user.email;
+                    document.getElementById('email-span-js').textContent = stateUser.user.email;
                 }
-                if (stateUser) {
-                    if (stateUser.user.imagePath) {
-                        document.querySelectorAll('.avatar').forEach(avatar => {
-                            // Генерация случайного параметра для обхода кеша
-                            const cacheBuster = Math.random().toString(36).substring(7);
 
-                            // Формирование URL с cache-busting параметром
-                            const updatedImageUrl = stateUser.user.imagePath.includes('?')
-                                ? `${stateUser.user.imagePath}&cache=${cacheBuster}`
-                                : `${stateUser.user.imagePath}?cache=${cacheBuster}`;
-                            avatar.src = updatedImageUrl;
-                        });
-                    }
+                if (stateUser.user.imagePath) {
+                    this.updateAvatars(avatarElements, stateUser.user.imagePath);
                 }
             }
         });
 
+        this.setupFileInput(fileInput);
+        this.setupEmailInput(emailInput);
+        this.setupPasswordInput(passwordInput);
+
+        this.setupFormSubmission(profileForm);
+        seachHandler();
+        logoutHandle();
+    }
+
+    clearParentHtml() {
+        this.#parent.innerHTML = '';
+    }
+
+    renderProfileTemplate() {
+        this.#parent.innerHTML = profile();
+    }
+
+    async configurePaymentLink() {
+        const paymentLinkElement = document.getElementById('payment');
+
+        const linkResponse = await checkPaymentLink();
+
+        if (linkResponse.body.status) {
+            const label = linkResponse.body.subUpTo;
+            paymentLinkElement.href = '#';
+
+            const dateObject = new Date(label);
+
+            // Получение компонентов даты
+            const day = dateObject.getDate();
+            const month = dateObject.getMonth() + 1;
+            const year = dateObject.getFullYear();
+
+            // Формирование текста для кнопки
+            const buttonText = `Оплата до ${day}.${month}.${year}`;
+            paymentLinkElement.textContent = buttonText;
+        } else {
+            const paymentResponse = await getPaymentLink();
+            const label = 'Оплатить';
+            paymentLinkElement.href = paymentResponse.body.payment;
+            paymentLinkElement.textContent = label;
+
+        }
+
+    }
+
+    setupFormSubmission(profileForm) {
+        profileForm.addEventListener('submit', async(event) => {
+            event.preventDefault();
+            const dialogConfig = document.getElementById('config_profile_dialog');
+            dialogConfig.close();
+            await this.handleFormSubmission(profileForm);
+        });
+    }
+
+    updateAvatars(avatarElements, imagePath) {
+        avatarElements.forEach(avatar => {
+            const cacheBuster = Math.random().toString(36).substring(7);
+            const updatedImageUrl = imagePath.includes('?')
+                ? `${imagePath}&cache=${cacheBuster}`
+                : `${imagePath}?cache=${cacheBuster}`;
+            avatar.src = updatedImageUrl;
+        });
+    }
+
+    setupFileInput(fileInput) {
         let file = null;
-        fileInput.addEventListener('change', (event) => {
+        fileInput.addEventListener('input', (event) => {
             if (event.target.files[0]) {
                 file = event.target.files[0];
-                const allowedExtensions = ['jpg', 'jpeg', 'png'];
-                const fileName = file.name.toLowerCase();
-                const fileExtension = fileName.split('.').pop();
-                const ava = document.querySelector('.avatar-preview');
-                if (allowedExtensions.includes(fileExtension)) {
-                    document.querySelector('.input-control__file-text').innerHTML = event.target.files[0].name;
-                    const reader = new FileReader();
-
-                    const nowAva = new FileReader();
-                    nowAva.readAsDataURL(file);
-                    nowAva.onload = (e) => {
-                        ava.src = e.target.result;
-                    };
-                    reader.onload = (e) => {
-                        const arrayBuffer = e.target.result; // Получаем массив байт (ArrayBuffer)
-
-                        // eslint-disable-next-line no-undef
-                        const uint8Array = new Uint8Array(arrayBuffer); // Преобразуем его в Uint8Array
-                        formData.imageData = Array.from(uint8Array);
-
-                    };
-
-                    reader.readAsArrayBuffer(file); // Считываем файл как ArrayBuffer
-                }
-                else {
-                    new Notify('Выберите файл с расширением jpg, jpeg или png');
-                }
+                this.processSelectedFile(file, fileInput);
             }
         });
-        const formData = {
-            id: Number(localStorage.getItem('userId')),
-        };
+    }
 
-        // Добавьте обработчики событий на соответствующие инпуты
+    processSelectedFile(file) {
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'webm'];
+        const fileName = file.name.toLowerCase();
+        const fileExtension = fileName.split('.').pop();
+        const ava = document.querySelector('.avatar__edit');
 
+        if (allowedExtensions.includes(fileExtension)) {
+            document.querySelector('.input-control__file-text').innerHTML = file.name;
+
+            const reader = new FileReader();
+
+            const nowAva = new FileReader();
+            nowAva.readAsDataURL(file);
+            nowAva.onload = (e) => {
+                ava.src = e.target.result;
+            };
+
+            reader.onload = (e) => {
+                const arrayBuffer = e.target.result;
+                // eslint-disable-next-line no-undef
+                const uint8Array = new Uint8Array(arrayBuffer);
+                this.changedFields.imageData = true;
+                this.formData.imageData = Array.from(uint8Array);
+            };
+
+            reader.readAsArrayBuffer(file);
+        } else {
+            new Notify('Выберите файл с расширением jpg, jpeg или png');
+            delete this.formData.imageData;
+            delete this.changedFields.imageData;
+        }
+    }
+
+    setupEmailInput(emailInput) {
         emailInput.addEventListener('input', () => {
-            if (emailInput.value) {
-                formData.email = emailInput.value;
-                confirm = true;
-            }
+            this.handleEmailInput(emailInput);
         });
+    }
+
+    handleEmailInput(emailInput) {
+        if (emailInput.value && this.formData.email !== emailInput.value) {
+            this.formData.email = emailInput.value;
+            this.changedFields.email = true;
+        } else {
+            delete this.formData.email;
+            delete this.changedFields.email;
+        }
+    }
+
+    setupPasswordInput(passwordInput) {
         passwordInput.addEventListener('input', () => {
-            if (passwordInput.value && validatePassword(passwordInput.value) === '') {
-                formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
-                confirm = true;
+            this.handlePasswordInput(passwordInput);
+        });
+    }
+
+    handlePasswordInput(passwordInput) {
+        if (passwordInput.value && validatePassword(passwordInput.value) === '') {
+            const newPassword = Array.from(new TextEncoder().encode(passwordInput.value));
+            if (this.formData.password !== newPassword) {
+                this.formData.password = newPassword;
+                this.changedFields.password = true;
             } else {
-                new Notify(validatePassword(passwordInput.value));
-                confirm = false;
+                delete this.formData.password;
+                delete this.changedFields.password;
             }
-        });
-        // fileInput.addEventListener('change', () => { formData.imageData = file; });
-        profileForm.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
+        } else {
+            new Notify(validatePassword(passwordInput.value));
+            delete this.formData.password;
+            delete this.changedFields.password;
+        }
+    }
 
-            try {
-                if (confirm) {
-                    const response = await setUserInfo(formData);
-                    profileForm.reset();
-                    emailInput.addEventListener('input', () => {
-                        if (emailInput.value) {
-                            formData.email = emailInput.value;
-                        }
-                    });
-                    passwordInput.addEventListener('input', () => {
-                        if (passwordInput.value && validatePassword(passwordInput.value) === '') {
-                            formData.password = Array.from(new TextEncoder().encode(passwordInput.value));
-                        } else {
-                            new Notify(validatePassword(passwordInput.value));
-                        }
-                    });
-
-                    if (response.ok) {
-                        // Обработка успешного ответаArray.from(uint8Array)
-                        // Обработка ошибки
-                        new Notify('Профиль успешно обновлен');
-                        store.dispatch($sentUserInfoRequest());
-
-                    }
-                }else{
-                    new Notify('Что то вы вводите не так:)');
-                }
-
-            } catch (error) {
-                new Notify('Произошла ошибка при отправке запроса');
+    async handleFormSubmission(profileForm) {
+        try {
+            if (Object.keys(this.changedFields).length > 0) {
+                const response = await setUserInfo(this.formData);
+                this.handleProfileUpdateResponse(response, profileForm);
+                profileForm.reset(); // Сброс формы после успешной отправки
+                this.changedFields = {}; // Очистка измененных полей
+                this.formData = {
+                    id: Number(localStorage.getItem('userId')),
+                };
+            } else {
+                new Notify('Нет изменений для сохранения');
             }
-        });
+        } catch (error) {
+            new Notify('Произошла ошибка при отправке запроса');
+        }
+    }
 
-        logoutHandle();
+    handleProfileUpdateResponse(response, profileForm) {
+        if (response.ok) {
+            new Notify('Профиль успешно обновлен');
+            store.dispatch($sentUserInfoRequest());
+            profileForm.reset();
+        } else {
+            // Handle error response
+        }
     }
 }

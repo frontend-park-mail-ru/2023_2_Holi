@@ -1,5 +1,5 @@
 import { NETFLIX_API } from './const.js';
-import {Page404} from "../../pages/404/404";
+import {Page404} from '../../pages/404/404';
 
 /**
  * Выполняет запрос на получение фильмов по указанному жанру.
@@ -27,12 +27,17 @@ export const getGenreFilms = (id) => {
         })
         .catch(error => {
             if (!navigator.onLine) {
-                (new Page404(document.getElementById('root'))).render()
+                (new Page404(document.getElementById('root'))).render();
             }
             throw new Error(error);
         });
 };
-
+/**
+ * Выполняет запрос на получение контента по указанному идентификатору.
+ * @param {string} id - Идентификатор контента.
+ * @returns {Promise} Промис, который разрешится с данными о контенте или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const getContentById = (id) => {
     return fetch(`${NETFLIX_API}/films/${id}`, {
         method: 'GET',
@@ -56,7 +61,12 @@ export const getContentById = (id) => {
             throw new Error(error);
         });
 };
-
+/**
+ * Выполняет запрос на получение контента по идентификатору актера.
+ * @param {string} id - Идентификатор актера.
+ * @returns {Promise} Промис, который разрешится с данными о контенте или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const getContentByCastId = (id) => {
     return fetch(`${NETFLIX_API}/films/cast/${id}`, {
         method: 'GET',
@@ -77,12 +87,16 @@ export const getContentByCastId = (id) => {
         })
         .catch(error => {
             if (!navigator.onLine) {
-                (new Page404(document.getElementById('root'))).render()
+                (new Page404(document.getElementById('root'))).render();
             }
             throw new Error(error);
         });
 };
-
+/**
+ * Выполняет запрос на получение жанров фильмов.
+ * @returns {Promise} Промис, который разрешится с данными о жанрах или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const getGenreAlias = () => {
     return fetch(`${NETFLIX_API}/genres/films`, {
         method: 'GET',
@@ -102,12 +116,16 @@ export const getGenreAlias = () => {
         })
         .catch(error => {
             if (!navigator.onLine) {
-                (new Page404(document.getElementById('root'))).render()
+                (new Page404(document.getElementById('root'))).render();
             }
             throw new Error(error);
         });
 };
-
+/**
+ * Выполняет запрос на получение топ-рейтинга фильмов.
+ * @returns {Promise} Промис, который разрешится с данными о фильмах или ошибкой.
+ * @throws {Error} Ошибка сети или некорректный ответ сервера.
+ */
 export const getTopRated = () => {
     return fetch(`${NETFLIX_API}/films/top/rate`, {
         method: 'GET',

@@ -1,10 +1,23 @@
 import collectionTemplate from './feed-collection.hbs';
 import { uuid } from '../../../services/uuid-time.js';
+
+/**
+ * Класс для отображения коллекции контента в карусели.
+ */
 export class FeedCollection {
     #title;
     #content;
     #parent;
     #id;
+
+    /**
+    * Создает экземпляр класса FeedCollection.
+    *
+    * @param {HTMLElement} parent - Родительский элемент, в который будет вставлена коллекция.
+    * @param {string} title - Заголовок коллекции.
+    * @param {Array} content - Содержимое коллекции.
+    * @param {string} id - Идентификатор коллекции.
+    */
     constructor(parent, title, content, id) {
         this.#content = content;
         this.#title = title;
@@ -49,6 +62,9 @@ export class FeedCollection {
         });
     };
 
+    /**
+     * Задает цвет заливки рейтинга в зависимости от его значения.
+     */
     ratingFillColor() {
         // Получите все элементы с рейтингом
         const ratingElements = document.querySelectorAll('.feed-collection__advanced-info__rating');
@@ -57,9 +73,9 @@ export class FeedCollection {
         ratingElements.forEach(element => {
             const rating = parseInt(element.getAttribute('data-rating'), 10);
 
-            if (rating >= 4) {
+            if (rating >= 8) {
                 element.classList.add('rating-high');
-            } else if (rating >= 2) {
+            } else if (rating >= 5) {
                 element.classList.add('rating-medium');
             } else {
                 element.classList.add('rating-low');
@@ -90,7 +106,7 @@ export class FeedCollection {
             container: containerUUID,
             id: this.#id,
             title: this.#title,
-            content: roundedMovies,
+            content: roundedMovies.sort((a, b) => b.rating - a.rating),
         });
 
         this.scrolling(carouselUUID, containerUUID);
@@ -107,7 +123,6 @@ export class FeedCollection {
         });
 
         videoElements.forEach((container) => {
-            const video = container.querySelector('video');
 
             container.addEventListener('mousedown', () => {
                 isDragging = true;
@@ -117,22 +132,11 @@ export class FeedCollection {
                 isDragging = false;
             });
 
-            container.addEventListener('click', () => {
-                if (!isDragging && !prevDrag) {
-                    // Остановка всех видео
-                    videoElements.forEach((otherContainer) => {
-                        const otherVideo = otherContainer.querySelector('video');
-                        if (otherVideo !== video && !otherVideo.paused) {
-                            otherVideo.pause();
-                            otherVideo.setAttribute('autoplay', 'false');
-                            otherVideo.preload = 'none';
-                        }
-                    });
-
-                    video.preload = 'auto'; // Запустить загрузку видео
-                    video.setAttribute('autoplay', '');
-                    video.play();
-
+            container.addEventListener('click', (e) => {
+                if (isDragging && prevDrag) {
+                    console.info('rsjf')
+                    e.preventDefault();
+                    e.stopPropagation();
                 }
             });
 

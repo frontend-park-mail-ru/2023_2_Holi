@@ -1,47 +1,62 @@
-<form name="profile-form" class="profile-form">
-    <div class="profile-form__row">
-        <div class="profile-form__row__avatar">
-            <img class="avatar avatar-preview" data-avatar="" src="/img/camera_50.png">
-            {{> partial/input-control/input-control kind="register-page" file=true id="file"
-            name="file" placeholder="Загрузите аватар" type="file"}}
-        </div>
-        <div class="profile-form__row__form">
+<div class="profile-form" style="animation: show .2s ease;">
+    <div class="profile-form__row__avatar">
+        <img class="avatar avatar-preview" data-avatar="" src="/img/camera_50.png">
+        <p id="email-span-js"></p>
+        {{> partial/button/button type="button" kind="login" label="Редактировать" id="config_profile_btn"}}
+        {{> partial/button/button type="button" kind="login" label="Подписка" id="payment_profile_btn"}}
+    </div>
+</div>
 
-            <div>
-                <b>
-                    <h3>Редактировать профиль</h1>
-                </b>
+<dialog id="config_profile_dialog" class="profile__config_dialog">
+    <div class="dialog__wrapper">
+        <form name="profile-form" class="profile-form__row">
+            <div class="profile-form__row__avatar">
+                <img class="avatar avatar-preview avatar__edit" data-avatar="" src="/img/camera_50.png">
+                {{> partial/input-control/input-control kind="register-page" file=true id="file"
+                name="file" placeholder="Загрузите аватар" type="file"}}
             </div>
-            <div class="profile-form__row__form_col">
-                <label for="email">Почта</label>
-                {{> partial/input-control/input-control kind="register-page" id="email"
-                default=true
-                placeholder="Почта"
-                autocomplete="email"
-                name="email" type="email"}}
+            <div class="profile-form__row__form">
+
+                <div>
+                    <b>
+                        <h3>Редактировать профиль</h1>
+                    </b>
+                </div>
+                <div class="profile-form__row__form_col">
+                    <label for="email">Почта</label>
+                    {{> partial/input-control/input-control kind="register-page" id="email"
+                    default=true
+                    placeholder="Почта"
+                    autocomplete="email"
+                    name="email" type="email"}}
+                </div>
+                <div class="profile-form__row__form_col">
+                    <label for="password">Пароль</label>
+                    {{> partial/input-control/input-control kind="register-page"
+                    id="password" default=true
+                    placeholder="Пароль"
+                    autocomplete="new-password"
+                    name="password" type="password"}}
+                </div>
+
+                {{> partial/button/button type="submit" kind="login" label="Применить" id="submit"}}
             </div>
-            <div class="profile-form__row__form_col">
-                <label for="password">Пароль</label>
-                {{> partial/input-control/input-control kind="register-page"
-                id="password" default=true
-                placeholder="Пароль"
-                autocomplete="password"
-                name="password" type="password"}}
-            </div>
-
-            {{> partial/button/button type="submit" kind="login" label="Применить" id="submit"}}
-        </div>
-
-
-
+        </form>
+        <button id="config_profile_btn_close" aria-label="close" class="x">❌</button>
     </div>
 
-    <div>
-        <h3>Подписка</h3>
-        <div style="display: flex; flex-direction: row; gap: 16px">
-            {{> subscription-card header="Стандартная" title_price="1руб/мес" description="Полный доступ к коллекциям
-            фильмов и сериалов"}}
-        </div>
-    </div>
+</dialog>
 
-</form>
+<dialog id="payment_profile_dialog">
+    <div class="dialog__wrapper">
+        <div style="max-width: 224px; height: 100%">
+            <h3>Подписка</h3>
+            <div style="display: flex; flex-direction: row; gap: 16px">
+                {{> subscription-card header="Стандартная" title_price="2руб/мес" description="Полный доступ к
+                коллекциям
+                фильмов и сериалов"}}
+            </div>
+        </div>
+        <button id="payment_profile_btn_close" aria-label="close" class="x">❌</button>
+    </div>
+</dialog>

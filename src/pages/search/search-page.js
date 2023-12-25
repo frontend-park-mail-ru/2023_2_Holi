@@ -47,6 +47,11 @@ export class SearchPage {
         const films = content.body.films;
         const cast = content.body.cast;
 
+        let hasCast = false;
+        if (cast && cast.length) {
+            hasCast = true;
+        }
+
         const rFilms = films.map(movie => {
             // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
             const roundedRating = parseFloat(movie.rating.toFixed(1));
@@ -55,11 +60,26 @@ export class SearchPage {
             return { ...movie, rating: roundedRating };
         });
 
+        let hasMovies = false;
+        const movies = rFilms.filter((film) => film.seasonsCount === 0);
+        if (movies && movies.length) {
+            hasMovies = true;
+        }
+
+        let hasSeries = false;
+        const series = rFilms.filter((film) => film.seasonsCount > 0);
+        if (series && series.length) {
+            hasSeries = true;
+        }
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = searchPage({
             title: lastWord,
             cast: cast,
-            films: rFilms,
+            films: movies,
+            serial: series,
+            hasCast: hasCast,
+            hasMovies: hasMovies,
+            hasSeries: hasSeries,
         });
 
         avatarUpdate();
