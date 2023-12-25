@@ -274,3 +274,7 @@
         display: block !important;
     }
 }
+
+.logout {
+    cursor: pointer;
+}
