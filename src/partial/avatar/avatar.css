@@ -24,7 +24,7 @@
     direction: ltr;
     font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
     line-height: 70px;
-    cursor: pointer;
+    cursor: default;
     font-size: 12px;
     font-weight: 500;
     border: 0;
