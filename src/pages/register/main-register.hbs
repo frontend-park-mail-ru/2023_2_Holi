@@ -1,10 +1,9 @@
-<div class="login-page__login-background" style="background-image: url('/img/main.jpg');"></div>
-<div class="main-register-page">
-    <div class="main-register-page__container">
-        {{> partial/header/partial-header kind="main-page" mainPage=true}}
+<div class="login-page" style="animation: show .2s ease;">
+   <div class="login-page__login-background" style="background-image: url('/img/drama.jpg');"></div>
+    <div class="login-page__container">
+        {{> partial/header/partial-header loginPage=true kind="login-page"}}
 
-        {{> components/register-form }}
-
+        {{> components/register-form}}
         {{> partial/footer/partial-footer}}
     </div>
 

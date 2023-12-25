@@ -4,11 +4,11 @@
 
 /*Dialog Styles*/
 dialog {
-    padding: 1rem 3rem;
     background: black;
     padding-top: 2rem;
     border-radius: 20px;
-    border: 0;
+    border: none;
+    padding: 0;
     box-shadow: 0 5px 30px 0 #000;
     animation: fadeIn 1s ease both;
 }
@@ -17,6 +17,10 @@ dialog::backdrop {
     animation: fadeIn 1s ease both;
     z-index: 2;
     backdrop-filter: blur(20px);
+}
+
+.dialog__wrapper {
+    padding: 1rem 3rem;
 }
 
 dialog .x {

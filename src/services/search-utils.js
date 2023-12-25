@@ -144,7 +144,7 @@ export function seachHandler() {
             inputSearch.value = '';
             setTimeout(() => {
                 dropdownList.innerHTML = '';
-            }, 800);
+            }, 1000);
 
         });
     }

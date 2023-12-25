@@ -48,6 +48,7 @@ export class FeedPage {
             btn.addEventListener('click', () => {
                 btn.href = '/movies/' + state.preview.id;
             });
+
             seachHandler();
             videoHelper();
             avatarUpdate();

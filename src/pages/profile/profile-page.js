@@ -6,6 +6,7 @@ import store from '../../../index.js';
 import { $sentUserInfoRequest, USER_REDUCER } from '../../services/flux/actions/user-info.js';
 import { logoutHandle } from '../../services/logoutHandle.js';
 import { checkPaymentLink, getPaymentLink } from '../../services/api/payment.js';
+import { closeOnBackDropClick } from '../../components/modal/modal.js';
 /**
  * Класс для отображения страницы профиля пользователя.
  */
@@ -37,6 +38,28 @@ export class ProfilePage {
         const passwordInput = profileForm.elements['password'];
         const fileInput = profileForm.elements['file'];
 
+        const buttonConfig = document.getElementById('config_profile_btn');
+        const dialogConfig = document.getElementById('config_profile_dialog');
+        const closeConfig = document.getElementById('config_profile_btn_close');
+        dialogConfig.addEventListener('click', closeOnBackDropClick);
+        buttonConfig.addEventListener('click', () => {
+            dialogConfig.showModal();
+        });
+        closeConfig.addEventListener('click', () => {
+            dialogConfig.close();
+        });
+
+        const buttonPayment = document.getElementById('payment_profile_btn');
+        const dialogPayment = document.getElementById('payment_profile_dialog');
+        dialogPayment.addEventListener('click', closeOnBackDropClick);
+        const closePayment = document.getElementById('payment_profile_btn_close');
+
+        buttonPayment.addEventListener('click', () => {
+            dialogPayment.showModal();
+        });
+        closePayment.addEventListener('click', () => {
+            dialogPayment.close();
+        });
         store.dispatch($sentUserInfoRequest());
 
         store.subscribe(USER_REDUCER, () => {
@@ -48,6 +71,7 @@ export class ProfilePage {
 
                 if (stateUser.user.email) {
                     emailInput.value = stateUser.user.email;
+                    document.getElementById('email-span-js').textContent = stateUser.user.email;
                 }
 
                 if (stateUser.user.imagePath) {
@@ -81,7 +105,17 @@ export class ProfilePage {
         if (linkResponse.body.status) {
             const label = linkResponse.body.subUpTo;
             paymentLinkElement.href = '#';
-            paymentLinkElement.textContent = label;
+
+            const dateObject = new Date(label);
+
+            // Получение компонентов даты
+            const day = dateObject.getDate();
+            const month = dateObject.getMonth() + 1;
+            const year = dateObject.getFullYear();
+
+            // Формирование текста для кнопки
+            const buttonText = `Оплата до ${day}.${month}.${year}`;
+            paymentLinkElement.textContent = buttonText;
         } else {
             const paymentResponse = await getPaymentLink();
             const label = 'Оплатить';
@@ -95,6 +129,8 @@ export class ProfilePage {
     setupFormSubmission(profileForm) {
         profileForm.addEventListener('submit', async(event) => {
             event.preventDefault();
+            const dialogConfig = document.getElementById('config_profile_dialog');
+            dialogConfig.close();
             await this.handleFormSubmission(profileForm);
         });
     }
@@ -123,7 +159,7 @@ export class ProfilePage {
         const allowedExtensions = ['jpg', 'jpeg', 'png', 'webm'];
         const fileName = file.name.toLowerCase();
         const fileExtension = fileName.split('.').pop();
-        const ava = document.querySelector('.avatar-preview');
+        const ava = document.querySelector('.avatar__edit');
 
         if (allowedExtensions.includes(fileExtension)) {
             document.querySelector('.input-control__file-text').innerHTML = file.name;

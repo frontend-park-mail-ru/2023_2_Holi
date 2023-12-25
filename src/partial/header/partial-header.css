@@ -2,6 +2,7 @@
     position: relative;
     z-index: 1;
     transition: max-width 0.5s, min-width 0.5s, padding 0.5s;
+    animation: show 2s ease;
 }
 
 .header-content[kind="main-page"],
@@ -30,7 +31,8 @@
 
 .header-content__links {
     display: flex;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 600;
     flex-direction: row;
     gap: 20px;
     padding-left: 30px;
@@ -219,6 +221,7 @@
 }
 
 .menu-list {
+    padding: 0;
     top: 0;
     left: 0;
     opacity: 0;
@@ -229,6 +232,7 @@
     height: 0;
     list-style-type: none;
     transition: .3s;
+    padding: 0;
 }
 
 .menu-item {
