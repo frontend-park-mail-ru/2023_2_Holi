@@ -22,7 +22,7 @@ export class Notify {
 
         setTimeout(() => {
             toast.innerHTML = '';
-        }, 80000);
+        }, 5000);
 
     }
 }
