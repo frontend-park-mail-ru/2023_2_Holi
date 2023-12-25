@@ -4,7 +4,7 @@ self.addEventListener('install', (event) => {
     // кэшируем изображение, которое используется для уведомления
     // об отсутствии сети
     event.waitUntil(caches.open(CACHE).then((cache) => {
-        return cache.add('img/netflix.svg');
+        return cache.add('img/icon.png');
     }));
 });
 
