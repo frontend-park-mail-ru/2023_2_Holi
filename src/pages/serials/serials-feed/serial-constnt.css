@@ -36,6 +36,7 @@ select {
     justify-content: start;
     padding: 2rem;
     gap: 30px;
+    padding-top: 0.5rem;
 }
 
 .serial-content-container__advanced-info__about {

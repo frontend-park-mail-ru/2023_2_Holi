@@ -71,8 +71,8 @@ export function updateDropdownList(results) {
     }
     else {
         simulateAndRemoveLink('/search');
-        const data = results.body;
 
+        /*const data = results.body;
         if (data.cast) {
             const ladel = document.createElement('li');
             ladel.className = 'dropdown-item';
@@ -110,7 +110,7 @@ export function updateDropdownList(results) {
                 listItem.appendChild(a);
                 dropdownList.appendChild(listItem);
             });
-        }
+        }*/
     }
 
 }
@@ -148,7 +148,7 @@ export function seachHandler() {
 
         });
     }
-    if (btnSearch && inputSearch ) {
+    if (btnSearch && inputSearch) {
         btnSearch.addEventListener('click', (e) => {
             e.preventDefault();
             // Инпут находится в фокусе, выполняйте ваш код

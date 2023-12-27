@@ -48,7 +48,7 @@ export class ContentPage {
             const dialog = document.querySelector('#subs');
             const dialogClose = document.getElementById('subs_btn_close');
             dialog.showModal();
-
+            document.querySelector('video').poster = '/img/Frame 2.png';
             dialog.addEventListener('click', closeOnBackDropClick);
 
             dialogClose.addEventListener('click', () => {

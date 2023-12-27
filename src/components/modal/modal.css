@@ -4,7 +4,7 @@
 
 /*Dialog Styles*/
 dialog {
-    background: black;
+    background: #171616;
     padding-top: 2rem;
     border-radius: 20px;
     border: none;
@@ -16,7 +16,7 @@ dialog {
 dialog::backdrop {
     animation: fadeIn 1s ease both;
     z-index: 2;
-    backdrop-filter: blur(20px);
+    backdrop-filter: brightness(.5);
 }
 
 .dialog__wrapper {

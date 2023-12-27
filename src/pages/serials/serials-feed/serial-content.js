@@ -51,7 +51,7 @@ export class SerialContentPage {
 
         const video = document.querySelector('video');
         video.load();
-        video.addEventListener('loadedmetadata', function () {
+        video.addEventListener('loadedmetadata', function() {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -131,7 +131,7 @@ export class SerialContentPage {
                         const dialog = document.querySelector('#subs');
                         const dialogClose = document.getElementById('subs_btn_close');
                         dialog.showModal();
-
+                        document.querySelector('video').poster = '/img/Frame 2.png';
                         dialog.addEventListener('click', closeOnBackDropClick);
 
                         dialogClose.addEventListener('click', () => {
@@ -178,17 +178,6 @@ export class SerialContentPage {
                     targetEpisode,
                     state.episodes);
             });
-            // Определяем функцию для плавного прокручивания вверх
-            function scrollToTop() {
-                // Получаем текущую позицию прокрутки
-                const currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
-
-                // Если текущая позиция не равна 0, то прокручиваем страницу вверх
-                if (currentPosition > 0) {
-                    window.requestAnimationFrame(scrollToTop);
-                    window.scrollTo(0, currentPosition - currentPosition / 20);
-                }
-            }
 
             const elementsWithEpisodeAttribute = document.querySelectorAll('[episode]');
             elementsWithEpisodeAttribute.forEach(episode => {
@@ -295,3 +284,14 @@ export const videoController = () => {
     });
 };
 
+ // Определяем функцию для плавного прокручивания вверх
+ export function scrollToTop() {
+    // Получаем текущую позицию прокрутки
+    const currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+    // Если текущая позиция не равна 0, то прокручиваем страницу вверх
+    if (currentPosition > 0) {
+        window.requestAnimationFrame(scrollToTop);
+        window.scrollTo(0, currentPosition - currentPosition / 20);
+    }
+}

@@ -3,6 +3,7 @@ import { getContentByCastId } from '../../services/api/content.js';
 import cast from './cast.hbs';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
+import { scrollToTop } from '../serials/serials-feed/serial-content.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -59,10 +60,10 @@ export class CastPage {
             cast: castData,
             content: content,
         });
-
+        window.scrollTo(pageYOffset, 0);
         avatarUpdate();
         seachHandler();
-
+        scrollToTop();
         this.ratingFillColor();
 
     }
