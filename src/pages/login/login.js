@@ -8,6 +8,7 @@ import login from './login-page.hbs';
 import { $sentAuthRequest } from '../../services/flux/actions/auth.js';
 import { validatePassword } from '../../services/validate.js';
 import { Notify } from '../../components/notify/notify.js';
+import { simulateAndRemoveLink } from '../../services/search-utils.js';
 
 /**
  * Класс, представляющий страницу входа.
@@ -43,14 +44,14 @@ const loginContoller = () => {
     const emailInput = loginForm.elements['email'];
     const passwordInput = loginForm.elements['password'];
 
-    loginForm.addEventListener('submit', async function(event) {
+    loginForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const email = emailInput.value;
         const password = Array.from(new TextEncoder().encode(passwordInput.value));
 
         if (email && password && validatePassword(passwordInput.value) === '') {
-            store.dispatch($sentAuthRequest(email, password, () => navigate('/feed')));
+            store.dispatch($sentAuthRequest(email, password, () => simulateAndRemoveLink('/feed')));
         } else {
             new Notify(validatePassword(passwordInput.value));
         }
@@ -58,8 +59,18 @@ const loginContoller = () => {
 
     store.subscribe('LOGIN_REDUCER', () => {
         const state = store.getState();
-        if(state.auth.authError){
-            new Notify('Ошибка при авторизации');
+        if (state.auth.authError) {
+
+            const error = state.auth.error.error.status;
+            if (error == 404) {
+                new Notify('Похоже такого пользователя нет');
+            }
+            else if (error == 409) {
+                new Notify('Похоже вы уже авторизованы');
+            }
+            else {
+                new Notify('Что-то пошло не так');
+            }
         }
     });
 

@@ -212,6 +212,7 @@
     animation: show .3s ease-in-out;
     opacity: 1;
     height: auto;
+    pointer-events: all;
 }
 
 .burger-checkbox:checked+.burger::after {
@@ -233,6 +234,7 @@
     list-style-type: none;
     transition: .3s;
     padding: 0;
+    pointer-events: none;
 }
 
 .menu-item {

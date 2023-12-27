@@ -31,9 +31,7 @@ export const loginRequest = (email, password) => {
             return response.json();
         } else {
             // Если статус не успешен, выбросьте ошибку с текстом ответа
-            return response.text().then(errorText => {
-                throw new Error(`Ошибка запроса: ${errorText}`);
-            });
+            throw response;
         }
 
     })

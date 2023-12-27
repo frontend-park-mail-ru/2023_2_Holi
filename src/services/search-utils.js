@@ -24,7 +24,7 @@ export function fetchData(query) {
  *
  * @param {string} href - Адрес ссылки.
  */
-function simulateAndRemoveLink(href) {
+export function simulateAndRemoveLink(href) {
     // Создать элемент
     const link = document.createElement('a');
     link.href = href;
