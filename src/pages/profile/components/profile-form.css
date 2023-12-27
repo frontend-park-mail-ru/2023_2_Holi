@@ -8,6 +8,18 @@
     border-radius: 0.45rem;
     margin: auto;
     color: #fff;
+    animation: show .2s ease;
+}
+
+.dialog__payment__container {
+    max-width: 224px;
+    height: 100%
+}
+
+.dialog__payment__container__card {
+    display: flex;
+    flex-direction: row;
+    gap: 16px
 }
 
 .profile-form__row {
@@ -57,6 +69,28 @@
     text-align: center;
 }
 
-#payment_profile_dialog{
+#payment_profile_dialog {
     color: #fff;
+}
+
+.subscription__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.subscription__container__wrapper {
+    border-radius: 0.5rem;
+    background-color: var(--dark);
+    border: 3px solid rgba(255, 255, 255, 0.15)
+}
+
+.subscription__container__card {
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.subscription__container__card__link {
+    width: 100%;
+    font-weight: 700
 }

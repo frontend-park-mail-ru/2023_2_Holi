@@ -1,7 +1,7 @@
 {{> partial/header/partial-header kind="feed-page" feedPage=true}}
 
 
-<div class="content-container" style="animation: show .2s ease;">
+<div class="content-container">
 
     <h1 class="content-container__title">{{film.film.name}}</h1>
     <video controls controlslist="nodownload noremoteplayback" class="content-container__player">
@@ -40,10 +40,7 @@
     </div>
 </div>
 
-<dialog id="subs" style="
-    padding: 2rem!important; 
-    color: white;
-    text-align: center;">
+<dialog id="subs">
     <div class="dialog__wrapper">
         <h2>Для просмотра получите подписку</h2>
         {{> partial/button/btn-link href="/profile" kind="primary-xl"

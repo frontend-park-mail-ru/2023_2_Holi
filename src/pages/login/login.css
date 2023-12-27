@@ -6,6 +6,7 @@
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
+    animation: show .2s ease;
 }
 
 @media screen and (max-width: 900px) {

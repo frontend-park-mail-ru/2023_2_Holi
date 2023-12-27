@@ -78,6 +78,7 @@
     width: 100%;
     max-width: calc(100vw - 32px);
     border-radius: 0.25rem;
+    animation: show .2s ease;
 }
 
 .content-container__title {

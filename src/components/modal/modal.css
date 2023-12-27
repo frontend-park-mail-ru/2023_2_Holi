@@ -96,3 +96,9 @@ button.primary__modal:hover {
         opacity: 1;
     }
 }
+
+#subs {
+    padding: 2rem !important;
+    color: white;
+    text-align: center;
+}

@@ -280,3 +280,17 @@
 .logout {
     cursor: pointer;
 }
+
+.search__contol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.small__menu__logo {
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-right: 3rem
+}
