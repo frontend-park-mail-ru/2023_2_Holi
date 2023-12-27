@@ -58,7 +58,7 @@ const loginContoller = () => {
 
             const error = state.auth.error.error.status;
             if (error == 404) {
-                new Notify('Похоже такого пользователя нет');
+                new Notify('Неверный логин или пароль');
             }
             else if (error == 409) {
                 new Notify('Похоже вы уже авторизованы');

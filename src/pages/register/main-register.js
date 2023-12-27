@@ -54,7 +54,7 @@ export class MainRegister {
                     } else {
                         localStorage.removeItem('userNewEmail');
                         if (response.status == 409) {
-                            new Notify('Такая почта уже используется');
+                            new Notify('Пользователь с данным email уже зарегистрирован');
                         } else {
                             new Notify('Ошибка регистрации');
                         }

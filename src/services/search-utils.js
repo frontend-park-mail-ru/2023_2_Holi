@@ -66,7 +66,7 @@ export function updateDropdownList(results) {
     if (!results) {
         const ladel = document.createElement('li');
         ladel.className = 'dropdown-item';
-        ladel.textContent = 'Ничего не нашлось:(';
+        ladel.textContent = 'Ничего не найдено';
         dropdownList.appendChild(ladel);
     }
     else {
