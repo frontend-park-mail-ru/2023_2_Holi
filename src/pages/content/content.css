@@ -135,7 +135,8 @@
 
 .content-container__advanced-info__genres-title {
     font-family: Netflix;
-    color: #777777;
+    color: white;
+    font-size: 1.2rem;
     display: flex;
 }
 

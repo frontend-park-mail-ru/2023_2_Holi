@@ -112,13 +112,28 @@
 
 /* Добавьте стили для разных рейтингов с использованием классов в JavaScript */
 .rating-high {
-    background: green!important;
+    background: green !important;
+    box-shadow: 0 10px 20px -10px green !important;
+}
+
+.rating-high:hover {
+    box-shadow: 0 20px 20px -10px green !important;
 }
 
 .rating-medium {
-    background: orange!important;
+    background: orange !important;
+    box-shadow: 0 10px 20px -10px orange !important;
+}
+
+.rating-medium:hover {
+    box-shadow: 0 20px 20px -10px orange !important;
 }
 
 .rating-low {
-    background: red!important;
+    background: red !important;
+    box-shadow: 0 10px 20px -10px red !important;
+}
+
+.rating-low:hover {
+    box-shadow: 0 20px 20px -10px red !important;
 }

@@ -8,13 +8,8 @@
 
 .cast-card {
     /* max-width: 270px; */
-    width: 120px !important;
+    width: 130px !important;
     height: 120px !important;
-    border: 3px solid #B17267;
-    color: #B17267;
-    border-radius: 50%;
-    /* Линейный градиент с использованием случайных цветов */
-    background: #D53032;
 }
 
 .cast-container-card {
