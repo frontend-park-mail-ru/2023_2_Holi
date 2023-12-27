@@ -3,7 +3,6 @@ import { getContentByCastId } from '../../services/api/content.js';
 import cast from './cast.hbs';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
-import { videoHelper } from '../../services/video-helper.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -62,7 +61,6 @@ export class CastPage {
         });
 
         avatarUpdate();
-        videoHelper();
         seachHandler();
 
         this.ratingFillColor();

@@ -4,7 +4,6 @@ import { avatarUpdate } from '../../services/avatar-update';
 import { $sendGetFavourites } from '../../services/flux/actions/like';
 import { logoutHandle } from '../../services/logoutHandle';
 import { seachHandler } from '../../services/search-utils';
-import { videoHelper } from '../../services/video-helper';
 import like from './like.hbs';
 
 /**
@@ -90,7 +89,6 @@ export class FavouritesPage {
 
             logoutHandle();
             seachHandler();
-            videoHelper();
             avatarUpdate();
         });
 

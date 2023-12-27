@@ -39,6 +39,7 @@
     width: 260px;
     display: block;
     background: url(../../../static/img/devices.webp) no-repeat 50% 50%;
+    filter: hue-rotate(180deg);
     background-size: 260px;
     height: 90px;
 }

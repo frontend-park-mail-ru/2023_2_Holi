@@ -1,8 +1,3 @@
-//import { Notify } from '../../components/notify/notify.js';
-/*import { loginRequest } from '../../services/api/auth.js';
-import { getUserInfo } from '../../services/api/user.js';
-*/
-import { navigate } from '../../services/router/Router.js';
 import store from '../../../index.js';
 import login from './login-page.hbs';
 import { $sentAuthRequest } from '../../services/flux/actions/auth.js';
@@ -44,7 +39,7 @@ const loginContoller = () => {
     const emailInput = loginForm.elements['email'];
     const passwordInput = loginForm.elements['password'];
 
-    loginForm.addEventListener('submit', async function (event) {
+    loginForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
         const email = emailInput.value;

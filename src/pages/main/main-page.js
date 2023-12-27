@@ -35,7 +35,7 @@ const mainController = () => {
     const mainForm = document.forms['mainForm'];
     const emailInput = mainForm.elements['email'];
 
-    mainForm.addEventListener('submit', function (event) {
+    mainForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const email = emailInput.value;
         if (email) {

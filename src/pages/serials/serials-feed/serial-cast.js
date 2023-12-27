@@ -4,7 +4,6 @@ import { seachHandler } from '../../../services/search-utils.js';
 import store from '../../../../index.js';
 import { getSerialByCastId } from '../../../services/api/serials.js';
 import { avatarUpdate } from '../../../services/avatar-update.js';
-import { videoHelper } from '../../../services/video-helper.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -62,7 +61,6 @@ export class SerialCastPage {
         });
 
         avatarUpdate();
-        videoHelper();
         seachHandler();
 
         this.ratingFillColor();

@@ -4,7 +4,6 @@ import store from '../../..';
 import { $sendCollectionAliasRequest, COLLECTION_REDUCER } from '../../services/flux/actions/collections.js';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
-import { videoHelper } from '../../services/video-helper.js';
 import { logoutHandle } from '../../services/logoutHandle.js';
 
 /**
@@ -50,7 +49,6 @@ export class FeedPage {
             });
 
             seachHandler();
-            videoHelper();
             avatarUpdate();
         });
 

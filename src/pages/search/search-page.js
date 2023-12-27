@@ -2,7 +2,6 @@ import searchPage from './search-page.hbs';
 import { seachHandler } from '../../services/search-utils.js';
 import store from '../../../index.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
-import { videoHelper } from '../../services/video-helper.js';
 import { searchRequest } from '../../services/api/search.js';
 
 /**
@@ -83,7 +82,6 @@ export class SearchPage {
         });
 
         avatarUpdate();
-        videoHelper();
         seachHandler();
 
         this.ratingFillColor();

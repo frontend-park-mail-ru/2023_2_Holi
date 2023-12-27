@@ -3,7 +3,6 @@ import { avatarUpdate } from '../../../services/avatar-update';
 import { $sendSerialsCollectionAliasRequest, SERIALS_COLLECTION_REDUCER } from '../../../services/flux/actions/serials-collection';
 import { getLastNumber } from '../../../services/getParams';
 import { seachHandler } from '../../../services/search-utils';
-import { videoHelper } from '../../../services/video-helper';
 import genre from './serial-genre.hbs';
 
 /**
@@ -64,7 +63,6 @@ export class SerialGenrePage {
                             content: roundedMovies,
                         });
                         this.ratingFillColor();
-                        videoHelper();
                         avatarUpdate();
                     }
                 });
@@ -87,7 +85,6 @@ export class SerialGenrePage {
                         content: roundedMovies,
                     });
                     this.ratingFillColor();
-                    videoHelper();
                     avatarUpdate();
 
                 }

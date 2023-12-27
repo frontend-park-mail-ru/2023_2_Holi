@@ -4,7 +4,6 @@ import { $sendSerialsCollectionAliasRequest, SERIALS_COLLECTION_REDUCER } from '
 import { SerialsFeedCollection } from './serials-feed-collections';
 import { seachHandler } from '../../../services/search-utils';
 import { avatarUpdate } from '../../../services/avatar-update';
-import { videoHelper } from '../../../services/video-helper';
 import { logoutHandle } from '../../../services/logoutHandle';
 /**
  * Класс для отображения страницы ленты сериалов.
@@ -52,7 +51,6 @@ export class SerialFeedPage {
                     btn.href = '/serial/' + store.getState().serials.preview.id;
                 });
                 avatarUpdate();
-                videoHelper();
                 seachHandler();
             });
 
@@ -65,7 +63,6 @@ export class SerialFeedPage {
                 btn.href = '/serial/' + store.getState().serials.preview.id;
             });
             avatarUpdate();
-            videoHelper();
             seachHandler();
         }
 
