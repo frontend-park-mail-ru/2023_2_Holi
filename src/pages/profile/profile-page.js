@@ -67,16 +67,18 @@ export class ProfilePage {
             const stateUser = store.getState().user.userInfo;
 
             if (stateUser) {
-                const emailInput = document.forms['profile-form'].elements['email'];
-                const avatarElements = document.querySelectorAll('.avatar');
+                if (document.forms['profile-form']) {
+                    const emailInput = document.forms['profile-form'].elements['email'];
+                    const avatarElements = document.querySelectorAll('.avatar');
 
-                if (stateUser.user.email) {
-                    emailInput.value = stateUser.user.email;
-                    document.getElementById('email-span-js').textContent = stateUser.user.email;
-                }
+                    if (stateUser.user.email) {
+                        emailInput.value = stateUser.user.email;
+                        document.getElementById('email-span-js').textContent = stateUser.user.email;
+                    }
 
-                if (stateUser.user.imagePath) {
-                    this.updateAvatars(avatarElements, stateUser.user.imagePath);
+                    if (stateUser.user.imagePath) {
+                        this.updateAvatars(avatarElements, stateUser.user.imagePath);
+                    }
                 }
             }
         });
@@ -128,7 +130,7 @@ export class ProfilePage {
     }
 
     setupFormSubmission(profileForm) {
-        profileForm.addEventListener('submit', async(event) => {
+        profileForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             const dialogConfig = document.getElementById('config_profile_dialog');
             dialogConfig.close();
