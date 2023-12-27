@@ -71,7 +71,7 @@ button.primary__modal {
     display: inline-block;
     font-size: 0.8rem;
     color: #fff !important;
-    background: #e50914;
+    background: var(--primary);
     border-radius: 17px;
     transition: background-color 0.1s ease;
     box-sizing: border-box;
@@ -79,12 +79,12 @@ button.primary__modal {
     padding: 5px;
     border: 0;
     cursor: pointer;
-    box-shadow: 0 10px 20px -10px #e50914;
+    box-shadow: 0 10px 20px -10px var(--primary);
 }
 
 button.primary__modal:hover {
-    box-shadow: 0 20px 20px -10px #c11119;
-    transform: translateY(-3px);
+    box-shadow: 0 20px 20px -10px var(--primary);
+    transform: scale(1.05);
 }
 
 @keyframes fadeIn {

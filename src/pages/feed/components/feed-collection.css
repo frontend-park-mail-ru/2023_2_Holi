@@ -112,13 +112,13 @@
 
 /* Добавьте стили для разных рейтингов с использованием классов в JavaScript */
 .rating-high {
-    background: green;
+    background: green!important;
 }
 
 .rating-medium {
-    background: orange;
+    background: orange!important;
 }
 
 .rating-low {
-    background: red;
+    background: red!important;
 }

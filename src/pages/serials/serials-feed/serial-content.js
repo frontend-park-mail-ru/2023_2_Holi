@@ -51,7 +51,7 @@ export class SerialContentPage {
 
         const video = document.querySelector('video');
         video.load();
-        video.addEventListener('loadedmetadata', function() {
+        video.addEventListener('loadedmetadata', function () {
             const durationInSeconds = video.duration;
 
             // Преобразуем длительность из секунд в часы и минуты
@@ -265,6 +265,17 @@ export class SerialContentPage {
 
             avatarUpdate();
             setRating();
+
+            const ratingButton = document.querySelector('.primary__modal');
+            const ratingValue = parseFloat(state.film.rating.toFixed(1));
+
+            if (ratingValue >= 8) {
+                ratingButton.classList.add('rating-high');
+            } else if (ratingValue >= 5) {
+                ratingButton.classList.add('rating-medium');
+            } else {
+                ratingButton.classList.add('rating-low');
+            }
         });
     }
 }
