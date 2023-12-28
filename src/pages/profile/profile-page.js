@@ -132,8 +132,6 @@ export class ProfilePage {
     setupFormSubmission(profileForm) {
         profileForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            const dialogConfig = document.getElementById('config_profile_dialog');
-            dialogConfig.close();
             await this.handleFormSubmission(profileForm);
         });
     }
@@ -214,7 +212,7 @@ export class ProfilePage {
     }
 
     handlePasswordInput(passwordInput) {
-        if (passwordInput.value && validatePassword(passwordInput.value) === '') {
+        if (passwordInput.value) {
             const newPassword = Array.from(new TextEncoder().encode(passwordInput.value));
             if (this.formData.password !== newPassword) {
                 this.formData.password = newPassword;
@@ -224,18 +222,28 @@ export class ProfilePage {
                 delete this.changedFields.password;
             }
         } else {
-            new Notify(validatePassword(passwordInput.value));
+            //new Notify(validatePassword(passwordInput.value));
             delete this.formData.password;
             delete this.changedFields.password;
         }
     }
 
     async handleFormSubmission(profileForm) {
+        const passwordInput = profileForm.elements['password'];
         try {
+            if (this.changedFields.password && validatePassword(passwordInput.value).length > 0) {
+                new Notify(validatePassword(passwordInput.value));
+                passwordInput.value = ''; // Сброс формы после успешной отправки
+                this.changedFields = {}; // Очистка измененных полей
+
+                return;
+            }
             if (Object.keys(this.changedFields).length > 0) {
                 const response = await setUserInfo(this.formData);
                 this.handleProfileUpdateResponse(response, profileForm);
                 profileForm.reset(); // Сброс формы после успешной отправки
+                const dialogConfig = document.getElementById('config_profile_dialog');
+                dialogConfig.close();
                 this.changedFields = {}; // Очистка измененных полей
                 this.formData = {
                     id: Number(localStorage.getItem('userId')),

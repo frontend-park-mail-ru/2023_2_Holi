@@ -1,44 +1,5 @@
 {{> partial/header/partial-header feedPage=true kind="feed-page"}}
-<style>
-    .cast__title {
-        font-size: 2rem;
-        font-weight: 600;
-        color: white;
-        text-align: center;
-    }
 
-    .cast__container {
-        display: flex;
-        flex-direction: column;
-        color: white;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-    }
-
-    @media (max-width: 900px) {
-        .cast__container__img {
-            border-radius: 1rem;
-            height: 250px !important;
-            width: 200px !important;
-        }
-    }
-
-    .cast__container__img {
-        border-radius: 1rem;
-        height: 500px;
-        width: fit-content;
-        transition: all .2s;
-    }
-
-    .cast__advanced__info {
-        display: flex;
-        flex-direction: column;
-        font-size: 0.9rem;
-        text-align: center;
-        gap: 4px;
-    }
-</style>
 <div class="cast__title">{{cast.name}}</div>
 <div class="cast__container">
     <div style="display: flex; flex-direction:column">

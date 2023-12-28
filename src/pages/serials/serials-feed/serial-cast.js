@@ -44,7 +44,7 @@ export class SerialCastPage {
         const filmsByCast = await getSerialByCastId(id);
 
         let content = filmsByCast.body.series;
-        const castName = filmsByCast.body.cast.name;
+        const castData = filmsByCast.body.cast;
 
         content = content.map(movie => {
             // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
@@ -56,7 +56,7 @@ export class SerialCastPage {
 
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = cast({
-            title: castName,
+            cast: castData,
             content: content,
         });
 

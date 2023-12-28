@@ -1,6 +1,18 @@
 {{> partial/header/partial-header feedPage=true kind="feed-page"}}
 
-<div class="glow-title">{{title}}</div>
+<div class="cast__title">{{cast.name}}</div>
+<div class="cast__container">
+    <div style="display: flex; flex-direction:column">
+        <img class="avatar avatar-preview cast__container__img" src="{{cast.imgPath}}" alt="">
+    </div>
+    <div class="cast__advanced__info">
+        <div style="font-size: 1.5rem;font-weight: 600;">О персоне</div>
+        <div>{{cast.brithday}}</div>
+        <div>{{cast.carier}}</div>
+        <div>{{cast.place}}</div>
+    </div>
+</div>
+<div style="font-size: 2rem;font-weight: 600; color:white; text-align:center; padding-top: 2rem">Фильмы и сериалы</div>
 <div class="genre-container">
     {{#each content}}
    {{> partial/preview-card baseUrl="serial" this=this}}
