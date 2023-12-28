@@ -40,5 +40,7 @@
     .main-form__input input {
         width: auto;
     }
-
+    .serial-content-container__advanced-info__cast-list{
+        justify-content: center!important;
+    }
 }
