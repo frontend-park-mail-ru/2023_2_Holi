@@ -44,7 +44,6 @@
 }
 
 .feed-collection__container-card__video {
-    /*object-fit: none;*/
     border-radius: 1rem;
     transition: all .3s;
 }
