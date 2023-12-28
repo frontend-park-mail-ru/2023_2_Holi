@@ -111,38 +111,5 @@ export class FeedCollection {
 
         this.scrolling(carouselUUID, containerUUID);
         this.ratingFillColor();
-
-        // Получите все элементы <video> на странице
-        const videoElements = document.querySelectorAll('.feed-collection__container-card');
-
-        let isDragging = false;
-        let prevDrag = false;
-
-        collection.addEventListener('click', () => {
-            localStorage.setItem('lastCollection', JSON.stringify(this.#content));
-        });
-
-        videoElements.forEach((container) => {
-
-            container.addEventListener('mousedown', () => {
-                isDragging = true;
-            });
-
-            container.addEventListener('mouseup', () => {
-                isDragging = false;
-            });
-
-            container.addEventListener('click', (e) => {
-                if (isDragging && prevDrag) {
-                    console.info('rsjf')
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
-            });
-
-            container.addEventListener('mousemove', () => {
-                prevDrag = isDragging;
-            });
-        });
     }
 }

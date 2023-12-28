@@ -1,3 +1,4 @@
 dist
 server
 src/services/state-manager
+sw.js

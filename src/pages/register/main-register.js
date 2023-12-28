@@ -53,14 +53,20 @@ export class MainRegister {
                         window.dispatchEvent(popStateEvent);
                     } else {
                         localStorage.removeItem('userNewEmail');
-                        new Notify('Ошибка регистрации: ' + response.statusText);
+                        if (response.status == 409) {
+                            new Notify('Пользователь с данным email уже зарегистрирован');
+                        } else {
+                            new Notify('Ошибка регистрации');
+                        }
+
                     }
                 } else {
                     new Notify('Не ввели логин и/или пароль');
                 }
 
             } catch (error) {
-                new Notify('Ошибка регистрации');
+
+                new Notify(error);
             }
         });
     }

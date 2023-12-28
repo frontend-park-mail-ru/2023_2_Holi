@@ -44,10 +44,8 @@
 }
 
 .feed-collection__container-card__video {
-    object-fit: none;
     border-radius: 1rem;
     transition: all .3s;
-    background: #d53032;
 }
 
 @media screen and (max-width: 900px) {
@@ -112,13 +110,28 @@
 
 /* Добавьте стили для разных рейтингов с использованием классов в JavaScript */
 .rating-high {
-    background: green;
+    background: green !important;
+    box-shadow: 0 10px 20px -10px green !important;
+}
+
+.rating-high:hover {
+    box-shadow: 0 20px 20px -10px green !important;
 }
 
 .rating-medium {
-    background: orange;
+    background: orange !important;
+    box-shadow: 0 10px 20px -10px orange !important;
+}
+
+.rating-medium:hover {
+    box-shadow: 0 20px 20px -10px orange !important;
 }
 
 .rating-low {
-    background: red;
+    background: red !important;
+    box-shadow: 0 10px 20px -10px red !important;
+}
+
+.rating-low:hover {
+    box-shadow: 0 20px 20px -10px red !important;
 }

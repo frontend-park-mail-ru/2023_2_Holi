@@ -24,7 +24,7 @@ export function fetchData(query) {
  *
  * @param {string} href - Адрес ссылки.
  */
-function simulateAndRemoveLink(href) {
+export function simulateAndRemoveLink(href) {
     // Создать элемент
     const link = document.createElement('a');
     link.href = href;
@@ -66,13 +66,13 @@ export function updateDropdownList(results) {
     if (!results) {
         const ladel = document.createElement('li');
         ladel.className = 'dropdown-item';
-        ladel.textContent = 'Ничего не нашлось:(';
+        ladel.textContent = 'Ничего не найдено';
         dropdownList.appendChild(ladel);
     }
     else {
         simulateAndRemoveLink('/search');
-        const data = results.body;
 
+        /*const data = results.body;
         if (data.cast) {
             const ladel = document.createElement('li');
             ladel.className = 'dropdown-item';
@@ -110,7 +110,7 @@ export function updateDropdownList(results) {
                 listItem.appendChild(a);
                 dropdownList.appendChild(listItem);
             });
-        }
+        }*/
     }
 
 }
@@ -148,7 +148,7 @@ export function seachHandler() {
 
         });
     }
-    if (btnSearch && inputSearch ) {
+    if (btnSearch && inputSearch) {
         btnSearch.addEventListener('click', (e) => {
             e.preventDefault();
             // Инпут находится в фокусе, выполняйте ваш код

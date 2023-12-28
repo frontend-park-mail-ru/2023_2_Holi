@@ -30,7 +30,7 @@ export const authReducer = (state = initialState, action) => {
         case GET_LOGIN_SUCCESS:
             return { ...state, authRequest: false, userId: action.payload, authSuccess: true, authError: false, error: null };
         case GET_LOGIN_ERROR:
-            return { ...state, authRequest: false, authSuccess: false, authError: true };
+            return { ...state, authRequest: false, authSuccess: false, authError: true, error: action.payload };
         default:
             return state;
     }

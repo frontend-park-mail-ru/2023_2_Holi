@@ -1,4 +1,4 @@
-<div class="profile-form" style="animation: show .2s ease;">
+<div class="profile-form">
     <div class="profile-form__row__avatar">
         <img class="avatar avatar-preview" data-avatar="" src="/img/camera_50.png">
         <p id="email-span-js"></p>
@@ -49,9 +49,9 @@
 
 <dialog id="payment_profile_dialog">
     <div class="dialog__wrapper">
-        <div style="max-width: 224px; height: 100%">
+        <div class="dialog__payment__container">
             <h3>Подписка</h3>
-            <div style="display: flex; flex-direction: row; gap: 16px">
+            <div class="dialog__payment__container__card">
                 {{> subscription-card header="Стандартная" title_price="2руб/мес" description="Полный доступ к
                 коллекциям
                 фильмов и сериалов"}}

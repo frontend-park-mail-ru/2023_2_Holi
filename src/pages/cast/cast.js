@@ -3,7 +3,7 @@ import { getContentByCastId } from '../../services/api/content.js';
 import cast from './cast.hbs';
 import { seachHandler } from '../../services/search-utils.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
-import { videoHelper } from '../../services/video-helper.js';
+import { scrollToTop } from '../serials/serials-feed/serial-content.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -45,7 +45,7 @@ export class CastPage {
         const filmsByCast = await getContentByCastId(id);
 
         let content = filmsByCast.body.films;
-        const castName = filmsByCast.body.cast.name;
+        const castData = filmsByCast.body.cast;
 
         content = content.map(movie => {
             // Используйте метод toFixed, чтобы округлить значение до 1 знака после запятой
@@ -57,14 +57,13 @@ export class CastPage {
 
         this.#parent.innerHTML = '';
         this.#parent.innerHTML = cast({
-            name: castName,
+            cast: castData,
             content: content,
         });
-
+        window.scrollTo(pageYOffset, 0);
         avatarUpdate();
-        videoHelper();
         seachHandler();
-
+        scrollToTop();
         this.ratingFillColor();
 
     }

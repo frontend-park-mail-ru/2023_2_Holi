@@ -39,6 +39,7 @@ export class ContentPage {
 
         this.#parent.innerHTML = content({ film: film.body });
         avatarUpdate();
+
         document.getElementById('dialog').addEventListener('click', closeOnBackDropClick);
         const like = document.querySelector('.heart-button');
         const linkResponse = await checkPaymentLink();
@@ -47,7 +48,7 @@ export class ContentPage {
             const dialog = document.querySelector('#subs');
             const dialogClose = document.getElementById('subs_btn_close');
             dialog.showModal();
-
+            document.querySelector('video').poster = '/img/Frame 2.png';
             dialog.addEventListener('click', closeOnBackDropClick);
 
             dialogClose.addEventListener('click', () => {
@@ -105,6 +106,16 @@ export class ContentPage {
         videoController();
         seachHandler();
 
+        const ratingButton = document.querySelector('.primary__modal');
+        const ratingValue = parseFloat(film.body.film.rating.toFixed(1));
+
+        if (ratingValue >= 8) {
+            ratingButton.classList.add('rating-high');
+        } else if (ratingValue >= 5) {
+            ratingButton.classList.add('rating-medium');
+        } else {
+            ratingButton.classList.add('rating-low');
+        }
     }
 }
 

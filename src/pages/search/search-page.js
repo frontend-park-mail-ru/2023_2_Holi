@@ -2,8 +2,8 @@ import searchPage from './search-page.hbs';
 import { seachHandler } from '../../services/search-utils.js';
 import store from '../../../index.js';
 import { avatarUpdate } from '../../services/avatar-update.js';
-import { videoHelper } from '../../services/video-helper.js';
 import { searchRequest } from '../../services/api/search.js';
+import { logoutHandle } from '../../services/logoutHandle.js';
 
 /**
  * Класс, представляющий страницу члена съёмочной группы.
@@ -83,9 +83,8 @@ export class SearchPage {
         });
 
         avatarUpdate();
-        videoHelper();
         seachHandler();
-
+        logoutHandle();
         this.ratingFillColor();
 
     }

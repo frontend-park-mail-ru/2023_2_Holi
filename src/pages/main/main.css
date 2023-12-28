@@ -1,7 +1,5 @@
 @import url(components/main-form.css);
-@import url(components/main-banner.css);
 @import url(components/main-background.css);
-@import url(components/main-content.css);
 
 .main {
     margin: 0;
@@ -11,5 +9,6 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    animation: show .2s ease;
 }
 
